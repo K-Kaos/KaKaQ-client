@@ -113,7 +113,7 @@ function SignupForm(props) {
     );
 }
 
-function SignupPage() {
+function Signup() {
     return (
         <div>
             <SignupForm title="회원가입" />
@@ -121,4 +121,4 @@ function SignupPage() {
     );
 }
 
-export default SignupPage;
+export default Signup;
