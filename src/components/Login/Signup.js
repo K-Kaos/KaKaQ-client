@@ -9,22 +9,77 @@ function SignupForm(props) {
         password: "",
         confirmPassword: "",
     });
-    const [error, setError] = useState("");
 
-    const handleInputChange = (event) => {
+    //유효성 검사
+    const [isData,setIsData] = useState({
+        username: false, //2자 이상 5자 이하
+        email: false, //이메일 형식
+        password: false, //영문+숫자+특수문자 8자이상 25자 이하
+        confirmPassword: false, //비밀번호 일치
+    });
+
+    //비밀번호 일치 err
+    // const [error, setError] = useState("");
+
+    // const handleInputChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setFormData((prevData) => ({ ...prevData, [name]: value }));
+    // };
+
+    const nameInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
+        if(event.target.value.length < 2 || event.target.value.length>5){
+            setIsData((prevData) => ({ ...prevData, [name]: false }));
+        }else{
+            setIsData((prevData) => ({ ...prevData, [name]: true }));
+        }
+    };
+
+    const mailInputChange = (event) => {
+        const { name, value } = event.target;
+        const emailRegex =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+        if(!emailRegex.test(event.target.value)){
+            setIsData((prevData) => ({ ...prevData, [name]: false }));
+        }else{
+            setIsData((prevData) => ({ ...prevData, [name]: true }));
+        }
+    };
+
+    const pwdInputChange = (event) => {
+        const { name, value } = event.target;
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+        if(!passwordRegex.test(event.target.value)){
+            setIsData((prevData) => ({ ...prevData, [name]: false }));
+        }else{
+            setIsData((prevData) => ({ ...prevData, [name]: true }));
+        }
+    };
+
+    const cfpwdInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+        if(formData.password === event.target.value){
+            setIsData((prevData) => ({ ...prevData, [name]: true}));
+        }else{
+            setIsData((prevData) => ({ ...prevData, [name]: false }));
+        }
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (formData.password !== formData.confirmPassword) {
-            setTimeout(() => {
-                setError(null);
-            }, 3000);
-            setError("비밀번호가 일치하지 않습니다.");
-            return;
-        }
+
+        // if (formData.password !== formData.confirmPassword) {
+        //     setTimeout(() => {
+        //         setError(null);
+        //     }, 3000);
+        //     setError("비밀번호가 일치하지 않습니다.");
+        //     return;
+        // }
+
         // 회원가입 처리 로직
         axios.post("/http/signup", {
             username:formData.username,
@@ -47,7 +102,6 @@ function SignupForm(props) {
         });
         
     };
-    
 
     return (
         <Container fluid className="signup-header">
@@ -62,7 +116,7 @@ function SignupForm(props) {
                             id="username"
                             name="username"
                             value={formData.username}
-                            onChange={handleInputChange}
+                            onChange={nameInputChange}
                         />
                     </div>
                     <br /> <br /> 
@@ -73,7 +127,7 @@ function SignupForm(props) {
                             id="email"
                             name="email"
                             value={formData.email}
-                            onChange={handleInputChange}
+                            onChange={mailInputChange}
                         />
                     </div>
                     <br /><br /> 
@@ -84,7 +138,7 @@ function SignupForm(props) {
                             id="password"
                             name="password"
                             value={formData.password}
-                            onChange={handleInputChange}
+                            onChange={pwdInputChange}
                         />
                     </div>
                     <br /> <br /> 
@@ -95,18 +149,18 @@ function SignupForm(props) {
                             id="confirmPassword"
                             name="confirmPassword"
                             value={formData.confirmPassword}
-                            onChange={handleInputChange}
+                            onChange={cfpwdInputChange}
                         />
                     </div>
                     <br /> <br />
                     {/* <div className='error-box'>{error}</div> */}
-                    { error && (
+                    {/* { error && (
                         <div className='error-box'>
                             <p>{error}</p>
                         </div>
-                    )}
+                    )} */}
                     <br /> <br /> 
-                    <button type="submit">회원가입</button>
+                    <button type="submit"  disabled={!(isData.username&&isData.email&&isData.password&&isData.confirmPassword)}>회원가입</button>
                 </form>
             </Container>
         </Container>
