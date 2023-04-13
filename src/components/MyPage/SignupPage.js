@@ -41,6 +41,9 @@ function SignupForm(props) {
             }
         }).catch(function (error){
             console.log(error);
+            if (error.response && error.response.status === 500) {
+                alert('이미 가입된 이메일입니다.');
+            }
         });
         
     };
