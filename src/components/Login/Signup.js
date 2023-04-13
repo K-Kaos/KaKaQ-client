@@ -11,7 +11,7 @@ function SignupForm(props) {
     });
 
     //유효성 검사
-    const [isData,setIsData] = useState({
+    const [isData, setIsData] = useState({
         username: false, //2자 이상 5자 이하
         email: false, //이메일 형식
         password: false, //영문+숫자+특수문자 8자이상 25자 이하
@@ -29,9 +29,9 @@ function SignupForm(props) {
     const nameInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-        if(event.target.value.length < 2 || event.target.value.length>5){
+        if (event.target.value.length < 2 || event.target.value.length > 5) {
             setIsData((prevData) => ({ ...prevData, [name]: false }));
-        }else{
+        } else {
             setIsData((prevData) => ({ ...prevData, [name]: true }));
         }
     };
@@ -39,11 +39,11 @@ function SignupForm(props) {
     const mailInputChange = (event) => {
         const { name, value } = event.target;
         const emailRegex =
-      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+            /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-        if(!emailRegex.test(event.target.value)){
+        if (!emailRegex.test(event.target.value)) {
             setIsData((prevData) => ({ ...prevData, [name]: false }));
-        }else{
+        } else {
             setIsData((prevData) => ({ ...prevData, [name]: true }));
         }
     };
@@ -52,9 +52,9 @@ function SignupForm(props) {
         const { name, value } = event.target;
         const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-        if(!passwordRegex.test(event.target.value)){
+        if (!passwordRegex.test(event.target.value)) {
             setIsData((prevData) => ({ ...prevData, [name]: false }));
-        }else{
+        } else {
             setIsData((prevData) => ({ ...prevData, [name]: true }));
         }
     };
@@ -62,9 +62,9 @@ function SignupForm(props) {
     const cfpwdInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
-        if(formData.password === event.target.value){
-            setIsData((prevData) => ({ ...prevData, [name]: true}));
-        }else{
+        if (formData.password === event.target.value) {
+            setIsData((prevData) => ({ ...prevData, [name]: true }));
+        } else {
             setIsData((prevData) => ({ ...prevData, [name]: false }));
         }
     };
@@ -82,75 +82,74 @@ function SignupForm(props) {
 
         // 회원가입 처리 로직
         axios.post("/http/signup", {
-            username:formData.username,
-            email:formData.email,
-            password:formData.password,
-        }).then(function (response){
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
+        }).then(function (response) {
             console.log(response);
-            if(response.data ==0){//이메일 중복없고 db에 올림
-                alert(formData.username+ "님, 환영합니다!");
-            } else{
-                if(response.data ==10000){//이메일에 중복 있음
+            if (response.data == 0) {//이메일 중복없고 db에 올림
+                alert(formData.username + "님, 환영합니다!");
+            } else {
+                if (response.data == 10000) {//이메일에 중복 있음
                     alert("User email is duplicated. Please enter a different email");
                 }
             }
-        }).catch(function (error){
+        }).catch(function (error) {
             console.log(error);
             if (error.response && error.response.status === 500) {
                 alert('이미 가입된 이메일입니다.');
             }
         });
-        
+
     };
 
     return (
         <Container fluid className="signup-header">
             <Container>
-                <br/>
+                <br />
                 <form onSubmit={handleSubmit}>
-                    <h1>회원가입</h1>
-                    <div className="mb-3">
-                        <label htmlFor="username">사용자 이름</label>
-                        <input
-                            type="text"
+                    <h1>회원가입</h1><br />
+                    <div className="mb-3 ">
+                        <label htmlFor="username" class="text-lg">사용자 이름</label>&nbsp;&nbsp;
+                        <input type="text"
                             id="username"
                             name="username"
                             value={formData.username}
                             onChange={nameInputChange}
-                        />
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 w-60 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="username" required />
                     </div>
-                    <br /> <br /> 
+                    <br /> <br />
                     <div className="mb-3">
-                        <label htmlFor='email'>이메일</label>
+                        <label htmlFor='email' class="text-lg">이메일</label>&nbsp;&nbsp;
                         <input
                             type="text"
                             id="email"
                             name="email"
                             value={formData.email}
                             onChange={mailInputChange}
-                        />
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email" required />
                     </div>
-                    <br /><br /> 
+                    <br /><br />
                     <div className="mb-3">
-                        <label htmlFor="password">비밀번호</label>
+                        <label htmlFor="password" class="text-lg">비밀번호</label>&nbsp;&nbsp;
                         <input
                             type="password"
                             id="password"
                             name="password"
                             value={formData.password}
                             onChange={pwdInputChange}
-                        />
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 w-60 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="password" required />
                     </div>
-                    <br /> <br /> 
+                    <br /> <br />
                     <div className="mb-3">
-                        <label htmlFor="confirmPassword">비밀번호 확인</label>
+                        <label htmlFor="confirmPassword" class="text-lg">비밀번호 확인</label>&nbsp;&nbsp;
                         <input
                             type="password"
                             id="confirmPassword"
                             name="confirmPassword"
                             value={formData.confirmPassword}
                             onChange={cfpwdInputChange}
-                        />
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 w-60 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="password check" required />
                     </div>
                     <br /> <br />
                     {/* <div className='error-box'>{error}</div> */}
@@ -159,8 +158,8 @@ function SignupForm(props) {
                             <p>{error}</p>
                         </div>
                     )} */}
-                    <br /> <br /> 
-                    <button type="submit"  disabled={!(isData.username&&isData.email&&isData.password&&isData.confirmPassword)}>회원가입</button>
+                    <br /> <br />
+                    <button type="submit" disabled={!(isData.username && isData.email && isData.password && isData.confirmPassword)}>회원가입</button>
                 </form>
             </Container>
         </Container>
