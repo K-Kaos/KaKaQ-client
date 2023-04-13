@@ -66,10 +66,10 @@ function NavBar() {
                 data-bs-toggle="dropdown" aria-expanded="false"
                 onClick={() => updateExpanded(false)}>
                 <AiOutlineUser style={{ marginBottom: "2px" }} /> Survey
-                <li><a class="dropdown-item" href="/survey">Basic</a></li>
-                <li><a class="dropdown-item" href="#">ChatBot</a></li>
-                <li><a class="dropdown-item" href="/opensurvey">List</a></li>
               </Nav.Link>
+                <li><a class="dropdown-item" href="/survey">Basic</a></li>
+                <li><a class="dropdown-item" href="/chatbot">ChatBot</a></li>
+                <li><a class="dropdown-item" href="/opensurvey">List</a></li>
             </Nav.Item>
 
             <Nav.Item>
@@ -115,7 +115,7 @@ function NavBar() {
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/signuppage"
+                to="/signup"
                 onClick={() => updateExpanded(false)}
               >
                 <RiSurveyLine style={{ marginBottom: "2px" }} /> Signup
