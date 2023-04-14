@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import TopicInput from './TopicInput';
+import axios from 'axios';
 
 function Chatbot() {
 
@@ -11,6 +12,12 @@ function Chatbot() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        axios.get("/http/topic?topic="+topic).then(function (response) {
+            console.log(response.data.choices);
+            
+        }).catch(function (error) {
+            console.log(error);
+        });
         alert('Topic ' + topic + ' has been submitted!');
     }
 
