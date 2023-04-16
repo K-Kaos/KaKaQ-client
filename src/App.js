@@ -10,6 +10,7 @@ import OpenSurvey from "./components/Survey/OpenSurvey"
 import Login from "./components/Login/Login"
 import Signup from "./components/Login/Signup"
 import Chatbot from "./components/Survey/Chatbot"
+import ChatbotSurvey from "./components/Survey/ChatbotSurvey"
 import {
   BrowserRouter as Router,
   Route,
@@ -48,6 +49,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/chatbotsurvey" element={<ChatbotSurvey />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
