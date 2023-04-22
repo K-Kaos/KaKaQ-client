@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import TopicInput from './TopicInput';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import ChatbotSurvey from './ChatbotSurvey';
+
 function Chatbot() {
 
     const [topic, setTopic] = useState('');
+    const [ chatbotResponse , setResponse ] = useState('');
 
     function handleTopicChange(event) {
         setTopic(event.target.value);
@@ -14,15 +17,15 @@ function Chatbot() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.get("/http/topic?topic=" + topic).then(function (response) {
-            console.log(response.data.choices);
-
-        }).catch(function (error) {
+        axios.get("/http/topic?topic=" + topic)
+          .then(function (response) {
+            navigate("/chatbotsurvey", { state: { response: response.data.choices } });
+          })
+          .catch(function (error) {
             console.log(error);
-        });
+          });
         alert('Topic ' + topic + ' has been submitted!');
-        navigate("/chatbotsurvey")
-    }
+      }
 
     return (
         <div className='surveys'>
@@ -45,10 +48,13 @@ function Chatbot() {
 
                         <p>Select topic: {topic}</p>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button><br />
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <br />
                 </form>
             </div>
+            
         </div>
+        
     );
 }
 
