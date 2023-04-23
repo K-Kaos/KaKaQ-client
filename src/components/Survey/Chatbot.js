@@ -37,7 +37,7 @@ function Chatbot() {
                     <div className='surveys__wrapper'>
                         <section class="dark:bg-gray-900">
                             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
-                                <h2 class="mb-4 font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">원하는 토픽을 입력해서 5초만에 설문조사를 만들어보세요!
+                                <h2 class="mb-4 font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">원하는 토픽을 입력해서 <br/>'5초' 만에 설문조사를 만들어보세요!
                                 </h2>
                             </div>
                         </section>
