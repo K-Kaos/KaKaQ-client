@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom"
-import Button from "react-bootstrap/Button";
-import Radio from "./Radio";
-import RadioGroup from "./RadioGroup";
-import Checkbox from "./CheckBox";
-import CheckboxGroup from "./CheckboxGroup";
-import InputBox from "./InputBox";
-import Card from "react-bootstrap/Card";
-import Question from "./Question";
-import Chatbot from "./Chatbot";
 
 function ChatbotSurvey(props) {
   const location = useLocation();
   const [response, setResponse] = useState([]);
   const [questions, setQuestions] = useState([]);
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
 
   useEffect(() => {
     if (location.state && location.state.response) {
@@ -22,32 +14,50 @@ function ChatbotSurvey(props) {
     }
   }, [location.state]);
 
-
-  // 문항과 선택지를 파싱하는 함수
-  const parseQuestions = () => {
-    const questionAndAnswers = response[0].text.split("\n\n");
-    return questionAndAnswers.map((questionAndAnswer, index) => {
-      const [question, answers] = questionAndAnswer.split("\n");
-      const choices = answers.split(". ").map((choice, i) => (
-        <div key={i}>
-          <input type="radio" id={`q${index + 1}-choice${i + 1}`} name={`q${index + 1}`} value={choice} />
-          <label htmlFor={`q${index + 1}-choice${i + 1}`}>{choice}</label>
-        </div>
-      ));
-      return (
-        <div key={index}>
-          <h3>{question}</h3>
-          <form>
-            {choices}
-          </form>
-        </div>
-      );
+  
+  const handleAnswerSelect = (questionIndex, answerIndex) => {
+    setSelectedAnswers((prevAnswers) => {
+      const newAnswers = [...prevAnswers];
+      newAnswers[questionIndex] = answerIndex;
+      return newAnswers;
     });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // `selectedAnswers` 배열을 이용하여 선택된 답변을 저장하거나 처리하는 로직
   };
 
   if (response.length == 0) {
     return <div>Loading...</div>
   }
+
+  const questionsAndAnswers = response[0].text.slice(2).split("\n\n").map((questionText, questionIndex) => {
+    const options = questionText.split("\n").slice(1).map((optionText, optionIndex) => {
+      return (
+        <div key={optionIndex}>
+          <input
+            type="radio"
+            id={`answer-${questionIndex}-${optionIndex}`}
+            name={`answer-${questionIndex}`}
+            value={optionIndex}
+            checked={selectedAnswers[questionIndex] === optionIndex}
+            onChange={() => handleAnswerSelect(questionIndex, optionIndex)}
+          />
+          <label htmlFor={`answer-${questionIndex}-${optionIndex}`}>{optionText}</label>
+        </div>
+      );
+    });
+
+    return (
+      <div key={questionIndex}>
+        <br/>
+        <h4>{questionText.split("\n")[0]}</h4>
+        <br />
+        {options}
+      </div>
+    );
+  });
 
 
   return (
@@ -65,8 +75,8 @@ function ChatbotSurvey(props) {
             Here is survey created by a chatbot
           </p><br />
           <br />
-          <div> 
-            {response[0].text}
+          <div>
+            {questionsAndAnswers}
           </div>
 
           <button type="submit" class="btn btn-primary">Make Survey</button><br />

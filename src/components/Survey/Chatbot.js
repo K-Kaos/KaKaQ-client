@@ -3,10 +3,12 @@ import TopicInput from './TopicInput';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import ChatbotSurvey from './ChatbotSurvey';
+import { ProgressBar } from "react-bootstrap";
 
 function Chatbot() {
 
     const [topic, setTopic] = useState('');
+    const [loading, setLoading] = useState(false); // 로딩 상태를 관리하는 상태 변수 추가
     const [ chatbotResponse , setResponse ] = useState('');
 
     function handleTopicChange(event) {
@@ -17,6 +19,7 @@ function Chatbot() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        setLoading(true); // 데이터 요청 전 로딩 상태를 true로 변경
         axios.get("/http/topic?topic=" + topic)
           .then(function (response) {
             navigate("/chatbotsurvey", { state: { response: response.data.choices } });
@@ -50,6 +53,7 @@ function Chatbot() {
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <br />
+                    {loading && <ProgressBar className="my-1" now={100} animated label="Loading..." />} {/* 로딩 중이면 progress bar를 표시 */}
                 </form>
             </div>
             
