@@ -54,7 +54,7 @@ function NavBar() {
   return (
     <nav class="bg-warning dark:bg-gray-900 ">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/chatbot" class="flex items-center" style={{ textDecoration: "none" }}>
+        <a href="/" class="flex items-center" style={{ textDecoration: "none" }}>
           <img src={logo} class="h-8 mr-3" alt="KaKaQ Logo" />
           <span class="text-black self-center text-4xl font-semibold whitespace-nowrap dark:text-white focus:outline-none" style={{ textDecoration: "none" }}>KaKaQ</span>
         </a>
