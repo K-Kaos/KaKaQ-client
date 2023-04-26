@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Radio from "./Radio";
@@ -13,6 +13,15 @@ import TypeQuestion from "./TypeQuestion";
 function Survey(props) {
   const [pages, setPages] = React.useState(["home"]);
   const [message, setMessage] = React.useState('');
+  const [visibility, setVisibility] = useState('');
+  const [GPS, setGPS] = useState(false);
+
+  function handleVisibility(event) {
+    setVisibility(event.target.value);
+  }
+  function handleGPS(event) {
+    setGPS(event.target.value);
+  }
 
   return (
     <Container fluid className="survey-header" >
@@ -57,22 +66,48 @@ function Survey(props) {
           <Card className="survey-card-view">
             <Card.Body>
               <Question question="Option" />
-              <RadioGroup>
-                <Radio name="option" value="public" defaultChecked>
-                  Public
-                </Radio>
-                <br/>
-                <Radio name="option" value="private">
-                  Private
-                </Radio>
-                <br/>
-                <Radio name="gps" value="gps">
-                  GPS
-                </Radio>
-              </RadioGroup>
+              <input
+                type='radio'
+                id='public'
+                name='visibility'
+                value='public'
+                onChange={handleVisibility}
+                checked={visibility === 'public'} />
+              <label for='public'>public</label><br/>
+              <input
+                type='radio'
+                id='private'
+                name='visibility'
+                value='private'
+                onChange={handleVisibility}
+                checked={visibility === 'private'} />
+              <label for='private'>private</label>
               <br />
             </Card.Body>
           </Card>
+
+          {(visibility === 'public') && <Card className="survey-card-view">
+            <Card.Body>
+              <Question question="설문조사 공개 여부" />
+              <input
+                type='radio'
+                id='GPSO'
+                name='gps'
+                value='GPSO'
+                onChange={handleGPS}
+                checked={GPS === 'GPSO'} />
+              <label for='GPSO'>YES!</label><br/>
+              <input
+                type='radio'
+                id='GPSX'
+                name='gps'
+                value='GPSX'
+                onChange={handleGPS}
+                checked={GPS === 'GPSX'} />
+              <label for='GPSX'>NO!</label>
+              <br />
+            </Card.Body>
+          </Card>}
 
           <Card className="survey-card-view">
             <Card.Body>
@@ -91,6 +126,7 @@ function Survey(props) {
               <InputBox id="q2-title" name="question title" value="q-title1" size="50" ></InputBox><br></br>
             </Card.Body>
           </Card>
+
 
           <button type="submit" class="btn btn-primary">Submit</button><br />
           <h2 style={{ color: "white" }}>{message}</h2>
