@@ -79,7 +79,7 @@ function ChatbotSurvey(props) {
             {questionsAndAnswers}
           </div>
 
-          <button type="submit" class="btn btn-primary">Make Survey</button><br />
+          <button type="submit" class="btn btn-primary" onClick={handleSubmit}>Make Survey</button><br />
           {/* <h2 style={{ color: "white" }}>{message}</h2> */}
         </form>
       </Container>
