@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+
 
 function SignupForm(props) {
     const [formData, setFormData] = useState({
@@ -69,6 +71,8 @@ function SignupForm(props) {
         }
     };
 
+    const navigate = useNavigate();
+    
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -89,6 +93,7 @@ function SignupForm(props) {
             console.log(response);
             if (response.data == 0) {//이메일 중복없고 db에 올림
                 alert(formData.username + "님, 환영합니다!");
+                navigate("/login")
             } else {
                 if (response.data == 10000) {//이메일에 중복 있음
                     alert("User email is duplicated. Please enter a different email");
