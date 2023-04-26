@@ -14,6 +14,12 @@ html {
   --black-color: #000000;
 }
 
+.home-section {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+
 .a {
   textDecoration: "none" 
 }
