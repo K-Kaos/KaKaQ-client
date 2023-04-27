@@ -15,14 +15,20 @@ function Survey(props) {
   const [message, setMessage] = React.useState('');
   const [visibility, setVisibility] = useState('');
   const [GPS, setGPS] = useState(false);
-
+  const [content, setContent] = useState();
+  const [navColour, updateNavbar] = useState(false);
+  
+  function handleDropdown() {
+    const dropdownNavbar = document.getElementById("dropdownNavbar");
+    dropdownNavbar.classList.toggle("hidden");
+  }
+  
   function handleVisibility(event) {
     setVisibility(event.target.value);
   }
   function handleGPS(event) {
     setGPS(event.target.value);
   }
-
   return (
     <Container fluid className="survey-header" >
       <Container>
@@ -73,7 +79,7 @@ function Survey(props) {
                 value='public'
                 onChange={handleVisibility}
                 checked={visibility === 'public'} />
-              <label for='public'>public</label><br/>
+              <label for='public'>public</label><br />
               <input
                 type='radio'
                 id='private'
@@ -96,7 +102,7 @@ function Survey(props) {
                 value='GPSO'
                 onChange={handleGPS}
                 checked={GPS === 'GPSO'} />
-              <label for='GPSO'>YES!</label><br/>
+              <label for='GPSO'>YES!</label><br />
               <input
                 type='radio'
                 id='GPSX'
@@ -108,6 +114,21 @@ function Survey(props) {
               <br />
             </Card.Body>
           </Card>}
+
+          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-primary">1</button>
+            <button type="button" class="btn btn-primary">2</button>
+
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+                <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+              </ul>
+            </div>
+          </div><br />
 
           <Card className="survey-card-view">
             <Card.Body>
