@@ -9,6 +9,7 @@ import InputBox from "./InputBox";
 import Card from "react-bootstrap/Card";
 import Question from "./Question";
 import TypeQuestion from "./TypeQuestion";
+import QuestionGenerator from "./QuestionGenerator";
 
 function Survey(props) {
   const [pages, setPages] = React.useState(["home"]);
@@ -17,6 +18,11 @@ function Survey(props) {
   const [GPS, setGPS] = useState(false);
   const [content, setContent] = useState();
   const [navColour, updateNavbar] = useState(false);
+  const [ showQuestionGenerator, setShowQuestionGenerator ] = useState(false);
+
+  const handleShowQuestionGenerator = () => {
+    setShowQuestionGenerator(true);
+  }
   
   function handleDropdown() {
     const dropdownNavbar = document.getElementById("dropdownNavbar");
@@ -148,6 +154,14 @@ function Survey(props) {
             </Card.Body>
           </Card>
 
+          <div>
+            <h1>질문 생성기</h1>
+            {showQuestionGenerator ? (
+              <QuestionGenerator />
+            ) : (
+              <buttion class="btn btn-primary" onClick={handleShowQuestionGenerator}>+</buttion>
+            )}
+          </div>
 
           <button type="submit" class="btn btn-primary">Submit</button><br />
           <h2 style={{ color: "white" }}>{message}</h2>
