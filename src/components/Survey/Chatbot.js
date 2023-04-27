@@ -30,7 +30,7 @@ function Chatbot() {
     function handleSubmit(event) {
         event.preventDefault();
         setLoading(true); // 데이터 요청 전 로딩 상태를 true로 변경
-        axios.get("/http/topic?topic=" + topic)
+        axios.get("/api/survey/create/chatbot?topic=" + topic)
             .then(function (response) {
                 navigate("/chatbotsurvey", { state: { response: response.data.choices } });
             })
