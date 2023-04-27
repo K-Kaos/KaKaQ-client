@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Radio from "./Radio";
@@ -9,11 +9,32 @@ import InputBox from "./InputBox";
 import Card from "react-bootstrap/Card";
 import Question from "./Question";
 import TypeQuestion from "./TypeQuestion";
+import QuestionGenerator from "./QuestionGenerator";
 
 function Survey(props) {
   const [pages, setPages] = React.useState(["home"]);
   const [message, setMessage] = React.useState('');
+  const [visibility, setVisibility] = useState('');
+  const [GPS, setGPS] = useState(false);
+  const [content, setContent] = useState();
+  const [navColour, updateNavbar] = useState(false);
+  const [ showQuestionGenerator, setShowQuestionGenerator ] = useState(false);
 
+  const handleShowQuestionGenerator = () => {
+    setShowQuestionGenerator(true);
+  }
+  
+  function handleDropdown() {
+    const dropdownNavbar = document.getElementById("dropdownNavbar");
+    dropdownNavbar.classList.toggle("hidden");
+  }
+  
+  function handleVisibility(event) {
+    setVisibility(event.target.value);
+  }
+  function handleGPS(event) {
+    setGPS(event.target.value);
+  }
   return (
     <Container fluid className="survey-header" >
       <Container>
@@ -91,6 +112,16 @@ function Survey(props) {
               <InputBox id="q2-title" name="question title" value="q-title1" size="50" ></InputBox><br></br>
             </Card.Body>
           </Card>
+
+          <div>
+            <h1>질문 생성기</h1>
+            {showQuestionGenerator ? (
+              <QuestionGenerator />
+            ) : (
+              <buttion class="btn btn-primary" onClick={handleShowQuestionGenerator}>+</buttion>
+            )}
+          </div>
+
 
           <button type="submit" class="btn btn-primary">Submit</button><br />
           <h2 style={{ color: "white" }}>{message}</h2>
