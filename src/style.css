@@ -515,6 +515,13 @@ button:focus {
 }
 
 /* --------- */
+/* Participate Servey */
+/* --------- */
+.participate-heading {
+  padding-top: 50px !important;
+}
+
+/* --------- */
 /* Test */
 /* --------- */
 .test-header {
@@ -604,7 +611,7 @@ button:focus {
 /* Guide */
 /* --------- */
 .guide-header {
-  padding-top: 80px !important;
+  padding-top: 120px !important;
 }
 
 .guide-section {

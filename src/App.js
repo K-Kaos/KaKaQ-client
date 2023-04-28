@@ -11,6 +11,7 @@ import Login from "./components/Login/Login"
 import Signup from "./components/Login/Signup"
 import Chatbot from "./components/Survey/Chatbot"
 import ChatbotSurvey from "./components/Survey/ChatbotSurvey"
+import ParticipateSurvey from "./components/Survey/ParticipateSurvey"
 import {
   BrowserRouter as Router,
   Route,
@@ -50,6 +51,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/chatbotsurvey" element={<ChatbotSurvey />} />
+          <Route path="/participatesurvey" element={<ParticipateSurvey />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
