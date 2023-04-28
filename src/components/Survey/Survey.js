@@ -44,11 +44,11 @@ function Survey() {
     setType(event.target.value);
 
     if (event.target.value === "찬반식") {
-      setOptions( ["True", "False" ]);
+      setOptions(["True", "False"]);
     }
 
     if (event.target.value === "서술형") {
-      setOptions( null );
+      setOptions(null);
     }
   }
 
@@ -61,30 +61,24 @@ function Survey() {
     setOptions((prevOptions) => [...prevOptions, value]);
   }
 
-  const handleSubmit = (e) => {
+  const handleAddQuestion = (e) => {
     e.preventDefault();
-    const newQuestion = {
-      id: questions.length + 1, // 새로운 질문의 id는 배열 길이 + 1
-      title: title,
-      text: question,
-      type: type,
-      options: options,
-      visibility: visibility,
-      GPS: GPS,
-    };
 
-    console.log({ newQuestion })
+    if (question !== "") {
+      const newQuestion = {
+        id: questions.length + 1, // 새로운 질문의 id는 배열 길이 + 1
+        text: question,
+        type: type,
+        options: options,
+      };
 
-    setQuestions([...questions, newQuestion]);
-    setTitle('');
-    setQuestion('');
-    setType('');
-    setOptions([]);
-    setMessage('설문조사가 제출되었습니다.');
+      console.log({ newQuestion })
 
-    setTimeout( () => {
-      setMessage('');
-    }, 3000);
+      setQuestions([...questions, newQuestion]);
+      setQuestion('');
+      setType('');
+      setOptions([]);
+    }
   }
 
   const handleAddOption = () => {
@@ -97,6 +91,16 @@ function Survey() {
     const updateOptions = [...options];
     updateOptions[index] = event.target.value;
     setOptions(updateOptions);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setMessage('설문조사가 제출되었습니다.');
+
+    setTimeout(() => {
+      setMessage('');
+    }, 3000);
   }
 
   return (
@@ -166,6 +170,25 @@ function Survey() {
             </Card.Body>
           </Card>}
 
+          {questions.map((question) => (
+            <Card key={question.id} className="survey-card-view">
+              <Card.Body>
+                <p>Question: {question.text}</p>
+                <p>Type: {question.type}</p>
+                {question.type !== "서술형" && (
+                <div>
+                  <p>Options:</p>
+                  <ul>
+                    {question.options.map((option, index) => (
+                      <li key={index}>{option}</li>
+                    ))}
+                  </ul>
+                </div>
+                )}
+              </Card.Body>
+            </Card>
+          ))}
+
           <Card className="survey-card-view">
             <Card.Body>
               <Question question="Question Type" />
@@ -195,7 +218,7 @@ function Survey() {
           {type === "객관식" && (
             <Card className="survey-card-view">
               <Card.Body>
-                <h3 htmlFor="optionsInput"><b>Options</b></h3>
+                <h3 for="optionsInput"><b>Options</b></h3>
                 {options.map((option, index) => (
                   <div key={index}>
                     <input
@@ -207,12 +230,16 @@ function Survey() {
                   </div>
                 ))}
                 <br />
-                <button type="button" onClick={handleAddOption}>
+                <button class="btn btn-primary" type="button" onClick={handleAddOption}>
                   Add Option
                 </button>
               </Card.Body>
             </Card>
           )}
+
+          <button type="button" class="btn btn-primary" onClick={handleAddQuestion}>Add Question</button>
+
+          <br /> <br /> <br />
 
           <button type="submit" class="btn btn-primary">Submit</button><br />
           <p>{message}</p>
