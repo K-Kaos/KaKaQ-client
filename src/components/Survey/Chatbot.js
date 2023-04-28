@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TopicInput from './TopicInput';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,9 @@ function Chatbot() {
     const [loading, setLoading] = useState(false); // 로딩 상태를 관리하는 상태 변수 추가
     const [visibility, setVisibility] = useState('');
     const [GPS, setGPS] = useState(false);
+    // const [geoData, setgeoData] = useState(false);
+
+
 
 
     function handleTopicChange(event) {
@@ -22,7 +25,13 @@ function Chatbot() {
     }
 
     function handleGPS(event) {
-        setGPS(event.target.value);
+        if(event.target.value == 'GPSO'){
+                setGPS(event.target.value);
+            }
+        else{
+            setGPS(event.target.value);
+        }
+
     }
 
     const navigate = useNavigate();
@@ -37,8 +46,9 @@ function Chatbot() {
             .catch(function (error) {
                 console.log(error);
             });
+        axios.get("/api/")
         alert('Topic ' + topic + ' has been submitted to ' + visibility + '!' + GPS);
-
+        
     }
 
     return (
@@ -116,6 +126,7 @@ function Chatbot() {
         </div>
 
     );
+                        
 }
 
 export default Chatbot;
