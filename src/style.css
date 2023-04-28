@@ -648,6 +648,12 @@ button:focus {
   opacity: 0.8 !important;
   border-radius: 10px !important;
 }
+/* --------- */
+/* MyPage */
+/* --------- */
+.profile {
+  height: 30% !important;
+}
 
 /* --------- */
 /* Login */

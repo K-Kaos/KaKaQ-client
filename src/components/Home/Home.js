@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 
 function Home() {
-
   const navigate = useNavigate();
   function NavButton({ to, text }) {
     return (
