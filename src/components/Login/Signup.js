@@ -85,7 +85,7 @@ function SignupForm(props) {
         // }
 
         // 회원가입 처리 로직
-        axios.post("/http/signup", {
+        axios.post("/api/user/register", {
             username: formData.username,
             email: formData.email,
             password: formData.password,
