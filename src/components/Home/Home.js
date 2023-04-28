@@ -3,21 +3,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import homeLogo from "../../Assets/Projects/home.png";
 import Particle from "../Particle";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
 
 function Home() {
-  const navigate = useNavigate();
-  function NavButton({ to, text }) {
-    return (
-      <Link
-        to={to}
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-      >
-        {text}
-      </Link>
-    );
-  }
   return (
     <Container className="home-content">
       <Row>

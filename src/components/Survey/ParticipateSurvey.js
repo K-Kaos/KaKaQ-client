@@ -13,29 +13,26 @@ import QuestionGenerator from "./QuestionGenerator";
 import { RiQuestionAnswerFill } from "react-icons/ri";
 
 function ParticipateSurvey() {
-  
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setMessage('설문조사가 제출되었습니다.');
+
+    setTimeout(() => {
+      setMessage('');
+    }, 3000);
+  }
 
   return (
     <Container >
       <Container>
         <form onSubmit={handleSubmit}>
-          <h1 className="project-heading">
-            Our <strong className="yellow">Survey </strong>
+          <h1 className="participate-heading">
+            <strong> 설문조사 제목 </strong>
           </h1>
-          <p>
-            Here is a survey we're working on recently.
-          </p><br />
-          <Card className="survey-card-view ">
-            <Card.Body>
-              <Question question="Survey Title" />
-              <input
-                type="text"
-                value={title}
-                onChange={handleTitleChange}
-                placeholder="Survey title" />
-            </Card.Body>
-          </Card>
-
+{/* 
           <Card className="survey-card-view">
             <Card.Body>
               <Question question="Option" />
@@ -169,11 +166,10 @@ function ParticipateSurvey() {
                 </button>
               </Card.Body>
             </Card>
-          )}
+          )} */}
 
-          <button type="button" class="btn btn-primary" onClick={handleAddQuestion}>Add Question</button>
+          {/* <button type="button" class="btn btn-primary" onClick={handleAddQuestion}>Add Question</button> */}
 
-          <br /> <br /> <br />
 
           <button type="submit" class="btn btn-primary">Submit</button><br />
           <p>{message}</p>
