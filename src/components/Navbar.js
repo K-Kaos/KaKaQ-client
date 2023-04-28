@@ -39,12 +39,18 @@ function NavBar() {
     dropdownNavbar.classList.toggle("hidden");
   }
 
+  function handleHamburger() {
+    const dropdownHamburger = document.getElementById("navbar-dropdown");
+    dropdownHamburger.classList.toggle("hidden");
+  }
+
 
   function NavButton({ to, text }) {
     return (
       <Link
         to={to}
         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        style={{ textDecoration: "none" }}
       >
         {text}
       </Link>
@@ -58,14 +64,7 @@ function NavBar() {
           <img src={logo} class="h-8 mr-3" alt="KaKaQ Logo" />
           <span class="text-black self-center text-4xl font-semibold whitespace-nowrap dark:text-white focus:outline-none" style={{ textDecoration: "none" }}>KaKaQ</span>
         </a>
-        <div class="flex md:order-2 text-2xl">
-          <Link to="/login" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style={{ textDecoration: "none" }}>Login</Link>
-          &nbsp;&nbsp;
-          <Link to="/signup" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style={{ textDecoration: "none" }}>Signup</Link>
-        </div>
-        <button type="button" class="bg-warning inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown"
-          aria-expanded={expand}
-          onClick={handleDropdown}  >
+        <button type="button" id="hamburger" class="bg-warning inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false" onClick={handleHamburger}  >
           <span class="sr-only">Open main menu</span>
           <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
         </button>
@@ -95,19 +94,26 @@ function NavBar() {
               </div>
             </li>
             <li>
-                  <a href="/test" style={{ textDecoration: "none" }} class="flex block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                    <CgFileDocument style={{ marginRight: "2px" }} />Test</a>
-                </li>
-                <li>
-                  <a href="/mypage" style={{ textDecoration: "none" }} class="flex block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                    <ImBlog style={{ marginRight: "2px" }} />MyPage</a>
-                </li>
-                <li>
-                  <a href="/guide" style={{ textDecoration: "none" }} class="flex block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                    <RiSurveyLine style={{ marginRight: "2px" }} />Guide</a>
-                </li>
+              <a href="/test" style={{ textDecoration: "none" }} class="flex block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <CgFileDocument style={{ marginRight: "2px" }} />Test</a>
+            </li>
+            <li>
+              <a href="/mypage" style={{ textDecoration: "none" }} class="flex block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <ImBlog style={{ marginRight: "2px" }} />MyPage</a>
+            </li>
+            <li>
+              <a href="/guide" style={{ textDecoration: "none" }} class="flex block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                <RiSurveyLine style={{ marginRight: "2px" }} />Guide</a>
+            </li>
+            <li class="flex md:order-2 text-2xl">
+              <NavButton to="/login" text="Login" />
+            </li>
+            &nbsp;&nbsp;
+            <li class="flex md:order-2 text-2xl">
+            <NavButton to="/signup" text="Signup" />
+            </li>
           </ul>
-          
+
         </div>
       </div>
     </nav>
