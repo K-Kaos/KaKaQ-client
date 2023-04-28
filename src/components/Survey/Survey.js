@@ -23,6 +23,8 @@ function Survey() {
   const [message, setMessage] = useState("");
   const [showQuestionGenerator, setShowQuestionGenerator] = useState(false);
   const [questions, setQuestions] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
 
   const handleShowQuestionGenerator = () => {
@@ -91,6 +93,14 @@ function Survey() {
     const updateOptions = [...options];
     updateOptions[index] = event.target.value;
     setOptions(updateOptions);
+  }
+
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
   }
 
   const handleSubmit = (e) => {
@@ -169,6 +179,28 @@ function Survey() {
               <br />
             </Card.Body>
           </Card>}
+
+          <Card className="survey-card-view">
+            <Card.Body>
+              <Question question="Survey Start Date" />
+              <input
+                type="date"
+                value={startDate}
+                onChange={handleStartDateChange}
+              />
+            </Card.Body>
+          </Card>
+
+          <Card className="survey-card-view">
+            <Card.Body>
+              <Question question="Survey End Date" />
+              <input
+                type="date"
+                value={endDate}
+                onChange={handleEndDateChange}
+              />
+            </Card.Body>
+          </Card>
 
           {questions.map((question) => (
             <Card key={question.id} className="survey-card-view">
