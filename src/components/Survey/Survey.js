@@ -195,7 +195,7 @@ function Survey() {
           {type === "객관식" && (
             <Card className="survey-card-view">
               <Card.Body>
-                <label htmlFor="optionsInput">Options</label>
+                <h3 htmlFor="optionsInput"><b>Options</b></h3>
                 {options.map((option, index) => (
                   <div key={index}>
                     <input
