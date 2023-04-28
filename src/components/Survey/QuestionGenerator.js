@@ -8,6 +8,7 @@ function QuestionGenerator() {
     const [showSurveyCard, setShowSurveyCard] = useState(false);
     const [question, setQuestion] = useState('');
     const [options, setOptions] = useState([]);
+    const [surveyData, setSurveyData] = useState(null);
 
     const handleQuestionTypeChange = (event) => {
         setQuestionType(event.target.value);
@@ -42,9 +43,16 @@ function QuestionGenerator() {
 
 
     const handleSaveQuestion = () => {
-        // 여기에 질문을 저장하는 로직을 추가하세요
-        console.log('질문:', question);
-        console.log('선택지:', options);
+        console.log('질문: ' + {question})
+        console.log('선택지: ' + {options})
+
+        const surveyData = {
+            question,
+            options
+        };
+
+        setSurveyData(surveyData);
+        setShowSurveyCard(true);
     };
 
     if (showSurveyCard) {
@@ -53,7 +61,7 @@ function QuestionGenerator() {
                 <Card className="survey-card-view">
                     <Card.Body>
                         <Form.Group>
-                            <Form.Label>질문</Form.Label>
+                            <Form.Label>{questionType} 질문</Form.Label>
                             <Form.Control type="text" value={question} onChange={handleQuestionChange} />
                         </Form.Group>
                         {options.map((option, index) => (
