@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import OpenSurveyItem from './OpenSurveyItem';
 import pizza_image from '../../Assets/Images/Pizza.jpg'
 import museum_image from '../../Assets/Images/Museum.jpg'
@@ -8,6 +8,15 @@ import tang_image from '../../Assets/Images/tang.jpg'
 import './OpenSurvey.css'
 
 function OpenSurvey() {
+    let whoLoggedIn = null;
+    useEffect(() => {
+        whoLoggedIn = sessionStorage.getItem('whoLoggedIn');
+        if(whoLoggedIn === null){
+        alert("로그인 후 이용해 주세요");
+        window.location.href = "/login";
+        }
+    }, []);
+    
     return (
         <div className='surveys'>
             <h1>이 지역에서만 할 수 있는 설문조사에요!</h1>

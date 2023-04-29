@@ -76,14 +76,6 @@ function SignupForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // if (formData.password !== formData.confirmPassword) {
-        //     setTimeout(() => {
-        //         setError(null);
-        //     }, 3000);
-        //     setError("비밀번호가 일치하지 않습니다.");
-        //     return;
-        // }
-
         // 회원가입 처리 로직
         axios.post("/api/user/register", {
             username:formData.username,

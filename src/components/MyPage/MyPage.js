@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState,useEffect }from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import TimelineCard from "./MyPageCards";
 import Particle from "../Particle";
@@ -6,6 +6,17 @@ import Card from "react-bootstrap/Card";
 import profile_image from '../../Assets/Images/profile.png'
 
 function MyPage() {
+  const [whoLoggedIn, setWhoLeggedIn] = useState(null);
+  useEffect(() => {
+    const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
+    if(LoggedInUser === null){
+      alert("로그인 후 이용해 주세요");
+      window.location.href = "/login";
+    }else{
+      setWhoLeggedIn(LoggedInUser);
+    }
+  }, []);
+
   return (
     <Container fluid className="mypage-section">
       <Particle />
@@ -16,6 +27,7 @@ function MyPage() {
         <div>
           <div class="px-4 sm:px-0">
             <h3 class="text-base font-semibold leading-7">Your Information</h3><br />
+            <p class="mt-1 max-w-xl font-semibold text-m leading-2">{whoLoggedIn}님의 정보입니다.</p>
             <p class="mt-1 max-w-xl font-semibold text-m leading-2">Personal details and survey.</p>
           </div>
           <div class="flex -space-x-1 overflow-hidden m-auto w-100 py-6">

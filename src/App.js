@@ -24,11 +24,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [load, upadateLoad] = useState(true);
-
+  const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => {
       upadateLoad(false);
     }, 1200);
+
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    if(isLoggedIn === 'true'){
+      setIsLogin(true);
+    }else{
+      setIsLogin(false);
+    }
 
     return () => clearTimeout(timer);
   }, []);
@@ -37,7 +44,7 @@ function App() {
     <Router>
       <Preloader load={load} />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
-        <Navbar />
+        <Navbar isLogin = {isLogin}/>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />

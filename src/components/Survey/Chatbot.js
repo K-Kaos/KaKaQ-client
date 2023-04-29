@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TopicInput from './TopicInput';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,14 @@ import ChatbotSurvey from './ChatbotSurvey';
 import { ProgressBar, Spinner } from "react-bootstrap";
 
 function Chatbot() {
+    let whoLoggedIn = null;
+    useEffect(() => {
+        whoLoggedIn = sessionStorage.getItem('whoLoggedIn');
+        if(whoLoggedIn === null){
+        alert("로그인 후 이용해 주세요");
+        window.location.href = "/login";
+        }
+    }, []);
 
     const [topic, setTopic] = useState('');
     const [loading, setLoading] = useState(false); // 로딩 상태를 관리하는 상태 변수 추가
