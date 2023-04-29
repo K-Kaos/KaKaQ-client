@@ -4,6 +4,10 @@ import Particle from "../Particle";
 import Card from "react-bootstrap/Card";
 import profile_image from '../../Assets/Images/profile.png'
 import React , { useState,useEffect }from "react";
+import axios from "axios";
+
+  
+
 
 function MyPage() {
   const [whoLoggedIn, setWhoLeggedIn] = useState(null);
@@ -16,6 +20,52 @@ function MyPage() {
       setWhoLeggedIn(LoggedInUser);
     }
   }, []);
+
+  const [geoData, setgeoData] = useState({
+    latitude: "",
+    longitude: "",
+  });
+
+  const [siData, setsiData] = useState();
+  
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
+      setgeoData((prevData) =>({
+          ...prevData,
+        ["latitude"]: pos.coords.latitude,
+        ["longitude"]: pos.coords.longitude,
+      }));
+    });
+  }, []);
+  useEffect(()=> {
+    axios.post("/api/mypage/gps",{//서버에 좌표 주고 시 받아오기
+      latitude: geoData.latitude,
+      longitude:geoData.longitude,
+    }).then(function(response){
+      setsiData(response.data);
+      console.log(siData);
+    }).catch(function(error){
+      console.log(error);
+    });
+  },  [geoData]);
+  
+  navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
+    setgeoData((prevData) =>({
+        ...prevData,
+      ["latitude"]: pos.coords.latitude,
+      ["longitude"]: pos.coords.longitude,
+    }));
+  });
+  axios.post("/api/mypage/gps",{//서버에 좌표 주고 시 받아오기
+    latitude: geoData.latitude,
+    longitude:geoData.longitude,
+  }).then(function(response){
+    console.log(response.data);
+  }).catch(function(error){
+    console.log(error);
+  });
+
+
   return (
     <Container fluid className="mypage-section">
       <Particle />
@@ -27,6 +77,14 @@ function MyPage() {
           <div class="px-4 sm:px-0">
             <h3 class="text-base text-xl font-semibold leading-7">Your Information</h3><br />
             <p class="mt-1 max-w-xl font-semibold text-m leading-2">{whoLoggedIn}님의 정보입니다.</p>
+          </div>
+        </div>
+        <p>
+          마이페이지
+        </p>
+        <div>
+          <div class="px-4 sm:px-0">
+            <h3 class="text-base text-xl font-semibold leading-7">Your Information</h3><br />
             <p class="mt-1 max-w-xl font-semibold text-2xl leading-2">Personal details and survey.</p>
           </div>
           <div class="flex -space-x-1 overflow-hidden m-auto w-100 py-6">
@@ -45,6 +103,10 @@ function MyPage() {
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-2xl font-semibold font-medium leading-6">Password</dt>
                 <dd class="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Password</dd>
+              </div>
+              <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt class="text-2xl font-semibold font-medium leading-6">GPS</dt>
+                <dd class="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{siData}</dd>
               </div><br /><br />
               <p class="mt-3 max-w-xl font-semibold text-2xl leading-6">생성한 설문조사</p>
               <table class="table ml-6 mr-6 text-2xl">

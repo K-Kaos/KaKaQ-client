@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TopicInput from './TopicInput';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,29 @@ function Chatbot() {
     const [visibility, setVisibility] = useState('');
     const [GPS, setGPS] = useState(false);
 
+    const [geoData, setgeoData] = useState({
+        latitude: "",
+        longitude: "",
+    });
+      
+    useEffect(() => {
+        console.log(geoData);
+    }, [geoData]);
+      
+    function handleGPS(event) {
+        if(event.target.value === 'GPSO') {
+          navigator.geolocation.getCurrentPosition(function(pos){
+            setgeoData((prevData) =>({
+                ...prevData,
+              ["latitude"]: pos.coords.latitude,
+              ["longitude"]: pos.coords.longitude,
+            }));
+            // setGPS(event.target.value);
+            //console.log(geoData);
+          });
+        }
+        setGPS(event.target.value);
+      }
 
     function handleTopicChange(event) {
         setTopic(event.target.value);
@@ -29,9 +52,6 @@ function Chatbot() {
         setVisibility(event.target.value);
     }
 
-    function handleGPS(event) {
-        setGPS(event.target.value);
-    }
 
     const navigate = useNavigate();
 
@@ -45,8 +65,9 @@ function Chatbot() {
             .catch(function (error) {
                 console.log(error);
             });
+        axios.get("/api/")
         alert('Topic ' + topic + ' has been submitted to ' + visibility + '!' + GPS);
-
+        console.log(geoData);
     }
 
     return (
@@ -124,6 +145,7 @@ function Chatbot() {
         </div>
 
     );
+                        
 }
 
 export default Chatbot;
