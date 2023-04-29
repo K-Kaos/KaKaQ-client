@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Radio from "./Radio";
@@ -13,6 +13,14 @@ import QuestionGenerator from "./QuestionGenerator";
 import { RiQuestionAnswerFill } from "react-icons/ri";
 
 function Survey() {
+  let whoLoggedIn = null;
+    useEffect(() => {
+        whoLoggedIn = sessionStorage.getItem('whoLoggedIn');
+        if(whoLoggedIn === null){
+        alert("로그인 후 이용해 주세요");
+        window.location.href = "/login";
+        }
+    }, []);
   const [pages, setPages] = React.useState(["home"]);
   const [visibility, setVisibility] = useState('');
   const [GPS, setGPS] = useState(false);
