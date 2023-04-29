@@ -2,23 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from "react-bootstrap";
 import TimelineCard from "./MyPageCards";
 import Particle from "../Particle";
-<<<<<<< Updated upstream
-=======
 import Card from "react-bootstrap/Card";
 import profile_image from '../../Assets/Images/profile.png'
 import axios from "axios";
 
->>>>>>> Stashed changes
 
 function MyPage() {
+
   const [geoData, setgeoData] = useState({
     latitude: "",
     longitude: "",
   });
+  const [siData, setsiData] = useState();
   
   useEffect(() => {
-    console.log(geoData);
-  }, [geoData]);
+    navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
+      setgeoData((prevData) =>({
+          ...prevData,
+        ["latitude"]: pos.coords.latitude,
+        ["longitude"]: pos.coords.longitude,
+      }));
+    });
+  }, []);
+  useEffect(()=> {
+    axios.post("/api/mypage/gps",{//서버에 좌표 주고 시 받아오기
+      latitude: geoData.latitude,
+      longitude:geoData.longitude,
+    }).then(function(response){
+      setsiData(response.data);
+      console.log(siData);
+    }).catch(function(error){
+      console.log(error);
+    });
+  },  [geoData]);
   
   navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
     setgeoData((prevData) =>({
@@ -31,10 +47,11 @@ function MyPage() {
     latitude: geoData.latitude,
     longitude:geoData.longitude,
   }).then(function(response){
-    console.log(response);
+    console.log(response.data);
   }).catch(function(error){
     console.log(error);
   });
+
 
   return (
     <Container fluid className="mypage-section">
@@ -43,11 +60,9 @@ function MyPage() {
         <h1 className="mypage-heading">
           My <strong className="yellow">page </strong>
         </h1>
-<<<<<<< Updated upstream
         <p>
           마이페이지
         </p>
-=======
         <div>
           <div class="px-4 sm:px-0">
             <h3 class="text-base text-xl font-semibold leading-7">Your Information</h3><br />
@@ -72,7 +87,7 @@ function MyPage() {
               </div>
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-2xl font-semibold font-medium leading-6">GPS</dt>
-                <dd class="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 GPS</dd>
+                <dd class="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{siData}</dd>
               </div><br /><br />
               <p class="mt-3 max-w-xl font-semibold text-2xl leading-6">생성한 설문조사</p>
               <table class="table ml-6 mr-6 text-2xl">
@@ -171,7 +186,6 @@ function MyPage() {
           </div>
         </div>
 
->>>>>>> Stashed changes
       </Container>
     </Container>
   );
