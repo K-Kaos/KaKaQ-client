@@ -20,27 +20,27 @@ function Chatbot() {
     const [visibility, setVisibility] = useState('');
     const [GPS, setGPS] = useState(false);
 
-    const [geoData, setgeoData] = useState({
-        latitude: "",
-        longitude: "",
-    });
+    // const [geoData, setgeoData] = useState({
+    //     latitude: "",
+    //     longitude: "",
+    // });
       
-    useEffect(() => {
-        console.log(geoData);
-    }, [geoData]);
+    // useEffect(() => {
+    //     console.log(geoData);
+    // }, [geoData]);
       
     function handleGPS(event) {
-        if(event.target.value === 'GPSO') {
-          navigator.geolocation.getCurrentPosition(function(pos){
-            setgeoData((prevData) =>({
-                ...prevData,
-              ["latitude"]: pos.coords.latitude,
-              ["longitude"]: pos.coords.longitude,
-            }));
-            // setGPS(event.target.value);
-            //console.log(geoData);
-          });
-        }
+        // if(event.target.value === 'GPSO') {
+        //   navigator.geolocation.getCurrentPosition(function(pos){
+        //     setgeoData((prevData) =>({
+        //         ...prevData,
+        //       ["latitude"]: pos.coords.latitude,
+        //       ["longitude"]: pos.coords.longitude,
+        //     }));
+        //     // setGPS(event.target.value);
+        //     //console.log(geoData);
+        //   });
+        // }
         setGPS(event.target.value);
       }
 
