@@ -11,10 +11,30 @@ function Chatbot() {
     const [loading, setLoading] = useState(false); // 로딩 상태를 관리하는 상태 변수 추가
     const [visibility, setVisibility] = useState('');
     const [GPS, setGPS] = useState(false);
-    // const [geoData, setgeoData] = useState(false);
 
-
-
+    const [geoData, setgeoData] = useState({
+        latitude: "",
+        longitude: "",
+    });
+      
+    useEffect(() => {
+        console.log(geoData);
+    }, [geoData]);
+      
+    function handleGPS(event) {
+        if(event.target.value === 'GPSO') {
+          navigator.geolocation.getCurrentPosition(function(pos){
+            setgeoData((prevData) =>({
+                ...prevData,
+              ["latitude"]: pos.coords.latitude,
+              ["longitude"]: pos.coords.longitude,
+            }));
+            // setGPS(event.target.value);
+            //console.log(geoData);
+          });
+        }
+        setGPS(event.target.value);
+      }
 
     function handleTopicChange(event) {
         setTopic(event.target.value);
@@ -24,15 +44,6 @@ function Chatbot() {
         setVisibility(event.target.value);
     }
 
-    function handleGPS(event) {
-        if(event.target.value == 'GPSO'){
-                setGPS(event.target.value);
-            }
-        else{
-            setGPS(event.target.value);
-        }
-
-    }
 
     const navigate = useNavigate();
 
@@ -48,7 +59,7 @@ function Chatbot() {
             });
         axios.get("/api/")
         alert('Topic ' + topic + ' has been submitted to ' + visibility + '!' + GPS);
-        
+        console.log(geoData);
     }
 
     return (
