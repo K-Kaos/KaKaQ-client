@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Container } from "react-bootstrap";
 import logo from "../../Assets/Logo/logo.png";
+import axios from 'axios';
 
 function LoginForm(props) {
     const [formData, setFormData] = useState({
-        id: "",
+        email: "",
         password: "",
     });
 
@@ -16,7 +17,33 @@ function LoginForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
-        alert(formData.id + "님, 환영합니다!");
+        //로그인 처리 로직
+        axios.post("/api/user/login", {
+            email:formData.email,
+            password:formData.password,
+        },)
+        .then(response => {
+            const url = response.data;
+            const username = url.split('/')[0];
+            if(url.includes("/home")){
+                sessionStorage.setItem("isLoggedIn",'true');
+                sessionStorage.setItem("whoLoggedIn",username);
+                alert(username+"님, 환영합니다!");
+                window.location.href = "/";
+            }else if(url === "/login"){
+                alert("비밀번호를 확인해주세요");
+            }
+        }).catch(function (error){
+            const url = error.data;
+            console.log(error);
+            if(error.response.status===403){
+                alert("가입된 이메일이 아닙니다.")
+            }
+            if (error.response && error.response.status === 500) {
+                alert('로그인 실패');
+            }
+        });
+        //alert(formData.username + "님, 환영합니다!");
     };
 
     return (
@@ -39,7 +66,7 @@ function LoginForm(props) {
                                     <label
                                         for="id"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    >ID
+                                    >Email
                                     </label>
                                     <input
                                         id="email"
@@ -47,7 +74,7 @@ function LoginForm(props) {
                                         type="email"
                                         className="form-control"
                                         placeholder="Email address"
-                                        value={formData.id}
+                                        value={formData.email}
                                         onChange={handleInputChange}
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required=""
@@ -58,12 +85,12 @@ function LoginForm(props) {
                                         for="password"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                                     <input
-                                        id="pw"
-                                        name="pw"
-                                        type="pw"
+                                        id="password"
+                                        name="password"
+                                        type="password"
                                         className="form-control"
                                         placeholder="Enter password"
-                                        value={formData.pw}
+                                        value={formData.password}
                                         onChange={handleInputChange}
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required=""

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Radio from "./Radio";
@@ -11,6 +11,14 @@ import Question from "./Question";
 import Particle from "../Particle";
 
 function Test(props) {
+  let whoLoggedIn = null;
+  useEffect(() => {
+    whoLoggedIn = sessionStorage.getItem('whoLoggedIn');
+    if (whoLoggedIn === null) {
+      alert("로그인 후 이용해 주세요");
+      window.location.href = "/login";
+    }
+  }, []);
   const [pages, setPages] = React.useState(["home"]);
   const [message, setMessage] = React.useState('');
 

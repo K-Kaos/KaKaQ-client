@@ -76,34 +76,23 @@ function SignupForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // if (formData.password !== formData.confirmPassword) {
-        //     setTimeout(() => {
-        //         setError(null);
-        //     }, 3000);
-        //     setError("비밀번호가 일치하지 않습니다.");
-        //     return;
-        // }
-
         // 회원가입 처리 로직
         axios.post("/api/user/register", {
-            username: formData.username,
-            email: formData.email,
-            password: formData.password,
-        }).then(function (response) {
+            username:formData.username,
+            email:formData.email,
+            password:formData.password,
+        }).then(function (response){
             console.log(response);
-            if (response.data == 0) {//이메일 중복없고 db에 올림
-                alert(formData.username + "님, 환영합니다!");
-                navigate("/login")
-            } else {
-                if (response.data == 10000) {//이메일에 중복 있음
-                    alert("User email is duplicated. Please enter a different email");
-                }
-            }
-        }).catch(function (error) {
+            const url = response.data;
+            if(url.includes("/login")){
+                alert(formData.username+ "님, 환영합니다!");
+                window.location.href = "/login";
+            } else if(url.includes("/duplicate")){
+                alert("이미 가입된 메일입니다.");
+            }  
+        }).catch(function (error){
             console.log(error);
-            if (error.response && error.response.status === 500) {
-                alert('이미 가입된 이메일입니다.');
-            }
+            alert("회원가입 오류");
         });
 
     };
