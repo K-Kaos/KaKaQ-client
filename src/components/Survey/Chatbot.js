@@ -18,6 +18,7 @@ function Chatbot() {
     }, []);
 
     const [topic, setTopic] = useState('');
+    const [title, setTitle] = useState('');
     const [loading, setLoading] = useState(false); // 로딩 상태를 관리하는 상태 변수 추가
     const [visibility, setVisibility] = useState('');
     const [GPS, setGPS] = useState(false);
@@ -50,6 +51,10 @@ function Chatbot() {
 
     function handleTopicChange(event) {
         setTopic(event.target.value);
+    }
+
+    function handleTitleChange(event) {
+        setTitle(event.target.value);
     }
 
     function handleVisibility(event) {
@@ -98,6 +103,18 @@ function Chatbot() {
                                 name="topic"
                                 value={topic}
                                 onChange={handleTopicChange}
+                            /><br />
+                        </Card.Body>
+                    </Card>
+
+                    <Card className="survey-card-view">
+                        <Card.Body>
+                            <Question question="설문조사 제목" />
+                            <TopicInput
+                                label="Title"
+                                name="title"
+                                value={title}
+                                onChange={handleTitleChange}
                             /><br />
                         </Card.Body>
                     </Card>
