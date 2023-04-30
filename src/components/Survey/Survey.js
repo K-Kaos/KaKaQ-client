@@ -144,7 +144,7 @@ function Survey() {
 
           <Card className="survey-card-view">
             <Card.Body>
-              <Question question="Option" />
+              <Question question="설문조사 공개/비공개" />
               <input
                 type='radio'
                 id='public'
@@ -167,7 +167,7 @@ function Survey() {
 
           {(visibility === 'public') && <Card className="survey-card-view">
             <Card.Body>
-              <Question question="설문조사 공개 여부" />
+              <Question question="GPS 사용 여부" />
               <input
                 type='radio'
                 id='GPSO'
@@ -290,14 +290,3 @@ function Survey() {
 }
 
 export default Survey;
-
-
-
-{/* <div>
-<h1>질문 생성기</h1>
-{showQuestionGenerator ? (
-  <QuestionGenerator />
-) : (
-  <button class="btn btn-primary" onClick={handleShowQuestionGenerator}>+</button>
-)}
-</div> */}
