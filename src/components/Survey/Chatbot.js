@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TopicInput from './TopicInput';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -21,8 +21,30 @@ function Chatbot() {
     const [loading, setLoading] = useState(false); // 로딩 상태를 관리하는 상태 변수 추가
     const [visibility, setVisibility] = useState('');
     const [GPS, setGPS] = useState(false);
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
+
+    // const [geoData, setgeoData] = useState({
+    //     latitude: "",
+    //     longitude: "",
+    // });
+      
+    // useEffect(() => {
+    //     console.log(geoData);
+    // }, [geoData]);
+      
+    function handleGPS(event) {
+        // if(event.target.value === 'GPSO') {
+        //   navigator.geolocation.getCurrentPosition(function(pos){
+        //     setgeoData((prevData) =>({
+        //         ...prevData,
+        //       ["latitude"]: pos.coords.latitude,
+        //       ["longitude"]: pos.coords.longitude,
+        //     }));
+        //     // setGPS(event.target.value);
+        //     //console.log(geoData);
+        //   });
+        // }
+        setGPS(event.target.value);
+      }
 
     function handleTopicChange(event) {
         setTopic(event.target.value);
@@ -30,17 +52,6 @@ function Chatbot() {
 
     function handleVisibility(event) {
         setVisibility(event.target.value);
-    }
-
-    function handleGPS(event) {
-        setGPS(event.target.value);
-    }
-    const handleStartDateChange = (event) => {
-        setStartDate(event.target.value);
-    };
-
-    const handleEndDateChange = (event) => {
-        setEndDate(event.target.value);
     }
 
     const navigate = useNavigate();
@@ -55,7 +66,10 @@ function Chatbot() {
             .catch(function (error) {
                 console.log(error);
             });
-        alert('Topic ' + topic + ' has been submitted to ' + visibility + '!' + GPS + '\n' + startDate + '-' + endDate);
+
+        axios.get("/api/")
+        alert('Topic ' + topic + ' has been submitted to ' + visibility + '!' + GPS);
+        console.log(geoData);
     }
 
     return (
@@ -155,6 +169,7 @@ function Chatbot() {
             </div>
         </div>
     );
+                        
 }
 
 export default Chatbot;
