@@ -3,17 +3,17 @@ import TimelineCard from "./MyPageCards";
 import Particle from "../Particle";
 import Card from "react-bootstrap/Card";
 import profile_image from '../../Assets/Images/profile.png'
-import React , { useState,useEffect }from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function MyPage() {
   const [whoLoggedIn, setWhoLeggedIn] = useState(null);
   useEffect(() => {
     const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
-    if(LoggedInUser === null){
+    if (LoggedInUser === null) {
       alert("로그인 후 이용해 주세요");
       window.location.href = "/login";
-    }else{
+    } else {
       setWhoLeggedIn(LoggedInUser);
     }
   }, []);
@@ -24,44 +24,28 @@ function MyPage() {
   });
 
   const [siData, setsiData] = useState();
-  
+
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
-      setgeoData((prevData) =>({
-          ...prevData,
+    navigator.geolocation.getCurrentPosition(function (pos) {//현재위치 가져오기
+      setgeoData((prevData) => ({
+        ...prevData,
         ["latitude"]: pos.coords.latitude,
         ["longitude"]: pos.coords.longitude,
       }));
     });
   }, []);
-  
-  useEffect(()=> {
-    axios.post("/api/mypage/gps",{//서버에 좌표 주고 시 받아오기
+
+  useEffect(() => {
+    axios.post("/api/mypage/gps", {//서버에 좌표 주고 시 받아오기
       latitude: geoData.latitude,
-      longitude:geoData.longitude,
-    }).then(function(response){
+      longitude: geoData.longitude,
+    }).then(function (response) {
       setsiData(response.data);
       console.log(siData);
-    }).catch(function(error){
+    }).catch(function (error) {
       console.log(error);
     });
-  },  [geoData]);
-  
-  navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
-    setgeoData((prevData) =>({
-        ...prevData,
-      ["latitude"]: pos.coords.latitude,
-      ["longitude"]: pos.coords.longitude,
-    }));
-  });
-  axios.post("/api/mypage/gps",{//서버에 좌표 주고 시 받아오기
-    latitude: geoData.latitude,
-    longitude:geoData.longitude,
-  }).then(function(response){
-    console.log(response.data);
-  }).catch(function(error){
-    console.log(error);
-  });
+  }, [geoData]);
 
   return (
     <Container fluid className="mypage-section">
@@ -139,10 +123,10 @@ function MyPage() {
                   </tr>
                 </tbody>
               </table><br />
-              
+
               <p class="mt-3 max-w-xl font-semibold text-xl leading-6">참여한 설문조사</p>
               <table class="table ml-6 mr-6 ">
-              <thead class="text-xl">
+                <thead class="text-xl">
                   <tr>
                     <th scope="col">No</th>
                     <th scope="col">제목</th>
