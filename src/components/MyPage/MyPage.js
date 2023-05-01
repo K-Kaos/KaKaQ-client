@@ -6,9 +6,6 @@ import profile_image from '../../Assets/Images/profile.png'
 import React , { useState,useEffect }from "react";
 import axios from "axios";
 
-  
-
-
 function MyPage() {
   const [whoLoggedIn, setWhoLeggedIn] = useState(null);
   useEffect(() => {
@@ -37,6 +34,7 @@ function MyPage() {
       }));
     });
   }, []);
+  
   useEffect(()=> {
     axios.post("/api/mypage/gps",{//서버에 좌표 주고 시 받아오기
       latitude: geoData.latitude,
@@ -65,7 +63,6 @@ function MyPage() {
     console.log(error);
   });
 
-
   return (
     <Container fluid className="mypage-section">
       <Particle />
@@ -76,16 +73,7 @@ function MyPage() {
         <div>
           <div class="px-4 sm:px-0">
             <h3 class="text-base text-xl font-semibold leading-7">Your Information</h3><br />
-            <p class="mt-1 max-w-xl font-semibold text-m leading-2">{whoLoggedIn}님의 정보입니다.</p>
-          </div>
-        </div>
-        <p>
-          마이페이지
-        </p>
-        <div>
-          <div class="px-4 sm:px-0">
-            <h3 class="text-base text-xl font-semibold leading-7">Your Information</h3><br />
-            <p class="mt-1 max-w-xl font-semibold text-2xl leading-2">Personal details and survey.</p>
+            <p class="mt-1 max-w-xl font-semibold text-lg leading-2">{whoLoggedIn}님의 정보입니다.</p>
           </div>
           <div class="flex -space-x-1 overflow-hidden m-auto w-100 py-6">
             <img class="inline-block h-20 w-20 rounded-full m-auto ring-2 ring-white" src={profile_image} />
@@ -93,24 +81,24 @@ function MyPage() {
           <div class="m-auto mt-6 border-t border-gray-100">
             <dl class="divide-y divide-gray-100">
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt class="text-2xl font-semibold font-medium leading-6">Name</dt>
-                <dd class="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Name</dd>
+                <dt class="text-xl font-semibold font-medium leading-6">Name</dt>
+                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Name</dd>
               </div>
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt class="text-2xl font-semibold font-medium leading-6 ">Email</dt>
-                <dd class="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Email</dd>
+                <dt class="text-xl font-semibold font-medium leading-6 ">Email</dt>
+                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Email</dd>
               </div>
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt class="text-2xl font-semibold font-medium leading-6">Password</dt>
-                <dd class="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Password</dd>
+                <dt class="text-xl font-semibold font-medium leading-6">Password</dt>
+                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Password</dd>
               </div>
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt class="text-2xl font-semibold font-medium leading-6">GPS</dt>
-                <dd class="mt-1 text-2xl leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{siData}</dd>
+                <dt class="text-xl font-semibold font-medium leading-6">GPS</dt>
+                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{siData}</dd>
               </div><br /><br />
-              <p class="mt-3 max-w-xl font-semibold text-2xl leading-6">생성한 설문조사</p>
-              <table class="table ml-6 mr-6 text-2xl">
-                <thead>
+              <p class="mt-3 max-w-xl font-semibold text-xl leading-6">생성한 설문조사</p>
+              <table class="table ml-6 mr-6 ">
+                <thead class="text-xl">
                   <tr>
                     <th scope="col">No</th>
                     <th scope="col">제목</th>
@@ -118,7 +106,7 @@ function MyPage() {
                     <th scope="col">상태</th>
                   </tr>
                 </thead>
-                <tbody >
+                <tbody class="text-lg">
                   <tr>
                     <th scope="row">1</th>
                     <td><a href="#">설문조사 제목 1</a></td>
@@ -152,9 +140,9 @@ function MyPage() {
                 </tbody>
               </table><br />
               
-              <p class="mt-3 max-w-xl font-semibold text-2xl leading-6">참여한 설문조사</p>
-              <table class="table ml-6 mr-6 text-2xl">
-                <thead>
+              <p class="mt-3 max-w-xl font-semibold text-xl leading-6">참여한 설문조사</p>
+              <table class="table ml-6 mr-6 ">
+              <thead class="text-xl">
                   <tr>
                     <th scope="col">No</th>
                     <th scope="col">제목</th>
@@ -163,7 +151,7 @@ function MyPage() {
                     <th scope="col">상태</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-lg">
                   <tr>
                     <th scope="row">1</th>
                     <td><a href="#">설문조사 제목 1</a></td>

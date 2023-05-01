@@ -37,7 +37,7 @@ function Test(props) {
           <p >
             Here is a Type Test.
           </p><br />
-          <div class="block flex items-center w-full">
+          {/* <div class="block flex items-center w-full">
             <ol class="flex items-center w-full">
               <li class="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800">
                 <span class="flex items-center justify-center w-10 h-10 bg-blue-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
@@ -55,7 +55,7 @@ function Test(props) {
                 </span>
               </li>
             </ol>
-          </div>
+          </div> */}
 
           <Card className="survey-card-view ">
             <Card.Body>

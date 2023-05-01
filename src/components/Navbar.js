@@ -43,7 +43,7 @@ function NavBar(props) {
     const dropdownHamburger = document.getElementById("navbar-dropdown");
     dropdownHamburger.classList.toggle("hidden");
   }
-  
+
   function handleLogout() {
     sessionStorage.setItem("isLoggedIn", 'false');
     sessionStorage.removeItem("whoLoggedIn");
@@ -86,7 +86,7 @@ function NavBar(props) {
                 <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
               {/* <!-- Dropdown menu --> */}
               <div id="dropdownNavbar" class="hidden">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-400 position:absolute" aria-labelledby="dropdownLargeButton">
                   <li>
                     <a href="/survey" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" style={{ textDecoration: "none" }}>Basic</a>
                   </li>
@@ -103,10 +103,12 @@ function NavBar(props) {
               <a href="/test" style={{ textDecoration: "none" }} class="flex block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                 <CgFileDocument style={{ marginRight: "2px" }} />Test</a>
             </li>
-            <li>
-              <a href="/mypage" style={{ textDecoration: "none" }} class="flex block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                <ImBlog style={{ marginRight: "2px" }} />MyPage</a>
-            </li>
+            {isLogin ?
+              <li>
+                <a href="/mypage" style={{ textDecoration: "none" }} class="flex block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <ImBlog style={{ marginRight: "2px" }} />MyPage</a>
+              </li> :
+              <></>}
             <li>
               <a href="/guide" style={{ textDecoration: "none" }} class="flex block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                 <RiSurveyLine style={{ marginRight: "2px" }} />Guide</a>
@@ -114,7 +116,8 @@ function NavBar(props) {
             {/* isLogin 값이 참이면 Logout 버튼만 / 거짓이면 Login, Signup */}
             {isLogin ?
               <li class="md:order-2 text-2xl text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xl px-4 py-2 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" style={{ textDecoration: "none" }}>
-                <button onClick={handleLogout}>Logout</button>
+                <NavButton to="/signup" text="Signup" />
+                {/* <button onClick={handleLogout}>Logout</button> */}
               </li>
               :
               <>
