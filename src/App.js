@@ -32,9 +32,9 @@ function App() {
     }, 1200);
 
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-    if(isLoggedIn === 'true'){
+    if (isLoggedIn === 'true') {
       setIsLogin(true);
-    }else{
+    } else {
       setIsLogin(false);
     }
 
@@ -45,7 +45,7 @@ function App() {
     <Router>
       <Preloader load={load} />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
-        <Navbar isLogin = {isLogin}/>
+        <Navbar isLogin={isLogin} />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />

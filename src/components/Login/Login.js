@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container } from "react-bootstrap";
 import logo from "../../Assets/Logo/logo.png";
+import kakaologo from "../../Assets/Logo/kakaologo.png";
 import axios from 'axios';
 
 function LoginForm(props) {
@@ -19,30 +20,30 @@ function LoginForm(props) {
         console.log(formData);
         //로그인 처리 로직
         axios.post("/api/user/login", {
-            email:formData.email,
-            password:formData.password,
+            email: formData.email,
+            password: formData.password,
         },)
-        .then(response => {
-            const url = response.data;
-            const username = url.split('/')[0];
-            if(url.includes("/home")){
-                sessionStorage.setItem("isLoggedIn",'true');
-                sessionStorage.setItem("whoLoggedIn",username);
-                alert(username+"님, 환영합니다!");
-                window.location.href = "/";
-            }else if(url === "/login"){
-                alert("비밀번호를 확인해주세요");
-            }
-        }).catch(function (error){
-            const url = error.data;
-            console.log(error);
-            if(error.response.status===403){
-                alert("가입된 이메일이 아닙니다.")
-            }
-            if (error.response && error.response.status === 500) {
-                alert('로그인 실패');
-            }
-        });
+            .then(response => {
+                const url = response.data;
+                const username = url.split('/')[0];
+                if (url.includes("/home")) {
+                    sessionStorage.setItem("isLoggedIn", 'true');
+                    sessionStorage.setItem("whoLoggedIn", username);
+                    alert(username + "님, 환영합니다!");
+                    window.location.href = "/";
+                } else if (url === "/login") {
+                    alert("비밀번호를 확인해주세요");
+                }
+            }).catch(function (error) {
+                const url = error.data;
+                console.log(error);
+                if (error.response.status === 403) {
+                    alert("가입된 이메일이 아닙니다.")
+                }
+                if (error.response && error.response.status === 500) {
+                    alert('로그인 실패');
+                }
+            });
         //alert(formData.username + "님, 환영합니다!");
     };
 
@@ -61,12 +62,20 @@ function LoginForm(props) {
                                 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                 Sign in to your account
                             </h1>
+                            <div class="items-center grid grid-cols-2 gap-2">
+                                <button class="flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2">
+                                    <img class="w-5 h-5 mr-2" src={kakaologo} alt="kakaoLogo" />
+                                    Log in with Kakao</button>
+                                <button class="flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2">
+                                    <img class="w-5 h-5 mr-2" src={logo} alt="kakaqLogo" />
+                                    Log in with KaKaQ</button>
+                            </div>  <hr />
                             <form class="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>
                                 <div>
                                     <label
                                         for="id"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    >Email
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            Email
                                     </label>
                                     <input
                                         id="email"
@@ -113,18 +122,15 @@ function LoginForm(props) {
                                                 class="text-gray-500 dark:text-gray-300">Remember me</label>
                                         </div>
                                     </div>
-                                    <a
-                                        href="#"
+                                    <a href="#"
                                         class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                                 </div>
                                 <button
                                     type="submit"
-                                    class="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
-                                <p
-                                    class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                    class="w-full flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2 text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                                <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account yet? 
-                                    <a
-                                        href="/signup"
+                                    <a href="/signup"
                                         class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                                 </p>
                             </form>
@@ -133,8 +139,7 @@ function LoginForm(props) {
                 </div>
             </section>
         </Container>
-
-    );
+    )
 }
 
 function Login() {

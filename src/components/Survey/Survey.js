@@ -14,13 +14,13 @@ import { RiQuestionAnswerFill } from "react-icons/ri";
 
 function Survey() {
   let whoLoggedIn = null;
-    useEffect(() => {
-        whoLoggedIn = sessionStorage.getItem('whoLoggedIn');
-        if(whoLoggedIn === null){
-        alert("로그인 후 이용해 주세요");
-        window.location.href = "/login";
-        }
-    }, []);
+  useEffect(() => {
+    whoLoggedIn = sessionStorage.getItem('whoLoggedIn');
+    if (whoLoggedIn === null) {
+      alert("로그인 후 이용해 주세요");
+      window.location.href = "/login";
+    }
+  }, []);
   const [pages, setPages] = React.useState(["home"]);
   const [visibility, setVisibility] = useState('');
   const [GPS, setGPS] = useState(false);
@@ -33,7 +33,11 @@ function Survey() {
   const [questions, setQuestions] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-
+  const [city, setCity] = useState(false);
+  
+  function handleCity(event) {
+    setCity(event.target.value);
+  }
 
   const handleShowQuestionGenerator = () => {
     setShowQuestionGenerator(true);
@@ -188,6 +192,84 @@ function Survey() {
             </Card.Body>
           </Card>}
 
+          {(GPS === 'GPSO') && <Card className="survey-card-view">
+            <Card.Body>
+              <Question question="설문 가능 지역" />
+              <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <input
+                  type='checkbox'
+                  id='seoul'
+                  name='city'
+                  value='seoul'
+                  onChange={handleCity} />
+                <label for='seoul'>Seoul </label><br />
+                <input
+                  type='checkbox'
+                  id='busan'
+                  name='city'
+                  value='busan'
+                  onChange={handleCity} />
+                <label for='busan'>Busan </label><br />
+                <input
+                  type='checkbox'
+                  id='daegu'
+                  name='city'
+                  value='daegu'
+                  onChange={handleCity} />
+                <label for='daegu'>Daegu </label><br />
+                <input
+                  type='checkbox'
+                  id='gwangju'
+                  name='city'
+                  value='gwangju'
+                  onChange={handleCity} />
+                <label for='gwangju'>Gwangju </label><br />
+                <input
+                  type='checkbox'
+                  id='incheon'
+                  name='city'
+                  value='incheon'
+                  onChange={handleCity} />
+                <label for='incheon'>Incheon </label><br />
+                <input
+                  type='checkbox'
+                  id='daejeon'
+                  name='city'
+                  value='daejeon'
+                  onChange={handleCity} />
+                <label for='daejeon'>Daejeon </label><br />
+                <input
+                  type='checkbox'
+                  id='ulsan'
+                  name='city'
+                  value='ulsan'
+                  onChange={handleCity} />
+                <label for='ulsan'>Ulsan </label><br />
+                <input
+                  type='checkbox'
+                  id='gyeonggi'
+                  name='city'
+                  value='gyeonggi'
+                  onChange={handleCity} />
+                <label for='gyeonggi'>Gyeonggi </label><br />
+                <input
+                  type='checkbox'
+                  id='gangwon'
+                  name='city'
+                  value='gangwon'
+                  onChange={handleCity} />
+                <label for='gangwon'>Gangwon </label><br />
+                <input
+                  type='checkbox'
+                  id='jeju'
+                  name='city'
+                  value='jeju'
+                  onChange={handleCity} />
+                <label for='jeju'>Jeju </label><br />
+              </div>
+            </Card.Body></Card>
+          }
+
           <Card className="survey-card-view">
             <Card.Body>
               <Question question="Survey Start Date" />
@@ -216,14 +298,14 @@ function Survey() {
                 <p>Question: {question.text}</p>
                 <p>Type: {question.type}</p>
                 {question.type !== "서술형" && (
-                <div>
-                  <p>Options:</p>
-                  <ul>
-                    {question.options.map((option, index) => (
-                      <li key={index}>{option}</li>
-                    ))}
-                  </ul>
-                </div>
+                  <div>
+                    <p>Options:</p>
+                    <ul>
+                      {question.options.map((option, index) => (
+                        <li key={index}>{option}</li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </Card.Body>
             </Card>
