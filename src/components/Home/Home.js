@@ -1,8 +1,12 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import homeLogo from "../../Assets/Projects/home.png";
-import Particle from "../Particle";
 import { Link } from "react-router-dom";
+import seobin from "../../Assets/profile/seobin.png";
+import soyeon from "../../Assets/profile/soyeon.png";
+import sohyun from "../../Assets/profile/sohyun.png";
+import jueun from "../../Assets/profile/jueun.png";
+import yekyeong from "../../Assets/profile/yekyeong.png";
 
 function Home(props) {
   const isLogin = props.isLogin;
@@ -44,6 +48,62 @@ function Home(props) {
           />
         </Col>
       </Row>
+      <div class="py-24 sm:py-32">
+        <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+          <div class="max-w-2xl">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">K-Kaos' Member</h2>
+            <p class="mt-6 text-lg leading-8 text-gray-600">K-Kaos의 멤버들을 소개합니다.</p>
+          </div>
+          <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+            <li>
+              <div class="flex items-center gap-x-6">
+                <img class="h-24 w-24 rounded-full" src={seobin} alt=""/>
+                <div>
+                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Seobin Lee</h3>
+                  <p class="text-base font-semibold leading-6 text-indigo-600">PM / Front-end</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center gap-x-6">
+              <img class="h-24 w-24 rounded-full" src={soyeon} alt=""/>
+                <div>
+                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Soyeon You	</h3>
+                  <p class="text-base font-semibold leading-6 text-indigo-600">Database</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center gap-x-6">
+              <img class="h-24 w-24 rounded-full" src={sohyun} alt=""/>
+                <div>
+                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Sohyun Lee</h3>
+                  <p class="text-base font-semibold leading-6 text-indigo-600">Back-end</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center gap-x-6">
+              <img class="h-24 w-24 rounded-full" src={jueun} alt=""/>
+                <div>
+                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Jueun Yoon</h3>
+                  <p class="text-base font-semibold leading-6 text-indigo-600">Front-end</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center gap-x-6">
+              <img class="h-24 w-24 rounded-full" src={yekyeong} alt=""/>
+                <div>
+                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Yekyeong Jang</h3>
+                  <p class="text-base font-semibold leading-6 text-indigo-600">Back-end</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
     </Container>
   );
 }

@@ -11,9 +11,36 @@ function ChatbotSurvey(props) {
   useEffect(() => {
     if (location.state && location.state.response) {
       setResponse(location.state.response);
+  
+      const newQuestions = location.state.response[0].text
+        .split("\n\n")
+        .slice(1)
+        .map((questionText, questionIndex) => {
+          const options = questionText
+            .split("\n")
+            .slice(1)
+            .map((optionText, optionIndex) => {
+              return {
+                text: optionText.slice(5),
+                value: optionIndex,
+              };
+            });
+  
+          return {
+            id: questionIndex + 1,
+            text: questionText.split("\n")[0].slice(3),
+            type: "객관식",
+            options: options,
+          };
+        });
+  
+      setQuestions(newQuestions);
     }
   }, [location.state]);
-
+  
+  useEffect(() => {
+    console.log(questions);
+  }, [questions]);
   
   const handleAnswerSelect = (questionIndex, answerIndex) => {
     setSelectedAnswers((prevAnswers) => {
@@ -32,33 +59,33 @@ function ChatbotSurvey(props) {
     return <div>Loading...</div>
   }
 
-  const questionsAndAnswers = response[0].text.slice(2).split("\n\n").map((questionText, questionIndex) => {
-    const options = questionText.split("\n").slice(1).map((optionText, optionIndex) => {
+  const questionsAndAnswers = questions.map((question, questionIndex) => {
+    const options = question.options.map((option, optionIndex) => {
       return (
         <div key={optionIndex}>
           <input
             type="radio"
             id={`answer-${questionIndex}-${optionIndex}`}
             name={`answer-${questionIndex}`}
-            value={optionIndex}
-            checked={selectedAnswers[questionIndex] === optionIndex}
-            onChange={() => handleAnswerSelect(questionIndex, optionIndex)}
+            value={option.value}
+            checked={selectedAnswers[questionIndex] === option.value}
+            onChange={() => handleAnswerSelect(questionIndex, option.value)}
           />
-          <label htmlFor={`answer-${questionIndex}-${optionIndex}`}>{optionText}</label>
+          <label htmlFor={`answer-${questionIndex}-${optionIndex}`}>{optionIndex + 1}. {option.text}</label>
         </div>
       );
     });
-
+  
     return (
       <div key={questionIndex}>
         <br/>
-        <h4>{questionText.split("\n")[0]}</h4>
+        <h4>{questionIndex + 1}. {question.text}</h4>
         <br />
         {options}
       </div>
     );
   });
-
+  
   return (
     <Container fluid className="survey-header" >
       <Container class="flex items-center">
@@ -77,6 +104,7 @@ function ChatbotSurvey(props) {
           <div>
             {questionsAndAnswers}
           </div>
+          <br/>
           <button type="submit" class="btn btn-primary" onClick={handleSubmit}>Make Survey</button><br />
         </form>
       </Container>

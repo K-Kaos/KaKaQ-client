@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from "react-bootstrap";
 import logo from "../../Assets/Logo/logo.png";
 import kakaologo from "../../Assets/Logo/kakaologo.png";
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import moment from 'moment';
 
 function LoginForm(props) {
     const [formData, setFormData] = useState({
@@ -10,25 +12,44 @@ function LoginForm(props) {
         password: "",
     });
 
+    const [isRemember, setIsRemember] = useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies(['rememberEmail']);
+    const expires = moment().add('7','days').toDate(); // 쿠키 만료일 7일
+
+    useEffect(()=>{
+        if(cookies.rememberEmail !== undefined){
+            setFormData((prevData) => ({...prevData,email:cookies.rememberEmail}));
+            setIsRemember(true);
+        }
+    },[]);
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
+
+    const checkHandler = (event)=>{
+        setIsRemember(!isRemember);
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
         //로그인 처리 로직
         axios.post("/api/user/login", {
-            email: formData.email,
-            password: formData.password,
-        },)
-            .then(response => {
+            email:formData.email,
+            password:formData.password,
+        },).then(response => {
                 const url = response.data;
                 const username = url.split('/')[0];
                 if (url.includes("/home")) {
+                    if(isRemember==true){
+                        setCookie('rememberEmail',formData.email,expires);
+                    }else{
+                        removeCookie('rememberEmail');
+                    }
                     sessionStorage.setItem("isLoggedIn", 'true');
-                    sessionStorage.setItem("whoLoggedIn", username);
+                    sessionStorage.setItem("whoLoggedIn", formData.email);
                     alert(username + "님, 환영합니다!");
                     window.location.href = "/";
                 } else if (url === "/login") {
@@ -44,14 +65,13 @@ function LoginForm(props) {
                     alert('로그인 실패');
                 }
             });
-        //alert(formData.username + "님, 환영합니다!");
     };
 
     return (
         <Container style={{ background: "#fffacd" }}>
             <section class="bg-gray-50 dark:bg-gray-900">
                 <div
-                    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+                    class="flex flex-col items-center justify-center px-4 py-4 mx-auto md:h-screen lg:py-0"
                     style={{ background: "#fffacd" }}
                 >
                     <div
@@ -112,6 +132,8 @@ function LoginForm(props) {
                                                 id="remember"
                                                 aria-describedby="remember"
                                                 type="checkbox"
+                                                checked = {isRemember}
+                                                onChange={(e)=>checkHandler(e)}
                                                 class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                                                 required=""
                                             />
@@ -129,7 +151,7 @@ function LoginForm(props) {
                                     type="submit"
                                     class="w-full flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2 text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
                                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                    Don’t have an account yet? 
+                                    Don’t have an account yet? &nbsp;
                                     <a href="/signup"
                                         class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                                 </p>

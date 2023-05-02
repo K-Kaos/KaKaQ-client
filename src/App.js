@@ -9,9 +9,11 @@ import Guide from "./components/Guide/Guide";
 import OpenSurvey from "./components/Survey/OpenSurvey"
 import Login from "./components/Login/Login"
 import Signup from "./components/Login/Signup"
+import TermofUse from "./components/Login/TermofUse"
 import Chatbot from "./components/Survey/Chatbot"
 import ChatbotSurvey from "./components/Survey/ChatbotSurvey"
 import ParticipateSurvey from "./components/Survey/ParticipateSurvey"
+import CompleteSurvey from "./components/Survey/CompleteSurvey"
 import {
   BrowserRouter as Router,
   Route,
@@ -56,9 +58,11 @@ function App() {
           <Route path="/opensurvey" element={<OpenSurvey />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/termofuse" element={<TermofUse />} />
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/chatbotsurvey" element={<ChatbotSurvey />} />
           <Route path="/participatesurvey" element={<ParticipateSurvey />} />
+          <Route path="/completesurvey" element={<CompleteSurvey />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
