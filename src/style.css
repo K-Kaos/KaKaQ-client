@@ -673,7 +673,7 @@ button:focus {
 /* Signup */
 /* --------- */
 .signup-header {
-  padding-top: 120px !important;
+  padding-top:  0px !important;
 }
 
 .blog-img {
