@@ -86,7 +86,7 @@ function Chatbot() {
             });
 
         axios.get("/api/")
-        alert('Topic ' + topic + ' has been submitted to ' + visibility + '!' + GPS + '\n' + startDate + '-' + endDate + '\n');
+        alert(topic + ' 주제로 설문조사를 만들어드릴게요!' + visibility + GPS + '\n' + startDate + '-' + endDate + '\n');
         //console.log(geoData);
     }
 
