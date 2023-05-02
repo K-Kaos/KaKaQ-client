@@ -328,7 +328,7 @@ function Survey() {
 
           <br /> <br /> <br />
 
-          <button type="submit" class="btn btn-primary">Submit</button><br />
+          <button to="/completesurvey" type="submit" class="btn btn-primary">Submit</button><br />
           <p>{message}</p>
         </form>
       </Container>

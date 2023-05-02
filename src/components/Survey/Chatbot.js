@@ -124,7 +124,6 @@ function Chatbot() {
                         </Card.Body>
                     </Card>
 
-
                     <Card className="survey-card-view">
                         <Card.Body>
                             <Question question="설문조사 공개/비공개" />
