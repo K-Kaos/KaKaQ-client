@@ -92,7 +92,10 @@ function Survey() {
       setQuestion('');
       setType('');
       setOptions([]);
+
+      console.log(questions);
     }
+
   }
 
   const handleAddOption = () => {
@@ -175,8 +178,6 @@ function Survey() {
                   </div>
                 </div>
               </div>
-
-              <br />
             </Card.Body>
           </Card>
 
@@ -184,33 +185,31 @@ function Survey() {
             <Card.Body>
               <Question question="GPS 사용 여부" />
               <div style={{ display: 'flex', justifyContent: 'center' }}>
-  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <input
-        type='radio'
-        id='GPSO'
-        name='gps'
-        value='GPSO'
-        onChange={handleGPS}
-        checked={GPS === 'GPSO'}
-      />
-      <label htmlFor='GPSO'>GPS 정보를 사용할게요</label>
-    </div>
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <input
-        type='radio'
-        id='GPSX'
-        name='gps'
-        value='GPSX'
-        onChange={handleGPS}
-        checked={GPS === 'GPSX'}
-      />
-      <label htmlFor='GPSX'>GPS 정보를 사용하지 않을게요</label>
-    </div>
-  </div>
-</div>
-
-              <br />
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <input
+                      type='radio'
+                      id='GPSO'
+                      name='gps'
+                      value='GPSO'
+                      onChange={handleGPS}
+                      checked={GPS === 'GPSO'}
+                    />
+                    <label htmlFor='GPSO'>GPS 정보를 사용할게요</label>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <input
+                      type='radio'
+                      id='GPSX'
+                      name='gps'
+                      value='GPSX'
+                      onChange={handleGPS}
+                      checked={GPS === 'GPSX'}
+                    />
+                    <label htmlFor='GPSX'>GPS 정보를 사용하지 않을게요</label>
+                  </div>
+                </div>
+              </div>
 
             </Card.Body>
           </Card>}
@@ -268,7 +267,7 @@ function Survey() {
                     <p>Options:</p>
                     <ul>
                       {question.options.map((option, index) => (
-                        <li key={index}>{option}</li>
+                        <li key={index}>{index+1}. {option}</li>
                       ))}
                     </ul>
                   </div>

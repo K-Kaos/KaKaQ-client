@@ -21,7 +21,7 @@ function ChatbotSurvey(props) {
             .slice(1)
             .map((optionText, optionIndex) => {
               return {
-                text: optionText.slice(6),
+                text: optionText.slice(5),
                 value: optionIndex,
               };
             });
@@ -35,12 +35,12 @@ function ChatbotSurvey(props) {
         });
   
       setQuestions(newQuestions);
-
-      console.log(newQuestions);
     }
   }, [location.state]);
   
-
+  useEffect(() => {
+    console.log(questions);
+  }, [questions]);
   
   const handleAnswerSelect = (questionIndex, answerIndex) => {
     setSelectedAnswers((prevAnswers) => {
