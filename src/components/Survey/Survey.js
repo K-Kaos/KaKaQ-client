@@ -85,9 +85,9 @@ function Survey() {
 
   const handleAddQuestion = (e) => {
     e.preventDefault();
-    console.log(options.join(","  ));
+    console.log(options.join(","));
     console.log(questions);
-    setOptionsArr([...options, options.join(",")]);
+    // setOptionsArr([...options, options.join(",")]);
     if (question !== "") {
       const newQuestion = {
         id: questions.length + 1, // 새로운 질문의 id는 배열 길이 + 1
@@ -123,6 +123,7 @@ function Survey() {
   const handleEndDateChange = (event) => {
     setEndDate(event.target.value);
   }
+
   function handleSubmit(event) {
     event.preventDefault();
   
@@ -140,39 +141,35 @@ function Survey() {
       console.log(creator);
       console.log(response.data);
       setQuestionIndex(response.data);
+  
+      // 설문조사 질문 생성
+      const promises = questions.map((question) => (
+        axios.post("/api/survey/question",{
+          text: question.text,//질문
+          type:{
+            name: question.type
+          },
+          option: question.option ? question.option.join(",") : undefined,//답변들이 ,를 기준으로 string으로 들어감
+          survey: {
+            "id": response.data,
+          },
+        })
+      ));
+  
+      Promise.all(promises).then((results) => {
+        console.log(results);
+        setMessage('설문조사가 제출되었습니다.');
+        setTimeout(() => {
+          setMessage('');
+        }, 3000);
+      }).catch(function(error){
+        console.log(error);
+      });
     }).catch(function(error){
       console.log(error);
     });
-
-    questions.map((question) => (
-      axios.post("/api/survey/question",{
-        text: question.text,
-        type: question.type,
-        option: question.option.join(","),
-        survey: {
-          id: questionIndex,
-        }
-      })
-      .then(function(response){
-        console.log(response.data);
-      })
-      .catch(function(error){
-        console.log(error);
-      })
-    ));
-    
-    // axios.post("/api/survey/question", {//question db 데이터 보내기
-    // }).then(function(response){
-    // }).catch(function(error){
-    //   console.log(error);
-    // });
-
-    setMessage('설문조사가 제출되었습니다.');
-
-    setTimeout(() => {
-      setMessage('');
-    }, 3000);
   }
+  
 
 
   return (
