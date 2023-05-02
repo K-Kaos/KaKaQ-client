@@ -7,7 +7,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function MyPage() {
-  const [whoLoggedIn, setWhoLeggedIn] = useState(null);
+  // const [whoLoggedIn, setWhoLeggedIn] = useState(null);
+  // useEffect(() => {
+  //   const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
+  //   if (LoggedInUser === null) {
+  //     alert("로그인 후 이용해 주세요");
+  //     window.location.href = "/login";
+  //   } else {
+  //     setWhoLeggedIn(LoggedInUser);
+  //   }
+  // }, []);
+
+  const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
+  const [username, setUsername] = useState(null); // 사용자 이름 저장
+
   useEffect(() => {
     const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
     if (LoggedInUser === null) {
@@ -15,6 +28,21 @@ function MyPage() {
       window.location.href = "/login";
     } else {
       setWhoLeggedIn(LoggedInUser);
+
+      // 서버로 LoggedInUser 보내기
+        fetch('/api/mypage/userInfo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ user: LoggedInUser })
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('서버 응답:', data);
+          setUsername(data.username); // 서버 응답에서 받은 사용자 이름을 state로 저장
+        })
+        .catch(error => console.error('오류 발생:', error));
     }
   }, []);
 
@@ -57,7 +85,7 @@ function MyPage() {
         <div>
           <div class="px-4 sm:px-0">
             <h3 class="text-base text-xl font-semibold leading-7">Your Information</h3><br />
-            <p class="mt-1 max-w-xl font-semibold text-lg leading-2">{whoLoggedIn}님의 정보입니다.</p>
+            <p class="mt-1 max-w-xl font-semibold text-lg leading-2">{username}님의 정보입니다.</p>
           </div>
           <div class="flex -space-x-1 overflow-hidden m-auto w-100 py-6">
             <img class="inline-block h-20 w-20 rounded-full m-auto ring-2 ring-white" src={profile_image} />
@@ -66,18 +94,18 @@ function MyPage() {
             <dl class="divide-y divide-gray-100">
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-xl font-semibold font-medium leading-6">Name</dt>
-                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Name</dd>
+                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{username}</dd>
               </div>
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-xl font-semibold font-medium leading-6 ">Email</dt>
-                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Email</dd>
+                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{whoLoggedIn}</dd>
               </div>
-              <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              {/* <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-xl font-semibold font-medium leading-6">Password</dt>
                 <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Password</dd>
-              </div>
+              </div> */}
               <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt class="text-xl font-semibold font-medium leading-6">GPS</dt>
+                <dt class="text-xl font-semibold font-medium leading-6">Location</dt>
                 <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{siData}</dd>
               </div><br /><br />
               <p class="mt-3 max-w-xl font-semibold text-xl leading-6">생성한 설문조사</p>
