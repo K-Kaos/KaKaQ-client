@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Container } from "react-bootstrap";
 import logo from "../../Assets/Logo/logo.png";
 import axios from 'axios';
+import {useCookies} from 'react-cookie';
+import moment from 'moment';
 
 function LoginForm(props) {
     const [formData, setFormData] = useState({
@@ -9,10 +11,25 @@ function LoginForm(props) {
         password: "",
     });
 
+    const [isRemember, setIsRemember] = useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies(['rememberEmail']);
+    const expires = moment().add('7','days').toDate(); // 쿠키 만료일 7일
+
+    useEffect(()=>{
+        if(cookies.rememberEmail !== undefined){
+            setFormData((prevData) => ({...prevData,email:cookies.rememberEmail}));
+            setIsRemember(true);
+        }
+    },[]);
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
+
+    const checkHandler = (event)=>{
+        setIsRemember(!isRemember);
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,29 +38,32 @@ function LoginForm(props) {
         axios.post("/api/user/login", {
             email:formData.email,
             password:formData.password,
-        },)
-        .then(response => {
-            const url = response.data;
-            const username = url.split('/')[0];
-            if(url.includes("/home")){
-                sessionStorage.setItem("isLoggedIn",'true');
-                sessionStorage.setItem("whoLoggedIn",username);
-                alert(username+"님, 환영합니다!");
-                window.location.href = "/";
-            }else if(url === "/login"){
-                alert("비밀번호를 확인해주세요");
-            }
-        }).catch(function (error){
-            const url = error.data;
-            console.log(error);
-            if(error.response.status===403){
-                alert("가입된 이메일이 아닙니다.")
-            }
-            if (error.response && error.response.status === 500) {
-                alert('로그인 실패');
-            }
-        });
-        //alert(formData.username + "님, 환영합니다!");
+        },).then(response => {
+                const url = response.data;
+                const username = url.split('/')[0];
+                if (url.includes("/home")) {
+                    if(isRemember==true){
+                        setCookie('rememberEmail',formData.email,expires);
+                    }else{
+                        removeCookie('rememberEmail');
+                    }
+                    sessionStorage.setItem("isLoggedIn", 'true');
+                    sessionStorage.setItem("whoLoggedIn", formData.email);
+                    alert(username + "님, 환영합니다!");
+                    window.location.href = "/";
+                } else if (url === "/login") {
+                    alert("비밀번호를 확인해주세요");
+                }
+            }).catch(function (error) {
+                const url = error.data;
+                console.log(error);
+                if (error.response.status === 403) {
+                    alert("가입된 이메일이 아닙니다.")
+                }
+                if (error.response && error.response.status === 500) {
+                    alert('로그인 실패');
+                }
+            });
     };
 
     return (
@@ -103,6 +123,8 @@ function LoginForm(props) {
                                                 id="remember"
                                                 aria-describedby="remember"
                                                 type="checkbox"
+                                                checked = {isRemember}
+                                                onChange={(e)=>checkHandler(e)}
                                                 class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                                                 required=""
                                             />
