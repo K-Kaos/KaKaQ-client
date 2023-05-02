@@ -86,7 +86,7 @@ function NavBar(props) {
                 <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
               {/* <!-- Dropdown menu --> */}
               <div id="dropdownNavbar" class="hidden">
-                <ul class="py-2 text-sm text-gray-700 dark:text-gray-400 position:absolute" aria-labelledby="dropdownLargeButton">
+                <ul class="absolute py-2 text-sm text-gray-700 dark:text-gray-400 position:absolute" aria-labelledby="dropdownLargeButton">
                   <li>
                     <a href="/survey" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" style={{ textDecoration: "none" }}>Basic</a>
                   </li>
