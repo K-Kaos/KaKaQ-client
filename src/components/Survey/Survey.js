@@ -22,6 +22,7 @@ function Survey() {
       window.location.href = "/login";
     }
   }, []);
+
   const [pages, setPages] = React.useState(["home"]);
   const [visibility, setVisibility] = useState('');
   const [GPS, setGPS] = useState(false);
@@ -133,9 +134,10 @@ function Survey() {
       endDate: endDate,
       public_state: visibility,
       creator: {
-        "user_id": creator
+        "id": creator
       },
     }).then(function(response){
+      console.log(creator);
       console.log(response.data);
       setQuestionIndex(response.data);
     }).catch(function(error){
