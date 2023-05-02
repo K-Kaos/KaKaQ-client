@@ -6,6 +6,7 @@ import profile_image from '../../Assets/Images/profile.png'
 import React , { useState,useEffect }from "react";
 import axios from "axios";
 
+
 function MyPage() {
   const [whoLoggedIn, setWhoLeggedIn] = useState(null);
   useEffect(() => {
@@ -19,20 +20,36 @@ function MyPage() {
   }, []);
 
   const [geoData, setgeoData] = useState({
+    userName: "",
+    userEmail: "",
+    userPassword: "",
+  });
+
+  const [userData, setuserData] = useState({
     latitude: "",
     longitude: "",
   });
 
   const [siData, setsiData] = useState();
   
-  useEffect(() => {
+  window.addEventListener("load", ()=>{
     navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
       setgeoData((prevData) =>({
           ...prevData,
         ["latitude"]: pos.coords.latitude,
         ["longitude"]: pos.coords.longitude,
       }));
+      
     });
+
+    // axios.post("/api/mypage/user",{//mypage에 유저 정보 넣기
+    //   id:sessionStorage.getItem("IdLoggedIn"),
+    // }).then(function(response){
+
+    // }).catch(function(error){
+    //   console.log(error);
+    // });
+
   }, []);
   
   useEffect(()=> {
@@ -41,27 +58,27 @@ function MyPage() {
       longitude:geoData.longitude,
     }).then(function(response){
       setsiData(response.data);
-      console.log(siData);
+      // console.log(siData);
     }).catch(function(error){
       console.log(error);
     });
   },  [geoData]);
   
-  navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
-    setgeoData((prevData) =>({
-        ...prevData,
-      ["latitude"]: pos.coords.latitude,
-      ["longitude"]: pos.coords.longitude,
-    }));
-  });
-  axios.post("/api/mypage/gps",{//서버에 좌표 주고 시 받아오기
-    latitude: geoData.latitude,
-    longitude:geoData.longitude,
-  }).then(function(response){
-    console.log(response.data);
-  }).catch(function(error){
-    console.log(error);
-  });
+  // navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
+  //   setgeoData((prevData) =>({
+  //       ...prevData,
+  //     ["latitude"]: pos.coords.latitude,
+  //     ["longitude"]: pos.coords.longitude,
+  //   }));
+  // });
+  // axios.post("/api/mypage/gps",{//서버에 좌표 주고 시 받아오기
+  //   latitude: geoData.latitude,
+  //   longitude:geoData.longitude,
+  // }).then(function(response){
+  //   console.log(response.data);
+  // }).catch(function(error){
+  //   console.log(error);
+  // });
 
   return (
     <Container fluid className="mypage-section">

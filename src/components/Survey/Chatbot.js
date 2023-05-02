@@ -26,14 +26,7 @@ function Chatbot() {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
 
-    // const [geoData, setgeoData] = useState({
-    //     latitude: "",
-    //     longitude: "",
-    // });
 
-    // useEffect(() => {
-    //     console.log(geoData);
-    // }, [geoData]);
 
     function handleGPS(event) {
         // if(event.target.value === 'GPSO') {
@@ -76,15 +69,15 @@ function Chatbot() {
     function handleSubmit(event) {
         event.preventDefault();
         setLoading(true); // 데이터 요청 전 로딩 상태를 true로 변경
-        axios.get("/api/survey/create/chatbot?topic=" + topic)
+        axios.get("/api/survey/chatbot?topic=" + topic)
             .then(function (response) {
-                navigate("/chatbotsurvey", { state: { response: response.data.choices } });
+                navigate("/chatbotsurvey", { state: { response: response.data.choices , survey_title: title, survey_GPS: GPS, survey_city: city, survey_start: startDate, survey_end: endDate, survey_visibility: visibility} });
             })
             .catch(function (error) {
                 console.log(error);
             });
 
-        axios.get("/api/")
+        // axios.get("/api/")
         alert('Topic ' + topic + ' has been submitted to ' + visibility + '!' + GPS + '\n' + startDate + '-' + endDate + '\n');
         //console.log(geoData);
     }

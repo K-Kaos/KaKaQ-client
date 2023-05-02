@@ -11,6 +11,7 @@ import Question from "./Question";
 import TypeQuestion from "./TypeQuestion";
 import QuestionGenerator from "./QuestionGenerator";
 import { RiQuestionAnswerFill } from "react-icons/ri";
+import axios from "axios";
 
 function Survey() {
   let whoLoggedIn = null;
@@ -28,17 +29,23 @@ function Survey() {
   const [type, setType] = useState("");
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState([]);
+  const [optionArr, setOptionsArr] = useState([]);
   const [message, setMessage] = useState("");
   const [showQuestionGenerator, setShowQuestionGenerator] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [city, setCity] = useState(false);
+  const [creator, setCreator] = useState("");
+  const [questionIndex, setQuestionIndex]= useState("");
   
   function handleCity(event) {
     setCity(event.target.value);
   }
-
+  useEffect(() => {
+    setCreator(sessionStorage.getItem("IdLoggedIn"));
+    console.log(sessionStorage.getItem("IdLoggedIn"));
+  }, []);
   const handleShowQuestionGenerator = () => {
     setShowQuestionGenerator(true);
   }
@@ -77,7 +84,9 @@ function Survey() {
 
   const handleAddQuestion = (e) => {
     e.preventDefault();
-
+    console.log(options.join(","  ));
+    console.log(questions);
+    setOptionsArr([...options, options.join(",")]);
     if (question !== "") {
       const newQuestion = {
         id: questions.length + 1, // 새로운 질문의 id는 배열 길이 + 1
@@ -86,8 +95,7 @@ function Survey() {
         options: options,
       };
 
-      console.log({ newQuestion })
-
+      console.log({ newQuestion });
       setQuestions([...questions, newQuestion]);
       setQuestion('');
       setType('');
@@ -114,9 +122,48 @@ function Survey() {
   const handleEndDateChange = (event) => {
     setEndDate(event.target.value);
   }
+  function handleSubmit(event) {
+    event.preventDefault();
+  
+    axios.post("/api/survey/create", {//survey db 데이터 보내기
+      title: title,
+      // GPS: GPS,
+      city: city,
+      startDate: startDate,
+      endDate: endDate,
+      public_state: visibility,
+      creator: {
+        "user_id": creator
+      },
+    }).then(function(response){
+      console.log(response.data);
+      setQuestionIndex(response.data);
+    }).catch(function(error){
+      console.log(error);
+    });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    questions.map((question) => (
+      axios.post("/api/survey/question",{
+        text: question.text,
+        type: question.type,
+        option: question.option.join(","),
+        survey: {
+          id: questionIndex,
+        }
+      })
+      .then(function(response){
+        console.log(response.data);
+      })
+      .catch(function(error){
+        console.log(error);
+      })
+    ));
+    
+    // axios.post("/api/survey/question", {//question db 데이터 보내기
+    // }).then(function(response){
+    // }).catch(function(error){
+    //   console.log(error);
+    // });
 
     setMessage('설문조사가 제출되었습니다.');
 
@@ -124,6 +171,7 @@ function Survey() {
       setMessage('');
     }, 3000);
   }
+
 
   return (
     <Container fluid className="survey-header" >
