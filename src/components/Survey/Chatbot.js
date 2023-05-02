@@ -52,6 +52,7 @@ function Chatbot() {
 
     function handleCity(event) {
         setCity(event.target.value);
+        console.log(city)
     }
     function handleTopicChange(event) {
         setTopic(event.target.value);
@@ -123,127 +124,96 @@ function Chatbot() {
                         </Card.Body>
                     </Card>
 
+
                     <Card className="survey-card-view">
                         <Card.Body>
                             <Question question="설문조사 공개/비공개" />
-                            <input
-                                type='radio'
-                                id='public'
-                                name='visibility'
-                                value='public'
-                                onChange={handleVisibility}
-                                checked={visibility === 'public'} />
-                            <label for='public'>public</label><br />
-                            <input
-                                type='radio'
-                                id='private'
-                                name='visibility'
-                                value='private'
-                                onChange={handleVisibility}
-                                checked={visibility === 'private'} />
-                            <label for='private'>private</label>
-                        </Card.Body></Card>
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        <input
+                                            type='radio'
+                                            id='public'
+                                            name='visibility'
+                                            value='public'
+                                            onChange={handleVisibility}
+                                            checked={visibility === 'public'}
+                                        />
+                                        <label htmlFor='public'>공개 설문으로 생성할게요</label>
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        <input
+                                            type='radio'
+                                            id='private'
+                                            name='visibility'
+                                            value='private'
+                                            onChange={handleVisibility}
+                                            checked={visibility === 'private'}
+                                        />
+                                        <label htmlFor='private'>비공개 설문으로 생성할게요</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+                        </Card.Body>
+                    </Card>
 
                     {(visibility === 'public') && <Card className="survey-card-view">
                         <Card.Body>
                             <Question question="GPS 사용 여부" />
-                            <input
-                                type='radio'
-                                id='GPSO'
-                                name='gps'
-                                value='GPSO'
-                                onChange={handleGPS}
-                                checked={GPS === 'GPSO'} />
-                            <label for='GPSO'>YES!</label><br />
-                            <input
-                                type='radio'
-                                id='GPSX'
-                                name='gps'
-                                value='GPSX'
-                                onChange={handleGPS}
-                                checked={GPS === 'GPSX'} />
-                            <label for='GPSX'>NO!</label>
-                        </Card.Body></Card>
-                    }
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        <input
+                                            type='radio'
+                                            id='GPSO'
+                                            name='gps'
+                                            value='GPSO'
+                                            onChange={handleGPS}
+                                            checked={GPS === 'GPSO'}
+                                        />
+                                        <label htmlFor='GPSO'>GPS 정보를 사용할게요</label>
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                                        <input
+                                            type='radio'
+                                            id='GPSX'
+                                            name='gps'
+                                            value='GPSX'
+                                            onChange={handleGPS}
+                                            checked={GPS === 'GPSX'}
+                                        />
+                                        <label htmlFor='GPSX'>GPS 정보를 사용하지 않을게요</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br />
+
+                        </Card.Body>
+                    </Card>}
 
                     {(GPS === 'GPSO') && <Card className="survey-card-view">
                         <Card.Body>
                             <Question question="설문 가능 지역" />
-                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                <input
-                                    type='checkbox'
-                                    id='seoul'
-                                    name='city'
-                                    value='seoul'
-                                    onChange={handleCity} />
-                                <label for='seoul'>Seoul </label><br />
-                                <input
-                                    type='checkbox'
-                                    id='busan'
-                                    name='city'
-                                    value='busan'
-                                    onChange={handleCity} />
-                                <label for='busan'>Busan </label><br />
-                                <input
-                                    type='checkbox'
-                                    id='daegu'
-                                    name='city'
-                                    value='daegu'
-                                    onChange={handleCity} />
-                                <label for='daegu'>Daegu </label><br />
-                                <input
-                                    type='checkbox'
-                                    id='gwangju'
-                                    name='city'
-                                    value='gwangju'
-                                    onChange={handleCity} />
-                                <label for='gwangju'>Gwangju </label><br />
-                                <input
-                                    type='checkbox'
-                                    id='incheon'
-                                    name='city'
-                                    value='incheon'
-                                    onChange={handleCity} />
-                                <label for='incheon'>Incheon </label><br />
-                                <input
-                                    type='checkbox'
-                                    id='daejeon'
-                                    name='city'
-                                    value='daejeon'
-                                    onChange={handleCity} />
-                                <label for='daejeon'>Daejeon </label><br />
-                                <input
-                                    type='checkbox'
-                                    id='ulsan'
-                                    name='city'
-                                    value='ulsan'
-                                    onChange={handleCity} />
-                                <label for='ulsan'>Ulsan </label><br />
-                                <input
-                                    type='checkbox'
-                                    id='gyeonggi'
-                                    name='city'
-                                    value='gyeonggi'
-                                    onChange={handleCity} />
-                                <label for='gyeonggi'>Gyeonggi </label><br />
-                                <input
-                                    type='checkbox'
-                                    id='gangwon'
-                                    name='city'
-                                    value='gangwon'
-                                    onChange={handleCity} />
-                                <label for='gangwon'>Gangwon </label><br />
-                                <input
-                                    type='checkbox'
-                                    id='jeju'
-                                    name='city'
-                                    value='jeju'
-                                    onChange={handleCity} />
-                                <label for='jeju'>Jeju </label><br />
+                            <div className="city-table">
+                                {["서울", "부산", "대구", "광주", "인천", "대전", "울산", "경기", "강원", "제주"].map((city, index) => (
+                                    <div key={index}>
+                                        <input
+                                            type="checkbox"
+                                            id={city.toLowerCase()}
+                                            name="city"
+                                            value={city.toLowerCase()}
+                                            onChange={handleCity}
+                                        />
+                                        <label htmlFor={city.toLowerCase()}>{city}</label>
+                                    </div>
+                                ))}
                             </div>
+
                         </Card.Body></Card>
                     }
-                    
                     <Card className="survey-card-view">
                         <Card.Body>
                             <Question question="Survey Start Date" />
