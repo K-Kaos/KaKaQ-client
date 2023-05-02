@@ -28,7 +28,7 @@ function LoginForm(props) {
                 const username = url.split('/')[0];
                 if (url.includes("/home")) {
                     sessionStorage.setItem("isLoggedIn", 'true');
-                    sessionStorage.setItem("whoLoggedIn", username);
+                    sessionStorage.setItem("whoLoggedIn", formData.email);
                     alert(username + "님, 환영합니다!");
                     window.location.href = "/";
                 } else if (url === "/login") {

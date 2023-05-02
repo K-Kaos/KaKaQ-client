@@ -104,6 +104,7 @@ function SignupForm(props) {
                 <form onSubmit={handleSubmit}>
                     <h1>회원가입</h1><br />
                     <div className="mb-3 ">
+                        <div>
                         <label htmlFor="username" class="text-lg">사용자 이름</label>&nbsp;&nbsp;
                         <input type="text"
                             id="username"
@@ -112,9 +113,16 @@ function SignupForm(props) {
                             onChange={nameInputChange}
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 w-60 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="username" required />
                             {/* class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" /> */}
+                        </div>
+                        {!(isData.username)&&(formData.username)&&
+                            <div>
+                            2자이상 5자 이하로 입력해주세요
+                            </div>
+                        } 
                     </div>
                     <br /> <br />
                     <div className="mb-3">
+                        <div>
                         <label htmlFor='email' class="text-lg">이메일</label>&nbsp;&nbsp;
                         <input
                             type="text"
@@ -123,9 +131,16 @@ function SignupForm(props) {
                             value={formData.email}
                             onChange={mailInputChange}
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 w-50 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email" required />
+                        </div>
+                        {!(isData.email)&&(formData.email)&&
+                            <div>
+                                이메일 형식으로 입력해주세요
+                            </div>
+                        } 
                     </div>
                     <br /><br />
                     <div className="mb-3">
+                        <div>
                         <label htmlFor="password" class="text-lg">비밀번호</label>&nbsp;&nbsp;
                         <input
                             type="password"
@@ -134,9 +149,16 @@ function SignupForm(props) {
                             value={formData.password}
                             onChange={pwdInputChange}
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 w-60 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="password" required />
+                        </div>
+                        {!(isData.password)&&(formData.password)&&
+                            <div>
+                            영어, 숫자, 특수문자를 포함하여 8자 이상으로 입력해주세요
+                            </div>
+                        } 
                     </div>
                     <br /> <br />
                     <div className="mb-3">
+                        <div>
                         <label htmlFor="confirmPassword" class="text-lg">비밀번호 확인</label>&nbsp;&nbsp;
                         <input
                             type="password"
@@ -145,6 +167,12 @@ function SignupForm(props) {
                             value={formData.confirmPassword}
                             onChange={cfpwdInputChange}
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 w-60 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="password check" required />
+                        </div>
+                        {!(isData.confirmPassword)&&(formData.confirmPassword)&&
+                            <div>
+                            비밀번호가 일치하지 않습니다
+                            </div>
+                        } 
                     </div>
                     <br /> <br />
                     {/* <div className='error-box'>{error}</div> */}
