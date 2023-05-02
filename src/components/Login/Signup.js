@@ -165,8 +165,16 @@ function SignupForm(props) {
                         </div>
                     )} */}
                     <br /> <br />
-                    <button type="submit" disabled={!(isData.username && isData.email && isData.password && isData.confirmPassword)}>회원가입</button>
+                    <button
+                    type="submit"
+                    disabled={!(isData.username && isData.email && isData.password && isData.confirmPassword)}
+                    className={`w-full flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2 text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 ${!(isData.username && isData.email && isData.password && isData.confirmPassword) ? 'disabled' : ''}`}
+                    style={{ backgroundColor: !(isData.username && isData.email && isData.password && isData.confirmPassword) ? '#ccc' : '' }}
+                >
+                    회원가입
+                </button>
                 </form>
+                <br />
             </Container>
         </Container>
     );
