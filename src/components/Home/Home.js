@@ -1,7 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import homeLogo from "../../Assets/Projects/home.png";
-import Particle from "../Particle";
 import { Link } from "react-router-dom";
 import seobin from "../../Assets/profile/seobin.png";
 import soyeon from "../../Assets/profile/soyeon.png";
@@ -58,46 +57,46 @@ function Home(props) {
           <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
             <li>
               <div class="flex items-center gap-x-6">
-                <img class="h-16 w-16 rounded-full" src={seobin} alt=""/>
+                <img class="h-24 w-24 rounded-full" src={seobin} alt=""/>
                 <div>
-                  <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Seobin Lee</h3>
-                  <p class="text-sm font-semibold leading-6 text-indigo-600">PM / Front-end</p>
+                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Seobin Lee</h3>
+                  <p class="text-base font-semibold leading-6 text-indigo-600">PM / Front-end</p>
                 </div>
               </div>
             </li>
             <li>
               <div class="flex items-center gap-x-6">
-              <img class="h-16 w-16 rounded-full" src={seobin} alt=""/>
+              <img class="h-24 w-24 rounded-full" src={soyeon} alt=""/>
                 <div>
-                  <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Soyeon You	</h3>
-                  <p class="text-sm font-semibold leading-6 text-indigo-600">Database</p>
+                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Soyeon You	</h3>
+                  <p class="text-base font-semibold leading-6 text-indigo-600">Database</p>
                 </div>
               </div>
             </li>
             <li>
               <div class="flex items-center gap-x-6">
-              <img class="h-16 w-16 rounded-full" src={seobin} alt=""/>
+              <img class="h-24 w-24 rounded-full" src={sohyun} alt=""/>
                 <div>
-                  <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Sohyun Lee</h3>
-                  <p class="text-sm font-semibold leading-6 text-indigo-600">Back-end</p>
+                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Sohyun Lee</h3>
+                  <p class="text-base font-semibold leading-6 text-indigo-600">Back-end</p>
                 </div>
               </div>
             </li>
             <li>
               <div class="flex items-center gap-x-6">
-              <img class="h-16 w-16 rounded-full" src={seobin} alt=""/>
+              <img class="h-24 w-24 rounded-full" src={jueun} alt=""/>
                 <div>
-                  <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Jueun Yoon</h3>
-                  <p class="text-sm font-semibold leading-6 text-indigo-600">Front-end</p>
+                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Jueun Yoon</h3>
+                  <p class="text-base font-semibold leading-6 text-indigo-600">Front-end</p>
                 </div>
               </div>
             </li>
             <li>
               <div class="flex items-center gap-x-6">
-              <img class="h-16 w-16 rounded-full" src={seobin} alt=""/>
+              <img class="h-24 w-24 rounded-full" src={yekyeong} alt=""/>
                 <div>
-                  <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Yekyeong Jang</h3>
-                  <p class="text-sm font-semibold leading-6 text-indigo-600">Back-end</p>
+                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Yekyeong Jang</h3>
+                  <p class="text-base font-semibold leading-6 text-indigo-600">Back-end</p>
                 </div>
               </div>
             </li>
