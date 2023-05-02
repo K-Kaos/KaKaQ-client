@@ -1,4 +1,3 @@
-import React , { useState,useEffect }from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import TimelineCard from "./MyPageCards";
 import Particle from "../Particle";
