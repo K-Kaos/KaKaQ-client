@@ -78,9 +78,9 @@ function SignupForm(props) {
 
         // 회원가입 처리 로직
         axios.post("/api/user/register", {
-            username:formData.username,
-            email:formData.email,
-            password:formData.password,
+            username: formData.username,
+            email: formData.email,
+            password: formData.password,
         }).then(function (response){
             console.log(response);
             const url = response.data;
