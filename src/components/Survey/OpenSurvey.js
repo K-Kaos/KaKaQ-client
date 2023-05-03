@@ -18,58 +18,54 @@ function OpenSurvey() {
         }
     }, []);
     return (
-        <div className='surveys'>
+        <div className='surveys' class="py-24 sm:py-32">
             <h1>이 지역에서만 할 수 있는 설문조사에요!</h1>
-            <div className='surveys__container'>
-                <div >
-                    <ul className='surveys__items'>
-                        <OpenSurveyItem
-                            date="2023/07/09"
-                            text="우리집 피자 어땠나요? 당신의 의견을 들려주세요!" // 설문 간단 설명
-                            label="MyhomePizza" // 설문 카테고리
-                            path="/Home" // 설문 참여 창으로
-                            name="Seobin Lee"
-                            profile={seobin}
-                        />
+            <div className='surveys__container' class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    <OpenSurveyItem
+                        date="2023/07/09"
+                        text="우리집 피자 어땠나요? 당신의 의견을 들려주세요!" // 설문 간단 설명
+                        label="MyhomePizza" // 설문 카테고리
+                        path="/Home" // 설문 참여 창으로
+                        name="Seobin Lee"
+                        profile={seobin}
+                    />
 
-                        <OpenSurveyItem
-                            date="2023/07/09"
-                            text="국립공주박물관에 오신 것을 환영합니다." // 설문 간단 설명
-                            label="PrincessMuseum" // 설문 카테고리
-                            path="" // 설문 참여 창으로
-                            name="Seobin Lee"
-                            profile={seobin}
-                        />
-                    </ul>
-                    <ul className='surveys__items'>
-                        <OpenSurveyItem
-                            date="2023/07/09"
-                            text="5분만 시간 내주세요..." // 설문 간단 설명
-                            label="Please" // 설문 카테고리
-                            path="" // 설문 참여 창으로
-                            name="Seobin Lee"
-                            profile={seobin}
-                        />
+                    <OpenSurveyItem
+                        date="2023/07/09"
+                        text="국립공주박물관에 오신 것을 환영합니다." // 설문 간단 설명
+                        label="PrincessMuseum" // 설문 카테고리
+                        path="" // 설문 참여 창으로
+                        name="Seobin Lee"
+                        profile={seobin}
+                    />
+                    <OpenSurveyItem
+                        date="2023/07/09"
+                        text="5분만 시간 내주세요..." // 설문 간단 설명
+                        label="Please" // 설문 카테고리
+                        path="" // 설문 참여 창으로
+                        name="Seobin Lee"
+                        profile={seobin}
+                    />
 
-                        <OpenSurveyItem
-                            date="2023/07/09"
-                            text="뜨끈한 국물이 땡기는 오늘, 도리도리에서 닭볶음탕 한 사바리 어떠세요? 설문조사 후 방문하시면 음료수 서비스를 드립니다!" // 설문 간단 설명
-                            label="doridori" // 설문 카테고리
-                            path="" // 설문 참여 창으로
-                            name="Seobin Lee"
-                            profile={seobin}
-                        />
+                    <OpenSurveyItem
+                        date="2023/07/09"
+                        text="뜨끈한 국물이 땡기는 오늘, 도리도리에서 닭볶음탕 한 사바리 어떠세요? 설문조사 후 방문하시면 음료수 서비스를 드립니다!" // 설문 간단 설명
+                        label="doridori" // 설문 카테고리
+                        path="" // 설문 참여 창으로
+                        name="Seobin Lee"
+                        profile={seobin}
+                    />
 
 
-                        <OpenSurveyItem
-                            date="2023/07/09"
-                            text="호텔에서 편안한 여행을 보내셨나요?" // 설문 간단 설명
-                            label="hotel" // 설문 제목
-                            path="" // 설문 참여 창으로
-                            name="Seobin Lee"
-                            profile={seobin}
-                        />
-                    </ul>
+                    <OpenSurveyItem
+                        date="2023/07/09"
+                        text="호텔에서 편안한 여행을 보내셨나요?" // 설문 간단 설명
+                        label="hotel" // 설문 제목
+                        path="" // 설문 참여 창으로
+                        name="Seobin Lee"
+                        profile={seobin}
+                    />
                 </div>
             </div>
         </div>
