@@ -179,23 +179,19 @@ function Survey() {
 
   const handleShare = () => {
     const surveyId = 1;
-
-
+  
     axios.get(`/api/surveys/${surveyId}`).then(response => {
       const surveyURL = response.data;
-
+  
       console.log("설문 공유 URL: ", surveyURL);
-
-      navigator.clipboard.writeText(surveyURL).then(() => {
-        console.log("URL이 클립보드에 복사되었습니다.");
-      }).catch(error => {
-        console.error("URL 복사 실패: ", error);
-      });
+  
+      // 클립보드에 URL 복사 등의 추가 로직을 수행할 수 있습니다.
     })
     .catch(error => {
       console.error("설문 URL 요청 실패: ", error);
-    })
+    });
   }
+  
 
   return (
     <Container fluid className="survey-header" >
