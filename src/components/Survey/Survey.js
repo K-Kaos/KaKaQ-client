@@ -30,7 +30,7 @@ function Survey() {
   const [type, setType] = useState("");
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState([]);
-  const [optionArr, setOptionsArr] = useState([]);
+  // const [optionArr, setOptionsArr] = useState([]);
   const [message, setMessage] = useState("");
   const [showQuestionGenerator, setShowQuestionGenerator] = useState(false);
   const [questions, setQuestions] = useState([]);
@@ -45,7 +45,7 @@ function Survey() {
   }
   useEffect(() => {
     setCreator(sessionStorage.getItem("IdLoggedIn"));
-    console.log(sessionStorage.getItem("IdLoggedIn"));
+    // console.log(sessionStorage.getItem("IdLoggedIn"));
   }, []);
   const handleShowQuestionGenerator = () => {
     setShowQuestionGenerator(true);
@@ -94,6 +94,7 @@ function Survey() {
         text: question,
         type: type,
         options: options,
+        alloptions: options.join(","),
       };
 
       console.log({ newQuestion });
@@ -142,6 +143,8 @@ function Survey() {
       console.log(response.data);
       setQuestionIndex(response.data);
   
+
+      
       // 설문조사 질문 생성
       const promises = questions.map((question) => (
         axios.post("/api/survey/question",{
@@ -149,7 +152,8 @@ function Survey() {
           type:{
             name: question.type
           },
-          option: question.option ? question.option.join(",") : undefined,//답변들이 ,를 기준으로 string으로 들어감
+          // option: question.option ? question.option.join(",") : undefined,//답변들이 ,를 기준으로 string으로 들어감
+          options: question.options,
           survey: {
             "id": response.data,
           },
