@@ -7,6 +7,7 @@ import soyeon from "../../Assets/profile/soyeon.png";
 import sohyun from "../../Assets/profile/sohyun.png";
 import jueun from "../../Assets/profile/jueun.png";
 import yekyeong from "../../Assets/profile/yekyeong.png";
+import GuideIntro from "../Guide/GuideIntro";
 
 function Home(props) {
   const isLogin = props.isLogin;
@@ -23,11 +24,11 @@ function Home(props) {
               <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Share your opinion with KaKaQ and meet your friends.</p>
               <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                 {isLogin ?
-                  <Link to="/login" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900" style={{ textDecoration: "none" }}>
+                  <Link to="/login" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 dark:focus:ring-blue-900" style={{ textDecoration: "none" }}>
                     Get started
                     <svg aria-hidden="true" className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                   </Link> :
-                  <Link to="/survey" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900" style={{ textDecoration: "none" }}>
+                  <Link to="/survey" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 dark:focus:ring-blue-900" style={{ textDecoration: "none" }}>
                     Get started
                     <svg aria-hidden="true" className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                   </Link>
@@ -48,6 +49,7 @@ function Home(props) {
           />
         </Col>
       </Row>
+      <GuideIntro/>
       <div class="py-24 sm:py-32">
         <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
           <div class="max-w-2xl">
