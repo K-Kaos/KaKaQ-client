@@ -24,6 +24,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import SurveyCompletion from "./components/Survey/SurveyCompletion";
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -64,6 +65,7 @@ function App() {
           <Route path="/participatesurvey" element={<ParticipateSurvey />} />
           <Route path="/completesurvey" element={<CompleteSurvey />} />
           <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/surveycompletion" element={<SurveyCompletion />} />
         </Routes>
       </div>
     </Router>
