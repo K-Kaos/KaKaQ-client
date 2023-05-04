@@ -6,18 +6,8 @@ import profile_image from '../../Assets/Images/profile.png'
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function MyPage() {
-  // const [whoLoggedIn, setWhoLeggedIn] = useState(null);
-  // useEffect(() => {
-  //   const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
-  //   if (LoggedInUser === null) {
-  //     alert("로그인 후 이용해 주세요");
-  //     window.location.href = "/login";
-  //   } else {
-  //     setWhoLeggedIn(LoggedInUser);
-  //   }
-  // }, []);
 
+function MyPage() {
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
 
@@ -30,37 +20,56 @@ function MyPage() {
       setWhoLeggedIn(LoggedInUser);
 
       // 서버로 LoggedInUser 보내기
-        fetch('/api/mypage/userInfo', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ user: LoggedInUser })
-        })
+      fetch('/api/mypage/userInfo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ user: LoggedInUser })
+      })
         .then(response => response.json())
         .then(data => {
           console.log('서버 응답:', data);
           setUsername(data.username); // 서버 응답에서 받은 사용자 이름을 state로 저장
         })
         .catch(error => console.error('오류 발생:', error));
+
+        // 생성한 설문조사 목록 가져오기
+        fetchCreatedSurveys();
     }
   }, []);
 
   const [geoData, setgeoData] = useState({
+    userName: "",
+    userEmail: "",
+    userPassword: "",
+  });
+
+  const [userData, setuserData] = useState({
     latitude: "",
     longitude: "",
   });
 
   const [siData, setsiData] = useState();
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function (pos) {//현재위치 가져오기
-      setgeoData((prevData) => ({
-        ...prevData,
+  
+  window.addEventListener("load", ()=>{
+    navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
+      setgeoData((prevData) =>({
+          ...prevData,
         ["latitude"]: pos.coords.latitude,
         ["longitude"]: pos.coords.longitude,
       }));
+      
     });
+
+    // axios.post("/api/mypage/user",{//mypage에 유저 정보 넣기
+    //   id:sessionStorage.getItem("IdLoggedIn"),
+    // }).then(function(response){
+
+    // }).catch(function(error){
+    //   console.log(error);
+    // });
+
   }, []);
 
   useEffect(() => {
@@ -74,6 +83,25 @@ function MyPage() {
       console.log(error);
     });
   }, [geoData]);
+
+  const [createdSurveys, setCreatedSurveys] = useState([]);
+
+  function fetchCreatedSurveys() {
+    axios.get("/api/created", {
+      params: {
+        user: whoLoggedIn // 로그인한 사용자의 이메일
+      }
+    })
+      .then(function (response) {
+        // 응답 데이터 처리
+        const createdSurveys = response.data;
+        setCreatedSurveys(createdSurveys);
+      })
+      .catch(function (error) {
+        console.log(error);
+        // 에러 처리
+      });
+  }
 
   return (
     <Container fluid className="mypage-section">
@@ -119,36 +147,14 @@ function MyPage() {
                   </tr>
                 </thead>
                 <tbody class="text-lg">
-                  <tr>
-                    <th scope="row">1</th>
-                    <td><a href="#">설문조사 제목 1</a></td>
-                    <td>2022-04-20</td>
-                    <td>종료</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td><a href="#">설문조사 제목 2</a></td>
-                    <td>2022-04-21</td>
-                    <td>종료</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td><a href="#">설문조사 제목 3</a></td>
-                    <td>2022-04-22</td>
-                    <td>종료</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td><a href="#">설문조사 제목 4</a></td>
-                    <td>2022-04-21</td>
-                    <td>종료</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td><a href="#">설문조사 제목 5</a></td>
-                    <td>2022-04-22</td>
-                    <td>진행중</td>
-                  </tr>
+                  {createdSurveys.map((survey, index) => (
+                    <tr key={index}>
+                      <th scope="row">{index + 1}</th>
+                      <td><a href="#">{survey.title}</a></td>
+                      <td>{survey.createdAt}</td>
+                      <td>{survey.status}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table><br />
 

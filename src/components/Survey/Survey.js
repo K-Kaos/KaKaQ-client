@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Modal } from "react-bootstrap";
+import { Container, Row, Col, Modal, CardGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Radio from "./Radio";
 import RadioGroup from "./RadioGroup";
@@ -179,27 +179,30 @@ function Survey() {
 
   const handleShare = () => {
     const surveyId = 1;
-  
+
     axios.get(`/api/surveys/${surveyId}`).then(response => {
       const surveyURL = response.data;
-  
+
       console.log("설문 공유 URL: ", surveyURL);
-  
-      // 클립보드에 URL 복사 등의 추가 로직을 수행할 수 있습니다.
+
+      navigator.clipboard.writeText(surveyURL).then(() => {
+        console.log("URL이 클립보드에 복사되었습니다.");
+      }).catch(error => {
+        console.error("URL 복사 실패: ", error);
+      });
     })
-    .catch(error => {
-      console.error("설문 URL 요청 실패: ", error);
-    });
+      .catch(error => {
+        console.error("설문 URL 요청 실패: ", error);
+      });
   }
-  
 
   return (
-    <Container fluid className="survey-header" >
-      <Container>
+    <Container fluid className="survey-header max-w-3xl mx-auto">
+      <Container class="m-auto mx-10">
         {isSurveyComplete ? (
           <SurveyCompletion handleShare={handleShare} />
         ) : (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} class="items-center">
             <h1 className="project-heading">
               Our <strong className="yellow">Survey </strong>
             </h1>
@@ -208,12 +211,13 @@ function Survey() {
             </p><br />
             <Card className="survey-card-view ">
               <Card.Body>
-                <Question question="Survey Title" />
+                <Question question="설문조사 제목" />
                 <input
                   type="text"
                   value={title}
                   onChange={handleTitleChange}
-                  placeholder="Survey title" />
+                  placeholder="설문조사 제목을 입력해주세요."
+                  class="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
               </Card.Body>
             </Card>
 
@@ -299,40 +303,41 @@ function Survey() {
                     </div>
                   ))}
                 </div>
-
               </Card.Body></Card>
             }
+            <CardGroup>
+              <Card className="survey-card-view">
+                <Card.Body>
+                  <Question question="설문 시작일" />
+                  <input
+                    type="date"
+                    value={startDate}
+                    onChange={handleStartDateChange}
+                  />
+                </Card.Body>
+              </Card>
 
-            <Card className="survey-card-view">
-              <Card.Body>
-                <Question question="Survey Start Date" />
-                <input
-                  type="date"
-                  value={startDate}
-                  onChange={handleStartDateChange}
-                />
-              </Card.Body>
-            </Card>
-
-            <Card className="survey-card-view">
-              <Card.Body>
-                <Question question="Survey End Date" />
-                <input
-                  type="date"
-                  value={endDate}
-                  onChange={handleEndDateChange}
-                />
-              </Card.Body>
-            </Card>
+              <Card className="survey-card-view">
+                <Card.Body>
+                  <Question question="설문 마감일" />
+                  <input
+                    type="date"
+                    value={endDate}
+                    onChange={handleEndDateChange}
+                  />
+                </Card.Body>
+              </Card>
+            </CardGroup>
 
             {questions.map((question) => (
               <Card key={question.id} className="survey-card-view">
                 <Card.Body>
-                  <p>Question: {question.text}</p>
+                  <Question question={question.text} />
                   <p>Type: {question.type}</p>
                   {question.type !== "서술형" && (
-                    <div>
-                      <p>Options:</p>
+                    <div class="items-center">
+                      <hr />
+                      <Question question="선택지" />
                       <ul>
                         {question.options.map((option, index) => (
                           <li key={index}>{index + 1}. {option}</li>
@@ -346,9 +351,9 @@ function Survey() {
 
             <Card className="survey-card-view">
               <Card.Body>
-                <Question question="Question Type" />
+                <Question question="질문 유형 선택" />
                 <select value={type} onChange={handleTypeChange}>
-                  <option value="">Select type</option>
+                  <option value="">유형 선택</option>
                   <option value="객관식">객관식</option>
                   <option value="찬반식">찬반식</option>
                   <option value="서술형">서술형</option>
@@ -356,47 +361,60 @@ function Survey() {
               </Card.Body>
             </Card>
 
-            {type && (
+            {type && type !== "객관식" && (
               <Card className="survey-card-view">
                 <Card.Body>
-                  <Question question="Question" />
+                  <Question question="질문 제목" />
                   <input
                     type="text"
                     value={question}
                     onChange={handleQuestionChange}
-                    placeholder="Enter the question"
-                  />
+                    placeholder="질문 제목을 입력해주세요."
+                    class="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
+                  <button type="button" class="btn flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black bg-primary-600 hover:bg-primary-700 ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
                 </Card.Body>
               </Card>
             )}
 
             {type === "객관식" && (
-              <Card className="survey-card-view">
-                <Card.Body>
-                  <h3 for="optionsInput"><b>Options</b></h3>
-                  {options.map((option, index) => (
-                    <div key={index}>
-                      <input
-                        type="text"
-                        value={option}
-                        onChange={(event) => handleOptionTextChange(index, event)}
-                        placeholder="Enter an option"
-                      />
-                    </div>
-                  ))}
-                  <br />
-                  <button class="btn btn-primary" type="button" onClick={handleAddOption}>
-                    Add Option
-                  </button>
-                </Card.Body>
-              </Card>
+              <CardGroup>
+                <Card className="survey-card-view">
+                  <Card.Body>
+                    <Question question="질문 제목" />
+                    <input
+                      type="text"
+                      value={question}
+                      onChange={handleQuestionChange}
+                      placeholder="질문 제목을 입력해주세요."
+                      class="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
+                  </Card.Body>
+                </Card>
+                <Card className="survey-card-view">
+                  <Card.Body>
+                    <h3 for="optionsInput"><b>선택지</b></h3>
+                    {options.map((option, index) => (
+                      <div key={index}>
+                        <input
+                          type="text"
+                          value={option}
+                          onChange={(event) => handleOptionTextChange(index, event)}
+                          placeholder="선택지를 입력해주세요"
+                          class="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
+                      </div>
+                    ))}
+                    <button class="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black mt-2" type="button" onClick={handleAddOption}>
+                      선택지 추가하기
+                    </button>
+                    <button type="button" class="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black  ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
+
+                  </Card.Body>
+                </Card>
+              </CardGroup>
             )}
+            <div class="items-end">
+              <button to="/completesurvey" type="submit" class="btn flex border border-gray-300 rounded-lg bg-indigo-500 hover:bg-indigo-600 font-medium p-2.5" >설문 생성하기</button><br />
 
-            <button type="button" class="btn btn-primary" onClick={handleAddQuestion}>Add Question</button>
-
-            <br /> <br /> <br />
-
-            <button to="/completesurvey" type="submit" class="btn btn-primary">Submit</button><br />
+            </div>
             <p>{message}</p>
           </form>
         )}

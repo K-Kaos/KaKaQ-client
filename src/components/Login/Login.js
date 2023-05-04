@@ -80,14 +80,7 @@ function LoginForm(props) {
                                 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                                 Sign in to your account
                             </h1>
-                            <div class="items-center grid grid-cols-2 gap-2">
-                                <button class="flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2">
-                                    <img class="w-5 h-5 mr-2" src={kakaologo} alt="kakaoLogo" />
-                                    Log in with Kakao</button>
-                                <button class="flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2">
-                                    <img class="w-5 h-5 mr-2" src={logo} alt="kakaqLogo" />
-                                    Log in with KaKaQ</button>
-                            </div>  <hr />
+                            
                             <form class="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>
                                 <div>
                                     <label
@@ -148,11 +141,17 @@ function LoginForm(props) {
                                 <button
                                     type="submit"
                                     class="w-full flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2 text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                                <div class="items-center grid gap-2">
+                                <button class="flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2">
+                                    <img class="w-5 h-5 mr-2" src={kakaologo} alt="kakaoLogo" />
+                                    Log in with Kakao</button>
+                            </div>  
                                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account yet? &nbsp;
                                     <a href="/signup"
                                         class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                                 </p>
+                                
                             </form>
                         </div>
                     </div>

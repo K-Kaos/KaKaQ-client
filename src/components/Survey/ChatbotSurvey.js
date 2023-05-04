@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useLocation } from "react-router-dom"
+import axios from "axios";
+// import { error } from "console";
 
 function ChatbotSurvey(props) {
   const location = useLocation();
   const [response, setResponse] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const [title, setTitle] = useState('');
+  const [GPS, setGPS] = useState(false);
+  const [visibility, setVisibility] = useState('');
+  const [city, setCity] = useState(false);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [creator, setCreator] = useState("");
 
-  useEffect(() => {
+
+  useEffect(() => {//페이지에서 설정한 데이터들 가져오기
     if (location.state && location.state.response) {
       setResponse(location.state.response);
   
@@ -36,11 +46,32 @@ function ChatbotSurvey(props) {
   
       setQuestions(newQuestions);
     }
+    if (location.state && location.state.survey_title) {
+      setTitle(location.state.survey_title);
+    }
+    if (location.state && location.state.survey_GPS) {
+      setGPS(location.state.survey_GPS);
+    }
+    if (location.state && location.state.survey_city) {
+      setCity(location.state.survey_city);
+    }
+    if (location.state && location.state.survey_start) {
+      setStartDate(location.state.survey_start);
+    }
+    if (location.state && location.state.survey_end) {
+      setEndDate(location.state.survey_end);
+    }
+    if (location.state && location.state.survey_visibility) {
+      setVisibility(location.state.survey_visibility);
+    }
+    setCreator(sessionStorage.getItem("WhoLoggedIn"));
   }, [location.state]);
   
   useEffect(() => {
     console.log(questions);
   }, [questions]);
+
+
   
   const handleAnswerSelect = (questionIndex, answerIndex) => {
     setSelectedAnswers((prevAnswers) => {
@@ -50,10 +81,7 @@ function ChatbotSurvey(props) {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // `selectedAnswers` 배열을 이용하여 선택된 답변을 저장하거나 처리하는 로직
-  };
+  
 
   if (response.length == 0) {
     return <div>Loading...</div>
@@ -76,6 +104,14 @@ function ChatbotSurvey(props) {
       );
     });
   
+
+    const surveyData = {
+      questions: response[0].text.slice(2).split("\n\n"),
+      answers: selectedAnswers,
+    };
+
+    
+
     return (
       <div key={questionIndex}>
         <br/>
@@ -86,6 +122,34 @@ function ChatbotSurvey(props) {
     );
   });
   
+  // console.log(questionsAndAnswers);
+
+  function handleSubmit(event) {
+    console.log(questionsAndAnswers[0]);
+    axios.post("/api/survey/create", {//survey db 데이터 보내기
+      title: title,
+      // GPS: GPS,
+      city: city,
+      startDate: startDate,
+      endDate: endDate,
+      public_state: visibility,
+      user: {
+        "email": creator
+      },
+    }).then(function(response){
+      console.log(response);
+    }).catch(function(error){
+      console.log(error);
+    });
+
+    // axios.post("/api/survey/question", {//question db 데이터 보내기
+    // }).then(function(response){
+    // }).catch(function(error){
+    //   console.log(error);
+    // });
+  }
+
+
   return (
     <Container fluid className="survey-header" >
       <Container class="flex items-center">
@@ -106,6 +170,7 @@ function ChatbotSurvey(props) {
           </div>
           <br/>
           <button type="submit" class="btn btn-primary" onClick={handleSubmit}>Make Survey</button><br />
+          {/* <h2 style={{ color: "white" }}>{message}</h2> */}
         </form>
       </Container>
     </Container>

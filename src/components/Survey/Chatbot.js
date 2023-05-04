@@ -3,7 +3,7 @@ import TopicInput from './TopicInput';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import ChatbotSurvey from './ChatbotSurvey';
-import { ProgressBar, Spinner } from "react-bootstrap";
+import { Container, ProgressBar, Spinner } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Question from "./Question";
 
@@ -26,14 +26,7 @@ function Chatbot() {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
 
-    // const [geoData, setgeoData] = useState({
-    //     latitude: "",
-    //     longitude: "",
-    // });
 
-    // useEffect(() => {
-    //     console.log(geoData);
-    // }, [geoData]);
 
     function handleGPS(event) {
         // if(event.target.value === 'GPSO') {
@@ -77,9 +70,9 @@ function Chatbot() {
     function handleSubmit(event) {
         event.preventDefault();
         setLoading(true); // 데이터 요청 전 로딩 상태를 true로 변경
-        axios.get("/api/survey/create/chatbot?topic=" + topic)
+        axios.get("/api/survey/chatbot?topic=" + topic)
             .then(function (response) {
-                navigate("/chatbotsurvey", { state: { response: response.data.choices } });
+                navigate("/chatbotsurvey", { state: { response: response.data.choices , survey_title: title, survey_GPS: GPS, survey_city: city, survey_start: startDate, survey_end: endDate, survey_visibility: visibility} });
             })
             .catch(function (error) {
                 console.log(error);
@@ -91,8 +84,8 @@ function Chatbot() {
     }
 
     return (
-        <div className='surveys'>
-            <div className='surveys__container'>
+        <Container fluid className="survey-header" >
+      <Container>
                 <form onSubmit={handleSubmit}>
                     <h1 className="project-heading">
                         Our <strong className="yellow">Chatbot </strong>Survey
@@ -244,8 +237,8 @@ function Chatbot() {
                         )}
                     </button>
                 </form>
-            </div>
-        </div>
+            </Container>
+        </Container>
     );
 }
 
