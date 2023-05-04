@@ -124,7 +124,7 @@ function NavBar(props) {
                   <NavButton to="/login" text="Login" />
                 </li>
                 <li class="md:order-2 text-2xl">
-                  <NavButton to="/signup" text="Signup" />
+                  <NavButton to="/termofuse" text="Signup" />
                 </li>
               </>
             }

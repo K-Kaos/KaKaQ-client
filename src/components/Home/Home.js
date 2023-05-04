@@ -105,7 +105,6 @@ function Home(props) {
           </ul>
         </div>
       </div>
-
     </Container>
   );
 }
