@@ -16,6 +16,7 @@ function ChatbotSurvey(props) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [creator, setCreator] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {//페이지에서 설정한 데이터들 가져오기
     if (location.state && location.state.response) {
@@ -98,10 +99,7 @@ function ChatbotSurvey(props) {
       );
     });
 
-    const surveyData = {
-      questions: response[0].text.slice(2).split("\n\n"),
-      answers: selectedAnswers,
-    };
+
 
     return (
       <div key={questionIndex}>
@@ -119,25 +117,46 @@ function ChatbotSurvey(props) {
     console.log(questionsAndAnswers[0]);
     axios.post("/api/survey/create", {//survey db 데이터 보내기
       title: title,
-      // GPS: GPS,
       city: city,
       startDate: startDate,
       endDate: endDate,
-      public_state: visibility,
+      publicState: visibility,
       user: {
         "email": creator
       },
-    }).then(function (response) {
-      console.log(response);
-    }).catch(function (error) {
+    }).then(function(response){
+      console.log(creator);
+      console.log(response.data);
+
+  
+
+      
+      // 설문조사 질문 생성
+      const promises = questions.map((question) => (
+        axios.post("/api/survey/question?surveyId="+response.data,{
+          text: question.text,//질문
+          type:{
+            name: question.type
+          },
+          options: question.options,
+          survey: {
+            "id": response.data,
+          },
+        })
+      ));
+  
+      Promise.all(promises).then((results) => {
+        console.log(results);
+        setMessage('설문조사가 제출되었습니다.');
+        setTimeout(() => {
+          setMessage('');
+        }, 3000);
+      }).catch(function(error){
+        console.log(error);
+      });
+    }).catch(function(error){
       console.log(error);
     });
-
-    // axios.post("/api/survey/question", {//question db 데이터 보내기
-    // }).then(function(response){
-    // }).catch(function(error){
-    //   console.log(error);
-    // });
   }
 
   return (
