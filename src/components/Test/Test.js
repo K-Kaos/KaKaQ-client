@@ -8,7 +8,6 @@ import CheckboxGroup from "./CheckboxGroup";
 import InputBox from "./InputBox";
 import Card from "react-bootstrap/Card";
 import Question from "./Question";
-import Particle from "../Particle";
 
 function Test(props) {
   let whoLoggedIn = null;

@@ -25,7 +25,7 @@ function Survey(props) {
           return true;
         }}>
 
-            <OpenSurvey />
+          <OpenSurvey />
 
           <button type="submit" class="btn btn-primary">Submit</button><br />
           <h2>{message}</h2>

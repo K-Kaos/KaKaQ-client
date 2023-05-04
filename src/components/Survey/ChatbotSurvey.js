@@ -43,7 +43,6 @@ function ChatbotSurvey(props) {
             options: options,
           };
         });
-  
       setQuestions(newQuestions);
     }
     if (location.state && location.state.survey_title) {

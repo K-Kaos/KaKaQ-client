@@ -204,10 +204,10 @@ function Survey() {
         ) : (
           <form onSubmit={handleSubmit} class="items-center">
             <h1 className="project-heading">
-              Our <strong className="yellow">Survey </strong>
+              설문조사 <strong className="yellow">생성하기 </strong>
             </h1>
             <p>
-              Here is a survey we're working on recently.
+              편리하고 쉽게 제작자의 목적에 맞게 설문조사를 생성합니다.
             </p><br />
             <Card className="survey-card-view ">
               <Card.Body>
