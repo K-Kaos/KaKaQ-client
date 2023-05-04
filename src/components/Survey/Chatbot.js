@@ -3,7 +3,7 @@ import TopicInput from './TopicInput';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import ChatbotSurvey from './ChatbotSurvey';
-import { ProgressBar, Spinner } from "react-bootstrap";
+import { Container, ProgressBar, Spinner } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Question from "./Question";
 
@@ -84,8 +84,8 @@ function Chatbot() {
     }
 
     return (
-        <div className='surveys'>
-            <div className='surveys__container'>
+        <Container fluid className="survey-header" >
+      <Container>
                 <form onSubmit={handleSubmit}>
                     <h1 className="project-heading">
                         Our <strong className="yellow">Chatbot </strong>Survey
@@ -237,8 +237,8 @@ function Chatbot() {
                         )}
                     </button>
                 </form>
-            </div>
-        </div>
+            </Container>
+        </Container>
     );
 }
 

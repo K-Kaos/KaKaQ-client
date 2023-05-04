@@ -514,7 +514,7 @@ button:focus {
 .survey-card-view {
   box-shadow: 0 4px 5px 3px rgba(255, 255, 0, 0.3) !important;
   color: black !important;
-  background-color: transparent !important;
+  background-color: white !important;
   opacity: 1 !important;
   transition: all 0.5s ease 0s !important;
   height: 100% !important;
@@ -523,6 +523,7 @@ button:focus {
   margin-bottom: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
+  border-radius: 30px !important;
 }
 
 .survey-card-view input[type="radio"] {
