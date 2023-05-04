@@ -16,7 +16,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
 
-import axios from "axios";
 
 function Survey() {
   let whoLoggedIn = null;
