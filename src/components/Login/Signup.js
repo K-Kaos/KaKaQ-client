@@ -176,8 +176,8 @@ function SignupForm(props) {
                                         </button>
                                     </div>
                                     <label class="text-sm leading-6 text-gray-600" id="switch-1-label">
-                                        By selecting this, you agree to our
-                                        <a href="#" class="font-semibold text-indigo-600">&nbsp;privacy&nbsp;policy</a>.
+                                        By selecting this, you agree to our&nbsp;
+                                        <a href="#" class="font-semibold text-indigo-600">privacy policy</a>.
                                     </label>
                                 </div>
                             </div>
