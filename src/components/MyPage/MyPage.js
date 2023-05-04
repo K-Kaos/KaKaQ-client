@@ -8,17 +8,6 @@ import axios from "axios";
 
 
 function MyPage() {
-  // const [whoLoggedIn, setWhoLeggedIn] = useState(null);
-  // useEffect(() => {
-  //   const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
-  //   if (LoggedInUser === null) {
-  //     alert("로그인 후 이용해 주세요");
-  //     window.location.href = "/login";
-  //   } else {
-  //     setWhoLeggedIn(LoggedInUser);
-  //   }
-  // }, []);
-
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
 
