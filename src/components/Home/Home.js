@@ -15,14 +15,14 @@ function Home(props) {
     <Container className="home-content">
       <Row>
         <Col md={7} className="home-header">
-          <section class="dark:bg-gray-900">
-            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
-              <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Share Your Opinion.
+          <section className="dark:bg-gray-900">
+            <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+              <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Share Your Opinion.
                 <span className="wave" role="img" aria-labelledby="wave">
                   👋🏻
                 </span></h1>
-              <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">KaKaQ와 의견을 나누고 친구들을 만나보세요.</p>
-              <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+              <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">KaKaQ와 의견을 나누고 친구들을 만나보세요.</p>
+              <div className="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
                 {isLogin ?
                   <Link to="/login" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 dark:focus:ring-blue-900" style={{ textDecoration: "none" }}>
                     설문조사 시작
@@ -50,55 +50,55 @@ function Home(props) {
         </Col>
       </Row>
       <GuideIntro/>
-      <div class="py-24 sm:py-32">
-        <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
-          <div class="max-w-2xl">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">K-Kaos의 멤버</h2>
-            <p class="mt-6 text-lg leading-8 text-gray-600">K-Kaos의 멤버들을 소개합니다.</p>
+      <div className="py-24 sm:py-32">
+        <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">K-Kaos의 멤버</h2>
+            <p className="mt-6 text-lg leading-8 text-gray-600">K-Kaos의 멤버들을 소개합니다.</p>
           </div>
-          <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+          <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
             <li>
-              <div class="flex items-center gap-x-6">
-                <img class="h-24 w-24 rounded-full" src={seobin} alt=""/>
+              <div className="flex items-center gap-x-6">
+                <img className="h-24 w-24 rounded-full" src={seobin} alt=""/>
                 <div>
-                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Seobin Lee</h3>
-                  <p class="text-base font-semibold leading-6 text-indigo-600">PM / Front-end</p>
+                  <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">Seobin Lee</h3>
+                  <p className="text-base font-semibold leading-6 text-indigo-600">PM / Front-end</p>
                 </div>
               </div>
             </li>
             <li>
-              <div class="flex items-center gap-x-6">
-              <img class="h-24 w-24 rounded-full" src={soyeon} alt=""/>
+              <div className="flex items-center gap-x-6">
+              <img className="h-24 w-24 rounded-full" src={soyeon} alt=""/>
                 <div>
-                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Soyeon You	</h3>
-                  <p class="text-base font-semibold leading-6 text-indigo-600">Database</p>
+                  <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">Soyeon You	</h3>
+                  <p className="text-base font-semibold leading-6 text-indigo-600">Database</p>
                 </div>
               </div>
             </li>
             <li>
-              <div class="flex items-center gap-x-6">
-              <img class="h-24 w-24 rounded-full" src={sohyun} alt=""/>
+              <div className="flex items-center gap-x-6">
+              <img className="h-24 w-24 rounded-full" src={sohyun} alt=""/>
                 <div>
-                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Sohyun Lee</h3>
-                  <p class="text-base font-semibold leading-6 text-indigo-600">Back-end</p>
+                  <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">Sohyun Lee</h3>
+                  <p className="text-base font-semibold leading-6 text-indigo-600">Back-end</p>
                 </div>
               </div>
             </li>
             <li>
-              <div class="flex items-center gap-x-6">
-              <img class="h-24 w-24 rounded-full" src={jueun} alt=""/>
+              <div className="flex items-center gap-x-6">
+              <img className="h-24 w-24 rounded-full" src={jueun} alt=""/>
                 <div>
-                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Jueun Yoon</h3>
-                  <p class="text-base font-semibold leading-6 text-indigo-600">Front-end</p>
+                  <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">Jueun Yoon</h3>
+                  <p className="text-base font-semibold leading-6 text-indigo-600">Front-end</p>
                 </div>
               </div>
             </li>
             <li>
-              <div class="flex items-center gap-x-6">
-              <img class="h-24 w-24 rounded-full" src={yekyeong} alt=""/>
+              <div className="flex items-center gap-x-6">
+              <img className="h-24 w-24 rounded-full" src={yekyeong} alt=""/>
                 <div>
-                  <h3 class="text-lg font-semibold leading-7 tracking-tight text-gray-900">Yekyeong Jang</h3>
-                  <p class="text-base font-semibold leading-6 text-indigo-600">Back-end</p>
+                  <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">Yekyeong Jang</h3>
+                  <p className="text-base font-semibold leading-6 text-indigo-600">Back-end</p>
                 </div>
               </div>
             </li>

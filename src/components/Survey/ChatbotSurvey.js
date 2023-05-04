@@ -17,11 +17,10 @@ function ChatbotSurvey(props) {
   const [endDate, setEndDate] = useState("");
   const [creator, setCreator] = useState("");
 
-
   useEffect(() => {//페이지에서 설정한 데이터들 가져오기
     if (location.state && location.state.response) {
       setResponse(location.state.response);
-  
+
       const newQuestions = location.state.response[0].text
         .split("\n\n")
         .slice(1)
@@ -35,7 +34,7 @@ function ChatbotSurvey(props) {
                 value: optionIndex,
               };
             });
-  
+
           return {
             id: questionIndex + 1,
             text: questionText.split("\n")[0].slice(3),
@@ -65,13 +64,11 @@ function ChatbotSurvey(props) {
     }
     setCreator(sessionStorage.getItem("WhoLoggedIn"));
   }, [location.state]);
-  
+
   useEffect(() => {
     console.log(questions);
   }, [questions]);
 
-
-  
   const handleAnswerSelect = (questionIndex, answerIndex) => {
     setSelectedAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];
@@ -79,8 +76,6 @@ function ChatbotSurvey(props) {
       return newAnswers;
     });
   };
-
-  
 
   if (response.length == 0) {
     return <div>Loading...</div>
@@ -102,25 +97,22 @@ function ChatbotSurvey(props) {
         </div>
       );
     });
-  
 
     const surveyData = {
       questions: response[0].text.slice(2).split("\n\n"),
       answers: selectedAnswers,
     };
 
-    
-
     return (
       <div key={questionIndex}>
-        <br/>
+        <br />
         <h4>{questionIndex + 1}. {question.text}</h4>
         <br />
         {options}
       </div>
     );
   });
-  
+
   // console.log(questionsAndAnswers);
 
   function handleSubmit(event) {
@@ -135,9 +127,9 @@ function ChatbotSurvey(props) {
       user: {
         "email": creator
       },
-    }).then(function(response){
+    }).then(function (response) {
       console.log(response);
-    }).catch(function(error){
+    }).catch(function (error) {
       console.log(error);
     });
 
@@ -148,10 +140,9 @@ function ChatbotSurvey(props) {
     // });
   }
 
-
   return (
     <Container fluid className="survey-header" >
-      <Container class="flex items-center">
+      <Container className="flex items-center">
         <form onSubmit={(e) => {
           e.preventDefault();
           alert(`Chatbot based survey created! `);
@@ -167,8 +158,8 @@ function ChatbotSurvey(props) {
           <div>
             {questionsAndAnswers}
           </div>
-          <br/>
-          <button type="submit" class="btn btn-primary" onClick={handleSubmit}>Make Survey</button><br />
+          <br />
+          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Make Survey</button><br />
           {/* <h2 style={{ color: "white" }}>{message}</h2> */}
         </form>
       </Container>

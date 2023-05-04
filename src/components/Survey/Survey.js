@@ -16,7 +16,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
 
-
 function Survey() {
   let whoLoggedIn = null;
   useEffect(() => {
@@ -198,11 +197,11 @@ function Survey() {
 
   return (
     <Container fluid className="survey-header max-w-3xl mx-auto">
-      <Container class="m-auto mx-10">
+      <Container className="m-auto mx-10">
         {isSurveyComplete ? (
           <SurveyCompletion handleShare={handleShare} />
         ) : (
-          <form onSubmit={handleSubmit} class="items-center">
+          <form onSubmit={handleSubmit} className="items-center">
             <h1 className="project-heading">
               설문조사 <strong className="yellow">생성하기 </strong>
             </h1>
@@ -217,7 +216,7 @@ function Survey() {
                   value={title}
                   onChange={handleTitleChange}
                   placeholder="설문조사 제목을 입력해주세요."
-                  class="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                  className="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
               </Card.Body>
             </Card>
 
@@ -335,7 +334,7 @@ function Survey() {
                   <Question question={question.text} />
                   <p>Type: {question.type}</p>
                   {question.type !== "서술형" && (
-                    <div class="items-center">
+                    <div className="items-center">
                       <hr />
                       <Question question="선택지" />
                       <ul>
@@ -399,21 +398,19 @@ function Survey() {
                           value={option}
                           onChange={(event) => handleOptionTextChange(index, event)}
                           placeholder="선택지를 입력해주세요"
-                          class="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
+                          className="mt-2 m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
                       </div>
                     ))}
-                    <button class="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black mt-2" type="button" onClick={handleAddOption}>
+                    <button className="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black mt-2" type="button" onClick={handleAddOption}>
                       선택지 추가하기
                     </button>
-                    <button type="button" class="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black  ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
-
+                    <button type="button" className="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black m-3" onClick={handleAddQuestion}>질문 추가하기</button>
                   </Card.Body>
                 </Card>
               </CardGroup>
             )}
-            <div class="items-end">
-              <button to="/completesurvey" type="submit" class="btn flex border border-gray-300 rounded-lg bg-indigo-500 hover:bg-indigo-600 font-medium p-2.5" >설문 생성하기</button><br />
-
+            <div>
+              <button to="/completesurvey" type="submit" className="btn flex border bg-white border-gray-300 rounded-lg bg-indigo-500 hover:bg-indigo-600 font-medium p-2.5" >설문 생성하기</button><br />
             </div>
             <p>{message}</p>
           </form>
@@ -440,8 +437,6 @@ function Survey() {
             </Button>
           </Modal.Footer>
         </Modal>
-
-
       </Container>
     </Container >
   );
