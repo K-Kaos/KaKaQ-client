@@ -147,7 +147,7 @@ function Survey() {
       
       // 설문조사 질문 생성
       const promises = questions.map((question) => (
-        axios.post("/api/survey/question",{
+        axios.post("/api/survey/question?surveyId="+response.data,{
           text: question.text,//질문
           type:{
             name: question.type
