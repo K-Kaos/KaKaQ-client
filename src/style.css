@@ -518,12 +518,12 @@ button:focus {
   opacity: 1 !important;
   transition: all 0.5s ease 0s !important;
   height: 100% !important;
-  margin-left: 80px;
-  margin-right: 80px;
-  margin-bottom: 40px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 30px !important;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 40px !important;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-radius: 40px !important;
 }
 
 .survey-card-view input[type="radio"] {
