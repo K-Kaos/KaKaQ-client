@@ -109,34 +109,34 @@ function MyPage() {
           My <strong className="yellow">page </strong>
         </h1>
         <div>
-          <div class="px-4 sm:px-0">
-            <h3 class="text-base text-xl font-semibold leading-7">Your Information</h3><br />
-            <p class="mt-1 max-w-xl font-semibold text-lg leading-2">{username}님의 정보입니다.</p>
+          <div className="px-4 sm:px-0">
+            <h3 className="text-base text-xl font-semibold leading-7">Your Information</h3><br />
+            <p className="mt-1 max-w-xl font-semibold text-lg leading-2">{username}님의 정보입니다.</p>
           </div>
-          <div class="flex -space-x-1 overflow-hidden m-auto w-100 py-6">
-            <img class="inline-block h-20 w-20 rounded-full m-auto ring-2 ring-white" src={profile_image} />
+          <div className="flex -space-x-1 overflow-hidden m-auto w-100 py-6">
+            <img className="inline-block h-20 w-20 rounded-full m-auto ring-2 ring-white" src={profile_image} />
           </div>
-          <div class="m-auto mt-6 border-t border-gray-100">
-            <dl class="divide-y divide-gray-100">
-              <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt class="text-xl font-semibold font-medium leading-6">Name</dt>
-                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{username}</dd>
+          <div className="m-auto mt-6 border-t border-gray-100">
+            <dl className="divide-y divide-gray-100">
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt className="text-xl font-semibold font-medium leading-6">Name</dt>
+                <dd className="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{username}</dd>
               </div>
-              <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt class="text-xl font-semibold font-medium leading-6 ">Email</dt>
-                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{whoLoggedIn}</dd>
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt className="text-xl font-semibold font-medium leading-6 ">Email</dt>
+                <dd className="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{whoLoggedIn}</dd>
               </div>
               {/* <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt class="text-xl font-semibold font-medium leading-6">Password</dt>
                 <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">서버에서 불러온 Password</dd>
               </div> */}
-              <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt class="text-xl font-semibold font-medium leading-6">Location</dt>
-                <dd class="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{siData}</dd>
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                <dt className="text-xl font-semibold font-medium leading-6">Location</dt>
+                <dd className="mt-1 text-lg leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{siData}</dd>
               </div><br /><br />
-              <p class="mt-3 max-w-xl font-semibold text-xl leading-6">생성한 설문조사</p>
-              <table class="table ml-6 mr-6 ">
-                <thead class="text-xl">
+              <p className="mt-3 max-w-xl font-semibold text-xl leading-6">생성한 설문조사</p>
+              <table className="table ml-6 mr-6 ">
+                <thead className="text-xl">
                   <tr>
                     <th scope="col">No</th>
                     <th scope="col">제목</th>
@@ -144,7 +144,7 @@ function MyPage() {
                     <th scope="col">상태</th>
                   </tr>
                 </thead>
-                <tbody class="text-lg">
+                <tbody className="text-lg">
                   {createdSurveys.map((survey, index) => (
                     <tr key={index}>
                       <th scope="row">{index + 1}</th>
@@ -156,9 +156,9 @@ function MyPage() {
                 </tbody>
               </table><br />
 
-              <p class="mt-3 max-w-xl font-semibold text-xl leading-6">참여한 설문조사</p>
-              <table class="table ml-6 mr-6 ">
-                <thead class="text-xl">
+              <p className="mt-3 max-w-xl font-semibold text-xl leading-6">참여한 설문조사</p>
+              <table className="table ml-6 mr-6 ">
+                <thead className="text-xl">
                   <tr>
                     <th scope="col">No</th>
                     <th scope="col">제목</th>
@@ -167,7 +167,7 @@ function MyPage() {
                     <th scope="col">상태</th>
                   </tr>
                 </thead>
-                <tbody class="text-lg">
+                <tbody className="text-lg">
                   <tr>
                     <th scope="row">1</th>
                     <td><a href="#">설문조사 제목 1</a></td>

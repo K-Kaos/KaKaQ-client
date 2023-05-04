@@ -85,7 +85,7 @@ function Chatbot() {
 
     return (
         <Container fluid className="survey-header max-w-3xl mx-auto" >
-            <Container class="m-auto mx-10">
+            <Container className="m-auto mx-10">
                 <form onSubmit={handleSubmit}>
                     <h1 className="project-heading">
                         챗봇 설문조사 <strong className="yellow">생성하기 </strong>
@@ -229,7 +229,7 @@ function Chatbot() {
                             </Card.Body>
                         </Card>
                     </CardGroup>
-                    <button type="submit" class="btn btn-primary" disabled={loading}>
+                    <button type="submit" className="btn btn-primary" disabled={loading}>
                         {loading ? (
                             <Spinner animation="border" role="status">
                                 <span className="sr-only">Loading</span>
