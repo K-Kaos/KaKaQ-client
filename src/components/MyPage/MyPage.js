@@ -51,20 +51,36 @@ function MyPage() {
   }, []);
 
   const [geoData, setgeoData] = useState({
+    userName: "",
+    userEmail: "",
+    userPassword: "",
+  });
+
+  const [userData, setuserData] = useState({
     latitude: "",
     longitude: "",
   });
 
   const [siData, setsiData] = useState();
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function (pos) {//현재위치 가져오기
-      setgeoData((prevData) => ({
-        ...prevData,
+  
+  window.addEventListener("load", ()=>{
+    navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
+      setgeoData((prevData) =>({
+          ...prevData,
         ["latitude"]: pos.coords.latitude,
         ["longitude"]: pos.coords.longitude,
       }));
+      
     });
+
+    // axios.post("/api/mypage/user",{//mypage에 유저 정보 넣기
+    //   id:sessionStorage.getItem("IdLoggedIn"),
+    // }).then(function(response){
+
+    // }).catch(function(error){
+    //   console.log(error);
+    // });
+
   }, []);
 
   useEffect(() => {
