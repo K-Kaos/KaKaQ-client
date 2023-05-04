@@ -41,7 +41,6 @@ function QuestionGenerator() {
         setOptions(newOptions);
     };
 
-
     const handleSaveQuestion = () => {
         console.log('질문: ' + {question})
         console.log('선택지: ' + {options})
@@ -88,7 +87,6 @@ function QuestionGenerator() {
             </div>
         );
     }
-
     return (
         <div>
             <h2>질문 생성기</h2>

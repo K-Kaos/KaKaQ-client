@@ -1,8 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import TimelineCard from "./MyPageCards";
-import Particle from "../Particle";
 import Card from "react-bootstrap/Card";
-import profile_image from '../../Assets/Images/profile.png'
+import profile_image from '../../Assets/Profile/profile.png'
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -34,8 +33,8 @@ function MyPage() {
         })
         .catch(error => console.error('오류 발생:', error));
 
-        // 생성한 설문조사 목록 가져오기
-        fetchCreatedSurveys();
+      // 생성한 설문조사 목록 가져오기
+      fetchCreatedSurveys();
     }
   }, []);
 
@@ -51,15 +50,15 @@ function MyPage() {
   });
 
   const [siData, setsiData] = useState();
-  
-  window.addEventListener("load", ()=>{
-    navigator.geolocation.getCurrentPosition(function(pos){//현재위치 가져오기
-      setgeoData((prevData) =>({
-          ...prevData,
+
+  window.addEventListener("load", () => {
+    navigator.geolocation.getCurrentPosition(function (pos) {//현재위치 가져오기
+      setgeoData((prevData) => ({
+        ...prevData,
         ["latitude"]: pos.coords.latitude,
         ["longitude"]: pos.coords.longitude,
       }));
-      
+
     });
 
     // axios.post("/api/mypage/user",{//mypage에 유저 정보 넣기
@@ -105,7 +104,6 @@ function MyPage() {
 
   return (
     <Container fluid className="mypage-section">
-      <Particle />
       <Container>
         <h1 className="mypage-card">
           My <strong className="yellow">page </strong>
@@ -210,7 +208,6 @@ function MyPage() {
             </dl>
           </div>
         </div>
-
       </Container>
     </Container>
   );
