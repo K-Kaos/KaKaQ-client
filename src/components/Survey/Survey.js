@@ -20,11 +20,13 @@ import SurveyCompletion from "./SurveyCompletion";
 function Survey() {
   let whoLoggedIn = null;
   useEffect(() => {
-    whoLoggedIn = sessionStorage.getItem('whoLoggedIn');
+    whoLoggedIn = sessionStorage.getItem("whoLoggedIn");
     if (whoLoggedIn === null) {
       alert("로그인 후 이용해 주세요");
       window.location.href = "/login";
     }
+    console.log(sessionStorage.getItem("whoLoggedIn"));
+    setCreator(sessionStorage.getItem("whoLoggedIn"));
   }, []);
 
   const [pages, setPages] = React.useState(["home"]);
@@ -53,10 +55,10 @@ function Survey() {
   function handleCity(event) {
     setCity(event.target.value);
   }
-  useEffect(() => {
-    setCreator(sessionStorage.getItem("IdLoggedIn"));
-    // console.log(sessionStorage.getItem("IdLoggedIn"));
-  }, []);
+  // useEffect(() => {
+  //   setCreator(sessionStorage.getItem("WhoLoggedIn"));
+  //   // console.log(sessionStorage.getItem("IdLoggedIn"));
+  // }, []);
   const handleShowQuestionGenerator = () => {
     setShowQuestionGenerator(true);
   }
@@ -97,14 +99,13 @@ function Survey() {
     e.preventDefault();
     console.log(options.join(","));
     console.log(questions);
-    // setOptionsArr([...options, options.join(",")]);
+
     if (question !== "") {
       const newQuestion = {
         id: questions.length + 1, // 새로운 질문의 id는 배열 길이 + 1
         text: question,
         type: type,
         options: options,
-        alloptions: options.join(","),
       };
 
       console.log({ newQuestion });
@@ -140,16 +141,15 @@ function Survey() {
 
   function handleSubmit(event) {
     event.preventDefault();
-  
+    console.log(creator);
     axios.post("/api/survey/create", {//survey db 데이터 보내기
       title: title,
-      // GPS: GPS,
       city: city,
       startDate: startDate,
       endDate: endDate,
-      public_state: visibility,
+      publicState: visibility,
       creator: {
-        "id": creator
+        "email": creator
       },
     }).then(function(response){
       console.log(creator);

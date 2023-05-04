@@ -64,7 +64,7 @@ function ChatbotSurvey(props) {
     if (location.state && location.state.survey_visibility) {
       setVisibility(location.state.survey_visibility);
     }
-    setCreator(sessionStorage.getItem("IdLoggedIn"));
+    setCreator(sessionStorage.getItem("WhoLoggedIn"));
   }, [location.state]);
   
   useEffect(() => {
@@ -134,7 +134,7 @@ function ChatbotSurvey(props) {
       endDate: endDate,
       public_state: visibility,
       user: {
-        "id": creator
+        "email": creator
       },
     }).then(function(response){
       console.log(response);
