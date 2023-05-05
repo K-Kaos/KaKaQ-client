@@ -243,16 +243,19 @@ function Chatbot() {
                             </Card.Body>
                         </Card>
                     </CardGroup>
-                    <button type="submit" className="btn btn-primary" disabled={loading}>
-                        {loading ? (
-                            <Spinner animation="border" role="status">
-                                <span className="sr-only">Loading</span>
-                            </Spinner>
-                        ) : (
-                            'Submit'
-                        )}
-                    </button>
+                    <div className="flex justify-center">
+                        <button type="submit" className="block rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" disabled={loading}>
+                            {loading ? (
+                                <Spinner animation="border" role="status">
+                                    <span className="sr-only">Loading</span>
+                                </Spinner>
+                            ) : (
+                                '챗봇으로 설문조사 생성하기'
+                            )}
+                        </button>
+                    </div>
                 </form>
+                <br />
             </Container>
         </Container>
     );

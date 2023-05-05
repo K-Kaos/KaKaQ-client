@@ -90,8 +90,16 @@ function Survey() {
   };
 
   const handleOptionChange = (event) => {
-    const value = event.target.value;
-    setOptions((prevOptions) => [...prevOptions, value]);
+    const selectedOption = event.target.value;
+    if (selectedOption === 'YesNo') {
+      setOptions(["예", "아니오"])
+    } else if (selectedOption === 'Agree') {
+      // 찬성/반대 선택 시, 질문 유형을 "찬반식"으로 설정
+      setOptions(["찬성", "반대"])
+    } else if (selectedOption === 'TrueFalse') {
+      // 참/거짓 선택 시, 질문 유형을 "참거짓식"으로 설정
+      setOptions("참", "거짓")
+    }
   }
 
   const handleAddQuestion = (e) => {
@@ -154,7 +162,7 @@ function Survey() {
       console.log(creator);
       console.log(response.data);
       setSurveyIndex(response.data);
-  
+
       setShowModal(true);
       // 설문조사 질문 생성
       const promises = questions.map((question) => (
@@ -188,9 +196,9 @@ function Survey() {
         setTimeout(() => {
           setMessage('');
         }, 3000);
-  
-  
-  
+
+
+
         // 모든 questionIndex를 editQuestions 함수에 넘겨주기
         // const allQuestionIndex = results.map((result) => result.data);
         // editQuestions(questionIndex);
@@ -199,23 +207,23 @@ function Survey() {
     });
     // console.log("newindex" + questionIndex);
   }
-  
+
 
   // function editQuestions(allQuestionIndex) {
-//     console.log(typeof allQuestionIndex);
-//     return axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
-//       allQuestionIndex,
-//     }).then(function (response) {
-//       console.log("과연" + response.data);
-//     }).catch(function (error) {
-//       console.log(error);
-//     });
-//   }
-  
-//function handleSubmit(e) {
- // e.preventDefault();
+  //     console.log(typeof allQuestionIndex);
+  //     return axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
+  //       allQuestionIndex,
+  //     }).then(function (response) {
+  //       console.log("과연" + response.data);
+  //     }).catch(function (error) {
+  //       console.log(error);
+  //     });
+  //   }
+
+  //function handleSubmit(e) {
+  // e.preventDefault();
   //setShowModal(true);
-//}
+  //}
 
   const handleAnswerSelect = (questionIndex, answerIndex) => {
     setSelectedAnswers((prevAnswers) => {
@@ -287,10 +295,10 @@ function Survey() {
         ) : (
           <form onSubmit={handleSubmit} className="items-center">
             <h1 className="project-heading">
-            설문조사 <strong className="yellow">생성하기 </strong>
+              설문조사 <strong className="yellow">생성하기 </strong>
             </h1>
             <p>
-            편리하고 쉽게 제작자의 목적에 맞게 설문조사를 생성합니다.
+              편리하고 쉽게 제작자의 목적에 맞게 설문조사를 생성합니다.
             </p><br />
             <Card className="survey-card-view ">
               <Card.Body>
@@ -428,16 +436,20 @@ function Survey() {
               <Card key={question.id} className="survey-card-view">
                 <Card.Body>
                   <Question question={question.text} />
-                  <p>Type: {question.type}</p>
+                  <p>{question.type} 질문</p>
                   {question.type !== "서술형" && (
                     <div className="items-center">
                       <hr />
-                      <Question question="선택지" />
-                      <ul>
-                        {question.options.map((option, index) => (
-                          <li key={index}>{index + 1}. {option}</li>
-                        ))}
-                      </ul>
+                      <div className="flex justify-center">
+                        <Question question="선택지" />
+                      </div>
+                      <div className="flex justify-center">
+                        <ul className="text-left ml-0 pl-0">
+                          {question.options.map((option, index) => (
+                            <li key={index} className="block">{index + 1}. {option}</li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   )}
                 </Card.Body>
@@ -456,19 +468,46 @@ function Survey() {
               </Card.Body>
             </Card>
 
-            {type && type !== "객관식" && (
+            {type && type == "서술형" && (
               <Card className="survey-card-view">
                 <Card.Body>
-                  <Question question="질문 제목" />
+                  <Question question="질문" />
                   <input
                     type="text"
                     value={question}
                     onChange={handleQuestionChange}
-                    placeholder="질문 제목을 입력해주세요."
+                    placeholder="질문을 입력해주세요."
                     class="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
                   <button type="button" class="btn flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black bg-primary-600 hover:bg-primary-700 ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
                 </Card.Body>
               </Card>
+            )}
+
+            {type === "찬반식" && (
+              <CardGroup>
+                <Card className="survey-card-view">
+                  <Card.Body>
+                    <Question question="질문" />
+                    <input
+                      type="text"
+                      value={question}
+                      onChange={handleQuestionChange}
+                      placeholder="질문을 입력해주세요."
+                      class="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
+                  </Card.Body>
+                </Card>
+                <Card className="survey-card-view">
+                  <Card.Body>
+                    <h3 for="optionsInput"><b>선택지</b></h3>
+                    <div>
+                      <input type="radio" name="selectOptions" value="YesNo" onChange={handleOptionChange}/>예/아니오<br/>
+                      <input type="radio" name="selectOptions" value="Agree" onChange={handleOptionChange}/>찬성/반대<br/>
+                      <input type="radio" name="selectOptions" value="TrueFalse" onChange={handleOptionChange}/>참/거짓<br/>
+                    </div>
+                    <button type="button" className="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black  ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
+                  </Card.Body>
+                </Card>
+              </CardGroup>
             )}
 
             {type === "객관식" && (
@@ -505,10 +544,11 @@ function Survey() {
                 </Card>
               </CardGroup>
             )}
-            <div className="items-end">
-              <button to="/completesurvey" type="submit" className="btn flex border border-gray-300 rounded-lg bg-indigo-500 hover:bg-indigo-600 font-medium p-2.5" >설문 생성하기</button><br />
+
+            <div className="items-end flex justify-center">
+              <button to="/completesurvey" type="submit" className="block rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" >설문 생성하기</button><br />
             </div>
-            <p>{message}</p>
+            <br />
           </form>
         )}
         <Modal show={showModal} onHide={() => setShowModal(false)}>
