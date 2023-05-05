@@ -9,6 +9,7 @@ import axios from "axios";
 function MyPage() {
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
+  const [creator, setCreator] = useState('');
 
   useEffect(() => {
     const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
@@ -86,9 +87,10 @@ function MyPage() {
   const [createdSurveys, setCreatedSurveys] = useState([]);
 
   function fetchCreatedSurveys() {
+    const email = sessionStorage.getItem('whoLoggedIn');
     axios.get("/api/created", {
       params: {
-        user: whoLoggedIn // 로그인한 사용자의 이메일
+        user: email // 로그인한 사용자의 이메일
       }
     })
       .then(function (response) {

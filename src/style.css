@@ -705,15 +705,15 @@ button:focus {
 }
 
 .btn-primary {
-  color: #fff !important;
-  background-color: #858636 !important;
-  border-color: #858636 !important;
+  color: #fff;
+  background-color: #593686;
+  border-color: #623686;
 }
 
 .btn-primary:hover {
-  color: #fff !important;
-  background-color: #c5c220d7 !important;
-  border-color: #c5c220d7 !important;
+  color: #fff;
+  background-color: #c5c220d7;
+  border-color: #c5c220d7;
 }
 
 .btn:focus {

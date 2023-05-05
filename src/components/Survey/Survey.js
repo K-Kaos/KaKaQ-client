@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Modal, CardGroup } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-import Radio from "./Radio";
-import RadioGroup from "./RadioGroup";
-import Checkbox from "./CheckBox";
-import CheckboxGroup from "./CheckboxGroup";
-import InputBox from "./InputBox";
 import Card from "react-bootstrap/Card";
 import Question from "./Question";
-import TypeQuestion from "./TypeQuestion";
-import QuestionGenerator from "./QuestionGenerator";
-import { RiQuestionAnswerFill } from "react-icons/ri";
-import SurveyPreview from "./SurveyCompletion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
@@ -94,10 +84,8 @@ function Survey() {
     if (selectedOption === 'YesNo') {
       setOptions(["예", "아니오"])
     } else if (selectedOption === 'Agree') {
-      // 찬성/반대 선택 시, 질문 유형을 "찬반식"으로 설정
       setOptions(["찬성", "반대"])
     } else if (selectedOption === 'TrueFalse') {
-      // 참/거짓 선택 시, 질문 유형을 "참거짓식"으로 설정
       setOptions("참", "거짓")
     }
   }
@@ -242,8 +230,8 @@ function Survey() {
             id={`answer-${questionIndex}-${optionIndex}`}
             name={`answer-${questionIndex}`}
             value={option}
-            checked={selectedAnswers[questionIndex] === option.value}
             onChange={() => handleAnswerSelect(questionIndex, option)}
+            disabled
           />
           <label htmlFor={`answer-${questionIndex}-${optionIndex}`}>{optionIndex + 1}. {option}</label>
         </div>
@@ -254,14 +242,16 @@ function Survey() {
       <input
         type="text"
         value={selectedAnswers[questionIndex] || ""}
-        onChange={(event) => handleAnswerSelect(questionIndex, event.target.value)} />
+        onChange={(event) => handleAnswerSelect(questionIndex, event.target.value)}
+        class="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-3/5 p-2.5 "
+        disabled />
     ) : null;
 
 
     return (
       <div key={questionIndex}>
         <br />
-        <h3>{questionIndex + 1}. {question.text}</h3>
+        <h4>{questionIndex + 1}. {question.text}</h4>
         <div>{options}
           {answerInput}</div>
       </div>
@@ -478,7 +468,8 @@ function Survey() {
                     onChange={handleQuestionChange}
                     placeholder="질문을 입력해주세요."
                     class="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
-                  <button type="button" class="btn flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black bg-primary-600 hover:bg-primary-700 ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
+                    <br/>
+                  <button type="button" class="hover:bg-indigo-600 btn flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg font-medium p-2.5 text-black bg-primary-600 ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
                 </Card.Body>
               </Card>
             )}
@@ -504,7 +495,7 @@ function Survey() {
                       <input type="radio" name="selectOptions" value="Agree" onChange={handleOptionChange}/>찬성/반대<br/>
                       <input type="radio" name="selectOptions" value="TrueFalse" onChange={handleOptionChange}/>참/거짓<br/>
                     </div>
-                    <button type="button" className="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black  ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
+                    <button type="button" className="hover:bg-indigo-600 btn flex bg-white-50 border border-gray-300 rounded-lg font-medium p-2.5 text-black ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
                   </Card.Body>
                 </Card>
               </CardGroup>
@@ -536,10 +527,10 @@ function Survey() {
                           className="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
                       </div>
                     ))}
-                    <button className="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black mt-2" type="button" onClick={handleAddOption}>
+                    <button className="hover:bg-indigo-600 btn flex bg-white-50 border border-gray-300 rounded-lg font-medium p-2.5 text-black mt-2" type="button" onClick={handleAddOption}>
                       선택지 추가하기
                     </button>
-                    <button type="button" className="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black  ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
+                    <button type="button" className="hover:bg-indigo-600 btn flex bg-white-50 border border-gray-300 rounded-lg font-medium p-2.5 text-black ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
                   </Card.Body>
                 </Card>
               </CardGroup>
@@ -562,15 +553,15 @@ function Survey() {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
+            <button className="hover:bg-indigo-600 btn flex bg-white-50 border border-gray-300 rounded-lg font-medium p-2.5 text-black ml-3 mr-3 mt-2" onClick={() => setShowModal(false)}>
               돌아가기
-            </Button>
-            <Button variant="primary" onClick={() => {
+            </button>
+            <button className="block rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={() => {
               setSurveyComplete(true);
               setShowModal(false)
             }}>
               설문 생성 완료
-            </Button>
+            </button>
           </Modal.Footer>
         </Modal>
       </Container>
