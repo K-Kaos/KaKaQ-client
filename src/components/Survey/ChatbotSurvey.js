@@ -16,12 +16,12 @@ function ChatbotSurvey(props) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [creator, setCreator] = useState("");
-
+  const [message, setMessage] = useState("");
 
   useEffect(() => {//페이지에서 설정한 데이터들 가져오기
     if (location.state && location.state.response) {
       setResponse(location.state.response);
-  
+
       const newQuestions = location.state.response[0].text
         .split("\n\n")
         .slice(1)
@@ -35,7 +35,7 @@ function ChatbotSurvey(props) {
                 value: optionIndex,
               };
             });
-  
+
           return {
             id: questionIndex + 1,
             text: questionText.split("\n")[0].slice(3),
@@ -43,7 +43,6 @@ function ChatbotSurvey(props) {
             options: options,
           };
         });
-  
       setQuestions(newQuestions);
     }
     if (location.state && location.state.survey_title) {
@@ -66,13 +65,11 @@ function ChatbotSurvey(props) {
     }
     setCreator(sessionStorage.getItem("WhoLoggedIn"));
   }, [location.state]);
-  
+
   useEffect(() => {
     console.log(questions);
   }, [questions]);
 
-
-  
   const handleAnswerSelect = (questionIndex, answerIndex) => {
     setSelectedAnswers((prevAnswers) => {
       const newAnswers = [...prevAnswers];
@@ -80,8 +77,6 @@ function ChatbotSurvey(props) {
       return newAnswers;
     });
   };
-
-  
 
   if (response.length == 0) {
     return <div>Loading...</div>
@@ -103,56 +98,70 @@ function ChatbotSurvey(props) {
         </div>
       );
     });
-  
 
-    const surveyData = {
-      questions: response[0].text.slice(2).split("\n\n"),
-      answers: selectedAnswers,
-    };
 
-    
 
     return (
       <div key={questionIndex}>
-        <br/>
+        <br />
         <h4>{questionIndex + 1}. {question.text}</h4>
         <br />
         {options}
       </div>
     );
   });
-  
+
   // console.log(questionsAndAnswers);
 
   function handleSubmit(event) {
     console.log(questionsAndAnswers[0]);
     axios.post("/api/survey/create", {//survey db 데이터 보내기
       title: title,
-      // GPS: GPS,
       city: city,
       startDate: startDate,
       endDate: endDate,
-      public_state: visibility,
+      publicState: visibility,
       user: {
         "email": creator
       },
     }).then(function(response){
-      console.log(response);
+      console.log(creator);
+      console.log(response.data);
+
+  
+
+      
+      // 설문조사 질문 생성
+      const promises = questions.map((question) => (
+        axios.post("/api/survey/question?surveyId="+response.data,{
+          text: question.text,//질문
+          type:{
+            name: question.type
+          },
+          options: question.options,
+          survey: {
+            "id": response.data,
+          },
+        })
+      ));
+  
+      Promise.all(promises).then((results) => {
+        console.log(results);
+        setMessage('설문조사가 제출되었습니다.');
+        setTimeout(() => {
+          setMessage('');
+        }, 3000);
+      }).catch(function(error){
+        console.log(error);
+      });
     }).catch(function(error){
       console.log(error);
     });
-
-    // axios.post("/api/survey/question", {//question db 데이터 보내기
-    // }).then(function(response){
-    // }).catch(function(error){
-    //   console.log(error);
-    // });
   }
-
 
   return (
     <Container fluid className="survey-header" >
-      <Container class="flex items-center">
+      <Container className="flex items-center">
         <form onSubmit={(e) => {
           e.preventDefault();
           alert(`Chatbot based survey created! `);
@@ -168,8 +177,8 @@ function ChatbotSurvey(props) {
           <div>
             {questionsAndAnswers}
           </div>
-          <br/>
-          <button type="submit" class="btn btn-primary" onClick={handleSubmit}>Make Survey</button><br />
+          <br />
+          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Make Survey</button><br />
           {/* <h2 style={{ color: "white" }}>{message}</h2> */}
         </form>
       </Container>

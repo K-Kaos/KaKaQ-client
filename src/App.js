@@ -12,8 +12,6 @@ import Signup from "./components/Login/Signup"
 import TermofUse from "./components/Login/TermofUse"
 import Chatbot from "./components/Survey/Chatbot"
 import ChatbotSurvey from "./components/Survey/ChatbotSurvey"
-import ParticipateSurvey from "./components/Survey/ParticipateSurvey"
-import CompleteSurvey from "./components/Survey/CompleteSurvey"
 import {
   BrowserRouter as Router,
   Route,
@@ -62,8 +60,6 @@ function App() {
           <Route path="/termofuse" element={<TermofUse />} />
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/chatbotsurvey" element={<ChatbotSurvey />} />
-          <Route path="/participatesurvey" element={<ParticipateSurvey />} />
-          <Route path="/completesurvey" element={<CompleteSurvey />} />
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/surveycompletion" element={<SurveyCompletion />} />
         </Routes>

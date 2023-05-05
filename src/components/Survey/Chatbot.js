@@ -3,7 +3,7 @@ import TopicInput from './TopicInput';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import ChatbotSurvey from './ChatbotSurvey';
-import { Container, ProgressBar, Spinner } from "react-bootstrap";
+import { CardGroup, Container, ProgressBar, Spinner } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Question from "./Question";
 
@@ -19,14 +19,13 @@ function Chatbot() {
 
     const [topic, setTopic] = useState('');
     const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('');
     const [loading, setLoading] = useState(false); // 로딩 상태를 관리하는 상태 변수 추가
     const [visibility, setVisibility] = useState('');
     const [GPS, setGPS] = useState(false);
     const [city, setCity] = useState(false);
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-
-
 
     function handleGPS(event) {
         // if(event.target.value === 'GPSO') {
@@ -55,6 +54,10 @@ function Chatbot() {
         setTitle(event.target.value);
     }
 
+    const handleCategoryChange = (event) => {
+        setCategory(event.target.value);
+    }
+
     function handleVisibility(event) {
         setVisibility(event.target.value);
     }
@@ -72,7 +75,7 @@ function Chatbot() {
         setLoading(true); // 데이터 요청 전 로딩 상태를 true로 변경
         axios.get("/api/survey/chatbot?topic=" + topic)
             .then(function (response) {
-                navigate("/chatbotsurvey", { state: { response: response.data.choices , survey_title: title, survey_GPS: GPS, survey_city: city, survey_start: startDate, survey_end: endDate, survey_visibility: visibility} });
+                navigate("/chatbotsurvey", { state: { response: response.data.choices, survey_title: title, survey_GPS: GPS, survey_city: city, survey_start: startDate, survey_end: endDate, survey_visibility: visibility } });
             })
             .catch(function (error) {
                 console.log(error);
@@ -84,14 +87,14 @@ function Chatbot() {
     }
 
     return (
-        <Container fluid className="survey-header" >
-      <Container>
+        <Container fluid className="survey-header max-w-3xl mx-auto" >
+            <Container className="m-auto mx-10">
                 <form onSubmit={handleSubmit}>
                     <h1 className="project-heading">
-                        Our <strong className="yellow">Chatbot </strong>Survey
+                        챗봇 설문조사 <strong className="yellow">생성하기 </strong>
                     </h1>
                     <p>
-                        공개 설문조사로 업로드하면 검색으로 누구나 내 설문에 참여할 수 있어요!
+                        챗봇을 이용하여 보다 편리하고 간단하게 설문조사를 생성합니다.
                     </p><br />
                     <Card className="survey-card-view">
                         <Card.Body>
@@ -117,6 +120,17 @@ function Chatbot() {
                         </Card.Body>
                     </Card>
 
+                    <Card className="survey-card-view ">
+                        <Card.Body>
+                            <Question question="설문조사 카테고리" />
+                            <input
+                                type="text"
+                                value={category}
+                                onChange={handleCategoryChange}
+                                placeholder="설문조사 카테고리를 입력해주세요."
+                                className="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        </Card.Body>
+                    </Card>
                     <Card className="survey-card-view">
                         <Card.Body>
                             <Question question="설문조사 공개/비공개" />
@@ -206,28 +220,30 @@ function Chatbot() {
 
                         </Card.Body></Card>
                     }
-                    <Card className="survey-card-view">
-                        <Card.Body>
-                            <Question question="Survey Start Date" />
-                            <input
-                                type="date"
-                                value={startDate}
-                                onChange={handleStartDateChange}
-                            />
-                        </Card.Body>
-                    </Card>
+                    <CardGroup>
+                        <Card className="survey-card-view">
+                            <Card.Body>
+                                <Question question="설문 시작일" />
+                                <input
+                                    type="date"
+                                    value={startDate}
+                                    onChange={handleStartDateChange}
+                                />
+                            </Card.Body>
+                        </Card>
 
-                    <Card className="survey-card-view">
-                        <Card.Body>
-                            <Question question="Survey End Date" />
-                            <input
-                                type="date"
-                                value={endDate}
-                                onChange={handleEndDateChange}
-                            />
-                        </Card.Body>
-                    </Card>
-                    <button type="submit" class="btn btn-primary" disabled={loading}>
+                        <Card className="survey-card-view">
+                            <Card.Body>
+                                <Question question="설문 마감일" />
+                                <input
+                                    type="date"
+                                    value={endDate}
+                                    onChange={handleEndDateChange}
+                                />
+                            </Card.Body>
+                        </Card>
+                    </CardGroup>
+                    <button type="submit" className="btn btn-primary" disabled={loading}>
                         {loading ? (
                             <Spinner animation="border" role="status">
                                 <span className="sr-only">Loading</span>

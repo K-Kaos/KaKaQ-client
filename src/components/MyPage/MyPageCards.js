@@ -12,7 +12,6 @@ export default function MyPageCards(props) {
           {props.description}
         </Card.Text>
         {"\n"}
-
       </Card.Body>
     </Card>
   );
