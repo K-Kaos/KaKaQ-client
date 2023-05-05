@@ -30,6 +30,7 @@ function Survey() {
   const [visibility, setVisibility] = useState('');
   const [GPS, setGPS] = useState(false);
   const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
   const [type, setType] = useState("");
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState([]);
@@ -65,6 +66,10 @@ function Survey() {
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
+  }
+
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
   }
 
   const handleTypeChange = (event) => {
@@ -297,6 +302,18 @@ function Survey() {
               </Card.Body>
             </Card>
 
+            <Card className="survey-card-view ">
+              <Card.Body>
+                <Question question="설문조사 카테고리" />
+                <input
+                  type="text"
+                  value={category}
+                  onChange={handleCategoryChange}
+                  placeholder="설문조사 제목을 입력해주세요."
+                  className="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+              </Card.Body>
+            </Card>
+
             <Card className="survey-card-view">
               <Card.Body>
                 <Question question="설문조사 공개/비공개" />
@@ -481,7 +498,7 @@ function Survey() {
                     <button className="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black mt-2" type="button" onClick={handleAddOption}>
                       선택지 추가하기
                     </button>
-                    <button type="button" className="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black m-3" onClick={handleAddQuestion}>질문 추가하기</button>
+                    <button type="button" className="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black  ml-3 mr-3 mt-2" onClick={handleAddQuestion}>질문 추가하기</button>
                   </Card.Body>
                 </Card>
               </CardGroup>
