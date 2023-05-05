@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import OpenSurveyItem from './OpenSurveyItem';
-import seobin from "../../Assets/Profile/seobin.png";
+// import seobin from "../../Assets/Profile/seobin.png";
 import './OpenSurvey.css'
 import axios from "axios";
 
@@ -36,7 +36,7 @@ function OpenSurvey() {
                             label={survey.keyword} // 설문 카테고리
                             path="/Home" // 설문 참여 창으로
                             name={survey.creator.username}
-                            profile={seobin}
+                            //profile={seobin}
                         />
                     ))}
                 </div>

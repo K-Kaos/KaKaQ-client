@@ -25,6 +25,7 @@ function Survey() {
       alert("로그인 후 이용해 주세요");
       window.location.href = "/login";
     }
+    setCreator(sessionStorage.getItem("whoLoggedIn"));
   }, []);
   const [pages, setPages] = React.useState(["home"]);
   const [visibility, setVisibility] = useState('');
@@ -136,84 +137,85 @@ function Survey() {
     setEndDate(event.target.value);
   }
 
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   console.log(creator);
-  //   axios.post("/api/survey/create", {
-  //     //survey db 데이터 보내기
-  //     title: title,
-  //     city: city,
-  //     startDate: startDate,
-  //     endDate: endDate,
-  //     publicState: visibility,
-  //     creator: {
-  //       "email": creator
-  //     },
-  //   }).then(function (response) {
-  //     console.log(creator);
-  //     console.log(response.data);
-  //     setSurveyIndex(response.data);
-
-  //     setShowModal(true);
-  //     // 설문조사 질문 생성
-  //     const promises = questions.map((question) => (
-  //       axios.post("/api/survey/question?surveyId=" + response.data, {
-  //         text: question.text, //질문
-  //         type: {
-  //           name: question.type
-  //         },
-  //         options: question.options,
-  //         survey: {
-  //           "id": response.data,
-  //         },
-  //       }).then(function (response) {
-  //         console.log("index" + response.data);
-  //         setQuestionIndex([...questionIndex, response.data]);
-  //         console.log(typeof response.data);
-  //         axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
-  //           question_id: response.data,
-  //         }).then(function (response) {
-  //           console.log("과연" + response.data);
-  //         }).catch(function (error) {
-  //           console.log(error);
-  //         });
-  //       }).catch(function (error) {
-  //         console.log(error);
-  //       })
-  //     ));
-  //     Promise.all(promises).then(() => {
-  //       console.log("newindex" + questionIndex);
-  //       setMessage('설문조사가 제출되었습니다.');
-  //       setTimeout(() => {
-  //         setMessage('');
-  //       }, 3000);
-
-
-
-  //       // 모든 questionIndex를 editQuestions 함수에 넘겨주기
-  //       // const allQuestionIndex = results.map((result) => result.data);
-  //       // editQuestions(questionIndex);
-  //     });
-  //     //console.log("newindex" + questionIndex);
-  //   });
-  //   // console.log("newindex" + questionIndex);
-  // }
-
-  function editQuestions(allQuestionIndex) {
-    console.log(typeof allQuestionIndex);
-    return axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
-      allQuestionIndex,
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(creator);
+    axios.post("/api/survey/create", {
+      //survey db 데이터 보내기
+      title: title,
+      city: city,
+      startDate: startDate,
+      endDate: endDate,
+      publicState: visibility,
+      creator: {
+        "email": creator
+      },
     }).then(function (response) {
-      console.log("과연" + response.data);
-    }).catch(function (error) {
-      console.log(error);
+      console.log(creator);
+      console.log(response.data);
+      setSurveyIndex(response.data);
+  
+      setShowModal(true);
+      // 설문조사 질문 생성
+      const promises = questions.map((question) => (
+        axios.post("/api/survey/question?surveyId=" + response.data, {
+          text: question.text, //질문
+          type: {
+            name: question.type
+          },
+          options: question.options,
+          survey: {
+            "id": response.data,
+          },
+        }).then(function (response) {
+          console.log("index" + response.data);
+          setQuestionIndex([...questionIndex, response.data]);
+          console.log(typeof response.data);
+          axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
+            question_id: response.data,
+          }).then(function (response) {
+            console.log("과연" + response.data);
+          }).catch(function (error) {
+            console.log(error);
+          });
+        }).catch(function (error) {
+          console.log(error);
+        })
+      ));
+      Promise.all(promises).then(() => {
+        console.log("newindex" + questionIndex);
+        setMessage('설문조사가 제출되었습니다.');
+        setTimeout(() => {
+          setMessage('');
+        }, 3000);
+  
+  
+  
+        // 모든 questionIndex를 editQuestions 함수에 넘겨주기
+        // const allQuestionIndex = results.map((result) => result.data);
+        // editQuestions(questionIndex);
+      });
+      //console.log("newindex" + questionIndex);
     });
+    // console.log("newindex" + questionIndex);
   }
-  const handleSubmit = (e) => {
+  
 
-    e.preventDefault();
-    setShowModal(true);
-  }
+  // function editQuestions(allQuestionIndex) {
+//     console.log(typeof allQuestionIndex);
+//     return axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
+//       allQuestionIndex,
+//     }).then(function (response) {
+//       console.log("과연" + response.data);
+//     }).catch(function (error) {
+//       console.log(error);
+//     });
+//   }
+  
+//function handleSubmit(e) {
+ // e.preventDefault();
+  //setShowModal(true);
+//}
 
   const handleAnswerSelect = (questionIndex, answerIndex) => {
     setSelectedAnswers((prevAnswers) => {
