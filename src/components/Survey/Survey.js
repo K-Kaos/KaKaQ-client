@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
 
+
 function Survey() {
   let whoLoggedIn = null;
   useEffect(() => {
@@ -43,12 +44,10 @@ function Survey() {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [isSurveyComplete, setSurveyComplete] = useState(false);
   const [surveyIndex, setSurveyIndex] = useState("");
-  const [questionIndex, setQuestionIndex]= useState([]);
-
+  const [questionIndex, setQuestionIndex] = useState([]);
 
   const [creator, setCreator] = useState("");
 
-  
   function handleCity(event) {
     setCity(event.target.value);
   }
@@ -132,88 +131,11 @@ function Survey() {
     setEndDate(event.target.value);
   }
 
-  function handleSubmit(event) {
-  
-
-    event.preventDefault();
-    console.log(creator);
-    axios.post("/api/survey/create", {
-      //survey db 데이터 보내기
-      title: title,
-      city: city,
-      startDate: startDate,
-      endDate: endDate,
-      publicState: visibility,
-      creator: {
-        "email": creator
-      },
-    }).then(function (response) {
-      console.log(creator);
-      console.log(response.data);
-      setSurveyIndex(response.data);
-  
-      setShowModal(true);
-  
-      // 설문조사 질문 생성
-      const promises = questions.map((question) => (
-        axios.post("/api/survey/question?surveyId=" + response.data, {
-          text: question.text, //질문
-          type: {
-            name: question.type
-          },
-          options: question.options,
-          survey: {
-            "id": response.data,
-          },
-        }).then(function (response) {
-          console.log("index" + response.data);
-          setQuestionIndex([...questionIndex, response.data]);
-          console.log(typeof response.data);
-          axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
-            question_id: response.data,
-          }).then(function (response) {
-            console.log("과연" + response.data);
-          }).catch(function (error) {
-            console.log(error);
-          });
-        }).catch(function (error) {
-          console.log(error);
-        })
-      ));
-
-  
-      Promise.all(promises).then(() => {
-        console.log("newindex" + questionIndex);
-        setMessage('설문조사가 제출되었습니다.');
-        setTimeout(() => {
-          setMessage('');
-        }, 3000);
-
-        
-  
-        // 모든 questionIndex를 editQuestions 함수에 넘겨주기
-        // const allQuestionIndex = results.map((result) => result.data);
-        // editQuestions(questionIndex);
-      });
-      //console.log("newindex" + questionIndex);
-    });
-    // console.log("newindex" + questionIndex);
-  }
-  
-  function editQuestions(allQuestionIndex) {
-    console.log(typeof allQuestionIndex);
-    return axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
-            allQuestionIndex,
-          }).then(function (response) {
-            console.log("과연" + response.data);
-          }).catch(function (error) {
-            console.log(error);
-          });
-  }
   // function handleSubmit(event) {
   //   event.preventDefault();
   //   console.log(creator);
-  //   axios.post("/api/survey/create", {//survey db 데이터 보내기
+  //   axios.post("/api/survey/create", {
+  //     //survey db 데이터 보내기
   //     title: title,
   //     city: city,
   //     startDate: startDate,
@@ -222,18 +144,17 @@ function Survey() {
   //     creator: {
   //       "email": creator
   //     },
-  //   }).then(function(response){
+  //   }).then(function (response) {
   //     console.log(creator);
   //     console.log(response.data);
   //     setSurveyIndex(response.data);
-      
+
   //     setShowModal(true);
-      
   //     // 설문조사 질문 생성
   //     const promises = questions.map((question) => (
-  //       axios.post("/api/survey/question?surveyId="+response.data,{
-  //         text: question.text,//질문
-  //         type:{
+  //       axios.post("/api/survey/question?surveyId=" + response.data, {
+  //         text: question.text, //질문
+  //         type: {
   //           name: question.type
   //         },
   //         options: question.options,
@@ -243,32 +164,51 @@ function Survey() {
   //       }).then(function (response) {
   //         console.log("index" + response.data);
   //         setQuestionIndex([...questionIndex, response.data]);
-  //         console.log("newindex"+questionIndex);
+  //         console.log(typeof response.data);
+  //         axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
+  //           question_id: response.data,
+  //         }).then(function (response) {
+  //           console.log("과연" + response.data);
+  //         }).catch(function (error) {
+  //           console.log(error);
+  //         });
   //       }).catch(function (error) {
   //         console.log(error);
   //       })
   //     ));
-      
-
-  //     Promise.all(promises).then((results) => {
+  //     Promise.all(promises).then(() => {
+  //       console.log("newindex" + questionIndex);
   //       setMessage('설문조사가 제출되었습니다.');
   //       setTimeout(() => {
   //         setMessage('');
   //       }, 3000);
-  //     });
-  //     console.log(questionIndex.type());
-  //     axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
-  //       questionIndex,
-  //     }).then(function (response) {
-  //       console.log("과연" + response.data);
-  //     }).catch(function (error) {
-  //       console.log(error);
-  //     });
 
+
+
+  //       // 모든 questionIndex를 editQuestions 함수에 넘겨주기
+  //       // const allQuestionIndex = results.map((result) => result.data);
+  //       // editQuestions(questionIndex);
+  //     });
+  //     //console.log("newindex" + questionIndex);
   //   });
+  //   // console.log("newindex" + questionIndex);
   // }
-  
 
+  function editQuestions(allQuestionIndex) {
+    console.log(typeof allQuestionIndex);
+    return axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
+      allQuestionIndex,
+    }).then(function (response) {
+      console.log("과연" + response.data);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+    setShowModal(true);
+  }
 
   const handleAnswerSelect = (questionIndex, answerIndex) => {
     setSelectedAnswers((prevAnswers) => {
@@ -340,10 +280,10 @@ function Survey() {
         ) : (
           <form onSubmit={handleSubmit} className="items-center">
             <h1 className="project-heading">
-              설문조사 <strong className="yellow">생성하기 </strong>
+            설문조사 <strong className="yellow">생성하기 </strong>
             </h1>
             <p>
-              편리하고 쉽게 제작자의 목적에 맞게 설문조사를 생성합니다.
+            편리하고 쉽게 제작자의 목적에 맞게 설문조사를 생성합니다.
             </p><br />
             <Card className="survey-card-view ">
               <Card.Body>
@@ -535,7 +475,7 @@ function Survey() {
                           value={option}
                           onChange={(event) => handleOptionTextChange(index, event)}
                           placeholder="선택지를 입력해주세요"
-                          className="mt-2 m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
+                          className="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/5 p-2.5 " />
                       </div>
                     ))}
                     <button className="btn flex bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2.5 text-black mt-2" type="button" onClick={handleAddOption}>
@@ -546,8 +486,8 @@ function Survey() {
                 </Card>
               </CardGroup>
             )}
-            <div>
-              <button to="/completesurvey" type="submit" className="btn flex border bg-white border-gray-300 rounded-lg bg-indigo-500 hover:bg-indigo-600 font-medium p-2.5" >설문 생성하기</button><br />
+            <div className="items-end">
+              <button to="/completesurvey" type="submit" className="btn flex border border-gray-300 rounded-lg bg-indigo-500 hover:bg-indigo-600 font-medium p-2.5" >설문 생성하기</button><br />
             </div>
             <p>{message}</p>
           </form>
