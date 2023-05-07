@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import TimelineCard from "./MyPageCards";
 import Card from "react-bootstrap/Card";
-import profile_image from '../../Assets/Profile/profile.png'
+// import profile_image from '../../Assets/Profile/profile.png'
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -9,6 +9,7 @@ import axios from "axios";
 function MyPage() {
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
+  const [creator, setCreator] = useState('');
 
   useEffect(() => {
     const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
@@ -35,6 +36,8 @@ function MyPage() {
 
       // 생성한 설문조사 목록 가져오기
       fetchCreatedSurveys();
+      // 참가한 설문조사 목록 가져오기
+      fetchParticipatedSurveys();
     }
   }, []);
 
@@ -86,15 +89,35 @@ function MyPage() {
   const [createdSurveys, setCreatedSurveys] = useState([]);
 
   function fetchCreatedSurveys() {
-    axios.get("/api/created", {
+    const email = sessionStorage.getItem('whoLoggedIn');
+    axios.get("/api/mypage/created", {
       params: {
-        user: whoLoggedIn // 로그인한 사용자의 이메일
+        user: email // 로그인한 사용자의 이메일
       }
     })
       .then(function (response) {
         // 응답 데이터 처리
         const createdSurveys = response.data;
         setCreatedSurveys(createdSurveys);
+      })
+      .catch(function (error) {
+        console.log(error);
+        // 에러 처리
+      });
+  }
+  
+  const [participatedSurveys, setParticipatedSurveys] = useState([]);
+  function fetchParticipatedSurveys() {
+    const email = sessionStorage.getItem('whoLoggedIn');
+    axios.get("/api/mypage/participated", {
+      params: {
+        user: email // 로그인한 사용자의 이메일
+      }
+    })
+      .then(function (response) {
+        // 응답 데이터 처리
+        const participatedSurveys = response.data;
+        setParticipatedSurveys(participatedSurveys);
       })
       .catch(function (error) {
         console.log(error);
@@ -114,7 +137,7 @@ function MyPage() {
             <p className="mt-1 max-w-xl font-semibold text-lg leading-2">{username}님의 정보입니다.</p>
           </div>
           <div className="flex -space-x-1 overflow-hidden m-auto w-100 py-6">
-            <img className="inline-block h-20 w-20 rounded-full m-auto ring-2 ring-white" src={profile_image} />
+            {/* <img className="inline-block h-20 w-20 rounded-full m-auto ring-2 ring-white" src={profile_image} /> */}
           </div>
           <div className="m-auto mt-6 border-t border-gray-100">
             <dl className="divide-y divide-gray-100">
@@ -162,47 +185,17 @@ function MyPage() {
                   <tr>
                     <th scope="col">No</th>
                     <th scope="col">제목</th>
-                    <th scope="col">글쓴이</th>
-                    <th scope="col">작성시간</th>
                     <th scope="col">상태</th>
                   </tr>
                 </thead>
                 <tbody className="text-lg">
-                  <tr>
-                    <th scope="row">1</th>
-                    <td><a href="#">설문조사 제목 1</a></td>
-                    <td>이서빈</td>
-                    <td>2022-04-20</td>
-                    <td>종료</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td><a href="#">설문조사 제목 2</a></td>
-                    <td>유소연</td>
-                    <td>2022-04-21</td>
-                    <td>진행중</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td><a href="#">설문조사 제목 3</a></td>
-                    <td>이소현</td>
-                    <td>2022-04-22</td>
-                    <td>진행중</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td><a href="#">설문조사 제목 4</a></td>
-                    <td>윤주은</td>
-                    <td>2022-04-23</td>
-                    <td>진행중</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td><a href="#">설문조사 제목 5</a></td>
-                    <td>장예경</td>
-                    <td>2022-04-24</td>
-                    <td>진행중</td>
-                  </tr>
+                  {participatedSurveys.map((survey, index) => (
+                    <tr key={index}>
+                      <th scope="row">{index + 1}</th>
+                      <td><a href="#">{survey.title}</a></td>
+                      <td>{survey.status}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table><br />
             </dl>

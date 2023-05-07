@@ -2,11 +2,11 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import homeLogo from "../../Assets/Projects/home.png";
 import { Link } from "react-router-dom";
-import seobin from "../../Assets/Profile/seobin.png";
-import soyeon from "../../Assets/Profile/soyeon.png";
-import sohyun from "../../Assets/Profile/sohyun.png";
-import jueun from "../../Assets/Profile/jueun.png";
-import yekyeong from "../../Assets/Profile/yekyeong.png";
+// import seobin from "../../Assets/Profile/seobin.png";
+// import soyeon from "../../Assets/Profile/soyeon.png";
+// import sohyun from "../../Assets/Profile/sohyun.png";
+// import jueun from "../../Assets/Profile/jueun.png";
+// import yekyeong from "../../Assets/Profile/yekyeong.png";
 import GuideIntro from "../Guide/GuideIntro";
 
 function Home(props) {
@@ -59,7 +59,7 @@ function Home(props) {
           <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
             <li>
               <div className="flex items-center gap-x-6">
-                <img className="h-24 w-24 rounded-full" src={seobin} alt=""/>
+                {/* <img className="h-24 w-24 rounded-full" src={seobin} alt=""/> */}
                 <div>
                   <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">Seobin Lee</h3>
                   <p className="text-base font-semibold leading-6 text-indigo-600">PM / Front-end</p>
@@ -68,7 +68,7 @@ function Home(props) {
             </li>
             <li>
               <div className="flex items-center gap-x-6">
-              <img className="h-24 w-24 rounded-full" src={soyeon} alt=""/>
+              {/* <img className="h-24 w-24 rounded-full" src={soyeon} alt=""/> */}
                 <div>
                   <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">Soyeon You	</h3>
                   <p className="text-base font-semibold leading-6 text-indigo-600">Database</p>
@@ -77,7 +77,7 @@ function Home(props) {
             </li>
             <li>
               <div className="flex items-center gap-x-6">
-              <img className="h-24 w-24 rounded-full" src={sohyun} alt=""/>
+              {/* <img className="h-24 w-24 rounded-full" src={sohyun} alt=""/> */}
                 <div>
                   <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">Sohyun Lee</h3>
                   <p className="text-base font-semibold leading-6 text-indigo-600">Back-end</p>
@@ -86,7 +86,7 @@ function Home(props) {
             </li>
             <li>
               <div className="flex items-center gap-x-6">
-              <img className="h-24 w-24 rounded-full" src={jueun} alt=""/>
+              {/* <img className="h-24 w-24 rounded-full" src={jueun} alt=""/> */}
                 <div>
                   <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">Jueun Yoon</h3>
                   <p className="text-base font-semibold leading-6 text-indigo-600">Front-end</p>
@@ -95,7 +95,7 @@ function Home(props) {
             </li>
             <li>
               <div className="flex items-center gap-x-6">
-              <img className="h-24 w-24 rounded-full" src={yekyeong} alt=""/>
+              {/* <img className="h-24 w-24 rounded-full" src={yekyeong} alt=""/> */}
                 <div>
                   <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">Yekyeong Jang</h3>
                   <p className="text-base font-semibold leading-6 text-indigo-600">Back-end</p>

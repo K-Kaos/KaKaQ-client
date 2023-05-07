@@ -19,14 +19,13 @@ function Chatbot() {
 
     const [topic, setTopic] = useState('');
     const [title, setTitle] = useState('');
+    const [category, setCategory] = useState('');
     const [loading, setLoading] = useState(false); // 로딩 상태를 관리하는 상태 변수 추가
     const [visibility, setVisibility] = useState('');
     const [GPS, setGPS] = useState(false);
     const [city, setCity] = useState(false);
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-
-
 
     function handleGPS(event) {
         // if(event.target.value === 'GPSO') {
@@ -53,6 +52,10 @@ function Chatbot() {
 
     function handleTitleChange(event) {
         setTitle(event.target.value);
+    }
+
+    const handleCategoryChange = (event) => {
+        setCategory(event.target.value);
     }
 
     function handleVisibility(event) {
@@ -117,6 +120,17 @@ function Chatbot() {
                         </Card.Body>
                     </Card>
 
+                    <Card className="survey-card-view ">
+                        <Card.Body>
+                            <Question question="설문조사 카테고리" />
+                            <input
+                                type="text"
+                                value={category}
+                                onChange={handleCategoryChange}
+                                placeholder="설문조사 카테고리를 입력해주세요."
+                                className="m-auto bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        </Card.Body>
+                    </Card>
                     <Card className="survey-card-view">
                         <Card.Body>
                             <Question question="설문조사 공개/비공개" />
@@ -229,16 +243,19 @@ function Chatbot() {
                             </Card.Body>
                         </Card>
                     </CardGroup>
-                    <button type="submit" className="btn btn-primary" disabled={loading}>
-                        {loading ? (
-                            <Spinner animation="border" role="status">
-                                <span className="sr-only">Loading</span>
-                            </Spinner>
-                        ) : (
-                            'Submit'
-                        )}
-                    </button>
+                    <div className="flex justify-center">
+                        <button type="submit" className="block rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" disabled={loading}>
+                            {loading ? (
+                                <Spinner animation="border" role="status">
+                                    <span className="sr-only">Loading</span>
+                                </Spinner>
+                            ) : (
+                                '챗봇으로 설문조사 생성하기'
+                            )}
+                        </button>
+                    </div>
                 </form>
+                <br />
             </Container>
         </Container>
     );

@@ -166,7 +166,7 @@ function SignupForm(props) {
                                                 onChange={nameInputChange}
                                                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                                 placeholder="username"
-                                                required />{errorMessages.username && <div style={{ fontSize: "11px", color: "red" }}>{errorMessages.username}</div>}
+                                                required />{errorMessages.username && <div className="text-left" style={{ fontSize: "11px", color: "red" }}>{errorMessages.username}</div>}
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +181,7 @@ function SignupForm(props) {
                                                 onChange={mailInputChange}
                                                 className="block leading-3 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                                 placeholder="email" required />
-                                            {errorMessages.email && <div style={{ fontSize: "11px", color: "red" }}>{errorMessages.email}</div>}
+                                            {errorMessages.email && <div className="text-left" style={{ fontSize: "11px", color: "red" }}>{errorMessages.email}</div>}
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@ function SignupForm(props) {
                                                 value={formData.password}
                                                 onChange={pwdInputChange}
                                                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                                placeholder="password" required />  {errorMessages.password && <div style={{ fontSize: "11px", color: "red" }}>{errorMessages.password}</div>}
+                                                placeholder="password" required />  {errorMessages.password && <div className="text-left" style={{ fontSize: "11px", color: "red" }}>{errorMessages.password}</div>}
                                         </div>
                                     </div>
                                 </div>
@@ -210,11 +210,11 @@ function SignupForm(props) {
                                                 onChange={cfpwdInputChange}
                                                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                                 placeholder="comfirm password" required />
-                                            {errorMessages.confirmPassword && <div style={{ fontSize: "11px", color: "red" }}>{errorMessages.confirmPassword}</div>}
+                                            {errorMessages.confirmPassword && <div className="text-left" style={{ fontSize: "11px", color: "red" }}>{errorMessages.confirmPassword}</div>}
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex gap-x-4 sm:col-span-2">
+                                {/* <div className="flex gap-x-4 sm:col-span-2">
                                     <div className="flex h-6 items-center">
                                         <button type="submit"
                                             disabled={!(isData.username && isData.email && isData.password && isData.confirmPassword)}
@@ -227,7 +227,7 @@ function SignupForm(props) {
                                         By selecting this, you agree to our&nbsp;
                                         <a href="#" className="font-semibold text-indigo-600">privacy policy</a>.
                                     </label>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="mt-10">
                                 <button

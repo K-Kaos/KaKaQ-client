@@ -68,22 +68,22 @@ function LoginForm(props) {
 
     return (
         <Container style={{ background: "#fffacd" }}>
-            <section className="bg-gray-50 dark:bg-gray-900">
+            <section className="bg-gray-50">
                 <div
-                    className="flex flex-col items-center justify-center px-4 mx-auto md:h-screen lg:py-0"
+                    className="flex flex-col items-center justify-center px-4 mx-auto md:h-screen lg:py-0 sm:p-8"
                     style={{ background: "#fffacd" }}>
                     <div
-                        className="w-full rounded-lg shadow dark:border md:mt-4 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        className="w-full rounded-lg shadow md:mt-4 sm:max-w-md xl:p-0 ">
+                        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1
-                                className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                                className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                                 Sign in to your account
                             </h1>
                             <form clasName="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>
                                 <div>
                                     <label
                                         for="id"
-                                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        className="block mb-2 text-sm font-medium text-gray-900 ">
                                         이메일
                                     </label>
                                     <input
@@ -93,13 +93,13 @@ function LoginForm(props) {
                                         placeholder="Email address"
                                         value={formData.email}
                                         onChange={handleInputChange}
-                                        className="form-control bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        className="block leading-3 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                         required="" />
                                 </div>
                                 <div>
                                     <label
                                         for="password"
-                                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        className="mt-3 block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                         비밀번호
                                     </label>
                                     <input
@@ -109,10 +109,10 @@ function LoginForm(props) {
                                         placeholder="Enter password"
                                         value={formData.password}
                                         onChange={handleInputChange}
-                                        class="form-control bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="block leading-3 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                         required="" />
                                 </div>
-                                <div class="flex items-center justify-between">
+                                <div class=" mt-3 flex items-center justify-between">
                                     <div class="flex items-start">
                                         <div class="flex items-center h-5">
                                             <input
@@ -135,15 +135,15 @@ function LoginForm(props) {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2 text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                    className="mt-2 w-full flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2 text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                     로그인
                                 </button>
-                                <div className="items-center grid gap-2">
+                                <div className="mt-2 items-center grid gap-2">
                                     <button className="flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2">
                                         <img className="w-5 h-5 mr-2" src={kakaologo} alt="kakaoLogo" />
                                         카카오톡 로그인</button>
                                 </div>
-                                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                                <p className="mt-2 text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account yet? &nbsp;
                                     <a href="/termofuse"
                                         className="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
