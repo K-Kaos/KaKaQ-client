@@ -124,18 +124,18 @@ function ChatbotSurvey(props) {
       user: {
         "email": creator
       },
-    }).then(function(response){
+    }).then(function (response) {
       console.log(creator);
       console.log(response.data);
 
-  
 
-      
+
+
       // 설문조사 질문 생성
       const promises = questions.map((question) => (
-        axios.post("/api/survey/question?surveyId="+response.data,{
+        axios.post("/api/survey/question?surveyId=" + response.data, {
           text: question.text,//질문
-          type:{
+          type: {
             name: question.type
           },
           options: question.options,
@@ -144,31 +144,31 @@ function ChatbotSurvey(props) {
           },
         })
       ));
-  
+
       Promise.all(promises).then((results) => {
         console.log(results);
         setMessage('설문조사가 제출되었습니다.');
         setTimeout(() => {
           setMessage('');
         }, 3000);
-      }).catch(function(error){
+      }).catch(function (error) {
         console.log(error);
       });
-    }).catch(function(error){
+    }).catch(function (error) {
       console.log(error);
     });
   }
 
   return (
-    <Container fluid className="survey-header" >
-      <Container className="flex items-center">
+    <Container fluid className="survey-header max-w-3xl mx-auto" >
+      <Container className="m-auto mx-10">
         <form onSubmit={(e) => {
           e.preventDefault();
           alert(`Chatbot based survey created! `);
           return true;
         }}>
           <h1 className="project-heading">
-            Our <strong className="yellow">Chatbot-based </strong>Survey
+            챗봇 설문조사 <strong className="yellow">생성하기 </strong>
           </h1>
           <p >
             Here is survey created by a chatbot

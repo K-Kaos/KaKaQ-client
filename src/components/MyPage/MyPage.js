@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import TimelineCard from "./MyPageCards";
 import Card from "react-bootstrap/Card";
-// import profile_image from '../../Assets/Profile/profile.png'
+import profile_image from '../../Assets/Profile/profile.png'
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -137,7 +137,7 @@ function MyPage() {
             <p className="mt-1 max-w-xl font-semibold text-lg leading-2">{username}님의 정보입니다.</p>
           </div>
           <div className="flex -space-x-1 overflow-hidden m-auto w-100 py-6">
-            {/* <img className="inline-block h-20 w-20 rounded-full m-auto ring-2 ring-white" src={profile_image} /> */}
+            <img className="inline-block h-20 w-20 rounded-full m-auto ring-2 ring-white" src={profile_image} />
           </div>
           <div className="m-auto mt-6 border-t border-gray-100">
             <dl className="divide-y divide-gray-100">
