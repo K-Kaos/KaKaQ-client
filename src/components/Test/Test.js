@@ -22,8 +22,8 @@ function Test(props) {
   const [message, setMessage] = React.useState('');
 
   return (
-    <Container fluid className="survey-header" >
-      <Container class="flex items-center">
+    <Container fluid className="survey-header max-w-3xl mx-auto">
+      <Container className="m-auto mx-10">
         <form onSubmit={(e) => {
           e.preventDefault();
           alert(`Thank you for submitting ${e.target.firstName.value} ${e.target.lastName.value}! `);
@@ -31,10 +31,10 @@ function Test(props) {
           return true;
         }}>
           <h1 className="project-heading">
-            Our <strong className="yellow">Type Test </strong>
+            캐릭터 <strong className="yellow">유형 테스트 </strong>
           </h1>
           <p >
-            Here is a Type Test.
+            평소에 습관적으로 하는 것을 체크하시면 됩니다
           </p><br />
           {/* <div class="block flex items-center w-full">
             <ol class="flex items-center w-full">
@@ -181,8 +181,9 @@ function Test(props) {
               </div>
             </Card.Body>
           </Card>
-
-          <button type="submit" class="btn btn-primary">Submit</button><br />
+          <div className="items-end flex justify-center">
+            <button to="signup" type="submit" className="block rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" >설문 생성하기</button><br />
+          </div>
           <h2 style={{ color: "white" }}>{message}</h2>
         </form>
       </Container>

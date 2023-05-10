@@ -171,7 +171,7 @@ function ChatbotSurvey(props) {
             챗봇 설문조사 <strong className="yellow">생성하기 </strong>
           </h1>
           <p >
-            Here is survey created by a chatbot
+          챗봇을 이용하여 보다 편리하고 간단하게 설문조사를 생성합니다.
           </p><br />
           <br />
           <div>
