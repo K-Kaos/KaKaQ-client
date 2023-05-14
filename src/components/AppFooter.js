@@ -6,7 +6,7 @@ const AppFooter = () => {
     <CFooter>
       <div>
         <a href="#" target="_blank" rel="noopener noreferrer">
-          KaKaQ
+          K-Kaos
         </a>
         <span className="ms-1">&copy; 2023. All Rights Reserved. </span>
       </div>
