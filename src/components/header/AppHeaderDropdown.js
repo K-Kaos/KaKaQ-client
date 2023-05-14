@@ -22,18 +22,18 @@ import {
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 
-import avatar8 from './../../assets/images/avatars/8.jpg'
+import avatar from './../../assets/images/avatars/seobin.png'
 
 const AppHeaderDropdown = () => {
   return (
     // 프로필 dropdown button
     <CDropdown variant="nav-item">
       <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
-        <CAvatar src={avatar8} size="md" />
+        <CAvatar src={avatar} size="md" />
       </CDropdownToggle>
       {/* 필요 시 넣기 */}
       <CDropdownMenu className="pt-0" placement="bottom-end">
-        <CDropdownHeader className="bg-light fw-semibold py-2">Account</CDropdownHeader>
+        {/* <CDropdownHeader className="bg-light fw-semibold py-2">Account</CDropdownHeader>
         <CDropdownItem href="#">
           <CIcon icon={cilBell} className="me-2" />
           Updates
@@ -61,9 +61,9 @@ const AppHeaderDropdown = () => {
           <CBadge color="warning" className="ms-2">
             42
           </CBadge>
-        </CDropdownItem>
+        </CDropdownItem> */}
         <CDropdownHeader className="bg-light fw-semibold py-2">Settings</CDropdownHeader>
-        {/* 로그인 했을 때  */}
+        {/* TODO:: 로그인 했을 때  */}
         <CDropdownItem href="#">
           <CIcon icon={cilUser} className="me-2" />
           My Page
@@ -72,12 +72,12 @@ const AppHeaderDropdown = () => {
           <CIcon icon={cilSettings} className="me-2" />
           Logout
         </CDropdownItem>
-        {/* 로그인 안했을 때  */}
-        <CDropdownItem href="#">
+        {/* TODO:: 로그인 안했을 때  */}
+        <CDropdownItem href="#/login">
           <CIcon icon={cilUser} className="me-2" />
           Login
         </CDropdownItem>
-        <CDropdownItem href="#">
+        <CDropdownItem href="#/termofuse">
           <CIcon icon={cilFile} className="me-2" />
           Signup
         </CDropdownItem>
