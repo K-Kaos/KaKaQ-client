@@ -15,7 +15,7 @@ import CIcon from "@coreui/icons-react";
 import { cilLockLocked, cilUser } from "@coreui/icons";
 import { useNavigate } from "react-router-dom";
 
-const TermofUse = () => {
+function TermofUse() {
   const [allCheck, setAllCheck] = useState(false);
   const [checkOne, setCheckOne] = useState(false);
   const [checkTwo, setCheckTwo] = useState(false);
@@ -180,6 +180,6 @@ const TermofUse = () => {
       </CContainer>
     </div>
   );
-};
+}
 
 export default TermofUse;

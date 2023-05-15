@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import {
   CButton,
   CCard,
@@ -10,16 +10,16 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import { cilLockLocked, cilUser } from "@coreui/icons";
 
-const Survey = () => {
+function Survey() {
   return (
     <CCard className="mb-4">
       <CCardBody></CCardBody>
     </CCard>
-  )
+  );
 }
 
-export default Survey
+export default Survey;

@@ -14,7 +14,7 @@ import {
 import CIcon from "@coreui/icons-react";
 import { cilLockLocked, cilUser } from "@coreui/icons";
 
-function Chatbot() {
+function Mypage() {
   return (
     <CCard className="mb-4">
       <CCardBody></CCardBody>
@@ -22,4 +22,4 @@ function Chatbot() {
   );
 }
 
-export default Chatbot;
+export default Mypage;
