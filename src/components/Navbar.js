@@ -60,9 +60,8 @@ function NavBar(props) {
   }
 
   return (
-    <nav class={"bg-transparent dark:bg-gray-900 " + (navColour ? "fixed top-0 left-0 right-0 z-50" : "")}>
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 container-fluid">
-      <Navbar expand="lg" fixed="top">
+      <Navbar expand="lg" fixed="top" className="py-2">
         <a
           href="/"
           class="flex items-center"
@@ -228,7 +227,6 @@ function NavBar(props) {
           </ul>
         </div></Navbar>
       </div>
-    </nav>
   );
 }
 

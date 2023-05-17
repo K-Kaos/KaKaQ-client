@@ -23,6 +23,7 @@ import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SurveyCompletion from "./components/Survey/SurveyCompletion";
+import KAKAQ from "./components/Survey/KAKAQ";
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -62,6 +63,7 @@ function App() {
           <Route path="/chatbotsurvey" element={<ChatbotSurvey />} />
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/surveycompletion" element={<SurveyCompletion />} />
+          <Route path="/kakaq" element={<KAKAQ />} />
         </Routes>
       </div>
     </Router>
