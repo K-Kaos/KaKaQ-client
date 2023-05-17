@@ -60,8 +60,9 @@ function NavBar(props) {
   }
 
   return (
+    <nav class={"bg-transparent dark:bg-gray-900 " + (navColour ? "fixed top-0 left-0 right-0 z-50" : "")}>
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 container-fluid">
-      <Navbar expand="lg" fixed="top" className="py-2">
+      <Navbar expand="lg" fixed="top">
         <a
           href="/"
           class="flex items-center"
@@ -106,7 +107,7 @@ function NavBar(props) {
             <li>
               <button
                 id="dropdownNavbarLink"
-                class="bg-transparent flex items-center w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-purple-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                class="bg-transparent flex text-lg items-center w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-purple-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
                 onClick={handleDropdown}
               >
                 설문 생성
@@ -225,8 +226,10 @@ function NavBar(props) {
               </>
             )}
           </ul>
-        </div></Navbar>
+        </div>
+        </Navbar>
       </div>
+    </nav>
   );
 }
 
