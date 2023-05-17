@@ -1605,6 +1605,264 @@ button:focus {
   padding: 8px 0px 16px;
 }
 
+.cWIaYp {
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  top: 0px;
+  right: -1px;
+  bottom: 0px;
+  cursor: col-resize;
+  z-index: 1000;
+  background-color: transparent;
+}
+
+.jss5 {
+  margin-top: 56px;
+}
+
+@media (min-width: 600px) {
+.css-okglv3 {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+}
+
+.css-okglv3 {
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: rgb(250, 251, 252);
+  width: 100%;
+}
+
+.css-kcttjf {
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+  padding: 0px;
+  height: 100%;
+}
+
+.css-fxr4xl {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 80px 24px;
+  gap: 16px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 3px 20px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
+  border-radius: 12px;
+  min-height: 920px;
+  background-color: rgb(255, 255, 255);
+}
+
+.css-1szjw0z {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px 40px;
+  width: 576px;
+  gap: 40px;
+}
+
+.css-onfdyp {
+  box-sizing: border-box;
+  flex-flow: row wrap;
+  width: 100%;
+  gap: 16px;
+  display: flex;
+}
+
+@media (min-width: 900px)
+{
+.css-15j76c0 {
+    flex-basis: 100%;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    max-width: 100%;
+}
+}
+
+@media (min-width: 600px){
+  .css-15j76c0 {
+    flex-basis: 100%;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    max-width: 100%;
+}
+}
+
+.css-15j76c0 {
+  box-sizing: border-box;
+  margin: 0px;
+  flex-direction: row;
+  flex-basis: 100%;
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  max-width: 100%;
+}
+
+.css-1xxtoyx {
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
+  white-space: pre-line;
+  letter-spacing: -0.01em;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 4px 0px 5px;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgb(51, 61, 75);
+}
+
+.css-10oer18 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentcolor;
+  padding: 0px;
+  border: 0px;
+  box-sizing: content-box;
+  background: none;
+  height: auto;
+  margin: 0px;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0px;
+  width: 100%;
+  animation-name: mui-auto-fill-cancel;
+  animation-duration: 10ms;
+  resize: none;
+}
+
+.css-10oer18 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentcolor;
+  padding: 0px;
+  border: 0px;
+  box-sizing: content-box;
+  background: none;
+  height: auto;
+  margin: 0px;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0px;
+  width: 100%;
+  animation-name: mui-auto-fill-cancel;
+  animation-duration: 10ms;
+  resize: none;
+}
 
 
+.css-lryuv7 {
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
+  font-weight: 400;
+  line-height: 1.4375em;
+  white-space: pre-line;
+  letter-spacing: -0.01em;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 4px 0px 5px;
+  width: 100%;
+  font-size: 16px;
+  color: rgb(51, 61, 75);
+}
 
+
+.css-1oi2cng {
+  width: 100%;
+}
+
+.css-2g6513 {
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
+  line-height: 1.4375em;
+  white-space: pre-line;
+  letter-spacing: -0.01em;
+  box-sizing: border-box;
+  position: relative;
+  cursor: text;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 100%;
+  font-size: 16px;
+  font-weight: normal;
+  color: rgb(76, 76, 76);
+  background-color: rgb(250, 250, 250);
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.css-1oi2cng input {
+  color: rgb(0, 0, 0);
+}
+
+.css-mnn31 {
+  font: inherit;
+  letter-spacing: inherit;
+  color: currentcolor;
+  padding: 4px 0px 5px;
+  border: 0px;
+  box-sizing: content-box;
+  background: none;
+  height: 1.4375em;
+  margin: 0px;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  min-width: 0px;
+  width: 100%;
+  animation-name: mui-auto-fill-cancel;
+  animation-duration: 10ms;
+}
+
+.css-1bvc4cc {
+  display: flex;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+}
+
+
+.css-1c3ey53 {
+  padding: 14px 20px 14px 16px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border-radius: 20px;
+  gap: 4px;
+  cursor: pointer;
+  border: none;
+  color: rgb(255, 255, 255);
+  z-index: 2;
+  background-color: rgb(38, 112, 255);
+}
+
+.css-10q16nc {
+  margin: 0px;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
+  white-space: pre-line;
+  letter-spacing: -0.01em;
+  color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 23px;
+}
