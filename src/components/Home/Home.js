@@ -274,7 +274,7 @@ function Home(props) {
                             data-projection-id="2700"
                             style={{
                               "--font-selector": "R0Y7TWFucm9wZS04MDA=",
-                              "--framer-font-family": '"Manrope", sans-serif',
+                              "--framer-font-family": '"Pretendard-Bold", "Manrope", sans-serif',
                               "--framer-font-weight": 800,
                               "--framer-line-height": "1em",
                               "--framer-text-alignment": "center",
@@ -415,7 +415,7 @@ function Home(props) {
                   class="framer-text"
                   style={{
                     "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgQm9sZA==",
-                    "--framer-font-family": '"Pretendard Bold", serif',
+                    "--framer-font-family": 'Pretendard Bold, serif',
                     "--framer-font-size": "60px",
                     "--framer-letter-spacing": "-1px",
                     "--framer-line-height": "1.1em",
