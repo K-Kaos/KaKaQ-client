@@ -150,7 +150,6 @@ function Survey() {
       console.log(creator);
       console.log(response.data);
       setSurveyIndex(response.data);
-
       setShowModal(true);
       // 설문조사 질문 생성
       const promises = questions.map((question) => (
@@ -164,18 +163,19 @@ function Survey() {
             "id": response.data,
           },
         }).then(function (response) {
+          console.log("surveyindex:"+surveyIndex);
           console.log("index" + response.data);
           setQuestionIndex([...questionIndex, response.data]);
           console.log(typeof response.data);
-          axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
-            question_id: response.data,
-          }).then(function (response) {
-            console.log("과연" + response.data);
-          }).catch(function (error) {
-            console.log(error);
-          });
-        }).catch(function (error) {
-          console.log(error);
+        //   axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
+        //     question_id: response.data,
+        //   }).then(function (response) {
+        //     console.log("과연" + response.data);
+        //   }).catch(function (error) {
+        //     console.log(error);
+        //   });
+        // }).catch(function (error) {
+        //   console.log(error);
         })
       ));
       Promise.all(promises).then(() => {
