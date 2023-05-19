@@ -388,7 +388,7 @@ function Home(props) {
                   class="framer-text"
                   style={{
                     "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgU2VtaUJvbGQ=",
-                    "--framer-font-family": '"Pretendard SemiBold", serif',
+                    "--framer-font-family": '"Manrope", sans-serif',
                     "--framer-line-height": "1.5em",
                     "--framer-text-color":
                       "var(--token-81c88cf7-3b7f-4171-9140-39d2c84ed790, rgb(61, 161, 255))",
@@ -412,7 +412,7 @@ function Home(props) {
                 }}
               >
                 <h1
-                  class="framer-text"
+                  className="framer-text"
                   style={{
                     "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgQm9sZA==",
                     "--framer-font-family": 'Pretendard Bold, serif',
@@ -446,7 +446,7 @@ function Home(props) {
                   class="framer-text"
                   style={{
                     "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgTWVkaXVt",
-                    "--framer-font-family": '"Pretendard Medium", serif',
+                    "--framer-font-family": '"Manrope", sans-serif',
                     "--framer-font-size": "24px",
                     "--framer-letter-spacing": "-0.7px",
                     "--framer-line-height": "1.5em",
@@ -461,7 +461,7 @@ function Home(props) {
                   className="framer-text"
                   style={{
                     "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgTWVkaXVt",
-                    "--framer-font-family": '"Pretendard Medium", serif',
+                    "--framer-font-family": '"Manrope", sans-serif',
                     "--framer-font-size": "24px",
                     "--framer-letter-spacing": "-0.7px",
                     "--framer-line-height": "1.5em",
@@ -524,7 +524,7 @@ function Home(props) {
                         data-projection-id="529"
                         style={{
                           "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgQm9sZA==",
-                          "--framer-font-family": '"Pretendard Bold", serif',
+                          "--framer-font-family": '"Manrope", sans-serif',
                           "--framer-font-size": "18px",
                           "--framer-letter-spacing": "-0.3px",
                           "--framer-line-height": "1em",
