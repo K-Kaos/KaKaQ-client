@@ -10,6 +10,8 @@ import yekyeong from "../../Assets/Profile/yekyeong.png";
 import GuideIntro from "../Guide/GuideIntro";
 import "../../style.css";
 import logo from "../../Assets/Logo/logo.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import {
   Box,
   Paper,
@@ -28,6 +30,12 @@ import {
 } from "@mui/material";
 
 function Home(props) {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+  });
+
   return (
     <div
       id="main"
@@ -165,47 +173,8 @@ function Home(props) {
                       style={{ opacity: "1" }}
                     >
                       <a
-                        class="framer-10huym9 framer-142n3id"
-                        href="./blog/walla-pricing"
-                        data-projection-id="2692"
-                        style={{ opacity: "1" }}
-                      >
-                        <div
-                          class="framer-18vrjj5"
-                          data-framer-component-type="RichTextContainer"
-                          data-projection-id="2693"
-                          style={{
-                            outline: "none",
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "flex-start",
-                            flexShrink: "0",
-                            "--extracted-r6o4lv":
-                              "var(--token-b1fb229f-a8e6-4640-b958-ea29fe1a7f0e, rgb(25, 21, 78))",
-                            "--framer-paragraph-spacing": "0px",
-                            transform: "none",
-                            opacity: "1",
-                          }}
-                        >
-                          <p
-                            class="framer-text"
-                            data-projection-id="2694"
-                            style={{
-                              "--font-selector": "R0Y7TWFucm9wZS04MDA=",
-                              "--framer-font-family": '"Manrope", sans-serif',
-                              "--framer-font-weight": 800,
-                              "--framer-line-height": "1em",
-                              "--framer-text-alignment": "center",
-                              "--framer-text-color": "var(--extracted-r6o4lv)",
-                            }}
-                          >
-                            Pricing
-                          </p>
-                        </div>
-                      </a>
-                      <a
                         class="framer-oy7oxm framer-142n3id"
-                        href="https://home.walla.my/blog"
+                        href="https://github.com/K-Kaos"
                         target="_blank"
                         rel="noopener"
                         data-projection-id="2695"
@@ -246,7 +215,7 @@ function Home(props) {
                       </a>
                       <a
                         class="framer-dt975w framer-142n3id"
-                        href="https://paprikadatalab.com"
+                        href="https://github.com/K-Kaos/K-Kaos"
                         target="_blank"
                         rel="noopener"
                         data-projection-id="2698"
@@ -274,7 +243,8 @@ function Home(props) {
                             data-projection-id="2700"
                             style={{
                               "--font-selector": "R0Y7TWFucm9wZS04MDA=",
-                              "--framer-font-family": '"Pretendard-Bold", "Manrope", sans-serif',
+                              "--framer-font-family":
+                                '"Pretendard-Bold", "Manrope", sans-serif',
                               "--framer-font-weight": 800,
                               "--framer-line-height": "1em",
                               "--framer-text-alignment": "center",
@@ -301,7 +271,7 @@ function Home(props) {
                           class="framer-12sq4y7 framer-1xvjq46"
                           data-highlight="true"
                           data-reset="button"
-                          href="https://app.walla.my"
+                          href="/login"
                           rel="noopener"
                           tabindex="0"
                           data-projection-id="2703"
@@ -342,8 +312,7 @@ function Home(props) {
                               style={{
                                 "--font-selector":
                                   "Q1VTVE9NO1ByZXRlbmRhcmQgU2VtaUJvbGQ=",
-                                "--framer-font-family":
-                                  '"Pretendard SemiBold", serif',
+                                "--framer-font-family": "Pretendard Bold",
                                 "--framer-line-height": "1em",
                                 "--framer-text-alignment": "center",
                                 "--framer-text-color":
@@ -372,6 +341,7 @@ function Home(props) {
               }}
             >
               <div
+                data-aos="fade-up"
                 class="framer-11q8487"
                 data-framer-component-type="RichTextContainer"
                 data-projection-id="522"
@@ -385,6 +355,7 @@ function Home(props) {
                 }}
               >
                 <p
+                  data-aos="fade-up"
                   class="framer-text"
                   style={{
                     "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgU2VtaUJvbGQ=",
@@ -412,10 +383,11 @@ function Home(props) {
                 }}
               >
                 <h1
+                  data-aos="fade-up"
                   className="framer-text"
                   style={{
                     "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgQm9sZA==",
-                    "--framer-font-family": 'Pretendard Bold, serif',
+                    "--framer-font-family": "Pretendard Bold",
                     "--framer-font-size": "60px",
                     "--framer-letter-spacing": "-1px",
                     "--framer-line-height": "1.1em",
@@ -443,10 +415,11 @@ function Home(props) {
                 }}
               >
                 <p
+                  data-aos="fade-up"
                   class="framer-text"
                   style={{
                     "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgTWVkaXVt",
-                    "--framer-font-family": '"Manrope", sans-serif',
+                    "--framer-font-family": "Pretendard Bold",
                     "--framer-font-size": "24px",
                     "--framer-letter-spacing": "-0.7px",
                     "--framer-line-height": "1.5em",
@@ -458,6 +431,7 @@ function Home(props) {
                   마세요.
                 </p>
                 <p
+                  data-aos="fade-up"
                   className="framer-text"
                   style={{
                     "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgTWVkaXVt",
@@ -661,6 +635,282 @@ function Home(props) {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div
+              class="framer-1qelean"
+              data-framer-appear-id="m2ii2j"
+              data-projection-id="521"
+              style={{
+                opacity: 1,
+                transform: "perspective(1200px)",
+              }}
+            >
+              <div
+                class="framer-xlkaf5"
+                data-framer-component-type="RichTextContainer"
+                data-projection-id="523"
+                style={{
+                  outline: "none",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  flexShrink: 0,
+                  transform: "none",
+                }}
+              >
+                <h2
+                  data-aos="fade-up"
+                  className="framer-text"
+                  style={{
+                    "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgQm9sZA==",
+                    "--framer-font-family": "Pretendard Bold",
+                    "--framer-font-size": "50px",
+                    "--framer-letter-spacing": "-1px",
+                    "--framer-line-height": "1.1em",
+                    "--framer-text-alignment": "center",
+                    "--framer-text-color":
+                      "var(--token-b1fb229f-a8e6-4640-b958-ea29fe1a7f0e, rgb(25, 21, 78))",
+                  }}
+                >
+                  똑똑한 KaKaQ는
+                  <br class="framer-text" />
+                  생산성을 위해 만들어졌어요
+                </h2>
+              </div>
+
+              <div
+                data-aos="fade-up"
+                class="framer-1tp0a7d-container"
+                data-projection-id="525"
+              >
+                <div
+                  data-aos="fade-up"
+                  class="framer-BlDRO framer-v-k2zcsa"
+                  tabindex="0"
+                  data-projection-id="526"
+                  style={{ display: "contents" }}
+                >
+                  <a
+                    data-aos="fade-up"
+                    className="framer-1pifrf framer-cz1ok2"
+                    data-highlight="true"
+                    data-reset="button"
+                    href="https://app.walla.my"
+                    rel="noopener"
+                    tabIndex="0"
+                    data-projection-id="527"
+                    style={{
+                      "--border-bottom-width": "0px",
+                      "--border-color": "rgba(0, 0, 0, 0)",
+                      "--border-left-width": "0px",
+                      "--border-right-width": "0px",
+                      "--border-style": "solid",
+                      "--border-top-width": "0px",
+                      backgroundColor: "rgb(44, 174, 255)",
+                      filter: "brightness(1)",
+                      borderRadius: "12px",
+                      opacity: 1,
+                    }}
+                    data-framer-name="Large Accent"
+                  >
+                    <div
+                      data-aos="fade-up"
+                      className="framer-11cvz9b"
+                      data-framer-component-type="RichTextContainer"
+                      data-projection-id="528"
+                      style={{
+                        outline: "none",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "flex-start",
+                        flexShrink: 0,
+                        "--extracted-r6o4lv": "rgb(255, 255, 255)",
+                        "--framer-link-current-text-color": "hsl(0, 0%, 0%)",
+                        "--framer-link-hover-text-color": "#666",
+                        "--framer-paragraph-spacing": "0px",
+                        transform: "none",
+                        opacity: 1,
+                      }}
+                    >
+                      <p
+                        className="framer-text"
+                        data-projection-id="529"
+                        style={{
+                          "--font-selector": "Q1VTVE9NO1ByZXRlbmRhcmQgQm9sZA==",
+                          "--framer-font-family": '"Manrope", sans-serif',
+                          "--framer-font-size": "18px",
+                          "--framer-letter-spacing": "-0.3px",
+                          "--framer-line-height": "1em",
+                          "--framer-text-alignment": "center",
+                          "--framer-text-color": "var(--extracted-r6o4lv)",
+                        }}
+                      >
+                        더 알아보기
+                      </p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="framer-11q8487"
+              data-framer-component-type="RichTextContainer"
+              data-projection-id="522"
+              style={{
+                outline: "none",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                flexShrink: 0,
+                transform: "none",
+              }}
+            >
+              <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+                <div className="max-w-2xl">
+                  <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                    K-Kaos의 멤버
+                  </h2>
+                  <p className="mt-6 text-lg leading-8 text-gray-600">
+                    K-Kaos의 멤버들을 소개합니다.
+                  </p>
+                </div>
+                <ul
+                  role="list"
+                  className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2"
+                >
+                  <li>
+                    <Card
+                    data-aos="fade-up"
+                      className="p-2"
+                      style={{
+                        borderRadius: "10px",
+                        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                      }}
+                    >
+                      <div className="flex items-center gap-x-6">
+                        <img
+                          className="h-24 w-24 rounded-full"
+                          src={seobin}
+                          alt=""
+                        />
+                        <div>
+                          <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
+                            Seobin Lee
+                          </h3>
+                          <p className="text-base font-semibold leading-6 text-indigo-600">
+                            PM / Front-end
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+                  </li>
+                  <li>
+                    <Card
+                    data-aos="fade-up"
+                      className="p-2"
+                      style={{
+                        borderRadius: "10px",
+                        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                      }}
+                    >
+                      <div className="flex items-center gap-x-6">
+                        <img
+                          className="h-24 w-24 rounded-full"
+                          src={soyeon}
+                          alt=""
+                        />
+                        <div>
+                          <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
+                            Soyeon You{" "}
+                          </h3>
+                          <p className="text-base font-semibold leading-6 text-indigo-600">
+                            Database
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+                  </li>
+                  <li>
+                    <Card
+                    data-aos="fade-up"
+                      className="p-2"
+                      style={{
+                        borderRadius: "10px",
+                        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                      }}
+                    >
+                      <div className="flex items-center gap-x-6">
+                        <img
+                          className="h-24 w-24 rounded-full"
+                          src={sohyun}
+                          alt=""
+                        />
+                        <div>
+                          <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
+                            Sohyun Lee
+                          </h3>
+                          <p className="text-base font-semibold leading-6 text-indigo-600">
+                            Back-end
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+                  </li>
+                  <li>
+                    <Card
+                    data-aos="fade-up"
+                      className="p-2"
+                      style={{
+                        borderRadius: "10px",
+                        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                      }}
+                    >
+                      <div className="flex items-center gap-x-6">
+                        <img
+                          className="h-24 w-24 rounded-full"
+                          src={jueun}
+                          alt=""
+                        />
+                        <div>
+                          <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
+                            Jueun Yoon
+                          </h3>
+                          <p className="text-base font-semibold leading-6 text-indigo-600">
+                            Front-end
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+                  </li>
+                  <li>
+                    <Card
+                    data-aos="fade-up"
+                      className="p-2"
+                      style={{
+                        borderRadius: "10px",
+                        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+                      }}
+                    >
+                      <div className="flex items-center gap-x-6">
+                        <img
+                          className="h-24 w-24 rounded-full"
+                          src={yekyeong}
+                          alt=""
+                        />
+                        <div>
+                          <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
+                            Yekyeong Jang
+                          </h3>
+                          <p className="text-base font-semibold leading-6 text-indigo-600">
+                            Back-end
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
