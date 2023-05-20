@@ -31,6 +31,7 @@ function KAKAQ() {
     const [isEndingTypeVisible, setEndingTypeVisible] = useState(false);
     const [showTooltip, setShowTooltip] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    const [listItems, setListItems] = useState([]);
 
     const showAdd = () => {
         setAddVisible(true);
@@ -77,7 +78,7 @@ function KAKAQ() {
     const hideEndingType = () => {
         setEndingTypeVisible(false);
     }
-    
+
     const handleHoverEnter = () => {
         setIsHovered(true);
     }
@@ -86,10 +87,41 @@ function KAKAQ() {
         setIsHovered(false);
     }
 
+    const handleQuestionListAdd = () => {
+        setListItems(prevItems => [...prevItems,
+        <div>
+            <div tabIndex="0" role="button" aria-describedby="rbd-hidden-text-2-hidden-text-4" data-rbd-drag-handle-draggable-id="draggableItem_3739285390" data-rbd-drag-handle-context-id="2" draggable="false" data-rbd-draggable-context-id="2" data-rbd-draggable-id="draggableItem_3739285390">
+                <li key={prevItems.length + 1} class="MuiListItem-root MuiListItem-gutters css-vvazg8">
+                    <div class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-qy2th" tabIndex="0" role="button" aria-label="empty"
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}>
+                        <div class="MuiListItemIcon-root css-1f8bwsm">
+                            <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', backgroundColor: 'rgb(239, 248, 255)', padding: '4px 8px', borderRadius: '8px', justifyContent: 'space-between' }}>
+                                <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="#2272AF"></path>
+                                </svg>
+                                <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: 'bold', color: 'rgb(34, 114, 175)', fontSize: '11px', paddingLeft: '8px' }}>{prevItems.length + 1}</p>
+                            </div>
+                        </div>
+                        <div class="MuiListItemText-root css-1tsvksn">
+                            <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ minHeight: '40px', lineHeight: '40px', color: 'rgb(0, 82, 204', fontWeight: '500', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', opacity: '0.5', fontStyle: 'italic' }}>{question}</p>
+                        </div>
+                        <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk" tabindex="0" type="button" style={{ justifyContent: 'flex-end', background: 'transparent', maxWidth: '20px', maxHeight: '20px', minWidth: '20px', minHeight: '20px', padding: '0px', margin: '0px' }}>
+                            {showTooltip &&
+                                (<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DeleteIcon" style={{ color: 'rgb(188, 188, 188)', fontSize: '20px' }} onClick={showDelete}><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>)}
+                        </button>
+                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
+                    </div>
+                </li>
+            </div>
+        </div>
+        ])
+    }
+
     const buttonStyle = {
         opacity: isHovered ? 1 : 0.8,
         transform: isHovered ? 'translateY(-2px) scale(1.1)' : 'none',
-      };
+    };
 
     return (
         <>
@@ -192,32 +224,7 @@ function KAKAQ() {
                                         </button>
                                     </div>
                                     <ul class="MuiList-root css-1uzmcsd" style={{ margin: '80px 16px 20px' }}>
-                                        <div>
-                                            <div tabIndex="0" role="button" aria-describedby="rbd-hidden-text-2-hidden-text-4" data-rbd-drag-handle-draggable-id="draggableItem_3739285390" data-rbd-drag-handle-context-id="2" draggable="false" data-rbd-draggable-context-id="2" data-rbd-draggable-id="draggableItem_3739285390">
-                                                <li class="MuiListItem-root MuiListItem-gutters css-vvazg8">
-                                                    <div class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-qy2th" tabIndex="0" role="button" aria-label="empty"
-                                                        onMouseEnter={handleMouseEnter}
-                                                        onMouseLeave={handleMouseLeave}>
-                                                        <div class="MuiListItemIcon-root css-1f8bwsm">
-                                                            <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', backgroundColor: 'rgb(239, 248, 255)', padding: '4px 8px', borderRadius: '8px', justifyContent: 'space-between' }}>
-                                                                <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="#2272AF"></path>
-                                                                </svg>
-                                                                <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: 'bold', color: 'rgb(34, 114, 175)', fontSize: '11px', paddingLeft: '8px' }}>0</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="MuiListItemText-root css-1tsvksn">
-                                                            <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ minHeight: '40px', lineHeight: '40px', color: 'rgb(0, 82, 204', fontWeight: '500', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', opacity: '0.5', fontStyle: 'italic' }}>{question}</p>
-                                                        </div>
-                                                        <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk" tabindex="0" type="button" style={{ justifyContent: 'flex-end', background: 'transparent', maxWidth: '20px', maxHeight: '20px', minWidth: '20px', minHeight: '20px', padding: '0px', margin: '0px' }}>
-                                                            {showTooltip &&
-                                                                (<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DeleteIcon" style={{ color: 'rgb(188, 188, 188)', fontSize: '20px' }} onClick={showDelete}><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>)}
-                                                        </button>
-                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-                                                    </div>
-                                                </li>
-                                            </div>
-                                        </div>
+                                        {listItems}
                                     </ul>
                                     <div class="MuiBox-root css-0" style={{ margin: '10px 16px', paddingBottom: '10%' }}>
                                         <div class="MuiBox-root css-0">
@@ -236,7 +243,7 @@ function KAKAQ() {
                                                             <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: '500' }}>Endings</p>
                                                             <div class="MuiBox-root css-k008qs">
                                                                 <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-12zyo4q"
-                                                                onClick={showEndingType}>
+                                                                    onClick={showEndingType}>
                                                                     <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1sonui6" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddBoxIcon">
                                                                         <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
                                                                     </svg>
@@ -409,7 +416,7 @@ function KAKAQ() {
                                 <div class="MuiBox-root css-y95sa7">
                                     <div class="MuiBox-root css-j7qwjs">
                                         <div class="MuiBox-root css-5ah26q">TEXT</div>
-                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem'>
+                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem' onClick={handleQuestionListAdd}>
                                             <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
                                                 <div class="MuiBox-root css-ma06kp">
                                                     <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="#2272AF"></path></svg>
@@ -418,7 +425,7 @@ function KAKAQ() {
                                             </div>
                                             <span class="MuiTouchRipple-root css-w0pj6f"></span>
                                         </li>
-                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem'>
+                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem' onClick={handleQuestionListAdd}>
                                             <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
                                                 <div class="MuiBox-root css-ma06kp">
                                                     <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.33329 9.66665C1.1444 9.66665 0.985959 9.60265 0.857959 9.47465C0.730404 9.34709 0.666626 9.18887 0.666626 8.99998C0.666626 8.81109 0.730404 8.65287 0.857959 8.52532C0.985959 8.39732 1.1444 8.33332 1.33329 8.33332H6.66662C6.85551 8.33332 7.01396 8.39732 7.14196 8.52532C7.26951 8.65287 7.33329 8.81109 7.33329 8.99998C7.33329 9.18887 7.26951 9.34709 7.14196 9.47465C7.01396 9.60265 6.85551 9.66665 6.66662 9.66665H1.33329ZM1.33329 4.33331C1.1444 4.33331 0.985959 4.26931 0.857959 4.14131C0.730404 4.01376 0.666626 3.85554 0.666626 3.66665C0.666626 3.47776 0.730404 3.31931 0.857959 3.19131C0.985959 3.06376 1.1444 2.99998 1.33329 2.99998H10.6666C10.8555 2.99998 11.0137 3.06376 11.1413 3.19131C11.2693 3.31931 11.3333 3.47776 11.3333 3.66665C11.3333 3.85554 11.2693 4.01376 11.1413 4.14131C11.0137 4.26931 10.8555 4.33331 10.6666 4.33331H1.33329ZM1.33329 6.99998C1.1444 6.99998 0.985959 6.93598 0.857959 6.80798C0.730404 6.68043 0.666626 6.5222 0.666626 6.33332C0.666626 6.14443 0.730404 5.98598 0.857959 5.85798C0.985959 5.73043 1.1444 5.66665 1.33329 5.66665H10.6666C10.8555 5.66665 11.0137 5.73043 11.1413 5.85798C11.2693 5.98598 11.3333 6.14443 11.3333 6.33332C11.3333 6.5222 11.2693 6.68043 11.1413 6.80798C11.0137 6.93598 10.8555 6.99998 10.6666 6.99998H1.33329ZM1.33329 1.66665C1.1444 1.66665 0.985959 1.60287 0.857959 1.47531C0.730404 1.34731 0.666626 1.18887 0.666626 0.99998C0.666626 0.811091 0.730404 0.652647 0.857959 0.524647C0.985959 0.397091 1.1444 0.333313 1.33329 0.333313H10.6666C10.8555 0.333313 11.0137 0.397091 11.1413 0.524647C11.2693 0.652647 11.3333 0.811091 11.3333 0.99998C11.3333 1.18887 11.2693 1.34731 11.1413 1.47531C11.0137 1.60287 10.8555 1.66665 10.6666 1.66665H1.33329Z" fill="#2272AF"></path></svg>
@@ -439,7 +446,7 @@ function KAKAQ() {
                                     </div>
                                     <div class="MuiBox-root css-j7qwjs">
                                         <div class="MuiBox-root css-ic7mip">CHOICES</div>
-                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem'>
+                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem' onClick={handleQuestionListAdd}>
                                             <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
                                                 <div class="MuiBox-root css-0" style={{ backgroundColor: 'rgb(230, 235, 253)', display: 'flex', padding: '0px 4px', borderRadius: '8px', width: '24px', height: '24px', justifyContent: 'center', textAlign: 'center', alignItems: 'center' }}>
                                                     <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
