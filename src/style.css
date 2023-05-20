@@ -1814,6 +1814,7 @@ button:focus {
   width: 100%;
 }
 
+
 .css-2g6513 {
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
   line-height: 1.4375em;
@@ -2716,7 +2717,24 @@ button:focus {
   align-items: center;
 }
 
+.css-1c3ey53:hover {
+  opacity: 1; 
+  transform: translateY(0px) scale(1.1) translateZ(0px);
+  background-color: rgb(38, 112, 255);
+}
 
+.css-10oer18:focus {
+  outline: none !important;
+}
+
+.css-mnn31:focus {
+  outline: none !important;
+}
+
+
+textarea:focus-visible {
+  outline-offset: 0px;
+}
 
 
 html, body, #main {

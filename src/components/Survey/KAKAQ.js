@@ -8,10 +8,21 @@ import { useState, useEffect, useRef } from "react";
 function KAKAQ() {
     // 설문 데이터
     const [title, setTitle] = useState("")
+    const [question, setQuestion] = useState("")
+    const [questionType, setQuestionType] = useState("")
 
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     }
+
+    const handleQuestionChange = (event) => {
+        setQuestion(event.target.value);
+    }
+
+    const handleQuestionTypeChange = (type) => {
+        setQuestion(type);
+    }
+
 
 
     // script
@@ -19,6 +30,7 @@ function KAKAQ() {
     const [isDeleteVisible, setDeleteVisible] = useState(false);
     const [isEndingTypeVisible, setEndingTypeVisible] = useState(false);
     const [showTooltip, setShowTooltip] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     const showAdd = () => {
         setAddVisible(true);
@@ -65,6 +77,19 @@ function KAKAQ() {
     const hideEndingType = () => {
         setEndingTypeVisible(false);
     }
+    
+    const handleHoverEnter = () => {
+        setIsHovered(true);
+    }
+
+    const handleHoverLeave = () => {
+        setIsHovered(false);
+    }
+
+    const buttonStyle = {
+        opacity: isHovered ? 1 : 0.8,
+        transform: isHovered ? 'translateY(-2px) scale(1.1)' : 'none',
+      };
 
     return (
         <>
@@ -182,7 +207,7 @@ function KAKAQ() {
                                                             </div>
                                                         </div>
                                                         <div class="MuiListItemText-root css-1tsvksn">
-                                                            <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ minHeight: '40px', lineHeight: '40px', color: 'rgb(0, 82, 204', fontWeight: '500', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', opacity: '0.5', fontStyle: 'italic' }}>제목 없음</p>
+                                                            <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ minHeight: '40px', lineHeight: '40px', color: 'rgb(0, 82, 204', fontWeight: '500', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', opacity: '0.5', fontStyle: 'italic' }}>{question}</p>
                                                         </div>
                                                         <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk" tabindex="0" type="button" style={{ justifyContent: 'flex-end', background: 'transparent', maxWidth: '20px', maxHeight: '20px', minWidth: '20px', minHeight: '20px', padding: '0px', margin: '0px' }}>
                                                             {showTooltip &&
@@ -249,14 +274,14 @@ function KAKAQ() {
                                                         <div class="MuiBox-root css-0">
                                                             <div class="MuiGrid-root MuiGrid-container css-onfdyp">
                                                                 <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
-                                                                    <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-1xxtoyx">
-                                                                        <textarea placeholder="질문을 입력해주세요" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" style={{ height: '24px', overflow: 'hidden' }}></textarea>
+                                                                    <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline Mui-focused css-1xxtoyx">
+                                                                        <textarea placeholder="질문을 입력해주세요" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" style={{ height: '24px', overflow: 'hidden' }} onChange={handleQuestionChange}></textarea>
                                                                         <textarea aria-hidden="true" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" readonly="" tabindex="-1" style={{ visibility: 'hidden', position: 'absolute', overflow: 'hidden', height: '0px', top: '0px', left: '0px', transform: 'translateZ(0px)', padding: '0px', width: '496px' }}></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
                                                                     <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-lryuv7">
-                                                                        <textarea placeholder="(선택 사항) 설명을 입력하세요" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" style={{ height: '23px', overflow: 'hidden' }}></textarea>
+                                                                        <textarea placeholder="(선택 사항) 키워드를 입력하세요" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" style={{ height: '23px', overflow: 'hidden' }}></textarea>
                                                                         <textarea aria-hidden="true" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" readonly="" tabindex="-1" style={{ visibility: 'hidden', position: 'absolute', overflow: 'hidden', height: '0px', top: '0px', left: '0px', transform: 'translateZ(0px)', padding: '0px', width: '496px' }}></textarea>
                                                                     </div>
                                                                 </div>
@@ -271,7 +296,7 @@ function KAKAQ() {
                                                         </div>
                                                     </div>
                                                     <div class="MuiBox-root css-1bvc4cc">
-                                                        <button class="css-1c3ey53" style={{ opacity: '1', transform: 'none' }}>
+                                                        <button class="css-1c3ey53" style={buttonStyle} onMouseEnter={handleHoverEnter} onMouseOut={handleHoverLeave}>
                                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <mask id="mask0_12070_64088" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24" style={{ maskType: 'alpha' }}>
                                                                     <rect width="24" height="24" fill="#D9D9D9"></rect></mask>
@@ -489,7 +514,7 @@ function KAKAQ() {
                         이 필드를 삭제하시겠어요?
                     </h5>
                     <p class="MuiTypography-root MuiTypography-body1 css-lbqas0">
-                        <b>제목없음</b>
+                        <b>{question}</b>
                         <br /> <br />
                         삭제된 필드는 다시 되돌릴 수 없어요.
                     </p>
