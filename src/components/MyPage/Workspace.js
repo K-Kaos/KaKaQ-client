@@ -453,8 +453,7 @@ function Workspace() {
                       </ul>
                     </div>
                   </div>
-                  
-                  
+
                   <div
                     class="MuiBox-root css-0"
                     style={{ margin: "10px 16px", paddingBottom: "10%" }}
@@ -507,7 +506,284 @@ function Workspace() {
                     role="presentation"
                   ></div>
                   {/* 여기에 추가해야함 */}
-                  
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root css-taqiom"
+              component="main"
+              style={{ height: "100%" }}
+            >
+              <div
+                className="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-i6s8oy"
+                style={{ height: "56px", minHeight: "0px" }}
+              ></div>
+              <div tabindex="-1" style={{ outline: "none" }}>
+                <div
+                  class="MuiBox-root css-0"
+                  style={{ display: "flex", flexDirection: "column" }}
+                >
+                  <div className="MuiBox-root css-13srvq4">
+                    <div className="MuiBox-root css-1l4w6pd">
+                      <div className="MuiTabs-root css-orq8zk">
+                        <div
+                          className="MuiTabs-scroller MuiTabs-fixed css-1anid1y"
+                          style={{ overflow: "hidden", marginBottom: "0px" }}
+                        >
+                          <div
+                            aria-label="lab API tabs example"
+                            className="MuiTabs-flexContainer css-k008qs"
+                            role="tablist"
+                          >
+                            <button
+                              className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1b8ypoz"
+                              tabIndex={0}
+                              type="button"
+                              role="tab"
+                              aria-selected="true"
+                              aria-controls="mui-p-43309-P-all"
+                              id="mui-p-43309-T-all"
+                            >
+                              Drafts
+                            </button>
+                            <button
+                              className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz"
+                              tabIndex={-1}
+                              type="button"
+                              role="tab"
+                              aria-selected="false"
+                              aria-controls="mui-p-43309-P-deleted"
+                              id="mui-p-43309-T-deleted"
+                            >
+                              삭제됨
+                            </button>
+                          </div>
+                          <span
+                            className="MuiTabs-indicator css-eu9d1t"
+                            style={{ left: "0px", width: "90px" }}
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="MuiBox-root css-0">
+                    <div class="MuiContainer-root css-10ur324">
+                      <div
+                        className="MuiTabPanel-root css-19kzrtu"
+                        role="tabpanel"
+                        aria-labelledby="mui-p-43309-T-all"
+                        id="mui-p-43309-P-all"
+                      >
+                        <div
+                          className="MuiBox-root css-0"
+                          style={{ display: "flex", flexWrap: "wrap" }}
+                        >
+                          <div className="MuiBox-root css-1nt6gcm">
+                            <div className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-aodj49">
+                              <div className="MuiCardContent-root css-1isomi">
+                                <img
+                                  class="MuiBox-root css-ild8d2"
+                                  alt="addProjectIcon"
+                                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCA1NiA1NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0yOC4wMDAxIDAuNDQ0MzM2QzQzLjE5NDEgMC40NDQzMzYgNTUuNTU1NyAxMi44MDU5IDU1LjU1NTcgMjcuOTk5OUM1NS41NTU3IDQzLjE5MzkgNDMuMTk0MSA1NS41NTU0IDI4LjAwMDEgNTUuNTU1NEMxMi44MDYxIDU1LjU1NTQgMC40NDQ1NTcgNDMuMTkzOSAwLjQ0NDU1NyAyNy45OTk5QzAuNDQ0NTU3IDEyLjgwNTkgMTIuODA2MSAwLjQ0NDMzNiAyOC4wMDAxIDAuNDQ0MzM2Wk0xNy40MDE4IDMwLjExOTVIMjUuODgwNVYzOC41OTgyQzI1Ljg4MDUgMzkuMTYwMyAyNi4xMDM4IDM5LjY5OTUgMjYuNTAxMyA0MC4wOTdDMjYuODk4OCA0MC40OTQ1IDI3LjQzNzkgNDAuNzE3OCAyOC4wMDAxIDQwLjcxNzhDMjguNTYyMyA0MC43MTc4IDI5LjEwMTQgNDAuNDk0NSAyOS40OTg5IDQwLjA5N0MyOS44OTY0IDM5LjY5OTUgMzAuMTE5OCAzOS4xNjAzIDMwLjExOTggMzguNTk4MlYzMC4xMTk1SDM4LjU5ODRDMzkuMTYwNiAzMC4xMTk1IDM5LjY5OTcgMjkuODk2MiA0MC4wOTcyIDI5LjQ5ODdDNDAuNDk0NyAyOS4xMDEyIDQwLjcxODEgMjguNTYyMSA0MC43MTgxIDI3Ljk5OTlDNDAuNzE4MSAyNy40Mzc3IDQwLjQ5NDcgMjYuODk4NiA0MC4wOTcyIDI2LjUwMTFDMzkuNjk5NyAyNi4xMDM2IDM5LjE2MDYgMjUuODgwMiAzOC41OTg0IDI1Ljg4MDJIMzAuMTE5OFYxNy40MDE2QzMwLjExOTggMTYuODM5NCAyOS44OTY0IDE2LjMwMDMgMjkuNDk4OSAxNS45MDI4QzI5LjEwMTQgMTUuNTA1MyAyOC41NjIzIDE1LjI4MTkgMjguMDAwMSAxNS4yODE5QzI3LjQzNzkgMTUuMjgxOSAyNi44OTg4IDE1LjUwNTMgMjYuNTAxMyAxNS45MDI4QzI2LjEwMzggMTYuMzAwMyAyNS44ODA1IDE2LjgzOTQgMjUuODgwNSAxNy40MDE2VjI1Ljg4MDJIMTcuNDAxOEMxNi44Mzk3IDI1Ljg4MDIgMTYuMzAwNSAyNi4xMDM2IDE1LjkwMyAyNi41MDExQzE1LjUwNTUgMjYuODk4NiAxNS4yODIyIDI3LjQzNzcgMTUuMjgyMiAyNy45OTk5QzE1LjI4MjIgMjguNTYyMSAxNS41MDU1IDI5LjEwMTIgMTUuOTAzIDI5LjQ5ODdDMTYuMzAwNSAyOS44OTYyIDE2LjgzOTcgMzAuMTE5NSAxNy40MDE4IDMwLjExOTVaIgogICAgICAgICAgZmlsbD0iI0NEQ0RDRCIvPgo8L3N2Zz4K"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            className="MuiBox-root css-0"
+                            style={{ margin: "0px 24px 20px 0px" }}
+                          >
+                            <div
+                              className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
+                              width="265"
+                              minheight="160"
+                            >
+                              <div className="MuiCardContent-root css-67yy9o">
+                                <div className="MuiBox-root css-1yd9vr8">
+                                  <div
+                                    className="MuiBox-root css-0"
+                                    style={{
+                                      width: "40px",
+                                      height: "40px",
+                                      backgroundColor: "rgb(239, 249, 255)",
+                                      borderRadius: "40px",
+                                      display: "flex",
+                                      justifyContent: "center",
+                                      alignItems: "center",
+                                      overflow: "hidden",
+                                    }}
+                                  >
+                                    <span
+                                      style={{
+                                        position: "absolute",
+                                        fontSize: "20px",
+                                      }}
+                                    >
+                                      🙂
+                                    </span>
+                                  </div>
+                                  <button
+                                    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"
+                                    tabIndex="0"
+                                    type="button"
+                                    style={{
+                                      padding: "3px",
+                                      display: "flex",
+                                      justifyContent: "center",
+                                      alignItems: "center",
+                                      position: "absolute",
+                                      top: "24px",
+                                      right: "24px",
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    <svg
+                                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                                      focusable="false"
+                                      aria-hidden="true"
+                                      viewBox="0 0 24 24"
+                                      data-testid="MoreHorizIcon"
+                                    >
+                                      <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                    </svg>
+                                    <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                                  </button>
+                                </div>
+                                <div
+                                  className="MuiBox-root css-8atqhb"
+                                  aria-label="새로운 프로젝트"
+                                >
+                                  <div className="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                    <input
+                                      readOnly
+                                      type="text"
+                                      className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                      value="새로운 프로젝트"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="MuiBox-root css-1yd9vr8">
+                                  <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
+                                    0 개 응답
+                                  </p>
+                                  <div
+                                    className="MuiBox-root css-0"
+                                    style={{
+                                      display: "flex",
+                                      justifyContent: "center",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <img src="" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+                          <div
+                              className="MuiBox-root css-0"
+                              style={{ margin: "0px 24px 20px 0px" }}
+                            >
+                              <div
+                                className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
+                                width="265"
+                                minheight="160"
+                              >
+                                <div className="MuiCardContent-root css-67yy9o">
+                                  <div className="MuiBox-root css-1yd9vr8">
+                                    <div
+                                      className="MuiBox-root css-0"
+                                      style={{
+                                        width: "40px",
+                                        height: "40px",
+                                        backgroundColor: "rgb(239, 249, 255)",
+                                        borderRadius: "40px",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        overflow: "hidden",
+                                      }}
+                                    >
+                                      <span
+                                        style={{
+                                          position: "absolute",
+                                          fontSize: "20px",
+                                        }}
+                                      >
+                                        🙂
+                                      </span>
+                                    </div>
+                                    <button
+                                      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"
+                                      tabIndex="0"
+                                      type="button"
+                                      style={{
+                                        padding: "3px",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        position: "absolute",
+                                        top: "24px",
+                                        right: "24px",
+                                        cursor: "pointer",
+                                      }}
+                                    >
+                                      <svg
+                                        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                                        focusable="false"
+                                        aria-hidden="true"
+                                        viewBox="0 0 24 24"
+                                        data-testid="MoreHorizIcon"
+                                      >
+                                        <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                      </svg>
+                                      <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                                    </button>
+                                  </div>
+                                  <div
+                                    className="MuiBox-root css-8atqhb"
+                                    aria-label="새로운 프로젝트"
+                                  >
+                                    <div className="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                      <input
+                                        readOnly
+                                        type="text"
+                                        className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                        value="새로운 프로젝트"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="MuiBox-root css-1yd9vr8">
+                                    <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
+                                      0 개 응답
+                                    </p>
+                                    <div
+                                      className="MuiBox-root css-0"
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      <img src="" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div
+                        class="MuiTabPanel-root css-19kzrtu"
+                        hidden=""
+                        role="tabpanel"
+                        aria-labelledby="mui-p-43309-T-deleted"
+                        id="mui-p-43309-P-deleted"
+                      ></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
