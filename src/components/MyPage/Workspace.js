@@ -559,13 +559,13 @@ function Workspace() {
               component="main"
               style={{ height: "100%" }}
             >
-              <div
+              {/* <div
                 className="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-i6s8oy"
                 style={{ height: "56px", minHeight: "0px" }}
-              ></div>
+              ></div> */}
               <div tabindex="-1" style={{ outline: "none" }}>
                 <div
-                  class="MuiBox-root css-0"
+                  class="MuiBox-root css-0 mt-2"
                   style={{ display: "flex", flexDirection: "column" }}
                 >
                   <div className="MuiBox-root css-13srvq4">
