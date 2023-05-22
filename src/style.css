@@ -4572,12 +4572,6 @@ html.fp-enabled,
   padding: 24px;
 }
 
-img,
-video {
-  height: auto;
-  max-width: 100%;
-}
-
 .css-1ohqwy3 {
   color: rgba(0, 0, 0, 0.87);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -4729,4 +4723,249 @@ textarea {
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
+}
+
+.css-126xj0f {
+  position: fixed;
+  z-index: 1300;
+  inset: 0px;
+}
+
+.css-ekeie0 {
+  height: 100%;
+  outline: 0px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.css-1exnm1p {
+  margin: 32px;
+  position: relative;
+  overflow-y: auto;
+  max-height: calc(100% - 64px);
+  width: calc(100% - 64px);
+  display: flex;
+  flex-direction: column;
+  padding: 30px 24px 24px;
+  background-color: rgb(255, 255, 255);
+  gap: 40px;
+  border-radius: 12px;
+  box-shadow: rgba(9, 30, 66, 0.2) 0px 3px 5px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
+  max-width: 700px;
+}
+
+.css-1jk1mjg {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  width: 100%;
+}
+
+.css-qisfzi {
+  margin: 0px;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-line;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 600px) {
+  .css-164m23r {
+    width: calc(100% + 8px);
+    margin-left: -8px;
+  }
+}
+
+@media (min-width: 0px) {
+  .css-164m23r {
+    width: calc(100% + 8px);
+    margin-left: -8px;
+  }
+}
+
+@media (min-width: 600px) {
+  .css-164m23r {
+    margin-top: 0px;
+  }
+}
+
+@media (min-width: 0px) {
+  .css-164m23r {
+    margin-top: -8px;
+  }
+}
+
+.css-164m23r {
+  box-sizing: border-box;
+  flex-flow: row wrap;
+  width: 100%;
+  display: flex;
+  padding: 0px;
+}
+
+@media (min-width: 600px) {
+  .css-164m23r>.MuiGrid-item {
+    padding-left: 8px;
+  }
+}
+
+@media (min-width: 0px) {
+  .css-164m23r>.MuiGrid-item {
+    padding-left: 8px;
+  }
+}
+
+@media (min-width: 600px) {
+  .css-164m23r>.MuiGrid-item {
+    padding-top: 0px;
+  }
+}
+
+@media (min-width: 0px) {
+  .css-164m23r>.MuiGrid-item {
+    padding-top: 8px;
+  }
+}
+
+@media (min-width: 900px) {
+  .css-uvp898 {
+    flex-basis: 0px;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 600px) {
+  .css-uvp898 {
+    flex-basis: 0px;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+}
+
+.css-uvp898 {
+  box-sizing: border-box;
+  margin: 0px;
+  /* flex-basis: 100%; */
+  /* -webkit-box-flex: 0;
+  flex-grow: 0;
+  max-width: 100%; */
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+}
+
+.css-25bi29 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  border: 1px solid rgb(244, 244, 244);
+  border-radius: 12px;
+  padding: 12px;
+  height: 244px;
+}
+
+.css-1acuc8l {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0px;
+}
+
+.css-1bb41tk {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 7px;
+}
+
+.css-qisfzi {
+  margin: 0px;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-line;
+  letter-spacing: -0.01em;
+}
+
+.hydrated {
+  visibility: inherit;
+}
+
+body {
+  margin: 0px;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-line;
+  letter-spacing: -0.01em;
+  background-color: rgb(242, 244, 246);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
+  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
+  font-feature-settings: "kern", "liga", "clig", "calt";
+  background-color: #fff;
+  color: rgba(0, 0, 0, .8);
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, Apple SD Gothic Neo, sans-serif;
+  font-kerning: normal;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  overflow-wrap: break-word;
+  text-align: left;
+  word-break: keep-all;
+}
+
+body {
+  line-height: inherit;
+}
+
+:root {
+  --swiper-navigation-size: 44px;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 900px) {
+.css-uvp898 {
+    flex-basis: 0px;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
 }
