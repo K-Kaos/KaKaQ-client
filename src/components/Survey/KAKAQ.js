@@ -4,7 +4,6 @@ import { CgBorderBottom } from "react-icons/cg";
 import logo from "../../Assets/Logo/logo.png"
 import { useState, useEffect, useRef } from "react";
 
-
 function KAKAQ() {
     // 설문 데이터
     const [title, setTitle] = useState("")
@@ -22,8 +21,6 @@ function KAKAQ() {
     const handleQuestionTypeChange = (type) => {
         setQuestion(type);
     }
-
-
 
     // script
     const [isAddVisible, setAddVisible] = useState(false);

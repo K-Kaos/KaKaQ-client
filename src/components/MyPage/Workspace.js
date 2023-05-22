@@ -30,12 +30,16 @@ import {
 import { CgBorderBottom } from "react-icons/cg";
 import logo from "../../Assets/Logo/logo.png";
 import { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import OpenSurvey from "./OpenSurvey";
 
 function Workspace() {
   // 설문 데이터
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [questionType, setQuestionType] = useState("");
+  const [showDraft, setShowDraft] = useState(true);
+  const [showList, setShowList] = useState(false);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -49,12 +53,23 @@ function Workspace() {
     setQuestion(type);
   };
 
+  const handleDraftClick = () => {
+    setShowDraft(true);
+    setShowList(false);
+  };
+
+  const handleListClick = () => {
+    setShowDraft(false);
+    setShowList(true);
+  };
+
   // script
   const [isAddVisible, setAddVisible] = useState(false);
   const [isDeleteVisible, setDeleteVisible] = useState(false);
   const [isEndingTypeVisible, setEndingTypeVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [openSurveys, setOpenSurveys] = useState([]);
 
   const showAdd = () => {
     setAddVisible(true);
@@ -114,6 +129,18 @@ function Workspace() {
     opacity: isHovered ? 1 : 0.8,
     transform: isHovered ? "translateY(-2px) scale(1.1)" : "none",
   };
+
+  useEffect(() => {
+    axios
+      .get("/api/surveys", {})
+      .then(function (response) {
+        const surveys = response.data;
+        setOpenSurveys(surveys);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <>
@@ -505,7 +532,6 @@ function Workspace() {
                     class="FieldsListDrawer__ColResizer-sc-rlte4u-0 cWIaYp leftColResizer"
                     role="presentation"
                   ></div>
-                  {/* 여기에 추가해야함 */}
                 </div>
               </div>
             </div>
@@ -536,26 +562,32 @@ function Workspace() {
                             role="tablist"
                           >
                             <button
-                              className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1b8ypoz"
+                              className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz ${
+                                showDraft ? "Mui-selected" : ""
+                              }`}
                               tabIndex={0}
                               type="button"
                               role="tab"
                               aria-selected="true"
                               aria-controls="mui-p-43309-P-all"
                               id="mui-p-43309-T-all"
+                              onClick={handleDraftClick}
                             >
                               Drafts
                             </button>
                             <button
-                              className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz"
+                              className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz ${
+                                showList ? "Mui-selected" : ""
+                              }`}
                               tabIndex={-1}
                               type="button"
                               role="tab"
                               aria-selected="false"
                               aria-controls="mui-p-43309-P-deleted"
                               id="mui-p-43309-T-deleted"
+                              onClick={handleListClick}
                             >
-                              삭제됨
+                              List
                             </button>
                           </div>
                           <span
@@ -569,7 +601,9 @@ function Workspace() {
                   <div class="MuiBox-root css-0">
                     <div class="MuiContainer-root css-10ur324">
                       <div
-                        className="MuiTabPanel-root css-19kzrtu"
+                        className={`MuiTabPanel-root css-19kzrtu ${
+                          showDraft ? "" : "hidden"
+                        }`}
                         role="tabpanel"
                         aria-labelledby="mui-p-43309-T-all"
                         id="mui-p-43309-P-all"
@@ -679,109 +713,117 @@ function Workspace() {
                                 </div>
                               </div>
                             </div>
-                            
                           </div>
                           <div
-                              className="MuiBox-root css-0"
-                              style={{ margin: "0px 24px 20px 0px" }}
+                            className="MuiBox-root css-0"
+                            style={{ margin: "0px 24px 20px 0px" }}
+                          >
+                            <div
+                              className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
+                              width="265"
+                              minheight="160"
                             >
-                              <div
-                                className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
-                                width="265"
-                                minheight="160"
-                              >
-                                <div className="MuiCardContent-root css-67yy9o">
-                                  <div className="MuiBox-root css-1yd9vr8">
-                                    <div
-                                      className="MuiBox-root css-0"
-                                      style={{
-                                        width: "40px",
-                                        height: "40px",
-                                        backgroundColor: "rgb(239, 249, 255)",
-                                        borderRadius: "40px",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        overflow: "hidden",
-                                      }}
-                                    >
-                                      <span
-                                        style={{
-                                          position: "absolute",
-                                          fontSize: "20px",
-                                        }}
-                                      >
-                                        🙂
-                                      </span>
-                                    </div>
-                                    <button
-                                      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"
-                                      tabIndex="0"
-                                      type="button"
-                                      style={{
-                                        padding: "3px",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        position: "absolute",
-                                        top: "24px",
-                                        right: "24px",
-                                        cursor: "pointer",
-                                      }}
-                                    >
-                                      <svg
-                                        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
-                                        focusable="false"
-                                        aria-hidden="true"
-                                        viewBox="0 0 24 24"
-                                        data-testid="MoreHorizIcon"
-                                      >
-                                        <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                                      </svg>
-                                      <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                    </button>
-                                  </div>
+                              <div className="MuiCardContent-root css-67yy9o">
+                                <div className="MuiBox-root css-1yd9vr8">
                                   <div
-                                    className="MuiBox-root css-8atqhb"
-                                    aria-label="새로운 프로젝트"
+                                    className="MuiBox-root css-0"
+                                    style={{
+                                      width: "40px",
+                                      height: "40px",
+                                      backgroundColor: "rgb(239, 249, 255)",
+                                      borderRadius: "40px",
+                                      display: "flex",
+                                      justifyContent: "center",
+                                      alignItems: "center",
+                                      overflow: "hidden",
+                                    }}
                                   >
-                                    <div className="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
-                                      <input
-                                        readOnly
-                                        type="text"
-                                        className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
-                                        value="새로운 프로젝트"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="MuiBox-root css-1yd9vr8">
-                                    <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
-                                      0 개 응답
-                                    </p>
-                                    <div
-                                      className="MuiBox-root css-0"
+                                    <span
                                       style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
+                                        position: "absolute",
+                                        fontSize: "20px",
                                       }}
                                     >
-                                      <img src="" />
-                                    </div>
+                                      🙂
+                                    </span>
+                                  </div>
+                                  <button
+                                    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"
+                                    tabIndex="0"
+                                    type="button"
+                                    style={{
+                                      padding: "3px",
+                                      display: "flex",
+                                      justifyContent: "center",
+                                      alignItems: "center",
+                                      position: "absolute",
+                                      top: "24px",
+                                      right: "24px",
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    <svg
+                                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                                      focusable="false"
+                                      aria-hidden="true"
+                                      viewBox="0 0 24 24"
+                                      data-testid="MoreHorizIcon"
+                                    >
+                                      <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                    </svg>
+                                    <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                                  </button>
+                                </div>
+                                <div
+                                  className="MuiBox-root css-8atqhb"
+                                  aria-label="새로운 프로젝트"
+                                >
+                                  <div className="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                    <input
+                                      readOnly
+                                      type="text"
+                                      className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                      value="새로운 프로젝트"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="MuiBox-root css-1yd9vr8">
+                                  <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
+                                    0 개 응답
+                                  </p>
+                                  <div
+                                    className="MuiBox-root css-0"
+                                    style={{
+                                      display: "flex",
+                                      justifyContent: "center",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <img src="" />
                                   </div>
                                 </div>
                               </div>
                             </div>
+                          </div>
                         </div>
                       </div>
 
                       <div
-                        class="MuiTabPanel-root css-19kzrtu"
-                        hidden=""
+                        className={`MuiTabPanel-root css-19kzrtu ${
+                          showList ? "" : "hidden"
+                        }`}
                         role="tabpanel"
                         aria-labelledby="mui-p-43309-T-deleted"
                         id="mui-p-43309-P-deleted"
-                      ></div>
+                      >
+                        <div
+                          className="MuiBox-root css-0"
+                          style={{ display: "flex", flexWrap: "wrap" }}
+                        >
+                          {/* 여기에 list 띄울 것임 */}
+                          <OpenSurvey/>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
