@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useLocation } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import axios from "axios";
 // import { error } from "console";
 
@@ -34,6 +34,27 @@ function ParticipateSurvey(props) {
   //     </div>
   //   );
   // });
+
+  const {id} = useParams();
+  const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
+  useEffect(() => {
+    const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
+    if (LoggedInUser === null) {
+      alert("로그인 후 이용해 주세요");
+      window.location.href = "/login";
+    } else {
+      setWhoLeggedIn(LoggedInUser);
+
+      // 서버로 LoggedInUser 보내기
+      fetch('/api/surveys/get/' + id)
+      .then(response => response.json())
+      .then(data => {
+        console.log('서버 응답:', data);
+        // 가져온 데이터 처리
+      })
+      .catch(error => console.error('오류 발생:', error));
+    }
+  }, []);
 
   function handleSubmit(event) {
     console.log("소중한 의견이 제출되었어요.")

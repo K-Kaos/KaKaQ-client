@@ -143,6 +143,7 @@ function Survey() {
       startDate: startDate,
       endDate: endDate,
       publicState: visibility,
+      category: category,
       creator: {
         "email": creator
       },
@@ -167,13 +168,6 @@ function Survey() {
           console.log("index" + response.data);
           setQuestionIndex([...questionIndex, response.data]);
           console.log(typeof response.data);
-          axios.post("/api/survey/editquestions?surveyId=" + surveyIndex, {
-            question_id: response.data,
-          }).then(function (response) {
-            console.log("과연" + response.data);
-          }).catch(function (error) {
-            console.log(error);
-          });
         }).catch(function (error) {
           console.log(error);
         })

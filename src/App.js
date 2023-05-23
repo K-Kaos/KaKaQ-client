@@ -58,6 +58,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/guide" element={<Guide />} />
           <Route path="/opensurvey" element={<OpenSurvey />} />
+          <Route path="/participate/:id" element={<ParticipateSurvey/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/termofuse" element={<TermofUse />} />
