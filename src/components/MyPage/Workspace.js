@@ -42,7 +42,15 @@ function Workspace() {
   const [showParticipate, setShowParticipate] = useState(false);
   const [showList, setShowList] = useState(false);
   const [showPresentation, setShowPresentation] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showMakeForm, setShowMakeForm] = useState(false);
+  const [showMakeChatbotForm, setShowMakeChatbotForm] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+  
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
@@ -79,6 +87,22 @@ function Workspace() {
 
   const handleClosePresentation = () => {
     setShowPresentation(false);
+  };
+
+  const handleClickProfile = () => {
+    setShowProfile(true);
+  };
+
+  const handleCloseProfile = () => {
+    setShowProfile(false);
+  };
+
+  const handleClickMakeForm = () => {
+    setShowMakeForm(true);
+  };
+
+  const handleCloseMakeForm = () => {
+    setShowMakeForm(false);
   };
 
   // script
@@ -266,8 +290,9 @@ function Workspace() {
                     >
                       <img
                         alt="profile_image"
-                        src="https://lh3.googleusercontent.com/a/AGNmyxZ-kEj3uV178F4hJQqY8hHdyfuRWhGsM9MepJ4o=s96-c"
+                        src="https://lh3.googleusercontent.com/a/AGNmyxYCL1L24exss9DNiVXadg4hyk22I6p-ygUS50-mVx0=s96-c"
                         class="MuiAvatar-img css-1hy9t21"
+                        onClick={handleClickProfile}
                       />
                     </div>
                     <span class="MuiTouchRipple-root css-w0pj6f"></span>
@@ -303,6 +328,7 @@ function Workspace() {
                               alt="profile_photo"
                               src="https://lh3.googleusercontent.com/a/AGNmyxYCL1L24exss9DNiVXadg4hyk22I6p-ygUS50-mVx0=s96-c"
                               className="MuiAvatar-img css-1hy9t21"
+                              onClick={handleClickProfile}
                             />
                           </div>
                           <span className="MuiTouchRipple-root css-w0pj6f"></span>
@@ -965,6 +991,7 @@ function Workspace() {
                       cursor: "pointer",
                       position: "relative",
                     }}
+                    onClick={handleClickMakeForm}
                   >
                     <div className="MuiBox-root css-1acuc8l">
                       <div
@@ -1005,7 +1032,8 @@ function Workspace() {
                           color: "rgb(122, 134, 154)",
                         }}
                       >
-                        KaKaQ에서 제공하는 간편하고 쉽게 새로운 설문을 만들어 보세요.
+                        KaKaQ에서 제공하는 간편하고 쉽게 새로운 설문을 만들어
+                        보세요.
                       </p>
                     </div>
                   </div>
@@ -1013,7 +1041,7 @@ function Workspace() {
                 {/* 컴포넌트 2개 */}
                 <div class="MuiGrid-root https://app.walla.my/static/cramped_here-3da56a369fe34e6141f34a1e8c347a7f.svgMuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-true css-uvp898">
                   <div
-                    className="MuiBox-root css-25bi29"
+                    className="MuiBox-root css-25bi29 ml-2 mt-2"
                     style={{
                       boxShadow: "none",
                       cursor: "pointer",
@@ -1065,67 +1093,1007 @@ function Workspace() {
                     </div>
                   </div>
                 </div>
-                {/* 컴포넌트 3개 */}
-                {/* <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-true css-uvp898">
-                  <div
-                    className="MuiBox-root css-25bi29"
-                    style={{
-                      boxShadow: "none",
-                      cursor: "pointer",
-                      position: "relative",
-                    }}
-                  >
-                    <div className="MuiBox-root css-1acuc8l">
-                      <div
-                        className="MuiBox-root css-0"
-                        style={{
-                          width: "164px",
-                          height: "92px",
-                          backgroundColor: "rgb(240, 240, 240)",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          borderRadius: "5px",
-                        }}
-                      >
-                        <img
-                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCA1NiA1NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0yOC4wMDAxIDAuNDQ0MzM2QzQzLjE5NDEgMC40NDQzMzYgNTUuNTU1NyAxMi44MDU5IDU1LjU1NTcgMjcuOTk5OUM1NS41NTU3IDQzLjE5MzkgNDMuMTk0MSA1NS41NTU0IDI4LjAwMDEgNTUuNTU1NEMxMi44MDYxIDU1LjU1NTQgMC40NDQ1NTcgNDMuMTkzOSAwLjQ0NDU1NyAyNy45OTk5QzAuNDQ0NTU3IDEyLjgwNTkgMTIuODA2MSAwLjQ0NDMzNiAyOC4wMDAxIDAuNDQ0MzM2Wk0xNy40MDE4IDMwLjExOTVIMjUuODgwNVYzOC41OTgyQzI1Ljg4MDUgMzkuMTYwMyAyNi4xMDM4IDM5LjY5OTUgMjYuNTAxMyA0MC4wOTdDMjYuODk4OCA0MC40OTQ1IDI3LjQzNzkgNDAuNzE3OCAyOC4wMDAxIDQwLjcxNzhDMjguNTYyMyA0MC43MTc4IDI5LjEwMTQgNDAuNDk0NSAyOS40OTg5IDQwLjA5N0MyOS44OTY0IDM5LjY5OTUgMzAuMTE5OCAzOS4xNjAzIDMwLjExOTggMzguNTk4MlYzMC4xMTk1SDM4LjU5ODRDMzkuMTYwNiAzMC4xMTk1IDM5LjY5OTcgMjkuODk2MiA0MC4wOTcyIDI5LjQ5ODdDNDAuNDk0NyAyOS4xMDEyIDQwLjcxODEgMjguNTYyMSA0MC43MTgxIDI3Ljk5OTlDNDAuNzE4MSAyNy40Mzc3IDQwLjQ5NDcgMjYuODk4NiA0MC4wOTcyIDI2LjUwMTFDMzkuNjk5NyAyNi4xMDM2IDM5LjE2MDYgMjUuODgwMiAzOC41OTg0IDI1Ljg4MDJIMzAuMTE5OFYxNy40MDE2QzMwLjExOTggMTYuODM5NCAyOS44OTY0IDE2LjMwMDMgMjkuNDk4OSAxNS45MDI4QzI5LjEwMTQgMTUuNTA1MyAyOC41NjIzIDE1LjI4MTkgMjguMDAwMSAxNS4yODE5QzI3LjQzNzkgMTUuMjgxOSAyNi44OTg4IDE1LjUwNTMgMjYuNTAxMyAxNS45MDI4QzI2LjEwMzggMTYuMzAwMyAyNS44ODA1IDE2LjgzOTQgMjUuODgwNSAxNy40MDE2VjI1Ljg4MDJIMTcuNDAxOEMxNi44Mzk3IDI1Ljg4MDIgMTYuMzAwNSAyNi4xMDM2IDE1LjkwMyAyNi41MDExQzE1LjUwNTUgMjYuODk4NiAxNS4yODIyIDI3LjQzNzcgMTUuMjgyMiAyNy45OTk5QzE1LjI4MjIgMjguNTYyMSAxNS41MDU1IDI5LjEwMTIgMTUuOTAzIDI5LjQ5ODdDMTYuMzAwNSAyOS44OTYyIDE2LjgzOTcgMzAuMTE5NSAxNy40MDE4IDMwLjExOTVaIgogICAgICAgICAgZmlsbD0iI0NEQ0RDRCIvPgo8L3N2Zz4K"
-                          alt="option-image"
-                        />
-                      </div>
-                    </div>
-                    <div className="MuiBox-root css-1bb41tk">
-                      <p
-                        className="MuiTypography-root MuiTypography-body1 css-qisfzi"
-                        style={{
-                          fontSize: "14px",
-                          lineHeight: "20px",
-                          color: "rgb(0, 0, 0)",
-                        }}
-                      >
-                        AI로 설문 만들기
-                      </p>
-                      <p
-                        className="MuiTypography-root MuiTypography-body1 css-qisfzi"
-                        style={{
-                          fontSize: "12px",
-                          letterSpacing: "-0.3px",
-                          lineHeight: "20px",
-                          color: "rgb(122, 134, 154)",
-                        }}
-                      >
-                        Walla의 AI가 제시하신 문장에 따라 설문을 만들어
-                        드립니다.
-                      </p>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
           <div tabindex="0" data-testid="sentinelEnd"></div>
         </div>
       )}
+      {showProfile && (
+        <div
+          role="presentation"
+          class="MuiDialog-root MuiModal-root css-126xj0f"
+        >
+          <div
+            aria-hidden="true"
+            class="MuiBackdrop-root css-919eu4"
+            style={{
+              opacity: 1,
+              backgroundColor: "rgba(0, 0, 0, 0.1)",
+              boxShadow: "none",
+              transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+            }}
+          ></div>
+          <div tabindex="0" data-testid="sentinelStart"></div>
+          <div
+            class="MuiDialog-container MuiDialog-scrollPaper css-ekeie0"
+            role="presentation"
+            tabindex="-1"
+            style={{
+              opacity: 1,
+              transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+            }}
+          >
+            <div
+              class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthLg css-4paed7"
+              role="dialog"
+              aria-labelledby="mui-5"
+            >
+              <div
+                class="MuiBox-root css-0"
+                style={{ width: "890px", height: "816px", display: "flex" }}
+              >
+                <div
+                  className="MuiBox-root css-0"
+                  style={{
+                    width: "20%",
+                    transition: "width 0.5s ease 0s",
+                    backgroundColor: "rgb(242, 242, 242)",
+                    display: "flex",
+                    flexDirection: "column",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div
+                    className="MuiBox-root css-0"
+                    style={{
+                      flex: "1 1 0%",
+                      marginTop: "5rem",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <ul
+                      className="MuiList-root css-1uzmcsd"
+                      style={{ overflow: "hidden" }}
+                    >
+                      <li className="MuiListItem-root MuiListItem-gutters css-vvazg8">
+                        <div
+                          className="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-1nvso38"
+                          tabIndex="0"
+                          role="button"
+                          style={{
+                            padding: "0px 10px",
+                            borderRadius: "3px",
+                            backgroundColor: "rgba(9, 30, 66, 0.04)",
+                            display: "block",
+                          }}
+                        >
+                          <div className="MuiListItemText-root css-163zbd2">
+                            내 계정
+                          </div>
+
+                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                        </div>
+                      </li>
+                      <li className="MuiListItem-root MuiListItem-gutters css-vvazg8">
+                        <div
+                          className="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-1nvso38"
+                          tabIndex="0"
+                          role="button"
+                          style={{
+                            padding: "0px 10px",
+                            borderRadius: "3px",
+                            backgroundColor: "transparent",
+                            display: "block",
+                          }}
+                        >
+                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    className="MuiBox-root css-0"
+                    style={{ margin: "20px 10px" }}
+                  >
+                    <button
+                      className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-rgw6ep"
+                      tabIndex="0"
+                      type="button"
+                    >
+                      <p
+                        className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                        style={{
+                          fontSize: "14px",
+                          color: "rgb(66, 82, 110)",
+                          lineHeight: "40px",
+                        }}
+                      >
+                        로그아웃
+                      </p>
+                      <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                    </button>
+                  </div>
+                </div>
+
+                <div
+                  className="MuiBox-root css-0"
+                  style={{
+                    width: "80%",
+                    transition: "width 0.5s ease 0s",
+                    backgroundColor: "rgb(255, 255, 255)",
+                    overflow: "hidden scroll",
+                  }}
+                >
+                  <div
+                    className="MuiBox-root css-0"
+                    style={{ padding: "40px" }}
+                  >
+                    <div
+                      className="MuiBox-root css-0"
+                      style={{ display: "flex" }}
+                    >
+                      <div
+                        className="MuiBox-root css-0"
+                        style={{ flex: "1 1 0%" }}
+                      >
+                        <div
+                          className="MuiDialogContent-root css-1jk1mjg"
+                          style={{ marginBottom: "40px" }}
+                        >
+                          <p
+                            className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                            style={{
+                              fontWeight: 500,
+                              fontSize: "20px",
+                              lineHeight: "24px",
+                              color: "rgb(23, 43, 77)",
+                            }}
+                          >
+                            내 계정
+                          </p>
+                          <div
+                            className="MuiBox-root css-0"
+                            style={{ cursor: "pointer", marginLeft: "40px" }}
+                          >
+                            <img
+                              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC4wMSIvPgogICAgPHBhdGggZD0iTTkuOTk5ODUgOC44MjE2N0w1LjU4OTAyIDQuNDEwODRDNS40MzE4NSA0LjI1OTA0IDUuMjIxMzUgNC4xNzUwNSA1LjAwMjg1IDQuMTc2OTRDNC43ODQzNSA0LjE3ODg0IDQuNTc1MzQgNC4yNjY0OCA0LjQyMDg0IDQuNDIwOTlDNC4yNjYzMyA0LjU3NTUgNC4xNzg2OSA0Ljc4NDUxIDQuMTc2NzkgNS4wMDMwMUM0LjE3NDg5IDUuMjIxNSA0LjI1ODg5IDUuNDMyIDQuNDEwNjggNS41ODkxN0w4LjgyMTUyIDEwTDQuNDEwNjggMTQuNDEwOEM0LjI1ODg5IDE0LjU2OCA0LjE3NDg5IDE0Ljc3ODUgNC4xNzY3OSAxNC45OTdDNC4xNzg2OSAxNS4yMTU1IDQuMjY2MzMgMTUuNDI0NSA0LjQyMDg0IDE1LjU3OUM0LjU3NTM0IDE1LjczMzUgNC43ODQzNSAxNS44MjEyIDUuMDAyODUgMTUuODIzMUM1LjIyMTM1IDE1LjgyNSA1LjQzMTg1IDE1Ljc0MSA1LjU4OTAyIDE1LjU4OTJMOS45OTk4NSAxMS4xNzgzTDE0LjQxMDcgMTUuNTg5MkMxNC41Njc5IDE1Ljc0MSAxNC43Nzg0IDE1LjgyNSAxNC45OTY5IDE1LjgyMzFDMTUuMjE1MyAxNS44MjEyIDE1LjQyNDQgMTUuNzMzNSAxNS41Nzg5IDE1LjU3OUMxNS43MzM0IDE1LjQyNDUgMTUuODIxIDE1LjIxNTUgMTUuODIyOSAxNC45OTdDMTUuODI0OCAxNC43Nzg1IDE1Ljc0MDggMTQuNTY4IDE1LjU4OSAxNC40MTA4TDExLjE3ODIgMTBMMTUuNTg5IDUuNTg5MTdDMTUuNjY4NiA1LjUxMjMgMTUuNzMyMSA1LjQyMDM1IDE1Ljc3NTggNS4zMTg2OEMxNS44MTk0IDUuMjE3MDEgMTUuODQyNCA1LjEwNzY2IDE1Ljg0MzQgNC45OTcwMUMxNS44NDQ0IDQuODg2MzYgMTUuODIzMyA0Ljc3NjYzIDE1Ljc4MTQgNC42NzQyMUMxNS43Mzk1IDQuNTcxOCAxNS42Nzc2IDQuNDc4NzUgMTUuNTk5MyA0LjQwMDUxQzE1LjUyMTEgNC4zMjIyNyAxNS40MjgxIDQuMjYwMzkgMTUuMzI1NiA0LjIxODQ5QzE1LjIyMzIgNC4xNzY1OSAxNS4xMTM1IDQuMTU1NSAxNS4wMDI5IDQuMTU2NDZDMTQuODkyMiA0LjE1NzQzIDE0Ljc4MjkgNC4xODA0MSAxNC42ODEyIDQuMjI0MDlDMTQuNTc5NSA0LjI2Nzc2IDE0LjQ4NzYgNC4zMzEyNSAxNC40MTA3IDQuNDEwODRMOS45OTk4NSA4LjgyMTY3WiIKICAgICAgICAgIGZpbGw9IiM0MjUyNkUiLz4KPC9zdmc+Cg=="
+                              alt="close-icon"
+                              onClick={handleCloseProfile}
+                            />
+                          </div>
+                        </div>
+                        <p style={{ marginBottom: "25px", textAlign: "start" }}>
+                          프로필 이미지
+                        </p>
+                        <div
+                          className="MuiBox-root css-0"
+                          style={{ marginBottom: "17px" }}
+                        >
+                          <div
+                            className="MuiAvatar-root MuiAvatar-circular css-1kavoh2"
+                            style={{ width: "90px", height: "90px" }}
+                          >
+                            <img
+                              alt="user-image"
+                              src="https://lh3.googleusercontent.com/a/AGNmyxYCL1L24exss9DNiVXadg4hyk22I6p-ygUS50-mVx0=s96-c"
+                              className="MuiAvatar-img css-1hy9t21"
+                            />
+                          </div>
+                        </div>
+                        <input
+                          accept="image/*"
+                          type="file"
+                          style={{ display: "none" }}
+                        />
+                        <button
+                          className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
+                          tabIndex="0"
+                          type="button"
+                          style={{
+                            borderRadius: "12px",
+                            backgroundColor: "rgba(9, 30, 66, 0.04)",
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "0px 20px",
+                            marginBottom: "17px",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontSize: "14px",
+                              color: "rgb(66, 82, 110)",
+                              lineHeight: "40px",
+                            }}
+                          >
+                            이미지 바꾸기
+                          </span>
+                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                        </button>
+                        <div
+                          className="MuiBox-root css-0"
+                          style={{ marginBottom: "25px" }}
+                        >
+                          <div
+                            className="MuiBox-root css-0"
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            <div
+                              className="MuiBox-root css-0"
+                              style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                gap: "4px",
+                                paddingLeft: "5px",
+                              }}
+                            >
+                              <p
+                                className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                                style={{ fontSize: "14px", lineHeight: "20px" }}
+                              >
+                                이름
+                              </p>
+                            </div>
+                          </div>
+                          <div className="MuiBox-root css-0">
+                            <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                              <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                                <input
+                                  aria-invalid="false"
+                                  autoComplete="name"
+                                  placeholder="이름"
+                                  required=""
+                                  type="text"
+                                  className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
+                                  value="이서빈이"
+                                  id="mui-120"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="MuiBox-root css-0"
+                          style={{ marginBottom: "25px" }}
+                        >
+                          <div
+                            className="MuiBox-root css-0"
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            <div
+                              className="MuiBox-root css-0"
+                              style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                gap: "4px",
+                                paddingLeft: "5px",
+                              }}
+                            >
+                              <p
+                                className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                                style={{ fontSize: "14px", lineHeight: "20px" }}
+                              >
+                                이메일 주소
+                              </p>
+                            </div>
+                          </div>
+                          <div className="MuiBox-root css-0">
+                            <div
+                              className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx"
+                              readOnly=""
+                            >
+                              <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel MuiInputBase-readOnly css-b4zgsm">
+                                <input
+                                  aria-invalid="false"
+                                  autoComplete="name"
+                                  placeholder="이메일 주소"
+                                  readOnly=""
+                                  required=""
+                                  type="text"
+                                  className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel MuiInputBase-readOnly css-10m06oi"
+                                  value="leeseobin000709@gmail.com"
+                                  id="mui-121"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
+                          tabIndex="0"
+                          type="button"
+                          style={{
+                            borderRadius: "12px",
+                            backgroundColor: "rgb(46, 146, 255)",
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "0px 20px",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontSize: "14px",
+                              color: "rgb(255, 255, 255)",
+                              lineHeight: "40px",
+                            }}
+                          >
+                            저장하기
+                          </span>
+                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                        </button>
+                      </div>
+                      <div
+                        className="MuiBox-root css-0"
+                        style={{ flex: "1 1 0%" }}
+                      ></div>
+                    </div>
+                    <hr
+                      className="MuiDivider-root MuiDivider-fullWidth css-39bbo6"
+                      style={{
+                        margin: "50px 0px",
+                        borderColor: "rgb(244, 244, 244)",
+                        borderBottomWidth: "2px",
+                      }}
+                    />
+                    <div className="MuiBox-root css-0">
+                      <p
+                        className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                        style={{ display: "flex", flexDirection: "column" }}
+                      >
+                        <span style={{ textAlign: "start" }}>
+                          회원 삭제 시, KaKaQ에서 작성한 모든 내용이 사라집니다.
+                          삭제를 원하시는 경우 이곳에서 회원 삭제 신청을
+                          완료해주세요.
+                        </span>
+                        <div
+                          style={{
+                            color: "red",
+                            textDecoration: "underline",
+                            cursor: "pointer",
+                            textAlign: "start",
+                          }}
+                        >
+                          회원 삭제
+                        </div>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {showMakeForm && (
+        <div
+          role="presentation"
+          class="MuiDialog-root MuiModal-root css-126xj0f"
+        >
+          <div
+            aria-hidden="true"
+            class="MuiBackdrop-root css-919eu4"
+            style={{
+              opacity: 1,
+              backgroundColor: "rgba(0, 0, 0, 0.1)",
+              boxShadow: "none",
+              transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+            }}
+          ></div>
+          <div tabindex="0" data-testid="sentinelStart"></div>
+          <div
+            class="MuiDialog-container MuiDialog-scrollPaper css-ekeie0"
+            role="presentation"
+            tabindex="-1"
+            style={{
+              opacity: 1,
+              transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+            }}
+          >
+            <form
+              elevation="24"
+              role="dialog"
+              aria-aria-labelledby="mui-472"
+              class="MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiDialog-paperFullWidth css-1uop03p"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "24px 0px 0px",
+                alignItems: "flex-start",
+                gap: "16px",
+                backgroundColor: "rgb(255, 255, 255)",
+                borderRadius: "12px",
+                boxShadow:
+                  "rgba(9, 30, 66, 0.2) 0px 3px 5px, rgba(9, 30, 66, 0.31) 0px 0px 1px",
+                maxWidth: "700px",
+              }}
+            >
+              <div className="MuiBox-root css-v1a73h">
+                <p
+                  className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                  style={{
+                    fontWeight: 500,
+                    fontSize: "20px",
+                    lineHeight: "24px",
+                    color: "rgb(23, 43, 77)",
+                  }}
+                >
+                  새로운 KaKaQ 폼 만들기
+                </p>
+              </div>
+              <div
+                class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem MuiBox-root css-12t296x"
+                role="separator"
+              ></div>
+              <div class="Muibox-root css-m6exs1">
+                <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
+                    data-shrink="true"
+                    htmlFor="project-title"
+                  >
+                    프로젝트 제목
+                    <span
+                      aria-hidden="true"
+                      className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                    <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                      <input
+                        aria-invalid="false"
+                        autoComplete="off"
+                        id="project-title"
+                        placeholder="30자 이내로 입력해주세요"
+                        required=""
+                        type="text"
+                        maxLength="30"
+                        className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
+                        value="새로운 프로젝트 제목"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
+                    data-shrink="true"
+                    htmlFor="project-title"
+                  >
+                    프로젝트 키워드
+                    <span
+                      aria-hidden="true"
+                      className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                    <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                      <input
+                        aria-invalid="false"
+                        autoComplete="off"
+                        id="project-title"
+                        placeholder="30자 이내로 입력해주세요"
+                        required=""
+                        type="text"
+                        maxLength="30"
+                        className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
+                        value="새로운 프로젝트 키워드"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye"
+                  style={{ textAlign: "start" }}
+                >
+                  {/* <p className="MuiTypography-root MuiTypography-body1 css-18flzx8">
+                    프로젝트 카테고리
+                  </p> */}
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
+                    data-shrink="true"
+                    htmlFor="project-title"
+                  >
+                    프로젝트 카테고리
+                    <span
+                      aria-hidden="true"
+                      className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div
+                    className="MuiBox-root css-0 mt-4"
+                    style={{
+                      display: "flex",
+                      marginTop: "8px",
+                      flexDirection: "row",
+                      gap: "12px",
+                    }}
+                  >
+                    <div className="MuiBox-root css-0"
+                    onClick={toggleMenu}
+                    onBlur={() => setIsOpen(false)}>
+                      <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                        <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                          <div
+                            tabIndex="0"
+                            role="button"
+                            aria-expanded={isOpen ? 'true' : 'false'}
+                            aria-haspopup="listbox"
+                            aria-labelledby="select-color"
+                            id="select-color"
+                            className="MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-19tmo23"
+                          >
+                            <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-q5vxhk">
+                              <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
+                                키워드
+                              </span>
+                            </div>
+                          </div>
+                          <input
+                            aria-hidden="true"
+                            tabIndex="-1"
+                            className="MuiSelect-nativeInput css-1k3x8v3"
+                            autoComplete="off"
+                            placeholder="색상 선택"
+                            required
+                            value="#eff9ff"
+                          />
+                          <svg
+                            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-1636szt"
+                            focusable="false"
+                            aria-hidden="true"
+                            viewBox="0 0 24 24"
+                            data-testid="ArrowDropDownIcon"
+                          >
+                            <path d="M7 10l5 5 5-5z"></path>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem MuiBox-root css-12t296x"
+                role="separator"
+              ></div>
+              <div className="MuiBox-root css-1v9rthj">
+                <button
+                  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1w5d2mk"
+                  tabIndex="0"
+                  type="button"
+                  onClick={handleCloseMakeForm}
+                >
+                  <p
+                    className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                    style={{
+                      fontWeight: 500,
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                    }}
+                  >
+                    그만두기
+                  </p>
+                  <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                </button>
+                <button
+                  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-s92m9s"
+                  tabIndex="0"
+                  type="submit"
+                >
+                  <p
+                    className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                    }}
+                  >
+                    만들기
+                  </p>
+                  <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div tabindex="0" data-testid="sentinelEnd"></div>
+        </div>
+      )}
+      {showMakeChatbotForm && (
+        <div
+          role="presentation"
+          class="MuiDialog-root MuiModal-root css-126xj0f"
+        >
+          <div
+            aria-hidden="true"
+            class="MuiBackdrop-root css-919eu4"
+            style={{
+              opacity: 1,
+              backgroundColor: "rgba(0, 0, 0, 0.1)",
+              boxShadow: "none",
+              transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+            }}
+          ></div>
+          <div tabindex="0" data-testid="sentinelStart"></div>
+          <div
+            class="MuiDialog-container MuiDialog-scrollPaper css-ekeie0"
+            role="presentation"
+            tabindex="-1"
+            style={{
+              opacity: 1,
+              transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+            }}
+          >
+            <form
+              elevation="24"
+              role="dialog"
+              aria-aria-labelledby="mui-472"
+              class="MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiDialog-paperFullWidth css-1uop03p"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "24px 0px 0px",
+                alignItems: "flex-start",
+                gap: "16px",
+                backgroundColor: "rgb(255, 255, 255)",
+                borderRadius: "12px",
+                boxShadow:
+                  "rgba(9, 30, 66, 0.2) 0px 3px 5px, rgba(9, 30, 66, 0.31) 0px 0px 1px",
+                maxWidth: "700px",
+              }}
+            >
+              <div className="MuiBox-root css-v1a73h">
+                <p
+                  className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                  style={{
+                    fontWeight: 500,
+                    fontSize: "20px",
+                    lineHeight: "24px",
+                    color: "rgb(23, 43, 77)",
+                  }}
+                >
+                  새로운 KaKaQ 폼 만들기
+                </p>
+              </div>
+              <div
+                class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem MuiBox-root css-12t296x"
+                role="separator"
+              ></div>
+              <div class="Muibox-root css-m6exs1">
+                <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
+                    data-shrink="true"
+                    htmlFor="project-title"
+                  >
+                    프로젝트 제목
+                    <span
+                      aria-hidden="true"
+                      className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                    <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                      <input
+                        aria-invalid="false"
+                        autoComplete="off"
+                        id="project-title"
+                        placeholder="30자 이내로 입력해주세요"
+                        required=""
+                        type="text"
+                        maxLength="30"
+                        className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
+                        value="새로운 프로젝트 제목"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
+                    data-shrink="true"
+                    htmlFor="project-title"
+                  >
+                    프로젝트 키워드
+                    <span
+                      aria-hidden="true"
+                      className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                    <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                      <input
+                        aria-invalid="false"
+                        autoComplete="off"
+                        id="project-title"
+                        placeholder="30자 이내로 입력해주세요"
+                        required=""
+                        type="text"
+                        maxLength="30"
+                        className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
+                        value="새로운 프로젝트 키워드"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye"
+                  style={{ textAlign: "start" }}
+                >
+                  {/* <p className="MuiTypography-root MuiTypography-body1 css-18flzx8">
+                    프로젝트 카테고리
+                  </p> */}
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
+                    data-shrink="true"
+                    htmlFor="project-title"
+                  >
+                    프로젝트 카테고리
+                    <span
+                      aria-hidden="true"
+                      className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div
+                    className="MuiBox-root css-0 mt-4"
+                    style={{
+                      display: "flex",
+                      marginTop: "8px",
+                      flexDirection: "row",
+                      gap: "12px",
+                    }}
+                  >
+                    <div className="MuiBox-root css-0"
+                    onClick={toggleMenu}
+                    onBlur={() => setIsOpen(false)}>
+                      <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                        <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                          <div
+                            tabIndex="0"
+                            role="button"
+                            aria-expanded={isOpen ? 'true' : 'false'}
+                            aria-haspopup="listbox"
+                            aria-labelledby="select-color"
+                            id="select-color"
+                            className="MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-19tmo23"
+                          >
+                            <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-q5vxhk">
+                              <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
+                                키워드
+                              </span>
+                            </div>
+                          </div>
+                          <input
+                            aria-hidden="true"
+                            tabIndex="-1"
+                            className="MuiSelect-nativeInput css-1k3x8v3"
+                            autoComplete="off"
+                            placeholder="색상 선택"
+                            required
+                            value="#eff9ff"
+                          />
+                          <svg
+                            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-1636szt"
+                            focusable="false"
+                            aria-hidden="true"
+                            viewBox="0 0 24 24"
+                            data-testid="ArrowDropDownIcon"
+                          >
+                            <path d="M7 10l5 5 5-5z"></path>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem MuiBox-root css-12t296x"
+                role="separator"
+              ></div>
+              <div className="MuiBox-root css-1v9rthj">
+                <button
+                  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1w5d2mk"
+                  tabIndex="0"
+                  type="button"
+                  onClick={handleCloseMakeForm}
+                >
+                  <p
+                    className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                    style={{
+                      fontWeight: 500,
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                    }}
+                  >
+                    그만두기
+                  </p>
+                  <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                </button>
+                <button
+                  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-s92m9s"
+                  tabIndex="0"
+                  type="submit"
+                >
+                  <p
+                    className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                    }}
+                  >
+                    만들기
+                  </p>
+                  <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div tabindex="0" data-testid="sentinelEnd"></div>
+        </div>
+      )}
+      {isOpen && (<div
+        role="presentation"
+        className="MuiPopover-root MuiMenu-root MuiModal-root css-1sucic7"
+        id="menu-"
+      >
+        <div
+          aria-hidden="true"
+          className="MuiBackdrop-root MuiBackdrop-invisible css-esi9ax"
+          style={{
+            opacity: 1,
+            transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+          }}
+        ></div>
+        <div tabIndex="0" data-testid="sentinelStart"></div>
+        <div
+          className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiPaper-root MuiMenu-paper MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper css-5yvhmz"
+          tabIndex="-1"
+          style={{
+            opacity: 1,
+            transform: "none",
+            minWidth: "101px",
+            transition:
+              "opacity 318ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 212ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+            top: "436px",
+            left: "463px",
+            transformOrigin: "53.5px 28.5547px",
+          }}
+        >
+          <ul
+            className="MuiList-root MuiList-padding MuiMenu-list css-r8u8y9"
+            role="listbox"
+            tabIndex="-1"
+          >
+            <li
+              className="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters Mui-selected MuiMenuItem-root MuiMenuItem-gutters Mui-selected css-1rol45i"
+              tabIndex="0"
+              role="option"
+              aria-selected="true"
+              data-value="#eff9ff"
+            >
+              <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-q5vxhk">
+                <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
+                  키워드
+                </span>
+              </div>
+              <span className="MuiTouchRipple-root css-w0pj6f"></span>
+            </li>
+            <li
+              className="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1rol45i"
+              tabIndex="-1"
+              role="option"
+              aria-selected="false"
+              data-value="#fafde6"
+            >
+              <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1l77ve1">
+                <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
+                  LIME
+                </span>
+              </div>
+              <span className="MuiTouchRipple-root css-w0pj6f"></span>
+            </li>
+            <li
+              className="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1rol45i"
+              tabIndex="-1"
+              role="option"
+              aria-selected="false"
+              data-value="#f0fde6"
+            >
+              <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-15fvcm6">
+                <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
+                  GREEN
+                </span>
+              </div>
+              <span className="MuiTouchRipple-root css-w0pj6f"></span>
+            </li>
+            <li
+              className="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1rol45i"
+              tabIndex="-1"
+              role="option"
+              aria-selected="false"
+              data-value="#fff3fc"
+            >
+              <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-k1i94v">
+                <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
+                  PINK
+                </span>
+              </div>
+              <span className="MuiTouchRipple-root css-w0pj6f"></span>
+            </li>
+            <li
+              className="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1rol45i"
+              tabIndex="-1"
+              role="option"
+              aria-selected="false"
+              data-value="#fdf4e6"
+            >
+              <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1ix9ntq">
+                <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
+                  ORANGE
+                </span>
+              </div>
+              <span className="MuiTouchRipple-root css-w0pj6f"></span>
+            </li>
+            <li
+              className="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1rol45i"
+              tabIndex="-1"
+              role="option"
+              aria-selected="false"
+              data-value="#e6ebfd"
+            >
+              <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-1ays376">
+                <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
+                  INDIGO
+                </span>
+              </div>
+              <span className="MuiTouchRipple-root css-w0pj6f"></span>
+            </li>
+            <li
+              className="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1rol45i"
+              tabIndex="-1"
+              role="option"
+              aria-selected="false"
+              data-value="#ffeded"
+            >
+              <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-11rsuxe">
+                <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
+                  RED
+                </span>
+              </div>
+              <span className="MuiTouchRipple-root css-w0pj6f"></span>
+            </li>
+          </ul>
+        </div>
+        <div tabIndex="0" data-testid="sentinelEnd"></div>
+      </div>)}
+
       <div
         id="rbd-announcement-1"
         aria-live="assertive"
