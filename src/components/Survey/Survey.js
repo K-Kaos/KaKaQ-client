@@ -86,7 +86,7 @@ function Survey() {
     } else if (selectedOption === 'Agree') {
       setOptions(["찬성", "반대"])
     } else if (selectedOption === 'TrueFalse') {
-      setOptions("참", "거짓")
+      setOptions(["참", "거짓"])
     }
   }
 
@@ -253,7 +253,7 @@ function Survey() {
   });
 
   const handleShare = () => {
-    const surveyId = 1;
+    const surveyId = surveyIndex;
 
     axios.get(`/api/surveys/${surveyId}`).then(response => {
       const surveyURL = response.data;
