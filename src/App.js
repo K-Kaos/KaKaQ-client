@@ -26,6 +26,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import SurveyCompletion from "./components/Survey/SurveyCompletion";
 import KAKAQ from "./components/Survey/KAKAQ";
 import ParticipateSurvey from "./components/Survey/ParticipateSurvey";
+import StartTest from "./components/Test/StartTest";
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -69,6 +70,7 @@ function App() {
           <Route path="/kakaq" element={<KAKAQ />} />
           <Route path="/participateSurvey" element={<ParticipateSurvey />} />
           <Route path="/workspace" element={<Workspace />} />
+          <Route path="/starttest" element={<StartTest />} />
         </Routes>
       </div>
     </Router>
