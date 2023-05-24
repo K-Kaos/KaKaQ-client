@@ -1,18 +1,18 @@
 html {
   /* Section 배경화면 색깔 */
-  --section-background-color: linear-gradient(to bottom left, #FFFEED, #FFFEED);
+  --section-background-color: linear-gradient(to bottom left, #fffffa, #fffffa);
 
   /* 메인 배경화면 */
-  --image-gradient: linear-gradient(to bottom left, #FFFEED, #FFFEED);
+  --image-gradient: linear-gradient(to bottom left, #fffffa, #fffffa);
 
   --imp-text-color: #000000;
   --yellow-color: #fae951;
   --black-color: #000000;
-  background-color: #ccc !important;
+  background-color: #fffffa !important;
 }
 
 .App {
-  background-color: #FFFEED !important;
+  background-color: #fffffa !important;
 }
 
 .city-table {
@@ -54,7 +54,7 @@ button:focus {
   width: 100%;
   height: 100%;
   z-index: 999999;
-  background-color: #ebeadff1;
+  background-color: #fffffa;
   background-image: url(./Assets/pre.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -109,7 +109,7 @@ button:focus {
 /* Navbar Section  */
 /* --------- */
 .sticky {
-  background-color: #ebeadff1 !important;
+  background-color: #fffffa !important;
   transition: all 0.3s ease-out 0s !important;
   box-shadow: 0px 10px 10px 0px rgba(25, 29, 5, 0.171) !important;
   backdrop-filter: blur(15px) !important;
@@ -118,7 +118,7 @@ button:focus {
 .navbar {
   position: fixed !important;
   margin-top: 0 !important;
-  background-color: rgba(255, 254, 239, 0.7) !important;
+  background-color: #fffffa !important;
   top: 0;
   left: 0;
   width: 100%;
@@ -239,7 +239,7 @@ button:focus {
   height: 5px;
   width: 0;
   border-radius: 16px;
-  background: #9d9127;
+  background: #fffffa;
   bottom: 1px;
   left: 0;
   z-index: -1;
@@ -853,7 +853,7 @@ button:focus {
 
 .css-121had8 {
   display: flex;
-  background-color: rgb(250, 251, 252);
+  background-color: #fffffa; 
   min-height: 100vh;
   width: 100%;
 }
@@ -1720,7 +1720,7 @@ video {
   display: block;
   padding-left: 16px;
   padding-right: 16px;
-  background-color: rgb(250, 251, 252);
+  background-color: #fffffa;
   width: 100%;
 }
 
@@ -2047,7 +2047,7 @@ video {
   bottom: 0px;
   width: 100%;
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  background-color: rgb(38, 112, 255);
+  /* background-color: rgb(38, 112, 255); */
 }
 
 .css-39bbo6 {
@@ -2844,7 +2844,7 @@ button {
 .framer-Hi9oj .framer-1hy14a1 {
   align-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #fffffa;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -3274,7 +3274,7 @@ p {
 .framer-Hi9oj .framer-1dorvhs {
   align-content: center;
   align-items: center;
-  background: linear-gradient(180deg, #fafcff 0%, #f2f5f9 100%);
+  background: linear-gradient(180deg, #fffffa 0%, #fffffa 100%);
   display: flex;
   flex: none;
   flex-direction: column;
@@ -4509,14 +4509,6 @@ html.fp-enabled,
   color: rgba(0, 0, 0, 0.6);
 }
 
-.css-eu9d1t {
-  position: absolute;
-  height: 2px;
-  bottom: 0px;
-  width: 100%;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  background-color: rgb(38, 112, 255);
-}
 
 @media (min-width: 600px) {
   .css-10ur324 {
@@ -4924,7 +4916,8 @@ body {
   line-height: 1.5;
   white-space: pre-line;
   letter-spacing: -0.01em;
-  background-color: rgb(242, 244, 246);
+  background-color: #fffffa;
+  background-image: #fffffa;
 }
 
 body {
@@ -4933,7 +4926,7 @@ body {
   -ms-font-feature-settings: "kern", "liga", "clig", "calt";
   -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
   font-feature-settings: "kern", "liga", "clig", "calt";
-  background-color: #fff;
+  background-color: #fffffa;
   color: rgba(0, 0, 0, .8);
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, Apple SD Gothic Neo, sans-serif;
   font-kerning: normal;
