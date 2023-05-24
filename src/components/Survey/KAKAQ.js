@@ -4,6 +4,7 @@ import { CgBorderBottom } from "react-icons/cg";
 import logo from "../../Assets/Logo/logo.png"
 import { useState, useEffect, useRef } from "react";
 
+
 function KAKAQ() {
     // 설문 데이터
     const [title, setTitle] = useState("")
@@ -22,6 +23,8 @@ function KAKAQ() {
         setQuestion(type);
     }
 
+
+
     // script
     const [isAddVisible, setAddVisible] = useState(false);
     const [isDeleteVisible, setDeleteVisible] = useState(false);
@@ -29,6 +32,7 @@ function KAKAQ() {
     const [showTooltip, setShowTooltip] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [listItems, setListItems] = useState([]);
+    const [selectedListItem, setSelectedListItem] = useState(null);
 
     const showAdd = () => {
         setAddVisible(true);
@@ -84,12 +88,13 @@ function KAKAQ() {
         setIsHovered(false);
     }
 
+
     const handleQuestionListAdd = () => {
         setListItems(prevItems => [...prevItems,
         <div>
             <div tabIndex="0" role="button" aria-describedby="rbd-hidden-text-2-hidden-text-4" data-rbd-drag-handle-draggable-id="draggableItem_3739285390" data-rbd-drag-handle-context-id="2" draggable="false" data-rbd-draggable-context-id="2" data-rbd-draggable-id="draggableItem_3739285390">
                 <li key={prevItems.length + 1} class="MuiListItem-root MuiListItem-gutters css-vvazg8">
-                    <div class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-qy2th" tabIndex="0" role="button" aria-label="empty"
+                    <div class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-qy2th" tabIndex="0" role="button" aria-label={question}
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}>
                         <div class="MuiListItemIcon-root css-1f8bwsm">
@@ -114,6 +119,8 @@ function KAKAQ() {
         </div>
         ])
     }
+
+
 
     const buttonStyle = {
         opacity: isHovered ? 1 : 0.8,
