@@ -77,8 +77,9 @@ function ParticipateSurvey(props) {
     }
   }, []);
 
-  function handleSubmit(event) {
-    console.log("소중한 의견이 제출되었어요.")
+  function handleSubmit(event) {  // 설문조사 제출
+    event.preventDefault();
+    console.log('선택한 답변:', selectedAnswers);
   }
 
   return (
