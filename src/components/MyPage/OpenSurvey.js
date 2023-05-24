@@ -38,7 +38,7 @@ function OpenSurvey() {
           label={survey.keywords.map((keyword, index) => (
             <span key={index}>{keyword}</span>
           ))}
-          path="/ParticipateSurvey" // 설문 참여 창으로
+          path={"/participate/" + survey.id} // 설문 참여 창으로
           name={survey.creator}
           //profile={seobin}
         />

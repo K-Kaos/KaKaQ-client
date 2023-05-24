@@ -6,7 +6,7 @@ html {
   --image-gradient: linear-gradient(to bottom left, #FFFEED, #FFFEED);
 
   --imp-text-color: #000000;
-  --yellow-color: #f5e65b;
+  --yellow-color: #fae951;
   --black-color: #000000;
   background-color: #ccc !important;
 }
@@ -5916,7 +5916,7 @@ button, input, select, textarea {
   gap: 12px;
   color: rgb(255, 255, 255);
   border-radius: 0.93rem;
-  background-color: rgb(38, 112, 255);
+  background-color: rgb(226, 255, 38);
 }
 
 .css-qisfzi {
