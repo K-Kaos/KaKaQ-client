@@ -159,7 +159,7 @@ function ShareLink() {
                       </button>
                     </div>
                   </div>
-                  <hr class="MuiDivider-root MuiDivider-fullWidth css-12vh8ky" />
+                  {/* <hr class="MuiDivider-root MuiDivider-fullWidth css-12vh8ky" /> */}
                   {/* 여기 추가 */}
                 </div>
               </div>

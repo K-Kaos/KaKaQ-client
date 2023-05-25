@@ -52,14 +52,14 @@ function Workspace() {
   const [surveyTitle, setSurveyTitle] = useState("");
   const [surveyKeyword, setSurveyKeyword] = useState("");
   const [surveyCategory, setSurveyCategory] = useState("");
-  const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
+  // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
   const handleSurveyCategorySelect = (option) => {
-    setSelectedSurveyCategory(option);
+    setSurveyCategory(option);
     setIsOpen(false);
   };
 
@@ -69,10 +69,6 @@ function Workspace() {
 
   const handleSurveyKeywordChange = (event) => {
     setSurveyKeyword(event.target.value);
-  };
-
-  const handleSurveyCategoryChange = (event) => {
-    setSurveyCategory(event.target.value);
   };
 
   const handleTitleChange = (event) => {
@@ -373,7 +369,6 @@ function Workspace() {
                         </div>
                       </ul>
                     </div>
-                    
                   </div>
 
                   <div
@@ -1339,6 +1334,7 @@ function Workspace() {
                 class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem MuiBox-root css-12t296x"
                 role="separator"
               ></div>
+              {/* 프로젝트 제목 */}
               <div class="Muibox-root css-m6exs1">
                 <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
                   <label
@@ -1371,6 +1367,7 @@ function Workspace() {
                     </div>
                   </div>
                 </div>
+                {/* 프로젝트 키워드 */}
                 <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
                   <label
                     className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
@@ -1402,6 +1399,7 @@ function Workspace() {
                     </div>
                   </div>
                 </div>
+                {/* 프로젝트 카테고리 */}
                 <div
                   className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye"
                   style={{ textAlign: "start" }}
@@ -1419,83 +1417,7 @@ function Workspace() {
                       *
                     </span>
                   </label>
-                  {/* <div
-                    className="MuiBox-root css-0 mt-4"
-                    style={{
-                      display: "flex",
-                      marginTop: "8px",
-                      flexDirection: "row",
-                      gap: "12px",
-                    }}
-                  >
-                    <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
-                      <div
-                        className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm"
-                        style={{ width: "fit-content" }}
-                      >
-                        <div
-                          tabIndex="0"
-                          role="button"
-                          onClick={toggleMenu}
-                          onBlur={() => setIsOpen(false)}
-                          aria-expanded={isOpen ? "true" : "false"}
-                          aria-haspopup="listbox"
-                          aria-labelledby="select-color"
-                          id="select-color"
-                          className="MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-19tmo23"
-                        >
-                          <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-q5vxhk">
-                            <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
-                              {selectedSurveyCategory || "카테고리"}
-                            </span>
-                          </div>
-                          <svg
-                            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-1636szt"
-                            focusable="false"
-                            aria-hidden="true"
-                            viewBox="0 0 24 24"
-                            data-testid="ArrowDropDownIcon"
-                          >
-                            <path d="M7 10l5 5 5-5z"></path>
-                          </svg>
-                        </div>
-                        {isOpen && (
-                          <ul className="dropdown-menu">
-                            <li onClick={() => handleSurveyCategorySelect("")}>
-                              카테고리
-                            </li>
-                            <li
-                              onClick={() => handleSurveyCategorySelect("여행")}
-                            >
-                              여행
-                            </li>
-                            <li
-                              onClick={() => handleSurveyCategorySelect("맛집")}
-                            >
-                              맛집
-                            </li>
-                            <li
-                              onClick={() => handleSurveyCategorySelect("교육")}
-                            >
-                              교육
-                            </li>
-                            <li
-                              onClick={() =>
-                                handleSurveyCategorySelect("문화생활")
-                              }
-                            >
-                              문화생활
-                            </li>
-                            <li
-                              onClick={() => handleSurveyCategorySelect("기타")}
-                            >
-                              기타
-                            </li>
-                          </ul>
-                        )}
-                      </div>
-                    </div>
-                  </div> */}
+
                   <div
                     className="MuiBox-root css-0 mt-4"
                     style={{
@@ -1533,7 +1455,6 @@ function Workspace() {
                   </div>
                 </div>
               </div>
-
               <div
                 class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem MuiBox-root css-12t296x"
                 role="separator"

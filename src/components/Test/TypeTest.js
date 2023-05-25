@@ -36,33 +36,33 @@ function Home(props) {
     });
   });
 
-  const [title, setTitle] = useState("")
-  const [question, setQuestion] = useState("")
-  const [questionType, setQuestionType] = useState("")
+  const [title, setTitle] = useState("");
+  const [question, setQuestion] = useState("");
+  const [questionType, setQuestionType] = useState("");
   const [isHovered, setIsHovered] = useState(false);
-  
+
   const buttonStyle = {
     opacity: isHovered ? 1 : 0.8,
-    transform: isHovered ? 'translateY(-2px) scale(1.1)' : 'none',
-};
+    transform: isHovered ? "translateY(-2px) scale(1.1)" : "none",
+  };
   const handleTitleChange = (event) => {
-      setTitle(event.target.value);
-  }
+    setTitle(event.target.value);
+  };
 
   const handleQuestionChange = (event) => {
-      setQuestion(event.target.value);
-  }
+    setQuestion(event.target.value);
+  };
 
   const handleQuestionTypeChange = (type) => {
-      setQuestion(type);
-  }
+    setQuestion(type);
+  };
   const handleHoverEnter = () => {
     setIsHovered(true);
-}
+  };
 
-const handleHoverLeave = () => {
+  const handleHoverLeave = () => {
     setIsHovered(false);
-}
+  };
   return (
     <div
       id="main"
@@ -344,54 +344,142 @@ const handleHoverLeave = () => {
             </div>
           </div>
           <div class="framer-1dorvhs" data-projection-id="520">
-            
-          <div class="MuiBox-root css-kcttjf">
-                                        <div class="MuiBox-root css-fxr4xl">
-                                            <div class="MuiBox-root css-1szjw0z">
-                                                <div class="MuiBox-root css-0" style={{ width: '100%', gap: '40px', display: 'flex', flexDirection: 'column' }}>
-                                                    <div class="MuiBox-root css-1xdhyk6">
-                                                        <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontSize: '12px', fontWeight: '400', letterSpacing: '-0.02rem', color: 'rgb(38, 112, 255)', lineHeight: '12px', minHeight: '12px' }}></p>
-                                                        <div class="MuiBox-root css-0">
-                                                            <div class="MuiGrid-root MuiGrid-container css-onfdyp">
-                                                                <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
-                                                                    <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline Mui-focused css-1xxtoyx">
-                                                                        <textarea placeholder="질문을 입력해주세요" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" style={{ height: '24px', overflow: 'hidden' }} onChange={handleQuestionChange}></textarea>
-                                                                        <textarea aria-hidden="true" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" readonly="" tabindex="-1" style={{ visibility: 'hidden', position: 'absolute', overflow: 'hidden', height: '0px', top: '0px', left: '0px', transform: 'translateZ(0px)', padding: '0px', width: '496px' }}></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
-                                                                    <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-lryuv7">
-                                                                        <textarea placeholder="(선택 사항) 키워드를 입력하세요" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" style={{ height: '23px', overflow: 'hidden' }}></textarea>
-                                                                        <textarea aria-hidden="true" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" readonly="" tabindex="-1" style={{ visibility: 'hidden', position: 'absolute', overflow: 'hidden', height: '0px', top: '0px', left: '0px', transform: 'translateZ(0px)', padding: '0px', width: '496px' }}></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="MuiBox-root css-1oi2cng">
-                                                        <div>
-                                                            <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
-                                                                <input autocomplete="off" placeholder="응답을 입력하세요" type="text" class="MuiInputBase-input css-mnn31" value="" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="MuiBox-root css-1bvc4cc">
-                                                        <button class="css-1c3ey53" style={buttonStyle} onMouseEnter={handleHoverEnter} onMouseOut={handleHoverLeave}>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <mask id="mask0_12070_64088" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24" style={{ maskType: 'alpha' }}>
-                                                                    <rect width="24" height="24" fill="#D9D9D9"></rect></mask>
-                                                                <g mask="url(#mask0_12070_64088)">
-                                                                    <path d="M10.0001 12.7751L15.5001 7.3001C15.8001 7.0001 16.1668 6.8501 16.6001 6.8501C17.0334 6.8501 17.4001 7.0001 17.7001 7.3001C18.0001 7.6001 18.1501 7.96676 18.1501 8.4001C18.1501 8.83343 18.0001 9.2001 17.7001 9.5001L11.1251 16.1001C10.8084 16.4168 10.4334 16.5751 10.0001 16.5751C9.56676 16.5751 9.19176 16.4168 8.8751 16.1001L6.3001 13.5001C6.0001 13.2001 5.8501 12.8334 5.8501 12.4001C5.8501 11.9668 6.0001 11.6001 6.3001 11.3001C6.6001 11.0001 6.96676 10.8501 7.4001 10.8501C7.83343 10.8501 8.2001 11.0001 8.5001 11.3001L10.0001 12.7751Z" fill="#FFFFFF"></path>
-                                                                </g>
-                                                            </svg>
-                                                            <p class="MuiTypography-root MuiTypography-body1 css-10q16nc">OK</p>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
+            <div class="MuiBox-root css-kcttjf">
+              <div class="MuiBox-root css-fxr4xl">
+                <div class="MuiBox-root css-1szjw0z">
+                  <div
+                    class="MuiBox-root css-0"
+                    style={{
+                      width: "100%",
+                      gap: "40px",
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div class="MuiBox-root css-1xdhyk6">
+                      <p
+                        class="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                        style={{
+                          fontSize: "12px",
+                          fontWeight: "400",
+                          letterSpacing: "-0.02rem",
+                          color: "rgb(38, 112, 255)",
+                          lineHeight: "12px",
+                          minHeight: "12px",
+                        }}
+                      ></p>
+                      <div class="MuiBox-root css-0">
+                        <div class="MuiGrid-root MuiGrid-container css-onfdyp">
+                          <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
+                            <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline Mui-focused css-1xxtoyx">
+                              <textarea
+                                placeholder="질문을 입력해주세요"
+                                class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18"
+                                style={{ height: "24px", overflow: "hidden" }}
+                                onChange={handleQuestionChange}
+                              ></textarea>
+                              <textarea
+                                aria-hidden="true"
+                                class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18"
+                                readonly=""
+                                tabindex="-1"
+                                style={{
+                                  visibility: "hidden",
+                                  position: "absolute",
+                                  overflow: "hidden",
+                                  height: "0px",
+                                  top: "0px",
+                                  left: "0px",
+                                  transform: "translateZ(0px)",
+                                  padding: "0px",
+                                  width: "496px",
+                                }}
+                              ></textarea>
+                            </div>
+                          </div>
+                          <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
+                            <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-lryuv7">
+                              <textarea
+                                placeholder="(선택 사항) 키워드를 입력하세요"
+                                class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18"
+                                style={{ height: "23px", overflow: "hidden" }}
+                              ></textarea>
+                              <textarea
+                                aria-hidden="true"
+                                class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18"
+                                readonly=""
+                                tabindex="-1"
+                                style={{
+                                  visibility: "hidden",
+                                  position: "absolute",
+                                  overflow: "hidden",
+                                  height: "0px",
+                                  top: "0px",
+                                  left: "0px",
+                                  transform: "translateZ(0px)",
+                                  padding: "0px",
+                                  width: "496px",
+                                }}
+                              ></textarea>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="MuiBox-root css-1oi2cng">
+                      <div>
+                        <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+                          <input
+                            autocomplete="off"
+                            placeholder="응답을 입력하세요"
+                            type="text"
+                            class="MuiInputBase-input css-mnn31"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="MuiBox-root css-1bvc4cc">
+                      <button
+                        class="css-1c3ey53"
+                        style={buttonStyle}
+                        onMouseEnter={handleHoverEnter}
+                        onMouseOut={handleHoverLeave}
+                      >
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <mask
+                            id="mask0_12070_64088"
+                            maskUnits="userSpaceOnUse"
+                            x="0"
+                            y="0"
+                            width="24"
+                            height="24"
+                            style={{ maskType: "alpha" }}
+                          >
+                            <rect width="24" height="24" fill="#D9D9D9"></rect>
+                          </mask>
+                          <g mask="url(#mask0_12070_64088)">
+                            <path
+                              d="M10.0001 12.7751L15.5001 7.3001C15.8001 7.0001 16.1668 6.8501 16.6001 6.8501C17.0334 6.8501 17.4001 7.0001 17.7001 7.3001C18.0001 7.6001 18.1501 7.96676 18.1501 8.4001C18.1501 8.83343 18.0001 9.2001 17.7001 9.5001L11.1251 16.1001C10.8084 16.4168 10.4334 16.5751 10.0001 16.5751C9.56676 16.5751 9.19176 16.4168 8.8751 16.1001L6.3001 13.5001C6.0001 13.2001 5.8501 12.8334 5.8501 12.4001C5.8501 11.9668 6.0001 11.6001 6.3001 11.3001C6.6001 11.0001 6.96676 10.8501 7.4001 10.8501C7.83343 10.8501 8.2001 11.0001 8.5001 11.3001L10.0001 12.7751Z"
+                              fill="#FFFFFF"
+                            ></path>
+                          </g>
+                        </svg>
+                        <p class="MuiTypography-root MuiTypography-body1 css-10q16nc">
+                          OK
+                        </p>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
