@@ -80,6 +80,25 @@ function ParticipateSurvey(props) {
   function handleSubmit(event) {  // 설문조사 제출
     event.preventDefault();
     console.log('선택한 답변:', selectedAnswers);
+    //중복 참여 체크 + Participant에 참여자 추가 axios.post(`/api/survey/participate?surveyId=${id}&userEmail=${whoLoggedIn}`)
+    questions.forEach((question, questionIndex) => {
+      const questionId = question.question_id;
+      const answer = selectedAnswers[questionIndex];
+
+      if (answer !== undefined) {
+        //const answer = question.options[answerIndex];
+        axios.post(`/api/survey/participate?surveyId=${id}&questionId=${questionId}`, {
+          user: {email:whoLoggedIn},
+          text: answer
+        })
+        .then(response => {
+          console.log('답변이 성공적으로 저장되었습니다.');
+        })
+        .catch(error => {
+          console.error('답변 저장 중 오류가 발생했습니다:', error);
+        });
+      }
+    });
   }
 
   return (
