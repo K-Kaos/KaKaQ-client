@@ -7,6 +7,17 @@ import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
 
 function FindRespondent() {
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  const handleStartDateChange = (event) => {
+    setStartDate(event.target.value);
+  };
+
+  const handleEndDateChange = (event) => {
+    setEndDate(event.target.value);
+  };
+
   return (
     <>
       <div class="MuiContainer-root MuiContainer-maxWidthLg jss1 css-okglv3">
@@ -27,13 +38,14 @@ function FindRespondent() {
               >
                 <div class="MuiBox-root css-69i1ev">
                   <div className="MuiBox-root css-0">
-                    <p className="mb-2 MuiTypography-root MuiTypography-body1 css-1u8f7it"
-                    style={{textAlign:"start"}}>
+                    <p
+                      className="mb-2 MuiTypography-root MuiTypography-body1 css-1u8f7it"
+                      style={{ textAlign: "start" }}
+                    >
                       응답자 찾기
                     </p>
                     <p className="MuiTypography-root MuiTypography-body1 css-qisfzi">
                       KaKaQ를 통해 프로젝트에 적합한 응답자를 빠르게 모을 수
-                      있어요.
                     </p>
                   </div>
                   <a
@@ -633,13 +645,12 @@ function FindRespondent() {
                                 </div>
                               </div>
                             </div>
-                            {/* 여기 추가 */}
                           </div>
                         </div>
-
-                        {/* 여기 추가 */}
                       </div>
-                      <div class="MuiBox-root css-1ykdma4"><div class="MuiBox-root css-1yn0cho"></div></div>
+                      <div class="MuiBox-root css-1ykdma4">
+                        <div class="MuiBox-root css-1yn0cho"></div>
+                      </div>
                       <div class="RESPONDER_TARGETING MuiBox-root css-1i4hy4j">
                         <div class="MuiGrid-root MuiGrid-container css-1r5l695">
                           <div
@@ -706,92 +717,24 @@ function FindRespondent() {
                                               className="MuiTypography-root MuiTypography-body1 css-qisfzi"
                                               style={{ fontWeight: "400" }}
                                             >
-                                              공개 여부
+                                              시작일
                                             </p>
                                           </div>
                                           <div className="MuiAccordionSummary-expandIconWrapper css-1fx8m19">
-                                            <span className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei">
-                                              <span className="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn">
-                                                <input
-                                                  className="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
-                                                  type="checkbox"
-                                                  value="off"
-                                                />
-                                                <span className="MuiSwitch-thumb css-19gndve"></span>
-                                              </span>
-                                              <span className="MuiSwitch-track css-1ju1kxc"></span>
+                                            <span
+                                              className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei"
+                                              style={{
+                                                width: "150px",
+                                                height: "50px",
+                                                paddingBottom: "8px",
+                                              }}
+                                            >
+                                              <input
+                                                type="date"
+                                                value={startDate}
+                                                onChange={handleStartDateChange}
+                                              />
                                             </span>
-                                          </div>
-                                        </div>
-                                        <div
-                                          class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-a0y2e3"
-                                          style={{ minHeight: "0px" }}
-                                        >
-                                          <div class="MuiCollapse-wrapper MuiCollapse-vertical css-hboir5">
-                                            <div class="MuiCollapse-wrapperInner MuiCollapse-vertical css-8atqhb">
-                                              <div
-                                                role="region"
-                                                class="MuiAccordion-region"
-                                              >
-                                                <div className="MuiAccordionDetails-root css-1f3ze44">
-                                                  <div
-                                                    className="MuiFormGroup-root css-1h7anqn"
-                                                    style={{
-                                                      flexDirection: "row",
-                                                    }}
-                                                  >
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.male"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        공개 O
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.female"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        공개 X
-                                                      </span>
-                                                    </label>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
                                           </div>
                                         </div>
                                       </div>
@@ -808,389 +751,24 @@ function FindRespondent() {
                                               className="MuiTypography-root MuiTypography-body1 css-qisfzi"
                                               style={{ fontWeight: "400" }}
                                             >
-                                              GPS 사용 여부
+                                              마감일
                                             </p>
                                           </div>
                                           <div className="MuiAccordionSummary-expandIconWrapper css-1fx8m19">
-                                            <span className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei">
-                                              <span className="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn">
-                                                <input
-                                                  className="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
-                                                  type="checkbox"
-                                                  value="off"
-                                                />
-                                                <span className="MuiSwitch-thumb css-19gndve"></span>
-                                              </span>
-                                              <span className="MuiSwitch-track css-1ju1kxc"></span>
-                                            </span>
-                                          </div>
-                                        </div>
-                                        <div
-                                          class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-a0y2e3"
-                                          style={{ minHeight: "0px" }}
-                                        >
-                                          <div class="MuiCollapse-wrapper MuiCollapse-vertical css-hboir5">
-                                            <div class="MuiCollapse-wrapperInner MuiCollapse-vertical css-8atqhb">
-                                              <div
-                                                role="region"
-                                                class="MuiAccordion-region"
-                                              >
-                                                <div className="MuiAccordionDetails-root css-1f3ze44">
-                                                  <div
-                                                    className="MuiFormGroup-root css-1h7anqn"
-                                                    style={{
-                                                      flexDirection: "row",
-                                                    }}
-                                                  >
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.male"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        GPS 사용 O
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.female"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        GPS 사용 X
-                                                      </span>
-                                                    </label>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="MuiBox-root css-197dogp"></div>
-                                      <div
-                                        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAccordion-root css-1degz5g"
-                                        style={{ width: "100%" }}
-                                      >
-                                        <div
-                                          class="MuiButtonBase-root MuiAccordionSummary-root css-eb9lrn"
-                                          tabindex="0"
-                                          role="button"
-                                          aria-expanded="false"
-                                        >
-                                          <div className="MuiAccordionSummary-content css-1n11r91">
-                                            <p
-                                              className="MuiTypography-root MuiTypography-body1 css-qisfzi"
-                                              style={{ fontWeight: "400" }}
+                                            <span
+                                              className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei"
+                                              style={{
+                                                width: "150px",
+                                                height: "50px",
+                                                paddingBottom: "8px",
+                                              }}
                                             >
-                                              GPS 허용 지역
-                                            </p>
-                                          </div>
-                                          <div className="MuiAccordionSummary-expandIconWrapper css-1fx8m19">
-                                            <span className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei">
-                                              <span className="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn">
-                                                <input
-                                                  className="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
-                                                  type="checkbox"
-                                                  value="off"
-                                                />
-                                                <span className="MuiSwitch-thumb css-19gndve"></span>
-                                              </span>
-                                              <span className="MuiSwitch-track css-1ju1kxc"></span>
+                                              <input
+                                                type="date"
+                                                value={endDate}
+                                                onChange={handleEndDateChange}
+                                              />
                                             </span>
-                                          </div>
-                                        </div>
-                                        <div
-                                          class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-a0y2e3"
-                                          style={{ minHeight: "0px" }}
-                                        >
-                                          <div class="MuiCollapse-wrapper MuiCollapse-vertical css-hboir5">
-                                            <div class="MuiCollapse-wrapperInner MuiCollapse-vertical css-8atqhb">
-                                              <div
-                                                role="region"
-                                                class="MuiAccordion-region"
-                                              >
-                                                <div className="MuiAccordionDetails-root css-1f3ze44">
-                                                  <div
-                                                    className="MuiFormGroup-root css-1h7anqn"
-                                                    style={{
-                                                      flexDirection: "row",
-                                                    }}
-                                                  >
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.male"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        서울
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.female"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        부산
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.others"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        대구
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.noChoice"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        광주
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.others"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        인천
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.others"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        대전
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.others"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        울산
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.others"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        경기
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.others"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        강원
-                                                      </span>
-                                                    </label>
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
-                                                      <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
-                                                        <input
-                                                          className="PrivateSwitchBase-input css-1m9pwf3"
-                                                          name="genderConfig.others"
-                                                          type="checkbox"
-                                                          data-indeterminate="false"
-                                                          value="true"
-                                                        />
-                                                        <img
-                                                          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjAxIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgcng9IjIiIGZpbGw9IiNGQUZCRkMiIHN0cm9rZT0iI0RGRTFFNiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPgo="
-                                                          alt="unchecked-checkbox"
-                                                        />
-                                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                                      </span>
-                                                      <span
-                                                        className="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-qisfzi"
-                                                        style={{
-                                                          fontSize: "14px",
-                                                        }}
-                                                      >
-                                                        제주
-                                                      </span>
-                                                    </label>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
                                           </div>
                                         </div>
                                       </div>
