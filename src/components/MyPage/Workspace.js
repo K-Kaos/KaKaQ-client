@@ -32,6 +32,7 @@ import logo from "../../Assets/Logo/logo.png";
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import OpenSurvey from "./OpenSurvey";
+import MakeForm from "./MakeForm";
 
 function Workspace() {
   // 설문 데이터
@@ -52,15 +53,29 @@ function Workspace() {
   const [surveyTitle, setSurveyTitle] = useState("");
   const [surveyKeyword, setSurveyKeyword] = useState("");
   const [surveyCategory, setSurveyCategory] = useState("");
-  const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
+  const [surveySubject, setSurveySubject] = useState("");
+  // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSurveyCategorySelect = (option) => {
-    setSelectedSurveyCategory(option);
-    setIsOpen(false);
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  // const handleSurveyCategorySelect = (option) => {
+  //   setSurveyCategory(option);
+  //   setIsOpen(false);
+  // };
+
+  const handleSurveyCategorySelect = (event) => {
+    const selectedOption = event.target.value;
+    setSurveyCategory(selectedOption);
+  };
+
+  const handleSurveySubjectChange = (event) => {
+    setSurveySubject(event.target.value);
   };
 
   const handleSurveyTitleChange = (event) => {
@@ -69,10 +84,6 @@ function Workspace() {
 
   const handleSurveyKeywordChange = (event) => {
     setSurveyKeyword(event.target.value);
-  };
-
-  const handleSurveyCategoryChange = (event) => {
-    setSurveyCategory(event.target.value);
   };
 
   const handleTitleChange = (event) => {
@@ -127,6 +138,25 @@ function Workspace() {
 
   const handleCloseMakeForm = () => {
     setShowMakeForm(false);
+  };
+
+  const handleClickMakeChatbotForm = () => {
+    setShowMakeChatbotForm(true);
+  };
+
+  const handleCloseMakeChatbotForm = () => {
+    setShowMakeChatbotForm(false);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // 사용자가 입력한 제목, 키워드, 카테고리를 이용하여 작업을 수행합니다.
+    // 여기에서는 간단히 콘솔에 값을 출력하는 예시를 보여드리겠습니다.
+    console.log("제목:", surveyTitle);
+    console.log("키워드:", surveyKeyword);
+    console.log("카테고리:", surveyCategory);
+    // /kakaq로 이동하는 작업을 수행합니다.
+    window.location.href = "/kakaq";
   };
 
   // script
@@ -373,7 +403,6 @@ function Workspace() {
                         </div>
                       </ul>
                     </div>
-                    
                   </div>
 
                   <div
@@ -850,6 +879,7 @@ function Workspace() {
                       cursor: "pointer",
                       position: "relative",
                     }}
+                    onClick={handleClickMakeChatbotForm}
                   >
                     <div className="MuiBox-root css-1acuc8l">
                       <div
@@ -1280,6 +1310,7 @@ function Workspace() {
         </div>
       )}
       {showMakeForm && (
+        // <MakeForm/>
         <div
           role="presentation"
           class="MuiDialog-root MuiModal-root css-126xj0f"
@@ -1305,6 +1336,7 @@ function Workspace() {
             }}
           >
             <form
+              onSubmit={handleSubmit}
               elevation="24"
               role="dialog"
               aria-aria-labelledby="mui-472"
@@ -1339,6 +1371,7 @@ function Workspace() {
                 class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem MuiBox-root css-12t296x"
                 role="separator"
               ></div>
+              {/* 프로젝트 제목 */}
               <div class="Muibox-root css-m6exs1">
                 <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
                   <label
@@ -1371,6 +1404,7 @@ function Workspace() {
                     </div>
                   </div>
                 </div>
+                {/* 프로젝트 키워드 */}
                 <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
                   <label
                     className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
@@ -1402,6 +1436,7 @@ function Workspace() {
                     </div>
                   </div>
                 </div>
+                {/* 프로젝트 카테고리 */}
                 <div
                   className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye"
                   style={{ textAlign: "start" }}
@@ -1419,83 +1454,7 @@ function Workspace() {
                       *
                     </span>
                   </label>
-                  {/* <div
-                    className="MuiBox-root css-0 mt-4"
-                    style={{
-                      display: "flex",
-                      marginTop: "8px",
-                      flexDirection: "row",
-                      gap: "12px",
-                    }}
-                  >
-                    <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
-                      <div
-                        className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm"
-                        style={{ width: "fit-content" }}
-                      >
-                        <div
-                          tabIndex="0"
-                          role="button"
-                          onClick={toggleMenu}
-                          onBlur={() => setIsOpen(false)}
-                          aria-expanded={isOpen ? "true" : "false"}
-                          aria-haspopup="listbox"
-                          aria-labelledby="select-color"
-                          id="select-color"
-                          className="MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-19tmo23"
-                        >
-                          <div className="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-q5vxhk">
-                            <span className="MuiChip-label MuiChip-labelMedium css-9iedg7">
-                              {selectedSurveyCategory || "카테고리"}
-                            </span>
-                          </div>
-                          <svg
-                            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-1636szt"
-                            focusable="false"
-                            aria-hidden="true"
-                            viewBox="0 0 24 24"
-                            data-testid="ArrowDropDownIcon"
-                          >
-                            <path d="M7 10l5 5 5-5z"></path>
-                          </svg>
-                        </div>
-                        {isOpen && (
-                          <ul className="dropdown-menu">
-                            <li onClick={() => handleSurveyCategorySelect("")}>
-                              카테고리
-                            </li>
-                            <li
-                              onClick={() => handleSurveyCategorySelect("여행")}
-                            >
-                              여행
-                            </li>
-                            <li
-                              onClick={() => handleSurveyCategorySelect("맛집")}
-                            >
-                              맛집
-                            </li>
-                            <li
-                              onClick={() => handleSurveyCategorySelect("교육")}
-                            >
-                              교육
-                            </li>
-                            <li
-                              onClick={() =>
-                                handleSurveyCategorySelect("문화생활")
-                              }
-                            >
-                              문화생활
-                            </li>
-                            <li
-                              onClick={() => handleSurveyCategorySelect("기타")}
-                            >
-                              기타
-                            </li>
-                          </ul>
-                        )}
-                      </div>
-                    </div>
-                  </div> */}
+
                   <div
                     className="MuiBox-root css-0 mt-4"
                     style={{
@@ -1511,7 +1470,7 @@ function Workspace() {
                         style={{ width: "fit-content" }}
                       >
                         <select
-                          value={type}
+                          value={surveyCategory}
                           onChange={handleSurveyCategorySelect}
                           tabIndex="0"
                           role="button"
@@ -1521,7 +1480,11 @@ function Workspace() {
                           id="select-color"
                           className="MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-19tmo23"
                         >
-                          <option value="">카테고리</option>
+                          <option value="">
+                            {surveyCategory === ""
+                              ? "카테고리"
+                              : surveyCategory}
+                          </option>
                           <option value="여행">여행</option>
                           <option value="맛집">맛집</option>
                           <option value="교육">교육</option>
@@ -1533,7 +1496,6 @@ function Workspace() {
                   </div>
                 </div>
               </div>
-
               <div
                 class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem MuiBox-root css-12t296x"
                 role="separator"
@@ -1558,6 +1520,273 @@ function Workspace() {
                   <span className="MuiTouchRipple-root css-w0pj6f"></span>
                 </button>
                 <button
+                  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-s92m9s"
+                  tabIndex="0"
+                  type="submit"
+                >
+                  <p
+                    className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                    }}
+                  >
+                    만들기
+                  </p>
+                  <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div tabindex="0" data-testid="sentinelEnd"></div>
+        </div>
+      )}
+
+      {showMakeChatbotForm && (
+        <div
+          role="presentation"
+          class="MuiDialog-root MuiModal-root css-126xj0f"
+        >
+          <div
+            aria-hidden="true"
+            class="MuiBackdrop-root css-919eu4"
+            style={{
+              opacity: 1,
+              backgroundColor: "rgba(0, 0, 0, 0.1)",
+              boxShadow: "none",
+              transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+            }}
+          ></div>
+          <div tabindex="0" data-testid="sentinelStart"></div>
+          <div
+            class="MuiDialog-container MuiDialog-scrollPaper css-ekeie0"
+            role="presentation"
+            tabindex="-1"
+            style={{
+              opacity: 1,
+              transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+            }}
+          >
+            <form
+              onSubmit={handleSubmit}
+              elevation="24"
+              role="dialog"
+              aria-aria-labelledby="mui-472"
+              class="MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiDialog-paperFullWidth css-1uop03p"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "24px 0px 0px",
+                alignItems: "flex-start",
+                gap: "16px",
+                backgroundColor: "rgb(255, 255, 255)",
+                borderRadius: "12px",
+                boxShadow:
+                  "rgba(9, 30, 66, 0.2) 0px 3px 5px, rgba(9, 30, 66, 0.31) 0px 0px 1px",
+                maxWidth: "700px",
+              }}
+            >
+              <div className="MuiBox-root css-v1a73h">
+                <p
+                  className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                  style={{
+                    fontWeight: 500,
+                    fontSize: "20px",
+                    lineHeight: "24px",
+                    color: "rgb(23, 43, 77)",
+                  }}
+                >
+                  새로운 KaKaQ 폼 Chatbot으로 만들기
+                </p>
+              </div>
+              <div
+                class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem MuiBox-root css-12t296x"
+                role="separator"
+              ></div>
+              {/* 프로젝트 제목 */}
+              <div class="Muibox-root css-m6exs1">
+                <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
+                    data-shrink="true"
+                    htmlFor="project-title"
+                  >
+                    프로젝트 제목
+                    <span
+                      aria-hidden="true"
+                      className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                    <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                      <input
+                        aria-invalid="false"
+                        autoComplete="off"
+                        id="survey-title"
+                        placeholder="새로운 프로젝트 제목"
+                        required=""
+                        type="text"
+                        maxLength="30"
+                        className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
+                        value={surveyTitle}
+                        onChange={handleSurveyTitleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* 프로젝트 주제 */}
+                <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
+                    data-shrink="true"
+                    htmlFor="project-title"
+                  >
+                    프로젝트 주제
+                    <span
+                      aria-hidden="true"
+                      className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                    <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                      <input
+                        aria-invalid="false"
+                        autoComplete="off"
+                        id="survey-subject"
+                        placeholder="새로운 프로젝트 주제"
+                        required=""
+                        type="text"
+                        maxLength="30"
+                        className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
+                        value={surveySubject}
+                        onChange={handleSurveySubjectChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* 프로젝트 키워드 */}
+                <div className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
+                    data-shrink="true"
+                    htmlFor="project-title"
+                  >
+                    프로젝트 키워드
+                    <span
+                      aria-hidden="true"
+                      className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
+                    >
+                       *
+                    </span>
+                  </label>
+                  <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                    <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                      <input
+                        aria-invalid="false"
+                        autoComplete="off"
+                        id="survey-keyword"
+                        placeholder="새로운 프로젝트 키워드"
+                        required=""
+                        type="text"
+                        maxLength="30"
+                        className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
+                        value={surveyKeyword}
+                        onChange={handleSurveyKeywordChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* 프로젝트 카테고리 */}
+                <div
+                  className="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye"
+                  style={{ textAlign: "start" }}
+                >
+                  <label
+                    className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-standard css-bvzqnv"
+                    data-shrink="true"
+                    htmlFor="project-title"
+                  >
+                    프로젝트 카테고리
+                    <span
+                      aria-hidden="true"
+                      className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
+                    >
+                      *
+                    </span>
+                  </label>
+
+                  <div
+                    className="MuiBox-root css-0 mt-4"
+                    style={{
+                      display: "flex",
+                      marginTop: "8px",
+                      flexDirection: "row",
+                      gap: "12px",
+                    }}
+                  >
+                    <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
+                      <div
+                        className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm"
+                        style={{ width: "fit-content" }}
+                      >
+                        <select
+                          value={surveyCategory}
+                          onChange={handleSurveyCategorySelect}
+                          tabIndex="0"
+                          role="button"
+                          aria-expanded={isOpen ? "true" : "false"}
+                          aria-haspopup="listbox"
+                          aria-labelledby="select-color"
+                          id="select-color"
+                          className="MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-19tmo23"
+                        >
+                          <option value="">
+                            {surveyCategory === ""
+                              ? "카테고리"
+                              : surveyCategory}
+                          </option>
+                          <option value="여행">여행</option>
+                          <option value="맛집">맛집</option>
+                          <option value="교육">교육</option>
+                          <option value="문화생활">문화생활</option>
+                          <option value="기타">기타</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiDivider-root MuiDivider-fullWidth MuiDivider-flexItem MuiBox-root css-12t296x"
+                role="separator"
+              ></div>
+              <div className="MuiBox-root css-1v9rthj">
+                <button
+                  className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1w5d2mk"
+                  tabIndex="0"
+                  type="button"
+                  onClick={handleCloseMakeChatbotForm}
+                  // onClick={handleCloseMakeForm}
+                >
+                  <p
+                    className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                    style={{
+                      fontWeight: 500,
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                    }}
+                  >
+                    그만두기
+                  </p>
+                  <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                </button>
+                <button
+                  onSubmit={handleSubmit}
                   className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-s92m9s"
                   tabIndex="0"
                   type="submit"
