@@ -2000,10 +2000,6 @@ video {
   display: flex;
 }
 
-.css-1b8ypoz.Mui-selected {
-  color: rgb(38, 112, 255);
-}
-
 .css-1b8ypoz {
   display: inline-flex;
   -webkit-box-align: center;
@@ -2796,7 +2792,7 @@ body {
   --framer-aspect-ratio-supported: auto;
 }
 
-body {
+/* body {
   --token-847ef11f-9d1f-468c-b95a-5bcf9302716c: rgb(228, 233, 255);
   --token-606985c3-bdcf-4bd3-8081-c58590581057: rgb(198, 209, 255);
   --token-5e30af2e-edbc-41f4-96c3-ad80f9180a26: rgb(163, 182, 255);
@@ -2810,8 +2806,23 @@ body {
   --token-f35aac27-ebb6-4482-a265-ed98ede37629: rgb(38, 112, 255);
   --token-b4b16657-924f-4d93-be01-c8fc47f0a88f: rgb(0, 113, 239);
   --token-8a08b456-8f23-4ac0-a1d7-4b67e9f19d4b: #19154E;
-}
+} */
 
+body {
+  --token-847ef11f-9d1f-468c-b95a-5bcf9302716c: rgb(250, 244, 218);
+  --token-606985c3-bdcf-4bd3-8081-c58590581057: rgb(251, 239, 197);
+  --token-5e30af2e-edbc-41f4-96c3-ad80f9180a26: rgb(249, 231, 158);
+  --token-f0b76743-149a-421c-be94-6ef245785d55: rgb(250, 221, 104);
+  --token-d3721ff6-6aaf-41cd-8ace-c12c6fd548a5: rgb(250, 220, 95);
+  --token-a1ddf5b8-5327-4054-8f47-043d54e6b485: rgb(250, 217, 84);
+  --token-dc7f4e8b-5f58-48ec-8125-42fd98dec331: rgb(251, 214, 66);
+  --token-99e7e98e-9012-4ee9-8180-9eebc9cd120a: rgb(249, 208, 46);
+  --token-e0b2e1a7-6c9c-43ef-9d5d-d797a9cd137f: rgb(248, 201, 12);
+  --token-17123d78-faa5-40fe-96a0-a0ee1954948f: rgb(255, 244, 219);
+  --token-f35aac27-ebb6-4482-a265-ed98ede37629: rgb(232, 201, 75);
+  --token-b4b16657-924f-4d93-be01-c8fc47f0a88f: rgb(255, 223, 96);
+  --token-8a08b456-8f23-4ac0-a1d7-4b67e9f19d4b: rgb(255, 188, 73);
+}
 body,
 input,
 textarea,
@@ -4456,9 +4467,6 @@ html.fp-enabled,
   display: flex;
 }
 
-.css-1b8ypoz.Mui-selected {
-  color: rgb(38, 112, 255);
-}
 
 .css-1b8ypoz {
   display: inline-flex;
@@ -5916,7 +5924,7 @@ textarea {
   gap: 12px;
   color: rgb(255, 255, 255);
   border-radius: 0.93rem;
-  background-color: rgb(226, 255, 38);
+  background-color: rgb(255 230 100) !important;
 }
 
 .css-qisfzi {
@@ -6352,7 +6360,7 @@ button {
 }
 
 .css-1b8ypoz.Mui-selected {
-  color: rgb(38, 112, 255);
+  color: rgb(255 230 100);
 }
 
 .css-1b8ypoz {
