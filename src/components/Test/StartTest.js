@@ -27,10 +27,14 @@ function StartTest(props) {
   }
 
 function slicingData() {
-    const questionText = data.split('\n\n').slice(1);
+    const questionText = data.split('\n').slice(1);
     const questionOptions = questionText.map( () => options);
     setQuestions(questionText);
     setOptions(questionOptions);
+}
+
+function handleSubmit() {
+    alert("테스트가 완료되었습니다.");
 }
 
   return (
@@ -49,6 +53,8 @@ function slicingData() {
             ))}
           </div>
         ))}
+
+        <button onClick={handleSubmit}>제출하기</button>s
 
       </Container>
     </Container>

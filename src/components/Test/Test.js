@@ -8,6 +8,7 @@ import CheckboxGroup from "./CheckboxGroup";
 import InputBox from "./InputBox";
 import Card from "react-bootstrap/Card";
 import Question from "./Question";
+import axios from "axios";
 
 function Test(props) {
   let whoLoggedIn = null;
@@ -20,6 +21,8 @@ function Test(props) {
   }, []);
   const [pages, setPages] = React.useState(["home"]);
   const [message, setMessage] = React.useState('');
+
+  axios.get("api/user/pt")
 
   return (
     <Container fluid className="survey-header" >
