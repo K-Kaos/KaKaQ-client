@@ -27,6 +27,8 @@ function SignupForm(props) {
         confirmPassword: false, //비밀번호 일치
     });
 
+    const navigate = useNavigate();
+
     const nameInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -116,7 +118,13 @@ function SignupForm(props) {
             const url = response.data;
             if (url.includes("/login")) {
                 alert(formData.username + "님의 캐릭터를 찾아봐요!");
-                window.location.href = "/starttest";
+                axios.get("api/user/pt")
+                    .then(function (response) {
+                        console.log(response.data.choices[0].text);
+                        navigate("/starttest", {state: { response: response.data.choices[0].text }});
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
             } else if (url.includes("/duplicate")) {
                 alert("이미 가입된 메일입니다.");
             }

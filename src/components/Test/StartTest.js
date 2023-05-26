@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
+import { useLocation } from "react-router-dom"
 
 function StartTest(props) {
   let whoLoggedIn = null;
@@ -15,47 +16,61 @@ function StartTest(props) {
   const [message, setMessage] = React.useState('');
   const [data, setData] = useState([]);
   const [questions, setQuestions] = useState([]);
-  const [options, setOptions] = useState(['예', '아니오']);
+  const answerOptions = ["매우 아니다", "약간 아니다", "보통", "조금 그렇다", "매우 그렇다"];
+  const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const location = useLocation();
 
-  function startTest() {
-    axios.get("api/user/pt")
-    .then(function (response) {
-        console.log(response.data.choices[0].text);
-        setData(response.data.choices[0].text);
-        }
-    )
+  useEffect(() => {
+    if (location.state && location.state.response) {
+
+      setQuestions(location.state.response.split("\n\n").slice(1));
+
+    }
   }
+    , [location.state]);
 
-function slicingData() {
-    const questionText = data.split('\n').slice(1);
-    const questionOptions = questionText.map( () => options);
-    setQuestions(questionText);
-    setOptions(questionOptions);
-}
 
-function handleSubmit() {
+  const handleAnswerChange = (e, index) => {
+    const newSelectedAnswers = [...selectedAnswers];
+    newSelectedAnswers[index] = e.target.value;
+    setSelectedAnswers(newSelectedAnswers);
+    console.log(newSelectedAnswers);
+  };
+
+  function handleSubmit() {
     alert("테스트가 완료되었습니다.");
-}
+  }
 
   return (
     <Container fluid className="survey-header" >
       <Container class="flex items-center">
-        <button onClick={startTest}>유형테스트 시작</button>
+        <div>
+          {questions.map((question, index) => (
+            <div key={index}>
+              <br/>
+              <h5>{question}</h5>
+              <div>
+                {answerOptions.map((option, optionIndex) => (
+                  <React.Fragment key={optionIndex}>
+                    <input
+                      type="radio"
+                      id={`option${index}-${optionIndex}`}
+                      name={`answer${index}`}
+                      value={option}
+                      onChange={(e) => handleAnswerChange(e, index)}
+                      checked={selectedAnswers[index] === option}
+                    />
+                    <label htmlFor={`option${index}-${optionIndex}`}>{option}&nbsp;</label>
+                  </React.Fragment>
+                  
+                ))}
+                <br />
+              </div>
+            </div>
+          ))}
+        </div>
         <br/>
-        <button onClick={slicingData}>유형테스트 슬라이싱</button>
-        <br />
-        
-        {questions.map((question, index) => (
-          <div key={index}>
-            <p>{question}</p>
-            {options[index].map((option, optionIndex) => (
-              <button key={optionIndex}>{option}</button>
-            ))}
-          </div>
-        ))}
-
-        <button onClick={handleSubmit}>제출하기</button>s
-
+        <button onClick={handleSubmit} class="btn-primary">제출하기</button>
       </Container>
     </Container>
   );
