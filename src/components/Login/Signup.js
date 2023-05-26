@@ -115,8 +115,8 @@ function SignupForm(props) {
             console.log(response);
             const url = response.data;
             if (url.includes("/login")) {
-                alert(formData.username + "님, 환영합니다!");
-                window.location.href = "/login";
+                alert(formData.username + "님의 캐릭터를 찾아봐요!");
+                window.location.href = "/starttest";
             } else if (url.includes("/duplicate")) {
                 alert("이미 가입된 메일입니다.");
             }
@@ -235,7 +235,7 @@ function SignupForm(props) {
                                     className={`block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${!(isData.username && isData.email && isData.password && isData.confirmPassword) ? 'disabled' : ''}`}
                                     disabled={!isData.username || !isData.email || !isData.password || !isData.confirmPassword}
                                     style={{ backgroundColor: !(isData.username && isData.email && isData.password && isData.confirmPassword) ? '#ccc' : '' }} >
-                                    회원가입
+                                    유형 테스트 시작하기
                                 </button>
                             </div>
                         </div>
