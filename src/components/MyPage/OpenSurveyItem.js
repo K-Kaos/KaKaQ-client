@@ -24,6 +24,15 @@ function OpenSurveyItem(props) {
                     {props.enddate}
                   </time>
                 </div>
+                <svg
+                  className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                  focusable="false"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  data-testid="MoreHorizIcon"
+                >
+                  <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                </svg>
               </div>
               <div className="MuiBox-root css-8atqhb" aria-label={props.text}>
                 <div className="mt-4 MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">

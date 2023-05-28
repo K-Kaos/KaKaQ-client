@@ -389,7 +389,8 @@ function KAKAQ() {
                           class="MuiTypography-root MuiTypography-body1 css-qisfzi"
                           style={{
                             textDecoration: "none",
-                            color: "rgb(38, 112, 255)",
+                            color: "rgba(29, 37, 45, 0.6)",
+                            // color: "rgb(38, 112, 255)",
                             fontSize: "14px",
                             fontWeight: "700",
                           }}

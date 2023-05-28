@@ -417,10 +417,6 @@ function Workspace() {
               component="main"
               style={{ height: "100%" }}
             >
-              {/* <div
-                className="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-i6s8oy"
-                style={{ height: "56px", minHeight: "0px" }}
-              ></div> */}
               <div tabindex="-1" style={{ outline: "none" }}>
                 <div
                   class="MuiBox-root css-0 mt-2"
@@ -533,7 +529,8 @@ function Workspace() {
                                     style={{
                                       width: "40px",
                                       height: "40px",
-                                      backgroundColor: "rgb(239, 249, 255)",
+                                      // backgroundColor: "rgb(239, 249, 255)",
+                                      backgroundColor: "rgb(249 249 196)",
                                       borderRadius: "40px",
                                       display: "flex",
                                       justifyContent: "center",
@@ -624,7 +621,8 @@ function Workspace() {
                                     style={{
                                       width: "40px",
                                       height: "40px",
-                                      backgroundColor: "rgb(239, 249, 255)",
+                                      // backgroundColor: "rgb(239, 249, 255)",
+                                      backgroundColor: "rgb(249 249 196)",
                                       borderRadius: "40px",
                                       display: "flex",
                                       justifyContent: "center",

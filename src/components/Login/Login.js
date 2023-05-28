@@ -50,7 +50,7 @@ function LoginForm(props) {
                 sessionStorage.setItem("isLoggedIn", 'true');
                 sessionStorage.setItem("whoLoggedIn", formData.email);
                 alert(username + "님, 환영합니다!");
-                window.location.href = "/";
+                window.location.href = "/workspace";
             } else if (url === "/login") {
                 alert("비밀번호를 확인해주세요");
             }

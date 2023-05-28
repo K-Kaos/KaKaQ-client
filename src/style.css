@@ -1267,10 +1267,6 @@ ul {
   padding: 0;
 }
 
-.css-1pxge5a.Mui-selected {
-  background-color: rgba(38, 112, 255, 0.08);
-}
-
 .css-1pxge5a {
   -webkit-tap-highlight-color: transparent;
   background-color: transparent;
@@ -1313,6 +1309,7 @@ button {
 }
 
 .css-57kesc {
+  color: rgb(243, 185, 37);
   user-select: none;
   width: 1em;
   height: 1em;
@@ -3896,7 +3893,7 @@ button {
 }
 
 .css-1pxge5a.Mui-selected {
-  background-color: rgba(38, 112, 255, 0.08);
+  background-color: #fffff0;
 }
 
 .css-1pxge5a {
@@ -3953,7 +3950,7 @@ button {
   white-space: pre-line;
   letter-spacing: -0.01em;
   display: block;
-  color: rgb(0, 82, 204);
+  color: rgb(243, 202, 37);
   font-size: 11px;
   font-weight: 700;
 }

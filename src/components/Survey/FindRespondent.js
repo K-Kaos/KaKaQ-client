@@ -169,7 +169,7 @@ function FindRespondent() {
                                             </span>
                                           </div>
                                         </div>
-                                        <div
+                                        {/* <div
                                           class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-a0y2e3"
                                           style={{ minHeight: "0px" }}
                                         >
@@ -239,7 +239,7 @@ function FindRespondent() {
                                               </div>
                                             </div>
                                           </div>
-                                        </div>
+                                        </div> */}
                                       </div>
                                       <div class="MuiBox-root css-197dogp"></div>
                                       <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAccordion-root css-1degz5g">
@@ -271,7 +271,7 @@ function FindRespondent() {
                                             </span>
                                           </div>
                                         </div>
-                                        <div
+                                        {/* <div
                                           class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-a0y2e3"
                                           style={{ minHeight: "0px" }}
                                         >
@@ -341,7 +341,7 @@ function FindRespondent() {
                                               </div>
                                             </div>
                                           </div>
-                                        </div>
+                                        </div> */}
                                       </div>
                                       <div class="MuiBox-root css-197dogp"></div>
                                       <div
@@ -760,7 +760,7 @@ function FindRespondent() {
                                               style={{
                                                 width: "150px",
                                                 height: "50px",
-                                                paddingBottom: "8px",
+                                                paddingTop: "8px",
                                               }}
                                             >
                                               <input

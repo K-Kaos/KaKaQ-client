@@ -149,12 +149,10 @@ function MakeChatbotForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // 사용자가 입력한 제목, 키워드, 카테고리를 이용하여 작업을 수행합니다.
-    // 여기에서는 간단히 콘솔에 값을 출력하는 예시를 보여드리겠습니다.
     console.log("제목:", surveyTitle);
     console.log("키워드:", surveyKeyword);
     console.log("카테고리:", surveyCategory);
-    // /kakaq로 이동하는 작업을 수행합니다.
+    // /kakaq로 이동
     window.location.href = "/kakaq";
   };
 
