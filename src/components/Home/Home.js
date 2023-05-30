@@ -209,7 +209,7 @@ function Home(props) {
                               "--framer-text-color": "var(--extracted-r6o4lv)",
                             }}
                           >
-                            Blog
+                            Github
                           </p>
                         </div>
                       </a>
@@ -367,7 +367,7 @@ function Home(props) {
                     "--framer-text-transform": "uppercase",
                   }}
                 >
-                  데이터 수집을 위한 올인원 툴
+                  설문조사를 위한 자동화 올인원 툴
                 </p>
               </div>
               <div
@@ -397,9 +397,9 @@ function Home(props) {
                       "var(--token-b1fb229f-a8e6-4640-b958-ea29fe1a7f0e, rgb(25, 21, 78))",
                   }}
                 >
-                  폼을 만들고 분석하는
+                  Share your Opinion!
                   <br class="framer-text" />
-                  가장 합리적인 방법
+                  
                 </h1>
               </div>
               <div
@@ -428,8 +428,7 @@ function Home(props) {
                     "--framer-text-color": "rgb(91, 94, 118)",
                   }}
                 >
-                  폼의 제작, 응답자 모집, 보상, 분석에 불필요한 시간을 쏟지
-                  마세요.
+                  KakaQ와 의견을 나누고 친구들을 만나보세요.
                 </p>
                 <p
                   data-aos="fade-up"
@@ -444,7 +443,7 @@ function Home(props) {
                     "--framer-text-color": "rgb(91, 94, 118)",
                   }}
                 >
-                  모든 핵심 과정을 왈라에서 한번에 해결하실 수 있습니다.
+                  사용자 친화적인 설문조사를 KakaQ에서 만나볼 수 있습니다.
                 </p>
               </div>
               <div class="framer-1tp0a7d-container" data-projection-id="525">

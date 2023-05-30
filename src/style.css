@@ -7519,3 +7519,36 @@ css-8v46es.Mui-expanded:last-of-type {
   height: 40px;
   background: rgba(9, 30, 66, 0.08);
 }
+
+.css-1y1p9da {
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0px;
+  border: 0px;
+  margin: 0px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  appearance: none;
+  text-decoration: none;
+  text-transform: none;
+  font-weight: 700;
+  line-height: 2.25;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
+  font-size: 0.875rem;
+  white-space: pre-line;
+  letter-spacing: -0.01em;
+  min-width: 64px;
+  padding: 6px 16px;
+  border-radius: 12px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: rgb(255, 255, 255);
+  background-color: rgb(38, 112, 255);
+  box-shadow: none;
+}
