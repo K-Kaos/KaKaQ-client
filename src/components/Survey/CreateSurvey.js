@@ -245,11 +245,11 @@ function CreateSurvey() {
                                         <div class="MuiTabs-root css-1rkpyfd">
                                             <div class="MuiTabs-scroller MuiTabs-fixed css-1anid1y" style={{ overflow: 'hidden', marginBottom: '0px' }}>
                                                 <div aria-label="right-tabs" class="MuiTabs-flexContainer css-k008qs" role="tablist">
-                                                    <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1b8ypoz" tabindex="0" type="button" role="tab" aria-selected="true" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-options" id="mui-p-92062-T-options">옵션<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
+                                                    <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz" tabindex="0" type="button" role="tab" aria-selected="true" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-options" id="mui-p-92062-T-options">옵션<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
+                                                    
+                                                    {/* <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz" tabindex="-1" type="button" role="tab" aria-selected="false" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-logic" id="mui-p-92062-T-logic">로직<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
 
-                                                    <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz" tabindex="-1" type="button" role="tab" aria-selected="false" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-logic" id="mui-p-92062-T-logic">로직<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
-
-                                                    <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz" tabindex="-1" type="button" role="tab" aria-selected="false" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-setting" id="mui-p-92062-T-setting">설정<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
+                                                    <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz" tabindex="-1" type="button" role="tab" aria-selected="false" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-setting" id="mui-p-92062-T-setting">설정<span class="MuiTouchRipple-root css-w0pj6f"></span></button> */}
                                                 </div>
                                                 <span class="MuiTabs-indicator css-eu9d1t" style={{ left: '0px', width: '90px' }}></span>
                                             </div>

@@ -34,7 +34,7 @@ function SurveyResult() {
                         aria-controls="mui-p-29865-P-Summary"
                         id="mui-p-29865-T-Summary"
                       >
-                        요약
+                        요약 보기
                         <span className="MuiTouchRipple-root css-w0pj6f"></span>
                       </button>
                       <button
@@ -46,7 +46,19 @@ function SurveyResult() {
                         aria-controls="mui-p-29865-P-Responses"
                         id="mui-p-29865-T-Responses"
                       >
-                        응답
+                        응답 확인하기
+                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                      </button>
+                      {/* <button
+                        className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz"
+                        tabIndex="-1"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="mui-p-29865-P-WallaSheet"
+                        id="mui-p-29865-T-WallaSheet"
+                      >
+                        유형별 결과보기
                         <span className="MuiTouchRipple-root css-w0pj6f"></span>
                       </button>
                       <button
@@ -140,7 +152,7 @@ function SurveyResult() {
                           </div>
                         </div>
                         <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                      </button>
+                      </button> */}
                     </div>
                     <span
                       className="MuiTabs-indicator css-eu9d1t"
