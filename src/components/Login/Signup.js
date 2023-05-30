@@ -108,30 +108,39 @@ function SignupForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        alert(formData.username + "님의 캐릭터를 찾아봐요!");
+        axios.get("api/user/pt")
+            .then(function (response) {
+                console.log(response.data.choices[0].text);
+                navigate("/starttest", {state: { response: response.data.choices[0].text,  username: formData.username, email: formData.email, password: formData.password,}});
+                }).catch(function (error) {
+                    console.log(error);
+                });
+        
         // 회원가입 처리 로직
-        axios.post("/api/user/register", {
-            username: formData.username,
-            email: formData.email,
-            password: formData.password,
-        }).then(function (response) {
-            console.log(response);
-            const url = response.data;
-            if (url.includes("/login")) {
-                alert(formData.username + "님의 캐릭터를 찾아봐요!");
-                axios.get("api/user/pt")
-                    .then(function (response) {
-                        console.log(response.data.choices[0].text);
-                        navigate("/starttest", {state: { response: response.data.choices[0].text }});
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
-            } else if (url.includes("/duplicate")) {
-                alert("이미 가입된 메일입니다.");
-            }
-        }).catch(function (error) {
-            console.log(error);
-            alert("회원가입 오류");
-        });
+        // axios.post("/api/user/register", {
+        //     username: formData.username,
+        //     email: formData.email,
+        //     password: formData.password,
+        // }).then(function (response) {
+        //     console.log(response);
+        //     const url = response.data;
+        //     if (url.includes("/login")) {
+        //         alert(formData.username + "님의 캐릭터를 찾아봐요!");
+        //         axios.get("api/user/pt")
+        //             .then(function (response) {
+        //                 console.log(response.data.choices[0].text);
+        //                 navigate("/starttest", {state: { response: response.data.choices[0].text }});
+        //             }).catch(function (error) {
+        //                 console.log(error);
+        //             });
+        //     } else if (url.includes("/duplicate")) {
+        //         alert("이미 가입된 메일입니다.");
+        //     }
+        // }).catch(function (error) {
+        //     console.log(error);
+        //     alert("회원가입 오류");
+        // });
 
     };
 
