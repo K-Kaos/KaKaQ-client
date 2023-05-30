@@ -249,9 +249,10 @@ function SignupForm(props) {
                             <div className="mt-10">
                                 <button
                                     type="submit"
-                                    className={`block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${!(isData.username && isData.email && isData.password && isData.confirmPassword) ? 'disabled' : ''}`}
+                                    className={`block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 
+                                    ${!(isData.username && isData.email && isData.password && isData.confirmPassword) ? 'disabled' : ''}`}
                                     disabled={!isData.username || !isData.email || !isData.password || !isData.confirmPassword}
-                                    style={{ backgroundColor: !(isData.username && isData.email && isData.password && isData.confirmPassword) ? '#ccc' : '' }} >
+                                    style={{ backgroundColor: !(isData.username && isData.email && isData.password && isData.confirmPassword) ? '#ccc' : 'rgb(250, 220, 95)' }} >
                                     유형 테스트 시작하기
                                 </button>
                             </div>
