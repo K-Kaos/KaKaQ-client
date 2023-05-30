@@ -9,7 +9,9 @@ import SurveyCompletion from "./SurveyCompletion";
 function CreateSurvey() {
     const [title, setTitle] = useState("")
     const [question, setQuestion] = useState("")
-    const [questionType, setQuestionType] = useState("")
+    const [type, setType] = useState("")
+    const [options, setOptions] = useState([])
+    const [questions, setQuestions] = useState([])
 
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
@@ -22,6 +24,28 @@ function CreateSurvey() {
     const handleQuestionTypeChange = (type) => {
         setQuestion(type);
     }
+
+    const handleAddQuestion = (e) => {
+        e.preventDefault();
+
+        
+    
+        if (question !== "") {
+          const newQuestion = {
+            id: questions.length + 1, // 새로운 질문의 id는 배열 길이 + 1
+            text: question,
+            type: type,
+            options: options,
+          };
+    
+          setQuestions([...questions, newQuestion]);
+          setQuestion("");
+          setType("");
+          setOptions([]);
+    
+          console.log(questions);
+        }
+      };
 
 
 
@@ -89,148 +113,119 @@ function CreateSurvey() {
     }
 
 
-    const handleQuestionListAdd = () => {
-        setListItems(prevItems => [...prevItems,
-        <div>
-            <div tabIndex="0" role="button" aria-describedby="rbd-hidden-text-2-hidden-text-4" data-rbd-drag-handle-draggable-id="draggableItem_3739285390" data-rbd-drag-handle-context-id="2" draggable="false" data-rbd-draggable-context-id="2" data-rbd-draggable-id="draggableItem_3739285390">
-                <li key={prevItems.length + 1} class="MuiListItem-root MuiListItem-gutters css-vvazg8">
-                    <div class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-qy2th" tabIndex="0" role="button" aria-label={question}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}>
-                        <div class="MuiListItemIcon-root css-1f8bwsm">
-                            <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', backgroundColor: 'rgb(239, 248, 255)', padding: '4px 8px', borderRadius: '8px', justifyContent: 'space-between' }}>
-                                <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="#2272AF"></path>
-                                </svg>
-                                <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: 'bold', color: 'rgb(34, 114, 175)', fontSize: '11px', paddingLeft: '8px' }}>{prevItems.length + 1}</p>
-                            </div>
-                        </div>
-                        <div class="MuiListItemText-root css-1tsvksn">
-                            <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ minHeight: '40px', lineHeight: '40px', color: 'rgb(0, 82, 204', fontWeight: '500', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', opacity: '0.5', fontStyle: 'italic' }}>{question}</p>
-                        </div>
-                        <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk" tabindex="0" type="button" style={{ justifyContent: 'flex-end', background: 'transparent', maxWidth: '20px', maxHeight: '20px', minWidth: '20px', minHeight: '20px', padding: '0px', margin: '0px' }}>
-                            {showTooltip &&
-                                (<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DeleteIcon" style={{ color: 'rgb(188, 188, 188)', fontSize: '20px' }} onClick={showDelete}><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>)}
-                        </button>
-                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
-                    </div>
-                </li>
-            </div>
-        </div>
-        ])
-    }
+    // const handleQuestionListAdd = () => {
+    //     setListItems(prevItems => [...prevItems,
+    //     <div>
+    //         <div tabIndex="0" role="button" aria-describedby="rbd-hidden-text-2-hidden-text-4" data-rbd-drag-handle-draggable-id="draggableItem_3739285390" data-rbd-drag-handle-context-id="2" draggable="false" data-rbd-draggable-context-id="2" data-rbd-draggable-id="draggableItem_3739285390">
+    //             <li key={prevItems.length + 1} class="MuiListItem-root MuiListItem-gutters css-vvazg8">
+    //                 <div class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-qy2th" tabIndex="0" role="button" aria-label={question}
+    //                     onMouseEnter={handleMouseEnter}
+    //                     onMouseLeave={handleMouseLeave}>
+    //                     <div class="MuiListItemIcon-root css-1f8bwsm">
+    //                         <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', backgroundColor: 'rgb(239, 248, 255)', padding: '4px 8px', borderRadius: '8px', justifyContent: 'space-between' }}>
+    //                             <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //                                 <path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="#2272AF"></path>
+    //                             </svg>
+    //                             <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: 'bold', color: 'rgb(34, 114, 175)', fontSize: '11px', paddingLeft: '8px' }}>{prevItems.length + 1}</p>
+    //                         </div>
+    //                     </div>
+    //                     <div class="MuiListItemText-root css-1tsvksn">
+    //                         <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ minHeight: '40px', lineHeight: '40px', color: 'rgb(0, 82, 204', fontWeight: '500', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', opacity: '0.5', fontStyle: 'italic' }}>{question}</p>
+    //                     </div>
+    //                     <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk" tabindex="0" type="button" style={{ justifyContent: 'flex-end', background: 'transparent', maxWidth: '20px', maxHeight: '20px', minWidth: '20px', minHeight: '20px', padding: '0px', margin: '0px' }}>
+    //                         {showTooltip &&
+    //                             (<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DeleteIcon" style={{ color: 'rgb(188, 188, 188)', fontSize: '20px' }} onClick={showDelete}><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>)}
+    //                     </button>
+    //                     <span class="MuiTouchRipple-root css-w0pj6f"></span>
+    //                 </div>
+    //             </li>
+    //         </div>
+    //     </div>
+    //     ])
+    // }
 
     const buttonStyle = {
         opacity: isHovered ? 1 : 0.8,
         transform: isHovered ? 'translateY(-2px) scale(1.1)' : 'none',
     };
 
-  return (
-    <>
-    <div class="MuiDrawer-root MuiDrawer-docked css-gyfe2h">
-                            <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft css-1l8j5k8">
-                                <div class="MuiBox-root css-0" style={{ marginTop: '56px', marginBottom: '56px', backgroundColor: '(255, 255, 255)', height: '100%', width: '100%', position: 'relative' }}>
-                                    <div class="MuiBox-root css-1txvmxe">
-                                        <div id="formContent" style={{ padding: '0px', color: 'rgb(66, 82, 110)', fontSize: '14px', fontWeight: '700' }}>전체 문항</div>
-                                        <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk" tabIndex="0" type="button" aria-label="추가하기"
-                                            onClick={showAdd}>
-                                            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1sonui6" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddBoxIcon">
-                                                <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
-                                            </svg>
-                                            <span class="MuiTouchRipple-root css-w0pj6f"></span>
-                                        </button>
-                                    </div>
-                                    <ul class="MuiList-root css-1uzmcsd" style={{ margin: '80px 16px 20px' }}>
-                                        {listItems}
-                                    </ul>
-                                    <div class="MuiBox-root css-0" style={{ margin: '10px 16px', paddingBottom: '10%' }}>
-                                        <div class="MuiBox-root css-0">
-                                            <button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-104rrqu" tabindex="0" type="button" onClick={showAdd}>
-                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddCircleOutlinedIcon" style={{ color: 'rgb(66, 82, 110)', fontSize: '14px', display: 'flex', alignItems: 'center' }}>
-                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
-                                                </svg>
-                                                <p class="MuiTypography-root MuiTypography-body1 css-ozdz0e">추가하기</p>
-                                                <span class="MuiTouchRipple-root css-w0pj6f"></span>
+    return (
+        <>
+            <div class="MuiDrawer-root MuiDrawer-docked css-gyfe2h">
+                <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft css-1l8j5k8">
+                    <div class="MuiBox-root css-0" style={{ marginTop: '56px', marginBottom: '56px', backgroundColor: '(255, 255, 255)', height: '100%', width: '100%', position: 'relative' }}>
+                        <div class="MuiBox-root css-1txvmxe">
+                            <div id="formContent" style={{ padding: '0px', color: 'rgb(66, 82, 110)', fontSize: '14px', fontWeight: '700' }}>전체 문항</div>
+                            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk" tabIndex="0" type="button" aria-label="추가하기"
+                                onClick={showAdd}>
+                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1sonui6" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddBoxIcon">
+                                    <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                                </svg>
+                                <span class="MuiTouchRipple-root css-w0pj6f"></span>
+                            </button>
+                        </div>
+                        <ul class="MuiList-root css-1uzmcsd" style={{ margin: '80px 16px 20px' }}>
+                            <div>
+                                {questions.map((question, index) => (
+                                <div tabIndex="0" role="button" aria-describedby="rbd-hidden-text-2-hidden-text-4" data-rbd-drag-handle-draggable-id="draggableItem_3739285390" data-rbd-drag-handle-context-id="2" draggable="false" data-rbd-draggable-context-id="2" data-rbd-draggable-id="draggableItem_3739285390">
+                                    <li key={index} class="MuiListItem-root MuiListItem-gutters css-vvazg8">
+                                        <div class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-qy2th" tabIndex="0" role="button" aria-label={question.text}
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}>
+                                            <div class="MuiListItemIcon-root css-1f8bwsm">
+                                                <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', backgroundColor: 'rgb(239, 248, 255)', padding: '4px 8px', borderRadius: '8px', justifyContent: 'space-between' }}>
+                                                    <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="#2272AF"></path>
+                                                    </svg>
+                                                    <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: 'bold', color: 'rgb(34, 114, 175)', fontSize: '11px', paddingLeft: '8px' }}>{index}</p>
+                                                </div>
+                                            </div>
+                                            <div class="MuiListItemText-root css-1tsvksn">
+                                                <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ minHeight: '40px', lineHeight: '40px', color: 'rgb(0, 82, 204', fontWeight: '500', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', opacity: '0.5', fontStyle: 'italic' }}>{question.text}</p>
+                                            </div>
+                                            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk" tabindex="0" type="button" style={{ justifyContent: 'flex-end', background: 'transparent', maxWidth: '20px', maxHeight: '20px', minWidth: '20px', minHeight: '20px', padding: '0px', margin: '0px' }}>
+                                                {showTooltip &&
+                                                    (<svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DeleteIcon" style={{ color: 'rgb(188, 188, 188)', fontSize: '20px' }} onClick={showDelete}><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg>)}
                                             </button>
-                                            <hr class="MuiDivider-root MuiDivider-fullWidth css-cx417z" />
-                                            <div class="MuiPaper-root MuiPaper-elevation sMuiPaper-elevation0 MuiAccordion-root Mui-expanded css-xqhq9l">
-                                                <div class="MuiButtonBase-root MuiAccordionSummary-root Mui-expanded css-1q5grb" tabindex="0" role="button" aria-expanded="true">
-                                                    <div class="MuiAccordionSummary-content Mui-expanded css-1n11r91">
-                                                        <div class="MuiBox-root css-1bsnnbm">
-                                                            <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: '500' }}>Endings</p>
-                                                            <div class="MuiBox-root css-k008qs">
-                                                                <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-12zyo4q"
-                                                                    onClick={showEndingType}>
-                                                                    <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1sonui6" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddBoxIcon">
-                                                                        <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
-                                                                    </svg>
-                                                                    <span class="MuiTouchRipple-root css-w0pj6f"></span>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-c4sutr" style={{ minHeight: '0px' }}>
-                                                    <div class="MuiCollapse-wrapper MuiCollapse-vertical css-hboir5">
-                                                        <div class="MuiCollapse-wrapperInner MuiCollapse-vertical css-8atqhb">
-                                                            <div role="region" class="MuiAccordion-region">
-                                                                <div class="MuiAccordionDetails-root css-s2yvfd"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            <span class="MuiTouchRipple-root css-w0pj6f"></span>
+                                        </div>
+                                    </li>
+                                </div>
+                                ))}
+                            </div>
+                        </ul>
+                        <div class="MuiBox-root css-0" style={{ margin: '10px 16px', paddingBottom: '10%' }}>
+                            <div class="MuiBox-root css-0">
+                                <button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-104rrqu" tabindex="0" type="button" onClick={showAdd}>
+                                    <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddCircleOutlinedIcon" style={{ color: 'rgb(66, 82, 110)', fontSize: '14px', display: 'flex', alignItems: 'center' }}>
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                                    </svg>
+                                    <p class="MuiTypography-root MuiTypography-body1 css-ozdz0e">추가하기</p>
+                                    <span class="MuiTouchRipple-root css-w0pj6f"></span>
+                                </button>
+                                <hr class="MuiDivider-root MuiDivider-fullWidth css-cx417z" />
+                                <div class="MuiPaper-root MuiPaper-elevation sMuiPaper-elevation0 MuiAccordion-root Mui-expanded css-xqhq9l">
+                                    <div class="MuiButtonBase-root MuiAccordionSummary-root Mui-expanded css-1q5grb" tabindex="0" role="button" aria-expanded="true">
+                                        <div class="MuiAccordionSummary-content Mui-expanded css-1n11r91">
+                                            <div class="MuiBox-root css-1bsnnbm">
+                                                <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: '500' }}>Endings</p>
+                                                <div class="MuiBox-root css-k008qs">
+                                                    <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-12zyo4q"
+                                                        onClick={showEndingType}>
+                                                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1sonui6" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddBoxIcon">
+                                                            <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                                                        </svg>
+                                                        <span class="MuiTouchRipple-root css-w0pj6f"></span>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="FieldsListDrawer__ColResizer-sc-rlte4u-0 cWIaYp leftColResizer" role="presentation"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="MuiContainer-root MuiContainer-maxWidthLg jss1 css-okglv3">
-                            <div tabindex="-1" style={{ outline: 'none' }}>
-                                <div class="MuiBox-root css-0" style={{ display: 'flex', flexDirection: 'column', padding: '40px', gap: '10px', width: '100%', height: '100%' }}>
-                                    <div class="MuiBox-root css-kcttjf">
-                                        <div class="MuiBox-root css-fxr4xl">
-                                            <div class="MuiBox-root css-1szjw0z">
-                                                <div class="MuiBox-root css-0" style={{ width: '100%', gap: '40px', display: 'flex', flexDirection: 'column' }}>
-                                                    <div class="MuiBox-root css-1xdhyk6">
-                                                        <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontSize: '12px', fontWeight: '400', letterSpacing: '-0.02rem', color: 'rgb(38, 112, 255)', lineHeight: '12px', minHeight: '12px' }}></p>
-                                                        <div class="MuiBox-root css-0">
-                                                            <div class="MuiGrid-root MuiGrid-container css-onfdyp">
-                                                                <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
-                                                                    <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline Mui-focused css-1xxtoyx">
-                                                                        <textarea placeholder="질문을 입력해주세요" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" style={{ height: '24px', overflow: 'hidden' }} onChange={handleQuestionChange}></textarea>
-                                                                        <textarea aria-hidden="true" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" readonly="" tabindex="-1" style={{ visibility: 'hidden', position: 'absolute', overflow: 'hidden', height: '0px', top: '0px', left: '0px', transform: 'translateZ(0px)', padding: '0px', width: '496px' }}></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
-                                                                    <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-lryuv7">
-                                                                        <textarea placeholder="(선택 사항) 키워드를 입력하세요" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" style={{ height: '23px', overflow: 'hidden' }}></textarea>
-                                                                        <textarea aria-hidden="true" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" readonly="" tabindex="-1" style={{ visibility: 'hidden', position: 'absolute', overflow: 'hidden', height: '0px', top: '0px', left: '0px', transform: 'translateZ(0px)', padding: '0px', width: '496px' }}></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="MuiBox-root css-1oi2cng">
-                                                        <div>
-                                                            <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
-                                                                <input autocomplete="off" placeholder="응답을 입력하세요" type="text" class="MuiInputBase-input css-mnn31" value="" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="MuiBox-root css-1bvc4cc">
-                                                        <button class="css-1c3ey53" style={buttonStyle} onMouseEnter={handleHoverEnter} onMouseOut={handleHoverLeave}>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                <mask id="mask0_12070_64088" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24" style={{ maskType: 'alpha' }}>
-                                                                    <rect width="24" height="24" fill="#D9D9D9"></rect></mask>
-                                                                <g mask="url(#mask0_12070_64088)">
-                                                                    <path d="M10.0001 12.7751L15.5001 7.3001C15.8001 7.0001 16.1668 6.8501 16.6001 6.8501C17.0334 6.8501 17.4001 7.0001 17.7001 7.3001C18.0001 7.6001 18.1501 7.96676 18.1501 8.4001C18.1501 8.83343 18.0001 9.2001 17.7001 9.5001L11.1251 16.1001C10.8084 16.4168 10.4334 16.5751 10.0001 16.5751C9.56676 16.5751 9.19176 16.4168 8.8751 16.1001L6.3001 13.5001C6.0001 13.2001 5.8501 12.8334 5.8501 12.4001C5.8501 11.9668 6.0001 11.6001 6.3001 11.3001C6.6001 11.0001 6.96676 10.8501 7.4001 10.8501C7.83343 10.8501 8.2001 11.0001 8.5001 11.3001L10.0001 12.7751Z" fill="#FFFFFF"></path>
-                                                                </g>
-                                                            </svg>
-                                                            <p class="MuiTypography-root MuiTypography-body1 css-10q16nc">OK</p>
-                                                        </button>
-                                                    </div>
+                                    <div class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-c4sutr" style={{ minHeight: '0px' }}>
+                                        <div class="MuiCollapse-wrapper MuiCollapse-vertical css-hboir5">
+                                            <div class="MuiCollapse-wrapperInner MuiCollapse-vertical css-8atqhb">
+                                                <div role="region" class="MuiAccordion-region">
+                                                    <div class="MuiAccordionDetails-root css-s2yvfd"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -238,82 +233,138 @@ function CreateSurvey() {
                                 </div>
                             </div>
                         </div>
-                        <div class="MuiDrawer-root MuiDrawer-docked css-ygodwc">
-                            <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight css-1ciwpa8">
-                                <div class="MuiBox-root css-0" style={{ marginTop: '56px', backgroundColor: 'rgb(255, 255, 255)', borderRadius: '2px solid rgb(238, 238, 238)' }}>
-                                    <div class="MuiBox-root css-k008qs">
-                                        <div class="MuiTabs-root css-1rkpyfd">
-                                            <div class="MuiTabs-scroller MuiTabs-fixed css-1anid1y" style={{ overflow: 'hidden', marginBottom: '0px' }}>
-                                                <div aria-label="right-tabs" class="MuiTabs-flexContainer css-k008qs" role="tablist">
-                                                    <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1b8ypoz" tabindex="0" type="button" role="tab" aria-selected="true" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-options" id="mui-p-92062-T-options">옵션<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
-
-                                                    <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz" tabindex="-1" type="button" role="tab" aria-selected="false" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-logic" id="mui-p-92062-T-logic">로직<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
-
-                                                    <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz" tabindex="-1" type="button" role="tab" aria-selected="false" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-setting" id="mui-p-92062-T-setting">설정<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
-                                                </div>
-                                                <span class="MuiTabs-indicator css-eu9d1t" style={{ left: '0px', width: '90px' }}></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr class="MuiDivider-root MuiDivider-fullWidth css-39bbo6" />
-                                    <div class="MuiTabPanel-root css-fb5pz1" role="tabpanel" aria-labelledby="mui-p-92062-T-options" id="mui-p-92062-P-options">
-                                        <div class="MuiBox-root css-0">
-                                            <ul class="MuiList-root MuiList-padding css-18xpdcy">
-                                                <li class="MuiListSubheader-root MuiListSubheader-gutters MuiListSubheader-sticky css-v9lw7v">유형</li>
-                                                <li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-h7s0ss">
-                                                    <div class="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
-                                                        <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1v7g7es">
-
-                                                            <div tabIndex="0" role="button" aria-expanded="false" aria-haspopup='listbox' aria-labelledby="3739285390-field-type" id="3739285390-field-type" class="MuiSelect-select MuiSelect-outlined MuiInputBase-input css-1vfqwq">
-                                                                <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', backgroundColor: 'rgb(239, 248, 255)', padding: '4px 8px', borderRadius: '8px' }}>
-                                                                    <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="#2272AF"></path>
-                                                                    </svg>
-                                                                    <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: 'bold', color: 'rgb(34, 114, 175)', fontSize: '11px', paddingLeft: '8px', textTransform: 'uppercase' }}>단답형</p>
-                                                                </div>
-                                                            </div>
-                                                            <input aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-1k3x8v3" value="SHORT_ANSWER" />
-                                                            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1636szt" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
-                                                                <path d="M7 10l5 5 5-5z"></path>
-                                                            </svg>
+                        <div class="FieldsListDrawer__ColResizer-sc-rlte4u-0 cWIaYp leftColResizer" role="presentation"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="MuiContainer-root MuiContainer-maxWidthLg jss1 css-okglv3">
+                <div tabindex="-1" style={{ outline: 'none' }}>
+                    <div class="MuiBox-root css-0" style={{ display: 'flex', flexDirection: 'column', padding: '40px', gap: '10px', width: '100%', height: '100%' }}>
+                        <div class="MuiBox-root css-kcttjf">
+                            <div class="MuiBox-root css-fxr4xl">
+                                <div class="MuiBox-root css-1szjw0z">
+                                    <div class="MuiBox-root css-0" style={{ width: '100%', gap: '40px', display: 'flex', flexDirection: 'column' }}>
+                                        <div class="MuiBox-root css-1xdhyk6">
+                                            <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontSize: '12px', fontWeight: '400', letterSpacing: '-0.02rem', color: 'rgb(38, 112, 255)', lineHeight: '12px', minHeight: '12px' }}></p>
+                                            <div class="MuiBox-root css-0">
+                                                <div class="MuiGrid-root MuiGrid-container css-onfdyp">
+                                                    <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
+                                                        <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline Mui-focused css-1xxtoyx">
+                                                            <textarea placeholder="질문을 입력해주세요" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" style={{ height: '24px', overflow: 'hidden' }} onChange={handleQuestionChange}></textarea>
+                                                            <textarea aria-hidden="true" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" readonly="" tabindex="-1" style={{ visibility: 'hidden', position: 'absolute', overflow: 'hidden', height: '0px', top: '0px', left: '0px', transform: 'translateZ(0px)', padding: '0px', width: '496px' }}></textarea>
                                                         </div>
                                                     </div>
-                                                </li>
-                                                <li class="MuiListSubheader-root MuiListSubheader-gutters MuiListSubheader-sticky css-v9lw7v">설정</li>
-                                                <li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-h7s0ss">
-                                                    <div class="MuiListItemText-root css-1q9qwbn" id="field-setting-required">
-                                                        <span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1litj1t">필수입력</span>
+                                                    <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
+                                                        <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-lryuv7">
+                                                            <textarea placeholder="(선택 사항) 키워드를 입력하세요" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" style={{ height: '23px', overflow: 'hidden' }}></textarea>
+                                                            <textarea aria-hidden="true" class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18" readonly="" tabindex="-1" style={{ visibility: 'hidden', position: 'absolute', overflow: 'hidden', height: '0px', top: '0px', left: '0px', transform: 'translateZ(0px)', padding: '0px', width: '496px' }}></textarea>
+                                                        </div>
                                                     </div>
-                                                    <span class="MuiSwitch-root MuiSwitch-edgeEnd MuiSwitch-sizeMedium css-11qz5is">
-                                                        <span class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn">
-                                                            <input class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3" type="checkbox" aria-labelledby="field-setting-required" />
-                                                            <span class="MuiSwitch-thumb css-19gndve"></span>
-                                                        </span>
-                                                        <span class="MuiSwitch-track css-1ju1kxc"></span>
-                                                    </span>
-                                                </li>
-                                                <li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-h7s0ss">
-                                                    <div class="MuiListItemText-root css-1q9qwbn" id="field-response-validation-exist">
-                                                        <span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1litj1t">응답확인</span>
-                                                    </div>
-                                                    <span class="MuiSwitch-root MuiSwitch-edgeEnd MuiSwitch-sizeMedium css-11qz5is">
-                                                        <span class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn">
-                                                            <input class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3" type="checkbox" />
-                                                            <span class="MuiSwitch-thumb css-19gndve"></span>
-                                                        </span>
-                                                        <span class="MuiSwitch-track css-1ju1kxc"></span>
-                                                    </span>
-                                                </li>
-                                            </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="MuiBox-root css-1oi2cng">
+                                            <div>
+                                                <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+                                                    <input autocomplete="off" placeholder="응답을 입력하세요" type="text" class="MuiInputBase-input css-mnn31" value="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="MuiBox-root css-1bvc4cc">
+                                            <button class="css-1c3ey53" style={buttonStyle} onMouseEnter={handleHoverEnter} onMouseOut={handleHoverLeave}>
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <mask id="mask0_12070_64088" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24" style={{ maskType: 'alpha' }}>
+                                                        <rect width="24" height="24" fill="#D9D9D9"></rect></mask>
+                                                    <g mask="url(#mask0_12070_64088)">
+                                                        <path d="M10.0001 12.7751L15.5001 7.3001C15.8001 7.0001 16.1668 6.8501 16.6001 6.8501C17.0334 6.8501 17.4001 7.0001 17.7001 7.3001C18.0001 7.6001 18.1501 7.96676 18.1501 8.4001C18.1501 8.83343 18.0001 9.2001 17.7001 9.5001L11.1251 16.1001C10.8084 16.4168 10.4334 16.5751 10.0001 16.5751C9.56676 16.5751 9.19176 16.4168 8.8751 16.1001L6.3001 13.5001C6.0001 13.2001 5.8501 12.8334 5.8501 12.4001C5.8501 11.9668 6.0001 11.6001 6.3001 11.3001C6.6001 11.0001 6.96676 10.8501 7.4001 10.8501C7.83343 10.8501 8.2001 11.0001 8.5001 11.3001L10.0001 12.7751Z" fill="#FFFFFF"></path>
+                                                    </g>
+                                                </svg>
+                                                <p class="MuiTypography-root MuiTypography-body1 css-10q16nc" onClick={handleAddQuestion}>OK</p>
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="MuiTabPanel-root css-fb5pz1" hidden="" role="tabpanel" aria-labelledby="mui-p-92062-T-logic" id="mui-p-92062-P-logic"></div>
-                                    <div class="MuiTabPanel-root css-fb5pz1" hidden="" role="tabpanel" aria-labelledby="mui-p-92062-T-setting" id="mui-p-92062-P-setting"></div>
                                 </div>
-                                <div role="presentation" class="css-c38wi9"></div>
                             </div>
                         </div>
-                        {isAddVisible && (<div role="presentation" class="MuiPopover-root MuiModal-root css-d9kxen">
+                    </div>
+                </div>
+            </div>
+            <div class="MuiDrawer-root MuiDrawer-docked css-ygodwc">
+                <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiDrawer-paper MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight css-1ciwpa8">
+                    <div class="MuiBox-root css-0" style={{ marginTop: '56px', backgroundColor: 'rgb(255, 255, 255)', borderRadius: '2px solid rgb(238, 238, 238)' }}>
+                        <div class="MuiBox-root css-k008qs">
+                            <div class="MuiTabs-root css-1rkpyfd">
+                                <div class="MuiTabs-scroller MuiTabs-fixed css-1anid1y" style={{ overflow: 'hidden', marginBottom: '0px' }}>
+                                    <div aria-label="right-tabs" class="MuiTabs-flexContainer css-k008qs" role="tablist">
+                                        <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary Mui-selected css-1b8ypoz" tabindex="0" type="button" role="tab" aria-selected="true" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-options" id="mui-p-92062-T-options">옵션<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
+
+                                        <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz" tabindex="-1" type="button" role="tab" aria-selected="false" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-logic" id="mui-p-92062-T-logic">로직<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
+
+                                        <button class="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz" tabindex="-1" type="button" role="tab" aria-selected="false" style={{ fontWeight: 'bold', flex: '1 1 0%' }} aria-controls="mui-p-92062-P-setting" id="mui-p-92062-T-setting">설정<span class="MuiTouchRipple-root css-w0pj6f"></span></button>
+                                    </div>
+                                    <span class="MuiTabs-indicator css-eu9d1t" style={{ left: '0px', width: '90px' }}></span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="MuiDivider-root MuiDivider-fullWidth css-39bbo6" />
+                        <div class="MuiTabPanel-root css-fb5pz1" role="tabpanel" aria-labelledby="mui-p-92062-T-options" id="mui-p-92062-P-options">
+                            <div class="MuiBox-root css-0">
+                                <ul class="MuiList-root MuiList-padding css-18xpdcy">
+                                    <li class="MuiListSubheader-root MuiListSubheader-gutters MuiListSubheader-sticky css-v9lw7v">유형</li>
+                                    <li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-h7s0ss">
+                                        <div class="MuiFormControl-root MuiFormControl-fullWidth css-tzsjye">
+                                            <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-1v7g7es">
+
+                                                <div tabIndex="0" role="button" aria-expanded="false" aria-haspopup='listbox' aria-labelledby="3739285390-field-type" id="3739285390-field-type" class="MuiSelect-select MuiSelect-outlined MuiInputBase-input css-1vfqwq">
+                                                    <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', backgroundColor: 'rgb(239, 248, 255)', padding: '4px 8px', borderRadius: '8px' }}>
+                                                        <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="#2272AF"></path>
+                                                        </svg>
+                                                        <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: 'bold', color: 'rgb(34, 114, 175)', fontSize: '11px', paddingLeft: '8px', textTransform: 'uppercase' }}>단답형</p>
+                                                    </div>
+                                                </div>
+                                                <input aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-1k3x8v3" value="SHORT_ANSWER" />
+                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1636szt" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
+                                                    <path d="M7 10l5 5 5-5z"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="MuiListSubheader-root MuiListSubheader-gutters MuiListSubheader-sticky css-v9lw7v">설정</li>
+                                    <li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-h7s0ss">
+                                        <div class="MuiListItemText-root css-1q9qwbn" id="field-setting-required">
+                                            <span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1litj1t">필수입력</span>
+                                        </div>
+                                        <span class="MuiSwitch-root MuiSwitch-edgeEnd MuiSwitch-sizeMedium css-11qz5is">
+                                            <span class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn">
+                                                <input class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3" type="checkbox" aria-labelledby="field-setting-required" />
+                                                <span class="MuiSwitch-thumb css-19gndve"></span>
+                                            </span>
+                                            <span class="MuiSwitch-track css-1ju1kxc"></span>
+                                        </span>
+                                    </li>
+                                    <li class="MuiListItem-root MuiListItem-gutters MuiListItem-padding css-h7s0ss">
+                                        <div class="MuiListItemText-root css-1q9qwbn" id="field-response-validation-exist">
+                                            <span class="MuiTypography-root MuiTypography-body1 MuiListItemText-primary css-1litj1t">응답확인</span>
+                                        </div>
+                                        <span class="MuiSwitch-root MuiSwitch-edgeEnd MuiSwitch-sizeMedium css-11qz5is">
+                                            <span class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn">
+                                                <input class="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3" type="checkbox" />
+                                                <span class="MuiSwitch-thumb css-19gndve"></span>
+                                            </span>
+                                            <span class="MuiSwitch-track css-1ju1kxc"></span>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="MuiTabPanel-root css-fb5pz1" hidden="" role="tabpanel" aria-labelledby="mui-p-92062-T-logic" id="mui-p-92062-P-logic"></div>
+                        <div class="MuiTabPanel-root css-fb5pz1" hidden="" role="tabpanel" aria-labelledby="mui-p-92062-T-setting" id="mui-p-92062-P-setting"></div>
+                    </div>
+                    <div role="presentation" class="css-c38wi9"></div>
+                </div>
+            </div>
+            {isAddVisible && (<div role="presentation" class="MuiPopover-root MuiModal-root css-d9kxen">
                 <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible css-esi9ax" style={{ opacity: '1', transition: 'opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms' }} onClick={handelClickBackdrop}></div>
                 <div tabindex="0" data-testid="sentinelStart"></div>
                 <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper css-1oqb34a" tabIndex="-1" style={{ opacity: '1', transform: 'none', transition: 'opacity 344ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 229ms cubic-bezier(0.4, 0, 0.2, 1) 0ms', top: '72px', left: '253px', transformOrigin: '0px 0px' }}>
@@ -323,7 +374,7 @@ function CreateSurvey() {
                                 <div class="MuiBox-root css-y95sa7">
                                     <div class="MuiBox-root css-j7qwjs">
                                         <div class="MuiBox-root css-5ah26q">TEXT</div>
-                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem' onClick={handleQuestionListAdd}>
+                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem'>
                                             <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
                                                 <div class="MuiBox-root css-ma06kp">
                                                     <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="#2272AF"></path></svg>
@@ -332,7 +383,7 @@ function CreateSurvey() {
                                             </div>
                                             <span class="MuiTouchRipple-root css-w0pj6f"></span>
                                         </li>
-                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem' onClick={handleQuestionListAdd}>
+                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem'>
                                             <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
                                                 <div class="MuiBox-root css-ma06kp">
                                                     <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.33329 9.66665C1.1444 9.66665 0.985959 9.60265 0.857959 9.47465C0.730404 9.34709 0.666626 9.18887 0.666626 8.99998C0.666626 8.81109 0.730404 8.65287 0.857959 8.52532C0.985959 8.39732 1.1444 8.33332 1.33329 8.33332H6.66662C6.85551 8.33332 7.01396 8.39732 7.14196 8.52532C7.26951 8.65287 7.33329 8.81109 7.33329 8.99998C7.33329 9.18887 7.26951 9.34709 7.14196 9.47465C7.01396 9.60265 6.85551 9.66665 6.66662 9.66665H1.33329ZM1.33329 4.33331C1.1444 4.33331 0.985959 4.26931 0.857959 4.14131C0.730404 4.01376 0.666626 3.85554 0.666626 3.66665C0.666626 3.47776 0.730404 3.31931 0.857959 3.19131C0.985959 3.06376 1.1444 2.99998 1.33329 2.99998H10.6666C10.8555 2.99998 11.0137 3.06376 11.1413 3.19131C11.2693 3.31931 11.3333 3.47776 11.3333 3.66665C11.3333 3.85554 11.2693 4.01376 11.1413 4.14131C11.0137 4.26931 10.8555 4.33331 10.6666 4.33331H1.33329ZM1.33329 6.99998C1.1444 6.99998 0.985959 6.93598 0.857959 6.80798C0.730404 6.68043 0.666626 6.5222 0.666626 6.33332C0.666626 6.14443 0.730404 5.98598 0.857959 5.85798C0.985959 5.73043 1.1444 5.66665 1.33329 5.66665H10.6666C10.8555 5.66665 11.0137 5.73043 11.1413 5.85798C11.2693 5.98598 11.3333 6.14443 11.3333 6.33332C11.3333 6.5222 11.2693 6.68043 11.1413 6.80798C11.0137 6.93598 10.8555 6.99998 10.6666 6.99998H1.33329ZM1.33329 1.66665C1.1444 1.66665 0.985959 1.60287 0.857959 1.47531C0.730404 1.34731 0.666626 1.18887 0.666626 0.99998C0.666626 0.811091 0.730404 0.652647 0.857959 0.524647C0.985959 0.397091 1.1444 0.333313 1.33329 0.333313H10.6666C10.8555 0.333313 11.0137 0.397091 11.1413 0.524647C11.2693 0.652647 11.3333 0.811091 11.3333 0.99998C11.3333 1.18887 11.2693 1.34731 11.1413 1.47531C11.0137 1.60287 10.8555 1.66665 10.6666 1.66665H1.33329Z" fill="#2272AF"></path></svg>
@@ -353,7 +404,7 @@ function CreateSurvey() {
                                     </div>
                                     <div class="MuiBox-root css-j7qwjs">
                                         <div class="MuiBox-root css-ic7mip">CHOICES</div>
-                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem' onClick={handleQuestionListAdd}>
+                                        <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x" tabIndex="-1" role='menuitem'>
                                             <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' }}>
                                                 <div class="MuiBox-root css-0" style={{ backgroundColor: 'rgb(230, 235, 253)', display: 'flex', padding: '0px 4px', borderRadius: '8px', width: '24px', height: '24px', justifyContent: 'center', textAlign: 'center', alignItems: 'center' }}>
                                                     <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -463,9 +514,9 @@ function CreateSurvey() {
                     </div>
                 </div>
             )}
-                        </>
-                        
-  );
+        </>
+
+    );
 }
 
 export default CreateSurvey;
