@@ -6237,10 +6237,10 @@ button {
   letter-spacing: -0.01em;
   min-width: 64px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: rgb(38, 112, 255);
+  color: rgb(250, 220, 95);
   width: 100%;
   border-radius: 10px;
-  background-color: rgb(244, 248, 255);
+  background-color: rgb(255, 255, 240);
   padding: 20px 15px;
 }
 
@@ -6273,7 +6273,7 @@ button {
   letter-spacing: -0.01em;
   font-size: 15px;
   font-weight: 700;
-  color: rgb(38, 112, 255);
+  color: rgb(250, 220, 95);
 }
 
 .css-w0pj6f {
