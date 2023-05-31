@@ -12,15 +12,18 @@ function CreateSurvey() {
     const [questionType, setQuestionType] = useState("")
     const [options, setOptions] = useState([])
     const [questions, setQuestions] = useState([])
+    const [textareaValue, setTextareaValue] = useState("");
 
 
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     };
 
-    const handleQuestionChange = (event) => {
-        setQuestion(event.target.value);
-    };
+    const handleQuestionChange = (e) => {
+        const newText = e.target.value; // 입력된 텍스트 값
+        const updatedQuestion = { ...questions[countIndex], text: newText }; // 새로운 question 객체 생성
+        setQuestions([...questions.slice(0, countIndex), updatedQuestion, ...questions.slice(countIndex + 1)]); // 배열을 업데이트하여 새로운 question으로 교체
+      };
 
     const handleQuestionTypeChange = (event) => {
         console.log(event);
@@ -109,9 +112,18 @@ function CreateSurvey() {
     };
 
     const handleSelectList = (index) => {
-        console.log(index)
         setCountIndex(index);
+        setTextareaValue(questions[index].text);
     };
+
+    const handleEditQuestion = (e) => {
+        setTextareaValue(e.target.value);
+        setQuestions((prevQuestions) => {
+          const updatedQuestions = [...prevQuestions];
+          updatedQuestions[countIndex].text = e.target.value;
+          return updatedQuestions;
+        });
+      };
 
 
 
@@ -453,7 +465,12 @@ function CreateSurvey() {
                                                                 placeholder="질문을 입력해주세요"
                                                                 class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18"
                                                                 style={{ height: "24px", overflow: "hidden" }}
-                                                                onChange={handleQuestionChange}
+                                                                onChange={(e) => {
+                                                                    handleQuestionChange(e);
+                                                                    handleEditQuestion(e);
+                                                                }
+                                                                }
+                                                                value={textareaValue}
                                                             ></textarea>
                                                             <textarea
                                                                 aria-hidden="true"
