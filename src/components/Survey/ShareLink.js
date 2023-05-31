@@ -17,7 +17,7 @@ function ShareLink() {
                 <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-md-12 MuiGrid-grid-lg-12 css-we0np1">
                   <div className="MuiBox-root css-0">
                     <p className="MuiTypography-root MuiTypography-body1 css-zuj73s">
-                      <span style={{ color: "rgb(38, 112, 255)" }}>
+                      <span style={{ color: "rgb(250, 200, 0)" }}>
                         새로운 프로젝트{" "}
                       </span>
                       프로젝트를 성공적으로 만들었습니다.
@@ -27,7 +27,7 @@ function ShareLink() {
                 <div className="MuiGrid-root MuiGrid-item MuiGrid-grid-md-8 MuiGrid-grid-lg-12 css-1iqtsvr">
                   <div className="MuiBox-root css-bdnmmq">
                     <p className="MuiTypography-root MuiTypography-body1 css-qisfzi">
-                      https://walla.my/survey/CyjDnGR5L51zKW1aOFB0
+                      설문조사 링크 넣기 https://
                     </p>
                     <div className="MuiBox-root css-149sczi">
                       <button
@@ -83,13 +83,13 @@ function ShareLink() {
                             focusable="false"
                             aria-hidden="true"
                             viewBox="0 0 24 24"
-                            data-testid="QrCode2RoundedIcon"
+                            data-testid="FeedRoundedIcon"
                           >
                             <path d="M15 21h-2v-2h2v2zm-2-7h-2v5h2v-5zm8-2h-2v4h2v-4zm-2-2h-2v2h2v-2zM7 12H5v2h2v-2zm-2-2H3v2h2v-2zm7-5h2V3h-2v2zm-7.5-.5v3h3v-3h-3zM8 9H4c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1zm-3.5 7.5v3h3v-3h-3zM8 21H4c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1zm8.5-16.5v3h3v-3h-3zM20 9h-4c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1zm-1 10v-3h-4v2h2v3h4v-2h-2zm-2-7h-4v2h4v-2zm-4-2H7v2h2v2h2v-2h2v-2zm1-1V7h-2V5h-2v4h4zM6.75 5.25h-1.5v1.5h1.5v-1.5zm0 12h-1.5v1.5h1.5v-1.5zm12-12h-1.5v1.5h1.5v-1.5z"></path>
                           </svg>
                         </span>
                         <p className="MuiTypography-root MuiTypography-body1 css-awn6hr">
-                          QR코드 저장
+                          새로운 설문조사 만들기
                         </p>
                         <span className="MuiTouchRipple-root css-w0pj6f"></span>
                       </button>
@@ -104,13 +104,13 @@ function ShareLink() {
                             focusable="false"
                             aria-hidden="true"
                             viewBox="0 0 24 24"
-                            data-testid="EmailRoundedIcon"
+                            data-testid="PhoneRoundedIcon"
                           >
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path>
                           </svg>
                         </span>
                         <p className="MuiTypography-root MuiTypography-body1 css-awn6hr">
-                          이메일로 공유
+                          나의 설문조사
                         </p>
                         <span className="MuiTouchRipple-root css-w0pj6f"></span>
                       </button>
@@ -132,11 +132,11 @@ function ShareLink() {
                           </svg>
                         </span>
                         <p className="MuiTypography-root MuiTypography-body1 css-awn6hr">
-                          카카오톡 공유
+                          설문조사 참여하기
                         </p>
                         <span className="MuiTouchRipple-root css-w0pj6f"></span>
                       </button>
-                      <button
+                      {/* <button
                         className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-fullWidth  css-h5p8ty"
                         tabIndex="0"
                         type="button"
@@ -156,7 +156,7 @@ function ShareLink() {
                           코드 임베드
                         </p>
                         <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                   {/* <hr class="MuiDivider-root MuiDivider-fullWidth css-12vh8ky" /> */}

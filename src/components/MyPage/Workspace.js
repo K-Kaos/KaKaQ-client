@@ -55,6 +55,9 @@ function Workspace() {
   const [surveyCategory, setSurveyCategory] = useState("");
   const [surveySubject, setSurveySubject] = useState("");
   // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
+  const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
+  const [username, setUsername] = useState(null); // 사용자 이름 저장
+  const [creator, setCreator] = useState('');
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -63,6 +66,112 @@ function Workspace() {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
+    if (LoggedInUser === null) {
+      alert("로그인 후 이용해 주세요");
+      window.location.href = "/login";
+    } else {
+      setWhoLeggedIn(LoggedInUser);
+
+      // 서버로 LoggedInUser 보내기
+      fetch('/api/mypage/userInfo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ user: LoggedInUser })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('서버 응답:', data);
+          setUsername(data.username); // 서버 응답에서 받은 사용자 이름을 state로 저장
+        })
+        .catch(error => console.error('오류 발생:', error));
+
+      // 생성한 설문조사 목록 가져오기
+      fetchCreatedSurveys();
+      // 참가한 설문조사 목록 가져오기
+      fetchParticipatedSurveys();
+    }
+  }, []);
+
+  const [geoData, setgeoData] = useState({
+    userName: "",
+    userEmail: "",
+    userPassword: "",
+  });
+
+  const [userData, setuserData] = useState({
+    latitude: "",
+    longitude: "",
+  });
+
+  function fetchCreatedSurveys() {
+    const email = sessionStorage.getItem('whoLoggedIn');
+    axios.get("/api/mypage/created", {
+      params: {
+        user: email // 로그인한 사용자의 이메일
+      }
+    })
+      .then(function (response) {
+        // 응답 데이터 처리
+        const createdSurveys = response.data;
+        setCreatedSurveys(createdSurveys);
+      })
+      .catch(function (error) {
+        console.log(error);
+        // 에러 처리
+      });
+  }
+  
+  const [participatedSurveys, setParticipatedSurveys] = useState([]);
+  function fetchParticipatedSurveys() {
+    const email = sessionStorage.getItem('whoLoggedIn');
+    axios.get("/api/mypage/participated", {
+      params: {
+        user: email // 로그인한 사용자의 이메일
+      }
+    })
+      .then(function (response) {
+        // 응답 데이터 처리
+        const participatedSurveys = response.data;
+        setParticipatedSurveys(participatedSurveys);
+      })
+      .catch(function (error) {
+        console.log(error);
+        // 에러 처리
+      });
+  }
+
+  const [siData, setsiData] = useState();
+
+  window.addEventListener("load", () => {
+    navigator.geolocation.getCurrentPosition(function (pos) {//현재위치 가져오기
+      setgeoData((prevData) => ({
+        ...prevData,
+        ["latitude"]: pos.coords.latitude,
+        ["longitude"]: pos.coords.longitude,
+      }));
+
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.post("/api/mypage/gps", {//서버에 좌표 주고 시 받아오기
+      latitude: geoData.latitude,
+      longitude: geoData.longitude,
+    }).then(function (response) {
+      setsiData(response.data);
+      console.log(siData);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }, [geoData]);
+
+  const [createdSurveys, setCreatedSurveys] = useState([]);
+
 
   // const handleSurveyCategorySelect = (option) => {
   //   setSurveyCategory(option);
@@ -364,7 +473,7 @@ function Workspace() {
                         }}
                       >
                         <span style={{ fontWeight: "bold", fontSize: "14px" }}>
-                          이서빈이
+                          {username}
                         </span>
                         <span
                           style={{
@@ -372,7 +481,7 @@ function Workspace() {
                             color: "rgb(107, 119, 140)",
                           }}
                         >
-                          leeseobin000709@gmail.com
+                          {whoLoggedIn}
                         </span>
                       </div>
                     </div>
@@ -1182,7 +1291,7 @@ function Workspace() {
                                   required=""
                                   type="text"
                                   className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
-                                  value="이서빈이"
+                                  value={username}
                                   id="mui-120"
                                 />
                               </div>
@@ -1234,7 +1343,7 @@ function Workspace() {
                                   required=""
                                   type="text"
                                   className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel MuiInputBase-readOnly css-10m06oi"
-                                  value="leeseobin000709@gmail.com"
+                                  value={whoLoggedIn}
                                   id="mui-121"
                                 />
                               </div>
@@ -1247,7 +1356,7 @@ function Workspace() {
                           type="button"
                           style={{
                             borderRadius: "12px",
-                            backgroundColor: "rgb(46, 146, 255)",
+                            backgroundColor: "rgb(250, 220, 95)",
                             display: "flex",
                             alignItems: "center",
                             padding: "0px 20px",
