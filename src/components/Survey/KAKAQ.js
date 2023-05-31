@@ -34,6 +34,7 @@ import ShareLink from "./ShareLink";
 import CreateSurvey from "./CreateSurvey";
 import FindRespondent from "./FindRespondent";
 import SurveyResult from "./SurveyResult";
+import axios from "axios";
 
 function KAKAQ() {
   // 설문 데이터
@@ -41,6 +42,12 @@ function KAKAQ() {
   const [question, setQuestion] = useState("");
   const [questionType, setQuestionType] = useState("");
   const [showProfile, setShowProfile] = useState(false);
+
+  const [geoData, setgeoData] = useState({
+    userName: "",
+    userEmail: "",
+    userPassword: "",
+  });
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -124,6 +131,7 @@ function KAKAQ() {
   const handleCloseProfile = () => {
     setShowProfile(false);
   };
+
   const handleQuestionListAdd = () => {
     setListItems((prevItems) => [
       ...prevItems,
@@ -253,7 +261,7 @@ function KAKAQ() {
   const [showShareLink, setShowShareLink] = useState(false);
   const [showFindRespondent, setFindRespondent] = useState(false);
   const [showSurveyResult, setShowSurveyResult] = useState(false);
-  
+
   const handleShowProjectEdit = () => {
     setShowCreateSurvey(true);
     setShowShareLink(false);
@@ -281,6 +289,40 @@ function KAKAQ() {
     setFindRespondent(false);
     setShowSurveyResult(true);
   };
+
+  const [siData, setsiData] = useState();
+
+  window.addEventListener(
+    "load",
+    () => {
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        //현재위치 가져오기
+        setgeoData((prevData) => ({
+          ...prevData,
+          ["latitude"]: pos.coords.latitude,
+          ["longitude"]: pos.coords.longitude,
+        }));
+      });
+    },
+    []
+  );
+
+  useEffect(() => {
+    axios
+      .post("/api/mypage/gps", {
+        //서버에 좌표 주고 시 받아오기
+        latitude: geoData.latitude,
+        longitude: geoData.longitude,
+      })
+      .then(function (response) {
+        setsiData(response.data);
+        console.log(siData);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [geoData]);
+
 
   return (
     <>
@@ -462,7 +504,7 @@ function KAKAQ() {
                   </div>
                   <div class="MuiBox-root css-1txeit4">
                     <div
-                    onClick={handleShowFindRespondent}
+                      onClick={handleShowFindRespondent}
                       class="MuiBox-root css-0"
                       style={{
                         display: "flex",
@@ -507,7 +549,7 @@ function KAKAQ() {
                   </div>
                   <div class="MuiBox-root css-1txeit4">
                     <div
-                    onClick={handleShowSurveyResult}
+                      onClick={handleShowSurveyResult}
                       class="MuiBox-root css-0"
                       style={{
                         display: "flex",
@@ -1031,7 +1073,7 @@ function KAKAQ() {
                     </div>
                 </div>
             )} */}
-            {showProfile && (
+      {showProfile && (
         <div
           role="presentation"
           class="MuiDialog-root MuiModal-root css-126xj0f"
@@ -1218,7 +1260,7 @@ function KAKAQ() {
                           type="file"
                           style={{ display: "none" }}
                         />
-                        <button
+                        {/* <button
                           className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
                           tabIndex="0"
                           type="button"
@@ -1241,7 +1283,7 @@ function KAKAQ() {
                             이미지 바꾸기
                           </span>
                           <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button>
+                        </button> */}
                         <div
                           className="MuiBox-root css-0"
                           style={{ marginBottom: "25px" }}
@@ -1342,7 +1384,59 @@ function KAKAQ() {
                             </div>
                           </div>
                         </div>
-                        <button
+                        <div
+                          className="MuiBox-root css-0"
+                          style={{ marginBottom: "25px" }}
+                        >
+                          <div
+                            className="MuiBox-root css-0"
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            <div
+                              className="MuiBox-root css-0"
+                              style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                gap: "4px",
+                                paddingLeft: "5px",
+                              }}
+                            >
+                              <p
+                                className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                                style={{ fontSize: "14px", lineHeight: "20px" }}
+                              >
+                                위치
+                              </p>
+                            </div>
+                          </div>
+                          <div className="MuiBox-root css-0">
+                            <div
+                              className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx"
+                              readOnly=""
+                            >
+                              <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel MuiInputBase-readOnly css-b4zgsm">
+                                <input
+                                  aria-invalid="false"
+                                  autoComplete="name"
+                                  placeholder={siData}
+                                  readOnly=""
+                                  required=""
+                                  type="text"
+                                  className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel MuiInputBase-readOnly css-10m06oi"
+                                  value={siData}
+                                  id="mui-121"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {/* <button
                           className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
                           tabIndex="0"
                           type="button"
@@ -1364,7 +1458,7 @@ function KAKAQ() {
                             저장하기
                           </span>
                           <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button>
+                        </button> */}
                       </div>
                       <div
                         className="MuiBox-root css-0"

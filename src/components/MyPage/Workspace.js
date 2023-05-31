@@ -57,7 +57,7 @@ function Workspace() {
   // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
-  const [creator, setCreator] = useState('');
+  const [creator, setCreator] = useState("");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -68,7 +68,7 @@ function Workspace() {
   };
 
   useEffect(() => {
-    const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
+    const LoggedInUser = sessionStorage.getItem("whoLoggedIn");
     if (LoggedInUser === null) {
       alert("로그인 후 이용해 주세요");
       window.location.href = "/login";
@@ -76,19 +76,19 @@ function Workspace() {
       setWhoLeggedIn(LoggedInUser);
 
       // 서버로 LoggedInUser 보내기
-      fetch('/api/mypage/userInfo', {
-        method: 'POST',
+      fetch("/api/mypage/userInfo", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user: LoggedInUser })
+        body: JSON.stringify({ user: LoggedInUser }),
       })
-        .then(response => response.json())
-        .then(data => {
-          console.log('서버 응답:', data);
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("서버 응답:", data);
           setUsername(data.username); // 서버 응답에서 받은 사용자 이름을 state로 저장
         })
-        .catch(error => console.error('오류 발생:', error));
+        .catch((error) => console.error("오류 발생:", error));
 
       // 생성한 설문조사 목록 가져오기
       fetchCreatedSurveys();
@@ -109,12 +109,13 @@ function Workspace() {
   });
 
   function fetchCreatedSurveys() {
-    const email = sessionStorage.getItem('whoLoggedIn');
-    axios.get("/api/mypage/created", {
-      params: {
-        user: email // 로그인한 사용자의 이메일
-      }
-    })
+    const email = sessionStorage.getItem("whoLoggedIn");
+    axios
+      .get("/api/mypage/created", {
+        params: {
+          user: email, // 로그인한 사용자의 이메일
+        },
+      })
       .then(function (response) {
         // 응답 데이터 처리
         const createdSurveys = response.data;
@@ -125,15 +126,16 @@ function Workspace() {
         // 에러 처리
       });
   }
-  
+
   const [participatedSurveys, setParticipatedSurveys] = useState([]);
   function fetchParticipatedSurveys() {
-    const email = sessionStorage.getItem('whoLoggedIn');
-    axios.get("/api/mypage/participated", {
-      params: {
-        user: email // 로그인한 사용자의 이메일
-      }
-    })
+    const email = sessionStorage.getItem("whoLoggedIn");
+    axios
+      .get("/api/mypage/participated", {
+        params: {
+          user: email, // 로그인한 사용자의 이메일
+        },
+      })
       .then(function (response) {
         // 응답 데이터 처리
         const participatedSurveys = response.data;
@@ -147,31 +149,38 @@ function Workspace() {
 
   const [siData, setsiData] = useState();
 
-  window.addEventListener("load", () => {
-    navigator.geolocation.getCurrentPosition(function (pos) {//현재위치 가져오기
-      setgeoData((prevData) => ({
-        ...prevData,
-        ["latitude"]: pos.coords.latitude,
-        ["longitude"]: pos.coords.longitude,
-      }));
-
-    });
-  }, []);
+  window.addEventListener(
+    "load",
+    () => {
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        //현재위치 가져오기
+        setgeoData((prevData) => ({
+          ...prevData,
+          ["latitude"]: pos.coords.latitude,
+          ["longitude"]: pos.coords.longitude,
+        }));
+      });
+    },
+    []
+  );
 
   useEffect(() => {
-    axios.post("/api/mypage/gps", {//서버에 좌표 주고 시 받아오기
-      latitude: geoData.latitude,
-      longitude: geoData.longitude,
-    }).then(function (response) {
-      setsiData(response.data);
-      console.log(siData);
-    }).catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .post("/api/mypage/gps", {
+        //서버에 좌표 주고 시 받아오기
+        latitude: geoData.latitude,
+        longitude: geoData.longitude,
+      })
+      .then(function (response) {
+        setsiData(response.data);
+        console.log(siData);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, [geoData]);
 
   const [createdSurveys, setCreatedSurveys] = useState([]);
-
 
   // const handleSurveyCategorySelect = (option) => {
   //   setSurveyCategory(option);
@@ -1226,7 +1235,7 @@ function Workspace() {
                           type="file"
                           style={{ display: "none" }}
                         />
-                        <button
+                        {/* <button
                           className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
                           tabIndex="0"
                           type="button"
@@ -1249,7 +1258,7 @@ function Workspace() {
                             이미지 바꾸기
                           </span>
                           <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button>
+                        </button> */}
                         <div
                           className="MuiBox-root css-0"
                           style={{ marginBottom: "25px" }}
@@ -1350,7 +1359,59 @@ function Workspace() {
                             </div>
                           </div>
                         </div>
-                        <button
+                        <div
+                          className="MuiBox-root css-0"
+                          style={{ marginBottom: "25px" }}
+                        >
+                          <div
+                            className="MuiBox-root css-0"
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            <div
+                              className="MuiBox-root css-0"
+                              style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                gap: "4px",
+                                paddingLeft: "5px",
+                              }}
+                            >
+                              <p
+                                className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                                style={{ fontSize: "14px", lineHeight: "20px" }}
+                              >
+                                위치
+                              </p>
+                            </div>
+                          </div>
+                          <div className="MuiBox-root css-0">
+                            <div
+                              className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx"
+                              readOnly=""
+                            >
+                              <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel MuiInputBase-readOnly css-b4zgsm">
+                                <input
+                                  aria-invalid="false"
+                                  autoComplete="name"
+                                  placeholder={siData}
+                                  readOnly=""
+                                  required=""
+                                  type="text"
+                                  className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel MuiInputBase-readOnly css-10m06oi"
+                                  value={siData}
+                                  id="mui-121"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {/* <button
                           className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
                           tabIndex="0"
                           type="button"
@@ -1372,7 +1433,7 @@ function Workspace() {
                             저장하기
                           </span>
                           <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button>
+                        </button> */}
                       </div>
                       <div
                         className="MuiBox-root css-0"
