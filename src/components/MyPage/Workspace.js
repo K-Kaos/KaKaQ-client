@@ -631,7 +631,102 @@ function Workspace() {
                               </div>
                             </div>
                           </div>
-                          <div
+                          {createdSurveys.map((survey, index) => (
+                            <div
+                              className="MuiBox-root css-0"
+                              style={{ margin: "0px 24px 20px 0px" }}
+                            >
+                              <div
+                                className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
+                                width="265"
+                                minheight="160"
+                              >
+                                <div className="MuiCardContent-root css-67yy9o">
+                                  <div className="MuiBox-root css-1yd9vr8">
+                                    <div
+                                      className="MuiBox-root css-0"
+                                      style={{
+                                        width: "40px",
+                                        height: "40px",
+                                        // backgroundColor: "rgb(239, 249, 255)",
+                                        backgroundColor: "rgb(249 249 196)",
+                                        borderRadius: "40px",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        overflow: "hidden",
+                                      }}
+                                    >
+                                      <span
+                                        style={{
+                                          position: "absolute",
+                                          fontSize: "20px",
+                                        }}
+                                      >
+                                        🙂
+                                      </span>
+                                    </div>
+                                    <button
+                                      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"
+                                      tabIndex="0"
+                                      type="button"
+                                      style={{
+                                        padding: "3px",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        position: "absolute",
+                                        top: "24px",
+                                        right: "24px",
+                                        cursor: "pointer",
+                                      }}
+                                    >
+                                      <svg
+                                        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                                        focusable="false"
+                                        aria-hidden="true"
+                                        viewBox="0 0 24 24"
+                                        data-testid="MoreHorizIcon"
+                                      >
+                                        <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                      </svg>
+                                      <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                                    </button>
+                                  </div>
+
+                                  <div
+                                    className="MuiBox-root css-8atqhb"
+                                    aria-label={survey.title}
+                                  >
+                                    <div className="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                      <input
+                                        readOnly
+                                        type="text"
+                                        className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                        value={survey.title}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="MuiBox-root css-1yd9vr8">
+                                    <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
+                                      {survey.status ? "진행중" : "종료"}
+                                    </p>
+                                    <div
+                                      className="MuiBox-root css-0"
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      <img src="" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                          {/* <div
                             className="MuiBox-root css-0"
                             style={{ margin: "0px 24px 20px 0px" }}
                           >
@@ -692,6 +787,7 @@ function Workspace() {
                                     <span className="MuiTouchRipple-root css-w0pj6f"></span>
                                   </button>
                                 </div>
+
                                 <div
                                   className="MuiBox-root css-8atqhb"
                                   aria-label="새로운 프로젝트"
@@ -814,7 +910,7 @@ function Workspace() {
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                       <div
@@ -830,7 +926,69 @@ function Workspace() {
                           style={{ display: "flex", flexWrap: "wrap" }}
                         >
                           {/* 여기 참여한 설문조사를 띄울것 */}
-                          참여한 설문조사가 추가될 예정입니다.
+                          {participatedSurveys.map((survey, index) => (
+                            <div
+                              className="MuiBox-root css-0"
+                              style={{ margin: "0px 24px 20px 0px" }}
+                            >
+                              <div
+                                className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
+                                width="265"
+                                minheight="160"
+                              >
+                                <div className="MuiCardContent-root css-67yy9o">
+                                  <div className="MuiBox-root css-1yd9vr8">
+                                    <div class="flex items-center gap-x-4 text-xs">
+                                      <div class="text-gray-500">
+                                        {index + 1}
+                                      </div>
+                                      <div class="text-gray-500">
+                                        {survey.status ? "진행중" : "종료"}
+                                        {/* {survey.status} */}
+                                      </div>
+                                    </div>
+                                    <svg
+                                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                                      focusable="false"
+                                      aria-hidden="true"
+                                      viewBox="0 0 24 24"
+                                      data-testid="MoreHorizIcon"
+                                    >
+                                      <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                    </svg>
+                                  </div>
+                                  <div
+                                    className="MuiBox-root css-8atqhb"
+                                    aria-label={survey.title}
+                                  >
+                                    <div className="mt-4 MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                      <input
+                                        readOnly
+                                        type="text"
+                                        className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                        value={survey.title}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="relative mt-8 flex items-center gap-x-4">
+                                    <img
+                                      // src={props.profile}
+                                      alt=""
+                                      class="h-10 w-10 rounded-full bg-gray-50"
+                                    />
+                                    <div class="text-sm leading-6">
+                                      <p class="font-semibold text-gray-900">
+                                        <a href="#">
+                                          <span class="absolute inset-0"></span>
+                                          {/* {props.name} */}
+                                        </a>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
                       <div
