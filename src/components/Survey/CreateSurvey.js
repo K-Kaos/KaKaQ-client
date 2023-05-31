@@ -29,8 +29,6 @@ function CreateSurvey() {
     const handleAddQuestion = (e) => {
         e.preventDefault();
 
-
-
         if (question !== "") {
             const newQuestion = {
                 id: questions.length + 1, // 새로운 질문의 id는 배열 길이 + 1
@@ -166,7 +164,7 @@ function CreateSurvey() {
                                         class="MuiTypography-root MuiTypography-body1 css-qisfzi"
                                         style={{
                                             fontWeight: "bold",
-                                            color: "rgb(34, 114, 175)",
+                                            color: "rgb(250, 200, 0)",
                                             fontSize: "11px",
                                             paddingLeft: "8px",
                                         }}
@@ -181,14 +179,13 @@ function CreateSurvey() {
                                     style={{
                                         minHeight: "40px",
                                         lineHeight: "40px",
-                                        color: "rgb(0, 82, 204",
-                                        fontWeight: "500",
+                                        color: "rgb(250, 200, 0)",
+                                        fontWeight: "600",
                                         fontSize: "14px",
                                         overflow: "hidden",
                                         textOverflow: "ellipsis",
                                         whiteSpace: "nowrap",
-                                        opacity: "0.5",
-                                        fontStyle: "italic",
+                                        opacity: "0.8",
                                     }}
                                 >
                                     {question}
@@ -291,15 +288,15 @@ function CreateSurvey() {
                                                 onMouseEnter={handleMouseEnter}
                                                 onMouseLeave={handleMouseLeave}>
                                                 <div class="MuiListItemIcon-root css-1f8bwsm">
-                                                    <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', backgroundColor: 'rgb(239, 248, 255)', padding: '4px 8px', borderRadius: '8px', justifyContent: 'space-between' }}>
+                                                    <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', backgroundColor: 'rgb(250, 245, 210)', padding: '4px 8px', borderRadius: '8px', justifyContent: 'space-between' }}>
                                                         <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="#2272AF"></path>
+                                                            <path d="M1.33329 1.33333C1.1444 1.33333 0.985959 1.26933 0.857959 1.14133C0.730404 1.01378 0.666626 0.855556 0.666626 0.666667C0.666626 0.477778 0.730404 0.319333 0.857959 0.191333C0.985959 0.0637776 1.1444 0 1.33329 0H10.6666C10.8555 0 11.0137 0.0637776 11.1413 0.191333C11.2693 0.319333 11.3333 0.477778 11.3333 0.666667C11.3333 0.855556 11.2693 1.01378 11.1413 1.14133C11.0137 1.26933 10.8555 1.33333 10.6666 1.33333H1.33329ZM1.33329 4C1.1444 4 0.985959 3.936 0.857959 3.808C0.730404 3.68044 0.666626 3.52222 0.666626 3.33333C0.666626 3.14444 0.730404 2.986 0.857959 2.858C0.985959 2.73044 1.1444 2.66667 1.33329 2.66667H6.66662C6.85551 2.66667 7.01396 2.73044 7.14196 2.858C7.26951 2.986 7.33329 3.14444 7.33329 3.33333C7.33329 3.52222 7.26951 3.68044 7.14196 3.808C7.01396 3.936 6.85551 4 6.66662 4H1.33329Z" fill="rgb(250, 200, 0)"></path>
                                                         </svg>
-                                                        <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: 'bold', color: 'rgb(34, 114, 175)', fontSize: '11px', paddingLeft: '8px' }}>{index}</p>
+                                                        <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ fontWeight: 'bold', color: 'rgb(250, 200, 0)', fontSize: '11px', paddingLeft: '8px' }}>{index}</p>
                                                     </div>
                                                 </div>
                                                 <div class="MuiListItemText-root css-1tsvksn">
-                                                    <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ minHeight: '40px', lineHeight: '40px', color: 'rgb(0, 82, 204', fontWeight: '500', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', opacity: '0.5', fontStyle: 'italic' }}>{question.text}</p>
+                                                    <p class="MuiTypography-root MuiTypography-body1 css-qisfzi" style={{ minHeight: '40px', lineHeight: '40px', color: 'rgb(250, 200, 0)', fontWeight: '500', fontSize: '14px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', opacity: '1' }}>{question.text}</p>
                                                 </div>
                                                 <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk" tabindex="0" type="button" style={{ justifyContent: 'flex-end', background: 'transparent', maxWidth: '20px', maxHeight: '20px', minWidth: '20px', minHeight: '20px', padding: '0px', margin: '0px' }}>
                                                     {showTooltip &&
@@ -514,6 +511,7 @@ function CreateSurvey() {
                                                 style={buttonStyle}
                                                 onMouseEnter={handleHoverEnter}
                                                 onMouseOut={handleHoverLeave}
+                                                onClick={handleAddQuestion}
                                             >
                                                 <svg
                                                     width="24"
@@ -521,6 +519,8 @@ function CreateSurvey() {
                                                     viewBox="0 0 24 24"
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
+                                                    onMouseEnter={handleHoverEnter}
+                                                onMouseOut={handleHoverLeave}
                                                 >
                                                     <mask
                                                         id="mask0_12070_64088"
@@ -530,17 +530,26 @@ function CreateSurvey() {
                                                         width="24"
                                                         height="24"
                                                         style={{ maskType: "alpha" }}
+                                                        onMouseEnter={handleHoverEnter}
+                                                onMouseOut={handleHoverLeave}
                                                     >
-                                                        <rect width="24" height="24" fill="#D9D9D9"></rect>
+                                                        <rect width="24" height="24" fill="#D9D9D9"
+                                                        onMouseEnter={handleHoverEnter}
+                                                        onMouseOut={handleHoverLeave}></rect>
                                                     </mask>
-                                                    <g mask="url(#mask0_12070_64088)">
+                                                    <g mask="url(#mask0_12070_64088)"
+                                                    onMouseEnter={handleHoverEnter}
+                                                    onMouseOut={handleHoverLeave}>
                                                         <path
                                                             d="M10.0001 12.7751L15.5001 7.3001C15.8001 7.0001 16.1668 6.8501 16.6001 6.8501C17.0334 6.8501 17.4001 7.0001 17.7001 7.3001C18.0001 7.6001 18.1501 7.96676 18.1501 8.4001C18.1501 8.83343 18.0001 9.2001 17.7001 9.5001L11.1251 16.1001C10.8084 16.4168 10.4334 16.5751 10.0001 16.5751C9.56676 16.5751 9.19176 16.4168 8.8751 16.1001L6.3001 13.5001C6.0001 13.2001 5.8501 12.8334 5.8501 12.4001C5.8501 11.9668 6.0001 11.6001 6.3001 11.3001C6.6001 11.0001 6.96676 10.8501 7.4001 10.8501C7.83343 10.8501 8.2001 11.0001 8.5001 11.3001L10.0001 12.7751Z"
                                                             fill="#FFFFFF"
+                                                            onMouseEnter={handleHoverEnter}
+                                                onMouseOut={handleHoverLeave}
                                                         ></path>
                                                     </g>
                                                 </svg>
-                                                <p class="MuiTypography-root MuiTypography-body1 css-10q16nc">
+                                                <p class="MuiTypography-root MuiTypography-body1 css-10q16nc" onMouseEnter={handleHoverEnter}
+                                                onMouseOut={handleHoverLeave}>
                                                     OK
                                                 </p>
                                             </button>
