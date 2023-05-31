@@ -2460,12 +2460,12 @@ video {
 
 .css-1pfw34x:hover {
   border-radius: 4px;
-  background-color: rgb(222, 235, 255);
+  background-color: rgba(255, 250, 212, 0.6);
 }
 
 
 .css-ma06kp {
-  background-color: rgb(239, 248, 255);
+  background-color: rgb(250, 245, 210);
   display: flex;
   padding: 0px 4px;
   gap: 10px;
