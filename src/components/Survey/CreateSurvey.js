@@ -41,7 +41,6 @@ function CreateSurvey() {
             setQuestion("");
             setType("");
             setOptions([]);
-
             console.log(questions);
         }
     }
@@ -53,7 +52,7 @@ function CreateSurvey() {
     const [showTooltip, setShowTooltip] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [listItems, setListItems] = useState([]);
-    const [selectedListItem, setSelectedListItem] = useState(null);
+    const [countIndex, setCountIndex] = useState(0);
 
     const showAdd = () => {
         setAddVisible(true);
@@ -108,6 +107,13 @@ function CreateSurvey() {
     const handleHoverLeave = () => {
         setIsHovered(false);
     };
+
+    const handleSelectList = (index) => {
+        console.log(index)
+        setCountIndex(index);
+    };
+
+
 
     const handleQuestionListAdd = () => {
         setListItems((prevItems) => [
@@ -283,10 +289,15 @@ function CreateSurvey() {
                             <div>
                                 {questions.map((question, index) => (
                                     <div tabIndex="0" role="button" aria-describedby="rbd-hidden-text-2-hidden-text-4" data-rbd-drag-handle-draggable-id="draggableItem_3739285390" data-rbd-drag-handle-context-id="2" draggable="false" data-rbd-draggable-context-id="2" data-rbd-draggable-id="draggableItem_3739285390">
-                                        <li key={index} class="MuiListItem-root MuiListItem-gutters css-vvazg8">
-                                            <div class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-qy2th" tabIndex="0" role="button" aria-label={question.text}
+                                        <li key={index} className={`MuiListItem-root MuiListItem-gutters css-vvazg8 ${countIndex === index ? "active" : ""
+                                            }`}>
+                                            <div
+                                                value={index}
+                                                class={`MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters css-qy2th ${countIndex === index ? "active" : ""}`} tabIndex="0" role="button" aria-label={question.text}
                                                 onMouseEnter={handleMouseEnter}
-                                                onMouseLeave={handleMouseLeave}>
+                                                onMouseLeave={handleMouseLeave}
+                                                onClick={() => handleSelectList(index)}
+                                            >
                                                 <div class="MuiListItemIcon-root css-1f8bwsm">
                                                     <div class="MuiBox-root css-0" style={{ display: 'flex', alignItems: 'center', flexDirection: 'row', backgroundColor: 'rgb(250, 245, 210)', padding: '4px 8px', borderRadius: '8px', justifyContent: 'space-between' }}>
                                                         <svg width="12" height="4" viewBox="0 0 12 4" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -520,7 +531,7 @@ function CreateSurvey() {
                                                     fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     onMouseEnter={handleHoverEnter}
-                                                onMouseOut={handleHoverLeave}
+                                                    onMouseOut={handleHoverLeave}
                                                 >
                                                     <mask
                                                         id="mask0_12070_64088"
@@ -531,25 +542,25 @@ function CreateSurvey() {
                                                         height="24"
                                                         style={{ maskType: "alpha" }}
                                                         onMouseEnter={handleHoverEnter}
-                                                onMouseOut={handleHoverLeave}
+                                                        onMouseOut={handleHoverLeave}
                                                     >
                                                         <rect width="24" height="24" fill="#D9D9D9"
-                                                        onMouseEnter={handleHoverEnter}
-                                                        onMouseOut={handleHoverLeave}></rect>
+                                                            onMouseEnter={handleHoverEnter}
+                                                            onMouseOut={handleHoverLeave}></rect>
                                                     </mask>
                                                     <g mask="url(#mask0_12070_64088)"
-                                                    onMouseEnter={handleHoverEnter}
-                                                    onMouseOut={handleHoverLeave}>
+                                                        onMouseEnter={handleHoverEnter}
+                                                        onMouseOut={handleHoverLeave}>
                                                         <path
                                                             d="M10.0001 12.7751L15.5001 7.3001C15.8001 7.0001 16.1668 6.8501 16.6001 6.8501C17.0334 6.8501 17.4001 7.0001 17.7001 7.3001C18.0001 7.6001 18.1501 7.96676 18.1501 8.4001C18.1501 8.83343 18.0001 9.2001 17.7001 9.5001L11.1251 16.1001C10.8084 16.4168 10.4334 16.5751 10.0001 16.5751C9.56676 16.5751 9.19176 16.4168 8.8751 16.1001L6.3001 13.5001C6.0001 13.2001 5.8501 12.8334 5.8501 12.4001C5.8501 11.9668 6.0001 11.6001 6.3001 11.3001C6.6001 11.0001 6.96676 10.8501 7.4001 10.8501C7.83343 10.8501 8.2001 11.0001 8.5001 11.3001L10.0001 12.7751Z"
                                                             fill="#FFFFFF"
                                                             onMouseEnter={handleHoverEnter}
-                                                onMouseOut={handleHoverLeave}
+                                                            onMouseOut={handleHoverLeave}
                                                         ></path>
                                                     </g>
                                                 </svg>
                                                 <p class="MuiTypography-root MuiTypography-body1 css-10q16nc" onMouseEnter={handleHoverEnter}
-                                                onMouseOut={handleHoverLeave}>
+                                                    onMouseOut={handleHoverLeave}>
                                                     OK
                                                 </p>
                                             </button>

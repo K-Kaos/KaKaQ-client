@@ -1376,12 +1376,18 @@ video {
   transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   padding: 0px 10px;
   border-radius: 3px;
-  background-color: rgb(255 255 255);
+  background-color: transparent;
+
 }
 
 .css-qy2th:hover {
   text-decoration: none;
   background-color: rgba(255, 250, 212, 0.6);
+}
+
+.MuiListItem-root.MuiListItem-gutters.active {
+  text-decoration: none;
+  background-color: rgba(255, 250, 212, 0.6) !important;
 }
 
 .css-1f8bwsm {
@@ -4999,6 +5005,10 @@ ul {
   width: 100%;
   box-sizing: border-box;
   text-align: left;
+}
+
+.css-vvazg8:active {
+  background-color: rgb(255, 250, 212, 0.6)
 }
 
 .css-1nvso38 {
