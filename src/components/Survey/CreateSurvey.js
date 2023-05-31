@@ -9,7 +9,7 @@ import SurveyCompletion from "./SurveyCompletion";
 function CreateSurvey() {
     const [title, setTitle] = useState("");
     const [question, setQuestion] = useState("");
-    const [type, setType] = useState("")
+    const [questionType, setQuestionType] = useState("")
     const [options, setOptions] = useState([])
     const [questions, setQuestions] = useState([])
 
@@ -22,8 +22,8 @@ function CreateSurvey() {
         setQuestion(event.target.value);
     };
 
-    const handleQuestionTypeChange = (type) => {
-        setQuestion(type);
+    const handleQuestionTypeChange = (event) => {
+        console.log(event);
     };
 
     const handleAddQuestion = (e) => {
@@ -33,13 +33,13 @@ function CreateSurvey() {
             const newQuestion = {
                 id: questions.length + 1, // 새로운 질문의 id는 배열 길이 + 1
                 text: question,
-                type: type,
+                type: questionType,
                 options: options,
             };
 
             setQuestions([...questions, newQuestion]);
             setQuestion("");
-            setType("");
+            setQuestionType("");
             setOptions([]);
             console.log(questions);
         }
@@ -475,7 +475,7 @@ function CreateSurvey() {
                                                         </div>
                                                     </div>
                                                     <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-15j76c0">
-                                                        <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-lryuv7">
+                                                        {/* <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-multiline css-lryuv7">
                                                             <textarea
                                                                 placeholder="(선택 사항) 키워드를 입력하세요"
                                                                 class="MuiInputBase-input MuiInputBase-inputMultiline css-10oer18"
@@ -498,7 +498,7 @@ function CreateSurvey() {
                                                                     width: "496px",
                                                                 }}
                                                             ></textarea>
-                                                        </div>
+                                                        </div> */}
                                                     </div>
                                                 </div>
                                             </div>
@@ -801,7 +801,12 @@ function CreateSurvey() {
                                                 class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x"
                                                 tabIndex="-1"
                                                 role="menuitem"
-                                                onClick={handleQuestionListAdd}
+                                                value="서술형"
+                                                onClick={() => {
+                                                    handleQuestionTypeChange("서술형");
+                                                    setQuestions([...questions, "서술형 질문을 입력해주세요."])
+                                                    setCountIndex(questions.length);
+                                                }}
                                             >
                                                 <div
                                                     class="MuiBox-root css-0"
@@ -935,7 +940,12 @@ function CreateSurvey() {
                                                 class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x"
                                                 tabIndex="-1"
                                                 role="menuitem"
-                                                onClick={handleQuestionListAdd}
+                                                value="객관식"
+                                                onClick={() => {
+                                                    handleQuestionTypeChange("객관식");
+                                                    setQuestions([...questions, "객관식 질문을 입력해주세요."])
+                                                    setCountIndex(questions.length);
+                                                }}
                                             >
                                                 <div
                                                     class="MuiBox-root css-0"
@@ -992,6 +1002,12 @@ function CreateSurvey() {
                                                 class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1pfw34x"
                                                 tabIndex="-1"
                                                 role="menuitem"
+                                                value="찬부식"
+                                                onClick={() => {
+                                                    handleQuestionTypeChange("찬부식");
+                                                    setQuestions([...questions, "찬부식 질문을 입력해주세요."])
+                                                    setCountIndex(questions.length);
+                                                }}
                                             >
                                                 <div
                                                     class="MuiBox-root css-0"
