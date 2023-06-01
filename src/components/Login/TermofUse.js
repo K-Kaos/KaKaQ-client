@@ -126,7 +126,9 @@ function TermofUseForm() {
                                 </div>
                             </section>
                             <div className="mt-10">
-                                <button type="submit" className={`block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${!(isData.checkOne && isData.checkTwo && isData.checkThree) ? 'disabled' : ''}`}>
+                                <button type="submit" className={`block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 
+                                ${!(isData.checkOne && isData.checkTwo && isData.checkThree) ? 'disabled' : ''}`}
+                                style={{ backgroundColor: !(checkOne == true && checkTwo == true && checkThree == true) ? '#ccc' : 'rgb(250, 220, 95)' }} >
                                     회원가입</button>
                             </div>
                         </div>

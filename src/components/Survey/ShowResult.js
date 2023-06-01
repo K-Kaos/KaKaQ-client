@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
 
-function SurveyResult() {
+function ShowResult() {
   const [surveyCategory, setSurveyCategory] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   
@@ -85,110 +85,6 @@ function SurveyResult() {
                         응답 확인하기
                         <span className="MuiTouchRipple-root css-w0pj6f"></span>
                       </button>
-                      {/* <button
-                        className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz"
-                        tabIndex="-1"
-                        type="button"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="mui-p-29865-P-WallaSheet"
-                        id="mui-p-29865-T-WallaSheet"
-                      >
-                        유형별 결과보기
-                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                      </button>
-                      <button
-                        className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz"
-                        tabIndex="-1"
-                        type="button"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="mui-p-29865-P-WallaSheet"
-                        id="mui-p-29865-T-WallaSheet"
-                      >
-                        응답 시트
-                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                      </button>
-                      <button
-                        className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz"
-                        tabIndex="-1"
-                        type="button"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="mui-p-29865-P-Reward"
-                        id="mui-p-29865-T-Reward"
-                      >
-                        <div className="css-1ijwczz">
-                          <span>Reward</span>
-                          <div
-                            className="MuiBox-root css-0"
-                            style={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            <div
-                              className="MuiBox-root css-0"
-                              style={{
-                                width: "40px",
-                                height: "20px",
-                                borderRadius: "6px",
-                                backgroundColor: "rgb(240, 253, 230)",
-                                fontSize: "10px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                color: "rgb(84, 172, 15)",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              New
-                            </div>
-                          </div>
-                        </div>
-                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                      </button>
-                      <button
-                        className="MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz"
-                        tabIndex="-1"
-                        type="button"
-                        role="tab"
-                        aria-selected="false"
-                        aria-controls="mui-p-29865-P-AiLab"
-                        id="mui-p-29865-T-AiLab"
-                      >
-                        <div className="css-1ijwczz">
-                          <span>AI Lab</span>
-                          <div
-                            className="MuiBox-root css-0"
-                            style={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                            }}
-                          >
-                            <div
-                              className="MuiBox-root css-0"
-                              style={{
-                                width: "40px",
-                                height: "20px",
-                                borderRadius: "6px",
-                                backgroundColor: "rgb(240, 253, 230)",
-                                fontSize: "10px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                color: "rgb(84, 172, 15)",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              New
-                            </div>
-                          </div>
-                        </div>
-                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                      </button> */}
                     </div>
                     <span
                       className="MuiTabs-indicator css-eu9d1t"
@@ -367,25 +263,6 @@ function SurveyResult() {
                             </div>
                           </div>
                         </div></div>
-                        {/* <button
-                          className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1y1p9da"
-                          tabIndex="0"
-                          type="button"
-                        >
-                          <span className="MuiButton-startIcon MuiButton-iconSizeMedium css-6xugel">
-                            <svg
-                              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv"
-                              focusable="false"
-                              aria-hidden="true"
-                              viewBox="0 0 24 24"
-                              data-testid="SearchIcon"
-                            >
-                              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                            </svg>
-                          </span>
-                          조회하기
-                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button> */}
                         <button
                           className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1y1p9da"
                           tabIndex="0"
@@ -435,66 +312,6 @@ function SurveyResult() {
                             <div className="tremor-Flex-root flex w-full flex-row justify-start items-baseline truncate space-x-3">
                               <p className="text-gray-700 text-3xl font-semibold">
                                 3
-                              </p>
-                            </div>
-                          </div>
-                          <div className="tremor-Card-root relative w-full text-left ring-1 bg-white shadow border-blue-500 ring-gray-200 p-6 rounded-lg">
-                            <div className="tremor-Flex-root flex w-full flex-row justify-between items-start">
-                              <p className="text-gray-500 text-sm font-normal">
-                                시작 수
-                              </p>
-                              <span className="tremor-BadgeDelta-root w-max flex-shrink-0 inline-flex justify-center items-center cursor-default rounded-full bg-emerald-100 text-emerald-700 px-2.5 py-0.5 text-sm">
-                                <svg
-                                  className="tremor-BadgeDelta-icon -ml-1 mr-1.5 w-4"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  viewBox="0 0 24 24"
-                                  width="24"
-                                  height="24"
-                                >
-                                  <path fill="none" d="M0 0h24v24H0z"></path>
-                                  <path
-                                    fill="currentColor"
-                                    d="M16.004 9.414l-8.607 8.607-1.414-1.414L14.589 8H7.004V6h11v11h-2V9.414z"
-                                  ></path>
-                                </svg>
-                                <p className="tremor-BadgeDelta-text text-sm whitespace-nowrap">
-                                  0%
-                                </p>
-                              </span>
-                            </div>
-                            <div className="tremor-Flex-root flex w-full flex-row justify-start items-baseline truncate space-x-3">
-                              <p className="text-gray-700 text-3xl font-semibold">
-                                1
-                              </p>
-                            </div>
-                          </div>
-                          <div className="tremor-Card-root relative w-full text-left ring-1 bg-white shadow border-blue-500 ring-gray-200 p-6 rounded-lg">
-                            <div className="tremor-Flex-root flex w-full flex-row justify-between items-start">
-                              <p className="text-gray-500 text-sm font-normal">
-                                완료 수
-                              </p>
-                              <span className="tremor-BadgeDelta-root w-max flex-shrink-0 inline-flex justify-center items-center cursor-default rounded-full bg-emerald-100 text-emerald-700 px-2.5 py-0.5 text-sm">
-                                <svg
-                                  className="tremor-BadgeDelta-icon -ml-1 mr-1.5 w-4"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  viewBox="0 0 24 24"
-                                  width="24"
-                                  height="24"
-                                >
-                                  <path fill="none" d="M0 0h24v24H0z"></path>
-                                  <path
-                                    fill="currentColor"
-                                    d="M16.004 9.414l-8.607 8.607-1.414-1.414L14.589 8H7.004V6h11v11h-2V9.414z"
-                                  ></path>
-                                </svg>
-                                <p className="tremor-BadgeDelta-text text-sm whitespace-nowrap">
-                                  0%
-                                </p>
-                              </span>
-                            </div>
-                            <div className="tremor-Flex-root flex w-full flex-row justify-start items-baseline truncate space-x-3">
-                              <p className="text-gray-700 text-3xl font-semibold">
-                                0
                               </p>
                             </div>
                           </div>
@@ -1081,52 +898,6 @@ function SurveyResult() {
                                     </div>
                                   </div>
                                 </li>
-                                {/* <li className="tremor-ListItem-root w-full flex justify-between items-center truncate tabular-nums py-2 text-sm">
-                                  <div className="w-full py-3">
-                                    <p className="text-gray-500 text-sm font-normal">
-                                      이탈률
-                                    </p>
-                                    <div className="flex justify-between">
-                                      <div className="tremor-ProgressBar-root flex items-center w-full">
-                                        <div className="tremor-ProgressBar-progressBarWrapper relative flex items-center w-full bg-blue-100 h-2 rounded-lg">
-                                          <div
-                                            className="tremor-ProgressBar-progressBar bg-blue-500 flex-col h-full rounded-lg"
-                                            style={{
-                                              width: "100%",
-                                              transition: "all 2s ease 0s",
-                                            }}
-                                          ></div>
-                                        </div>
-                                        <div className="tremor-ProgressBar-labelWrapper w-16 truncate text-right text-gray-700 ml-2">
-                                          <p className="tremor-ProgressBar-label shrink-0 whitespace-nowrap truncate text-sm font-normal">
-                                            100%
-                                          </p>
-                                        </div>
-                                      </div>
-                                      <span className="tremor-BadgeDelta-root w-max flex-shrink-0 inline-flex justify-center items-center cursor-default rounded-full bg-emerald-100 text-emerald-700 px-2.5 py-0.5 text-sm ml-10">
-                                        <svg
-                                          className="tremor-BadgeDelta-icon -ml-1 mr-1.5 w-4"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          viewBox="0 0 24 24"
-                                          width="24"
-                                          height="24"
-                                        >
-                                          <path
-                                            fill="none"
-                                            d="M0 0h24v24H0z"
-                                          ></path>
-                                          <path
-                                            fill="currentColor"
-                                            d="M16.004 9.414l-8.607 8.607-1.414-1.414L14.589 8H7.004V6h11v11h-2V9.414z"
-                                          ></path>
-                                        </svg>
-                                        <p className="tremor-BadgeDelta-text text-sm whitespace-nowrap">
-                                          0%
-                                        </p>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </li> */}
                               </ul>
                             </div>
                           </div>
@@ -1144,4 +915,4 @@ function SurveyResult() {
   );
 }
 
-export default SurveyResult;
+export default ShowResult;

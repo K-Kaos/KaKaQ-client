@@ -363,7 +363,7 @@ function Home(props) {
                     "--framer-font-family": '"Manrope", sans-serif',
                     "--framer-line-height": "1.5em",
                     "--framer-text-color":
-                      "var(--token-81c88cf7-3b7f-4171-9140-39d2c84ed790, rgb(61, 161, 255))",
+                      "var(--token-81c88cf7-3b7f-4171-9140-39d2c84ed790, #FADC5F)",
                     "--framer-text-transform": "uppercase",
                   }}
                 >
@@ -547,11 +547,11 @@ function Home(props) {
                         style={{ opacity: "1" }}
                       >
                         <video
-                          src="https://framerusercontent.com/modules/assets/YtkdZAcVa9tOLn12W7DHtVyr8U~yyEgGRxwzx4wuNxIW96GnOx2UsZ58t-4JYr3kt4dT18.mp4"
+                          src="#"
                           loop
                           autoPlay
                           playsInline
-                          poster="https://framerusercontent.com/images/7Vx6X1mWwSPwgdt1Geh6Ko1rMSU.png?scale-down-to=4096"
+                          poster="#"
                           style={{
                             width: "100%",
                             height: "100%",
@@ -586,7 +586,9 @@ function Home(props) {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             // xmlns:xlink="http://www.w3.org/1999/xlink"
-                            style={{ width: "100%", height: "100%" }}
+                            style={{
+                              gap:"200px", 
+                              width: "100%", height: "100%" }}
                             viewBox="0 0 1000 30"
                             preserveAspectRatio="none"
                             width="100%"
@@ -601,6 +603,7 @@ function Home(props) {
                         className="framer-xidi4j"
                         data-projection-id="2464"
                         style={{
+                          gap:"200px",
                           imageRendering: "pixelated",
                           flexShrink: 0,
                           fill: "rgb(0, 0, 0)",
@@ -643,6 +646,7 @@ function Home(props) {
               data-framer-appear-id="m2ii2j"
               data-projection-id="521"
               style={{
+                paddingTop: "150px",
                 opacity: 1,
                 transform: "perspective(1200px)",
               }}
@@ -702,13 +706,16 @@ function Home(props) {
                     tabIndex="0"
                     data-projection-id="527"
                     style={{
+                      "gap":"250px",
+                      "marginTop": "80px",
+                      "marginBottom" : "80px",
                       "--border-bottom-width": "0px",
                       "--border-color": "rgba(0, 0, 0, 0)",
                       "--border-left-width": "0px",
                       "--border-right-width": "0px",
                       "--border-style": "solid",
                       "--border-top-width": "0px",
-                      backgroundColor: "rgb(44, 174, 255)",
+                      backgroundColor: "#FADC5F",
                       filter: "brightness(1)",
                       borderRadius: "12px",
                       opacity: 1,
@@ -754,6 +761,7 @@ function Home(props) {
                 </div>
               </div>
             </div>
+            <GuideIntro/>
             <div
               class="framer-11q8487"
               data-framer-component-type="RichTextContainer"
@@ -799,7 +807,7 @@ function Home(props) {
                           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
                             Seobin Lee
                           </h3>
-                          <p className="text-base font-semibold leading-6 text-indigo-600">
+                          <p className="text-base font-semibold leading-6 " style={{color:"#FADC5F"}}>
                             PM / Front-end
                           </p>
                         </div>
@@ -825,7 +833,7 @@ function Home(props) {
                           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
                             Soyeon You{" "}
                           </h3>
-                          <p className="text-base font-semibold leading-6 text-indigo-600">
+                          <p className="text-base font-semibold leading-6 " style={{color:"#FADC5F"}}>
                             Database
                           </p>
                         </div>
@@ -851,7 +859,7 @@ function Home(props) {
                           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
                             Sohyun Lee
                           </h3>
-                          <p className="text-base font-semibold leading-6 text-indigo-600">
+                          <p className="text-base font-semibold leading-6 " style={{color:"#FADC5F"}}>
                             Back-end
                           </p>
                         </div>
@@ -877,7 +885,7 @@ function Home(props) {
                           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
                             Jueun Yoon
                           </h3>
-                          <p className="text-base font-semibold leading-6 text-indigo-600">
+                          <p className="text-base font-semibold leading-6 " style={{color:"#FADC5F"}}>
                             Front-end
                           </p>
                         </div>
@@ -903,7 +911,7 @@ function Home(props) {
                           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
                             Yekyeong Jang
                           </h3>
-                          <p className="text-base font-semibold leading-6 text-indigo-600">
+                          <p className="text-base font-semibold leading-6 " style={{color:"#FADC5F"}}>
                             Back-end
                           </p>
                         </div>
