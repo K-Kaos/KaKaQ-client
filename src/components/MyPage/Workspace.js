@@ -57,7 +57,7 @@ function Workspace() {
   // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
-  const [creator, setCreator] = useState('');
+  const [creator, setCreator] = useState("");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -68,7 +68,7 @@ function Workspace() {
   };
 
   useEffect(() => {
-    const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
+    const LoggedInUser = sessionStorage.getItem("whoLoggedIn");
     if (LoggedInUser === null) {
       alert("로그인 후 이용해 주세요");
       window.location.href = "/login";
@@ -76,19 +76,19 @@ function Workspace() {
       setWhoLeggedIn(LoggedInUser);
 
       // 서버로 LoggedInUser 보내기
-      fetch('/api/mypage/userInfo', {
-        method: 'POST',
+      fetch("/api/mypage/userInfo", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user: LoggedInUser })
+        body: JSON.stringify({ user: LoggedInUser }),
       })
-        .then(response => response.json())
-        .then(data => {
-          console.log('서버 응답:', data);
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("서버 응답:", data);
           setUsername(data.username); // 서버 응답에서 받은 사용자 이름을 state로 저장
         })
-        .catch(error => console.error('오류 발생:', error));
+        .catch((error) => console.error("오류 발생:", error));
 
       // 생성한 설문조사 목록 가져오기
       fetchCreatedSurveys();
@@ -109,12 +109,13 @@ function Workspace() {
   });
 
   function fetchCreatedSurveys() {
-    const email = sessionStorage.getItem('whoLoggedIn');
-    axios.get("/api/mypage/created", {
-      params: {
-        user: email // 로그인한 사용자의 이메일
-      }
-    })
+    const email = sessionStorage.getItem("whoLoggedIn");
+    axios
+      .get("/api/mypage/created", {
+        params: {
+          user: email, // 로그인한 사용자의 이메일
+        },
+      })
       .then(function (response) {
         // 응답 데이터 처리
         const createdSurveys = response.data;
@@ -125,15 +126,16 @@ function Workspace() {
         // 에러 처리
       });
   }
-  
+
   const [participatedSurveys, setParticipatedSurveys] = useState([]);
   function fetchParticipatedSurveys() {
-    const email = sessionStorage.getItem('whoLoggedIn');
-    axios.get("/api/mypage/participated", {
-      params: {
-        user: email // 로그인한 사용자의 이메일
-      }
-    })
+    const email = sessionStorage.getItem("whoLoggedIn");
+    axios
+      .get("/api/mypage/participated", {
+        params: {
+          user: email, // 로그인한 사용자의 이메일
+        },
+      })
       .then(function (response) {
         // 응답 데이터 처리
         const participatedSurveys = response.data;
@@ -147,31 +149,38 @@ function Workspace() {
 
   const [siData, setsiData] = useState();
 
-  window.addEventListener("load", () => {
-    navigator.geolocation.getCurrentPosition(function (pos) {//현재위치 가져오기
-      setgeoData((prevData) => ({
-        ...prevData,
-        ["latitude"]: pos.coords.latitude,
-        ["longitude"]: pos.coords.longitude,
-      }));
-
-    });
-  }, []);
+  window.addEventListener(
+    "load",
+    () => {
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        //현재위치 가져오기
+        setgeoData((prevData) => ({
+          ...prevData,
+          ["latitude"]: pos.coords.latitude,
+          ["longitude"]: pos.coords.longitude,
+        }));
+      });
+    },
+    []
+  );
 
   useEffect(() => {
-    axios.post("/api/mypage/gps", {//서버에 좌표 주고 시 받아오기
-      latitude: geoData.latitude,
-      longitude: geoData.longitude,
-    }).then(function (response) {
-      setsiData(response.data);
-      console.log(siData);
-    }).catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .post("/api/mypage/gps", {
+        //서버에 좌표 주고 시 받아오기
+        latitude: geoData.latitude,
+        longitude: geoData.longitude,
+      })
+      .then(function (response) {
+        setsiData(response.data);
+        console.log(siData);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }, [geoData]);
 
   const [createdSurveys, setCreatedSurveys] = useState([]);
-
 
   // const handleSurveyCategorySelect = (option) => {
   //   setSurveyCategory(option);
@@ -622,7 +631,102 @@ function Workspace() {
                               </div>
                             </div>
                           </div>
-                          <div
+                          {createdSurveys.map((survey, index) => (
+                            <div
+                              className="MuiBox-root css-0"
+                              style={{ margin: "0px 24px 20px 0px" }}
+                            >
+                              <div
+                                className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
+                                width="265"
+                                minheight="160"
+                              >
+                                <div className="MuiCardContent-root css-67yy9o">
+                                  <div className="MuiBox-root css-1yd9vr8">
+                                    <div
+                                      className="MuiBox-root css-0"
+                                      style={{
+                                        width: "40px",
+                                        height: "40px",
+                                        // backgroundColor: "rgb(239, 249, 255)",
+                                        backgroundColor: "rgb(249 249 196)",
+                                        borderRadius: "40px",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        overflow: "hidden",
+                                      }}
+                                    >
+                                      <span
+                                        style={{
+                                          position: "absolute",
+                                          fontSize: "20px",
+                                        }}
+                                      >
+                                        🙂
+                                      </span>
+                                    </div>
+                                    <button
+                                      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"
+                                      tabIndex="0"
+                                      type="button"
+                                      style={{
+                                        padding: "3px",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        position: "absolute",
+                                        top: "24px",
+                                        right: "24px",
+                                        cursor: "pointer",
+                                      }}
+                                    >
+                                      <svg
+                                        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                                        focusable="false"
+                                        aria-hidden="true"
+                                        viewBox="0 0 24 24"
+                                        data-testid="MoreHorizIcon"
+                                      >
+                                        <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                      </svg>
+                                      <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                                    </button>
+                                  </div>
+
+                                  <div
+                                    className="MuiBox-root css-8atqhb"
+                                    aria-label={survey.title}
+                                  >
+                                    <div className="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                      <input
+                                        readOnly
+                                        type="text"
+                                        className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                        value={survey.title}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="MuiBox-root css-1yd9vr8">
+                                    <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
+                                      {survey.status ? "진행중" : "종료"}
+                                    </p>
+                                    <div
+                                      className="MuiBox-root css-0"
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      <img src="" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                          {/* <div
                             className="MuiBox-root css-0"
                             style={{ margin: "0px 24px 20px 0px" }}
                           >
@@ -683,6 +787,7 @@ function Workspace() {
                                     <span className="MuiTouchRipple-root css-w0pj6f"></span>
                                   </button>
                                 </div>
+
                                 <div
                                   className="MuiBox-root css-8atqhb"
                                   aria-label="새로운 프로젝트"
@@ -805,7 +910,7 @@ function Workspace() {
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                       <div
@@ -821,7 +926,69 @@ function Workspace() {
                           style={{ display: "flex", flexWrap: "wrap" }}
                         >
                           {/* 여기 참여한 설문조사를 띄울것 */}
-                          참여한 설문조사가 추가될 예정입니다.
+                          {participatedSurveys.map((survey, index) => (
+                            <div
+                              className="MuiBox-root css-0"
+                              style={{ margin: "0px 24px 20px 0px" }}
+                            >
+                              <div
+                                className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
+                                width="265"
+                                minheight="160"
+                              >
+                                <div className="MuiCardContent-root css-67yy9o">
+                                  <div className="MuiBox-root css-1yd9vr8">
+                                    <div class="flex items-center gap-x-4 text-xs">
+                                      <div class="text-gray-500">
+                                        {index + 1}
+                                      </div>
+                                      <div class="text-gray-500">
+                                        {survey.status ? "진행중" : "종료"}
+                                        {/* {survey.status} */}
+                                      </div>
+                                    </div>
+                                    <svg
+                                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                                      focusable="false"
+                                      aria-hidden="true"
+                                      viewBox="0 0 24 24"
+                                      data-testid="MoreHorizIcon"
+                                    >
+                                      <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                    </svg>
+                                  </div>
+                                  <div
+                                    className="MuiBox-root css-8atqhb"
+                                    aria-label={survey.title}
+                                  >
+                                    <div className="mt-4 MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                      <input
+                                        readOnly
+                                        type="text"
+                                        className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                        value={survey.title}
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="relative mt-8 flex items-center gap-x-4">
+                                    <img
+                                      // src={props.profile}
+                                      alt=""
+                                      class="h-10 w-10 rounded-full bg-gray-50"
+                                    />
+                                    <div class="text-sm leading-6">
+                                      <p class="font-semibold text-gray-900">
+                                        <a href="#">
+                                          <span class="absolute inset-0"></span>
+                                          {/* {props.name} */}
+                                        </a>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
                       <div
@@ -1226,7 +1393,7 @@ function Workspace() {
                           type="file"
                           style={{ display: "none" }}
                         />
-                        <button
+                        {/* <button
                           className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
                           tabIndex="0"
                           type="button"
@@ -1249,7 +1416,7 @@ function Workspace() {
                             이미지 바꾸기
                           </span>
                           <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button>
+                        </button> */}
                         <div
                           className="MuiBox-root css-0"
                           style={{ marginBottom: "25px" }}
@@ -1350,7 +1517,59 @@ function Workspace() {
                             </div>
                           </div>
                         </div>
-                        <button
+                        <div
+                          className="MuiBox-root css-0"
+                          style={{ marginBottom: "25px" }}
+                        >
+                          <div
+                            className="MuiBox-root css-0"
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                              marginBottom: "10px",
+                            }}
+                          >
+                            <div
+                              className="MuiBox-root css-0"
+                              style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                                gap: "4px",
+                                paddingLeft: "5px",
+                              }}
+                            >
+                              <p
+                                className="MuiTypography-root MuiTypography-body1 css-qisfzi"
+                                style={{ fontSize: "14px", lineHeight: "20px" }}
+                              >
+                                위치
+                              </p>
+                            </div>
+                          </div>
+                          <div className="MuiBox-root css-0">
+                            <div
+                              className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx"
+                              readOnly=""
+                            >
+                              <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel MuiInputBase-readOnly css-b4zgsm">
+                                <input
+                                  aria-invalid="false"
+                                  autoComplete="name"
+                                  placeholder={siData}
+                                  readOnly=""
+                                  required=""
+                                  type="text"
+                                  className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel MuiInputBase-readOnly css-10m06oi"
+                                  value={siData}
+                                  id="mui-121"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {/* <button
                           className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
                           tabIndex="0"
                           type="button"
@@ -1372,7 +1591,7 @@ function Workspace() {
                             저장하기
                           </span>
                           <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button>
+                        </button> */}
                       </div>
                       <div
                         className="MuiBox-root css-0"
