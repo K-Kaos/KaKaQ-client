@@ -23,14 +23,18 @@ function CreateSurvey() {
         const newText = e.target.value; // 입력된 텍스트 값
         const updatedQuestion = { ...questions[countIndex], text: newText }; // 새로운 question 객체 생성
         setQuestions([...questions.slice(0, countIndex), updatedQuestion, ...questions.slice(countIndex + 1)]); // 배열을 업데이트하여 새로운 question으로 교체
+
+        console.log(questions);
       };
 
     const handleQuestionTypeChange = (event) => {
-        console.log(event);
+        setQuestionType(event);
     };
 
     const handleAddQuestion = (e) => {
         e.preventDefault();
+
+        setTextareaValue("");
 
         if (question !== "") {
             const newQuestion = {
@@ -821,8 +825,9 @@ function CreateSurvey() {
                                                 value="서술형"
                                                 onClick={() => {
                                                     handleQuestionTypeChange("서술형");
-                                                    setQuestions([...questions, "서술형 질문을 입력해주세요."])
+                                                    setQuestions([...questions, ""])
                                                     setCountIndex(questions.length);
+                                                    setTextareaValue("");
                                                 }}
                                             >
                                                 <div
@@ -960,8 +965,9 @@ function CreateSurvey() {
                                                 value="객관식"
                                                 onClick={() => {
                                                     handleQuestionTypeChange("객관식");
-                                                    setQuestions([...questions, "객관식 질문을 입력해주세요."])
+                                                    setQuestions([...questions, ""])
                                                     setCountIndex(questions.length);
+                                                    setTextareaValue("");
                                                 }}
                                             >
                                                 <div
@@ -1022,7 +1028,7 @@ function CreateSurvey() {
                                                 value="찬부식"
                                                 onClick={() => {
                                                     handleQuestionTypeChange("찬부식");
-                                                    setQuestions([...questions, "찬부식 질문을 입력해주세요."])
+                                                    setQuestions([...questions, ""])
                                                     setCountIndex(questions.length);
                                                 }}
                                             >
