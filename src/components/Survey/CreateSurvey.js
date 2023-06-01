@@ -14,7 +14,6 @@ function CreateSurvey() {
     const [questions, setQuestions] = useState([])
     const [textareaValue, setTextareaValue] = useState("");
 
-
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     };

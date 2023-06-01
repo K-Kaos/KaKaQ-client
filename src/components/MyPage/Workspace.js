@@ -46,6 +46,7 @@ function Workspace() {
   const [showProfile, setShowProfile] = useState(false);
   const [showMakeForm, setShowMakeForm] = useState(false);
   const [showMakeChatbotForm, setShowMakeChatbotForm] = useState(false);
+  const [showOption, setShowOption] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [type, setType] = useState("");
@@ -182,11 +183,6 @@ function Workspace() {
 
   const [createdSurveys, setCreatedSurveys] = useState([]);
 
-  // const handleSurveyCategorySelect = (option) => {
-  //   setSurveyCategory(option);
-  //   setIsOpen(false);
-  // };
-
   const handleSurveyCategorySelect = (event) => {
     const selectedOption = event.target.value;
     setSurveyCategory(selectedOption);
@@ -266,6 +262,14 @@ function Workspace() {
     setShowMakeChatbotForm(false);
   };
 
+  const handleClickOption = () => {
+    setShowOption(true);
+  };
+
+  const handleCloseOption = () => {
+    setShowOption(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // 사용자가 입력한 제목, 키워드, 카테고리를 이용하여 작업을 수행합니다.
@@ -322,6 +326,31 @@ function Workspace() {
         console.log(error);
       });
   }, []);
+
+//   const [isAddVisible, setAddVisible] = useState(false);
+
+
+//   const showAdd = () => {
+//     setAddVisible(true);
+// };
+
+// const hideAdd = () => {
+//     setAddVisible(false);
+// };
+
+// const handelClickBackdrop = () => {
+//     if (isAddVisible) {
+//         hideAdd();
+//     }
+
+//     if (isDeleteVisible) {
+//         hideDelete();
+//     }
+
+//     if (isEndingTypeVisible) {
+//         hideEndingType();
+//     }
+// };
 
   return (
     <>
@@ -667,7 +696,7 @@ function Workspace() {
                                       </span>
                                     </div>
                                     <button
-                                      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"
+                                      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium .css-d9kxen .MuiPopover-paper .css-1oqb34a css-1yxmbwk"
                                       tabIndex="0"
                                       type="button"
                                       style={{
@@ -687,6 +716,7 @@ function Workspace() {
                                         aria-hidden="true"
                                         viewBox="0 0 24 24"
                                         data-testid="MoreHorizIcon"
+                                        onClick={handleClickOption}
                                       >
                                         <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
                                       </svg>
@@ -2135,7 +2165,57 @@ function Workspace() {
           <div tabindex="0" data-testid="sentinelEnd"></div>
         </div>
       )}
-
+      {showOption && (
+        <div
+        className="MuiMenuUnstyled-root Mui-expanded css-d9kxen MuiPopover-paper css-1oqb34a css-10ui89v MuiPopperUnstyled-root"
+        style={{
+          position: "absolute",
+          inset: "0px auto auto 0px",
+          margin: "0px",
+          transform: "translate3d(744px, 183px, 0px)"
+        }}
+        data-popper-placement="bottom"
+      >
+        <ul
+          id="simple-menu"
+          role="menu"
+          tabIndex="-1"
+          className="MuiMenuUnstyled-listbox Mui-expanded css-1ubxsfb"
+          style={{margin:"0px 0px 0px 0px", padding:"0px 0px 0px 0px"}}
+        >
+          <li
+            role="menuitem"
+            value="결과 조회하기"
+            className="MuiMenuItemUnstyled-root css-1lvg639"
+            tabIndex="0"
+            id="mui-38-option-0"
+            style={{marginBottom:"5px"}}
+          >
+            결과 조회하기
+          </li>
+          <li
+            role="menuitem"
+            value="수정하기"
+            className="MuiMenuItemUnstyled-root css-1lvg639"
+            tabIndex="-1"
+            id="mui-38-option-4"
+            style={{marginBottom:"5px"}}
+          >
+            수정하기
+          </li>
+          <li
+            role="menuitem"
+            value="삭제하기"
+            className="MuiMenuItemUnstyled-root css-1lvg639"
+            tabIndex="-1"
+            id="mui-38-option-5"
+          >
+            삭제하기
+          </li>
+        </ul>
+      </div>
+      
+      )}
       <div
         id="rbd-announcement-1"
         aria-live="assertive"
