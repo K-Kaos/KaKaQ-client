@@ -30,7 +30,7 @@ import {
 import { CgBorderBottom } from "react-icons/cg";
 import logo from "../../Assets/Logo/logo.png";
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import OpenSurvey from "./OpenSurvey";
 import MakeForm from "./MakeForm";
@@ -287,6 +287,8 @@ function Workspace() {
     setShowOption(false);
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // 사용자가 입력한 제목, 키워드, 카테고리를 이용하여 작업을 수행합니다.
@@ -294,8 +296,14 @@ function Workspace() {
     console.log("제목:", surveyTitle);
     console.log("키워드:", surveyKeyword);
     console.log("카테고리:", surveyCategory);
-    // /kakaq로 이동하는 작업을 수행합니다.
-    window.location.href = "/kakaq";
+
+    navigate("/kakaq", {
+      state: {
+        surveyTitle: surveyTitle,
+        surveyKeyword: surveyKeyword,
+        surveyCategory: surveyCategory
+      }
+    });
   };
 
   // script
