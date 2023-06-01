@@ -29,6 +29,7 @@ import KAKAQ from "./components/Survey/KAKAQ";
 import ParticipateSurvey from "./components/Survey/ParticipateSurvey";
 import StartTest from "./components/Test/StartTest";
 import SurveyTest from "./components/Survey/SurveyTest";
+import ShowResult from "./components/Survey/ShowResult";
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -63,6 +64,7 @@ function App() {
           <Route path="/guide" element={<Guide />} />
           <Route path="/opensurvey" element={<OpenSurvey />} />
           <Route path="/participate/:id" element={<ParticipateSurvey/>}/>
+          <Route path="/survey/:id/result" element={<ShowResult/>}/>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/termofuse" element={<TermofUse />} />

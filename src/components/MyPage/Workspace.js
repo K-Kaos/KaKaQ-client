@@ -30,6 +30,7 @@ import {
 import { CgBorderBottom } from "react-icons/cg";
 import logo from "../../Assets/Logo/logo.png";
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import OpenSurvey from "./OpenSurvey";
 import MakeForm from "./MakeForm";
@@ -660,7 +661,9 @@ function Workspace() {
                               </div>
                             </div>
                           </div>
+                          <div>
                           {createdSurveys.map((survey, index) => (
+                            <Link to={"/survey/" + survey.id + "/result"}>
                             <div
                               className="MuiBox-root css-0"
                               style={{ margin: "0px 24px 20px 0px" }}
@@ -755,7 +758,8 @@ function Workspace() {
                                 </div>
                               </div>
                             </div>
-                          ))}
+                            </Link>
+                          ))}</div>
                           {/* <div
                             className="MuiBox-root css-0"
                             style={{ margin: "0px 24px 20px 0px" }}
