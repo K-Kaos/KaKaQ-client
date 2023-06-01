@@ -43,15 +43,15 @@ function CreateSurvey() {
         const updatedOptions = [...options];
         updatedOptions[index] = e.target.value;
         setOptions(updatedOptions);
-      };
+    };
 
-      const handleDeleteOption = (index) => {
+    const handleDeleteOption = (index) => {
         const updatedOptions = [...options];
         updatedOptions.splice(index, 1);
         setOptions(updatedOptions);
-      };
-      
-      
+    };
+
+
 
     const handleQuestionTypeChange = (event) => {
         console.log(event.target.value)
@@ -87,6 +87,7 @@ function CreateSurvey() {
     const [isHovered, setIsHovered] = useState(false);
     const [listItems, setListItems] = useState([]);
     const [countIndex, setCountIndex] = useState(0);
+    const [selectedDiv, setSelectedDiv] = useState(null);
 
     const showAdd = () => {
         setAddVisible(true);
@@ -158,6 +159,11 @@ function CreateSurvey() {
         });
     };
 
+
+    const handleDivSelection = (divIndex) => {
+        setSelectedDiv(divIndex);
+        console.log(divIndex);
+    };
 
 
     const handleQuestionListAdd = () => {
@@ -554,42 +560,42 @@ function CreateSurvey() {
                                             </div>
                                         </div>
                                         <div class="MuiBox-root css-1oi2cng">
-                                            {questionType === "객관식" ? (
+                                            {questionType === "객관식" && (
                                                 <div class="MuiBox-root css-1iyvruu">
                                                     {options.map((option, index) => (
                                                         <div key={index}>
-                                                        <div class="MuiBox-root css-15bdutn">
-                                                            <div>
-                                                                <div tabindex="0" role="button" aria-describedby="rbd-hidden-text-6-hidden-text-13" data-rbd-drag-handle-draggable-id="draggableItem_1508883802" data-rbd-drag-handle-context-id="6" draggable="false" data-rbd-draggable-context-id="6" data-rbd-draggable-id="draggableItem_1508883802">
-                                                                    <div class="MuiBox-root css-llmm8l">
-                                                                        <div class="MuiBox-root css-1fkx3ti">
-                                                                            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-12j5smg" tabindex="0" type="button">
-                                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1sxif0y" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DragIndicatorIcon">
-                                                                                    <path d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
-                                                                                    </path>
-                                                                                </svg>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-adornedEnd css-9hbtr5">
-                                                                            <input placeholder="옵션을 입력하세요" type="text" class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-mnn31" value={option} onChange={(e) => handleOptionChange(e, index)} />
-                                                                            <div class="MuiBox-root css-yhnn4p" style={{opacity: '1', transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"}}>
-                                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                    <circle cx="12" cy="12" r="12" fill="#DADADA"></circle>
-                                                                                    <circle cx="12" cy="12" r="4" fill="#fff"></circle>
-                                                                                </svg>
+                                                            <div class="MuiBox-root css-15bdutn">
+                                                                <div>
+                                                                    <div tabindex="0" role="button" aria-describedby="rbd-hidden-text-6-hidden-text-13" data-rbd-drag-handle-draggable-id="draggableItem_1508883802" data-rbd-drag-handle-context-id="6" draggable="false" data-rbd-draggable-context-id="6" data-rbd-draggable-id="draggableItem_1508883802">
+                                                                        <div class="MuiBox-root css-llmm8l">
+                                                                            <div class="MuiBox-root css-1fkx3ti">
+                                                                                <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-12j5smg" tabindex="0" type="button">
+                                                                                    <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1sxif0y" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DragIndicatorIcon">
+                                                                                        <path d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                                                                        </path>
+                                                                                    </svg>
+                                                                                </button>
                                                                             </div>
-                                                                        </div>
-                                                                        <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-10gxoaa" tabindex="0" type="button" aria-label="옵션 삭제" onClick={() => handleDeleteOption(index)}>
-                                                                            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ClearRoundedIcon">
-                                                                                <path d="M18.3 5.71a.9959.9959 0 0 0-1.41 0L12 10.59 7.11 5.7a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"></path>
+                                                                            <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-adornedEnd css-9hbtr5">
+                                                                                <input placeholder="옵션을 입력하세요" type="text" class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-mnn31" value={option} onChange={(e) => handleOptionChange(e, index)} />
+                                                                                <div class="MuiBox-root css-yhnn4p" style={{ opacity: '1', transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms" }}>
+                                                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <circle cx="12" cy="12" r="12" fill="#DADADA"></circle>
+                                                                                        <circle cx="12" cy="12" r="4" fill="#fff"></circle>
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </div>
+                                                                            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-10gxoaa" tabindex="0" type="button" aria-label="옵션 삭제" onClick={() => handleDeleteOption(index)}>
+                                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ClearRoundedIcon">
+                                                                                    <path d="M18.3 5.71a.9959.9959 0 0 0-1.41 0L12 10.59 7.11 5.7a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"></path>
                                                                                 </svg>
                                                                                 <span class="MuiTouchRipple-root css-w0pj6f"></span></button>
 
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     ))}
 
                                                     <div class="MuiBox-root css-1ialerq">
@@ -614,22 +620,164 @@ function CreateSurvey() {
                                                         </button> */}
                                                     </div>
                                                 </div>
-                                            ) :
-                                                (
-                                                    <div>
-                                                        <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+                                            )}
 
-                                                            <input
-                                                                autocomplete="off"
-                                                                placeholder="응답을 입력하세요"
-                                                                type="text"
-                                                                class="MuiInputBase-input css-mnn31"
-                                                                value=""
-                                                            />
+                                            {questionType === "서술형" && (
 
-                                                        </div>
+                                                <div>
+                                                    <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+
+                                                        <input
+                                                            autocomplete="off"
+                                                            placeholder="응답을 입력하세요"
+                                                            type="text"
+                                                            class="MuiInputBase-input css-mnn31"
+                                                            value=""
+                                                        />
+
                                                     </div>
-                                                )}
+                                                </div>)}
+
+                                            {questionType === "찬부식" && (
+                                                <div style={{ display: 'flex' }}>
+                                                {/* First div */}
+                                                <div>
+                                                <div>
+                                                    <label>
+                                                        <input type="radio"
+                                                        name="divSelection"
+                                                        checked={selectedDiv === 0}
+                                                        onChange={() => handleDivSelection(0)} />
+                                                        
+                                                  <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+                                                    <input
+                                                      autocomplete="off"
+                                                      placeholder="응답을 입력하세요"
+                                                      type="text"
+                                                      class="MuiInputBase-input css-mnn31"
+                                                      value="참"
+                                                    />
+                                                    <div class="MuiBox-root css-yhnn4p" style={{ opacity: '1', transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms" }}>
+                                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle cx="12" cy="12" r="12" fill="#DADADA"></circle>
+                                                        <circle cx="12" cy="12" r="4" fill="#fff"></circle>
+                                                      </svg>
+                                                    </div>
+                                                  </div>
+                                                </label>
+                                                </div>
+                                                <div>
+                                                  <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+                                                    <input
+                                                      autocomplete="off"
+                                                      placeholder="응답을 입력하세요"
+                                                      type="text"
+                                                      class="MuiInputBase-input css-mnn31"
+                                                      value="거짓"
+                                                    />
+                                                    <div class="MuiBox-root css-yhnn4p" style={{ opacity: '1', transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms" }}>
+                                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle cx="12" cy="12" r="12" fill="#DADADA"></circle>
+                                                        <circle cx="12" cy="12" r="4" fill="#fff"></circle>
+                                                      </svg>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                </div>
+                                              
+                                                {/* Second div */}
+                                                <div>
+                                                <div>
+                                                <label>
+                                                        <input type="radio"
+                                                        name="divSelection"
+                                                        checked={selectedDiv === 1}
+                                                        onChange={() => handleDivSelection(1)} />
+                                                  <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+                                                    <input
+                                                      autocomplete="off"
+                                                      placeholder="응답을 입력하세요"
+                                                      type="text"
+                                                      class="MuiInputBase-input css-mnn31"
+                                                      value="예"
+                                                    />
+                                                    <div class="MuiBox-root css-yhnn4p" style={{ opacity: '1', transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms" }}>
+                                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle cx="12" cy="12" r="12" fill="#DADADA"></circle>
+                                                        <circle cx="12" cy="12" r="4" fill="#fff"></circle>
+                                                      </svg>
+                                                    </div>
+                                                  </div>
+                                                  </label>
+                                                </div>
+                                                <div>
+                                                  <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+                                                    <input
+                                                      autocomplete="off"
+                                                      placeholder="응답을 입력하세요"
+                                                      type="text"
+                                                      class="MuiInputBase-input css-mnn31"
+                                                      value="아니오"
+                                                    />
+                                                    <div class="MuiBox-root css-yhnn4p" style={{ opacity: '1', transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms" }}>
+                                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle cx="12" cy="12" r="12" fill="#DADADA"></circle>
+                                                        <circle cx="12" cy="12" r="4" fill="#fff"></circle>
+                                                      </svg>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                </div>
+                                              
+                                                {/* Third div */}
+                                                <div>
+                                                <div>
+                                                <label>
+                                                        <input type="radio"
+                                                        name="divSelection"
+                                                        checked={selectedDiv === 2}
+                                                        onChange={() => handleDivSelection(2)} />
+                                                <div>
+                                                  <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+                                                    <input
+                                                      autocomplete="off"
+                                                      placeholder="응답을 입력하세요"
+                                                      type="text"
+                                                      class="MuiInputBase-input css-mnn31"
+                                                      value="찬성"
+                                                    />
+                                                    <div class="MuiBox-root css-yhnn4p" style={{ opacity: '1', transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms" }}>
+                                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle cx="12" cy="12" r="12" fill="#DADADA"></circle>
+                                                        <circle cx="12" cy="12" r="4" fill="#fff"></circle>
+                                                      </svg>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                </label>
+                                              </div>
+                                              <div>
+                                                  <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+                                                    <input
+                                                      autocomplete="off"
+                                                      placeholder="응답을 입력하세요"
+                                                      type="text"
+                                                      class="MuiInputBase-input css-mnn31"
+                                                      value="반대"
+                                                    />
+                                                    <div class="MuiBox-root css-yhnn4p" style={{ opacity: '1', transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms" }}>
+                                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <circle cx="12" cy="12" r="12" fill="#DADADA"></circle>
+                                                        <circle cx="12" cy="12" r="4" fill="#fff"></circle>
+                                                      </svg>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              </div>
+
+                                            )}
+
                                         </div>
                                         <div class="MuiBox-root css-1bvc4cc">
                                             <button
@@ -1379,10 +1527,6 @@ function CreateSurvey() {
                     }}
                     data-popper-placement="right"
                 >
-                    <div class="MuiTooltip-tooltip MuiTooltip-tooltipArrow MuiTooltip-tooltipPlacementRight css-1rlcjdf">
-                        empty
-                        <span class="MuiTooltip-arrow css-1urvb1y">::before</span>
-                    </div>
                 </div>
             )}
             {isDeleteVisible && (
