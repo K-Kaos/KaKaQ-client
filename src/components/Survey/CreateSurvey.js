@@ -100,6 +100,7 @@ function CreateSurvey(props) {
         console.log(props.title);
         console.log(props.category);
         console.log(props.keyword);
+        console.log("아직 안 됨")
 
         // axios
         //   .post("/api/survey/create", {
