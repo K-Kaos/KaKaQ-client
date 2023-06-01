@@ -290,6 +290,10 @@ function Workspace() {
   const [isHovered, setIsHovered] = useState(false);
   const [openSurveys, setOpenSurveys] = useState([]);
 
+  const showAdd = () => {
+    setAddVisible(true);
+};
+
   const hideAdd = () => {
     setAddVisible(false);
   };
@@ -327,31 +331,6 @@ function Workspace() {
         console.log(error);
       });
   }, []);
-
-//   const [isAddVisible, setAddVisible] = useState(false);
-
-
-//   const showAdd = () => {
-//     setAddVisible(true);
-// };
-
-// const hideAdd = () => {
-//     setAddVisible(false);
-// };
-
-// const handelClickBackdrop = () => {
-//     if (isAddVisible) {
-//         hideAdd();
-//     }
-
-//     if (isDeleteVisible) {
-//         hideDelete();
-//     }
-
-//     if (isEndingTypeVisible) {
-//         hideEndingType();
-//     }
-// };
 
   return (
     <>
@@ -1670,7 +1649,6 @@ function Workspace() {
         </div>
       )}
       {showMakeForm && (
-        // <MakeForm/>
         <div
           role="presentation"
           class="MuiDialog-root MuiModal-root css-126xj0f"

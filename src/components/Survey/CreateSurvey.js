@@ -20,14 +20,42 @@ function CreateSurvey() {
 
     const handleQuestionChange = (e) => {
         const newText = e.target.value; // 입력된 텍스트 값
-        const updatedQuestion = { ...questions[countIndex], text: newText }; // 새로운 question 객체 생성
-        setQuestions([...questions.slice(0, countIndex), updatedQuestion, ...questions.slice(countIndex + 1)]); // 배열을 업데이트하여 새로운 question으로 교체
+        const updatedQuestion = {
+            ...questions[countIndex],
+            id: countIndex,
+            text: newText,
+            type: questionType,
+            options: options,
 
+        }; // 새로운 question 객체 생성
+        setQuestions([...questions.slice(0, countIndex), updatedQuestion, ...questions.slice(countIndex + 1)]); // 배열을 업데이트하여 새로운 question으로 교체
         console.log(questions);
+    };
+
+    const handleAddOption = () => {
+        console.log(questionType)
+        if (questionType === "객관식") {
+            setOptions([...options, ""]);
+        }
+    };
+
+    const handleOptionChange = (e, index) => {
+        const updatedOptions = [...options];
+        updatedOptions[index] = e.target.value;
+        setOptions(updatedOptions);
       };
 
+      const handleDeleteOption = (index) => {
+        const updatedOptions = [...options];
+        updatedOptions.splice(index, 1);
+        setOptions(updatedOptions);
+      };
+      
+      
+
     const handleQuestionTypeChange = (event) => {
-        setQuestionType(event);
+        console.log(event.target.value)
+        setQuestionType(event.target.value);
     };
 
     const handleAddQuestion = (e) => {
@@ -117,16 +145,18 @@ function CreateSurvey() {
     const handleSelectList = (index) => {
         setCountIndex(index);
         setTextareaValue(questions[index].text);
+        setQuestionType(questions[index].type);
+
     };
 
     const handleEditQuestion = (e) => {
         setTextareaValue(e.target.value);
         setQuestions((prevQuestions) => {
-          const updatedQuestions = [...prevQuestions];
-          updatedQuestions[countIndex].text = e.target.value;
-          return updatedQuestions;
+            const updatedQuestions = [...prevQuestions];
+            updatedQuestions[countIndex].text = e.target.value;
+            return updatedQuestions;
         });
-      };
+    };
 
 
 
@@ -524,17 +554,82 @@ function CreateSurvey() {
                                             </div>
                                         </div>
                                         <div class="MuiBox-root css-1oi2cng">
-                                            <div>
-                                                <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
-                                                    <input
-                                                        autocomplete="off"
-                                                        placeholder="응답을 입력하세요"
-                                                        type="text"
-                                                        class="MuiInputBase-input css-mnn31"
-                                                        value=""
-                                                    />
+                                            {questionType === "객관식" ? (
+                                                <div class="MuiBox-root css-1iyvruu">
+                                                    {options.map((option, index) => (
+                                                        <div key={index}>
+                                                        <div class="MuiBox-root css-15bdutn">
+                                                            <div>
+                                                                <div tabindex="0" role="button" aria-describedby="rbd-hidden-text-6-hidden-text-13" data-rbd-drag-handle-draggable-id="draggableItem_1508883802" data-rbd-drag-handle-context-id="6" draggable="false" data-rbd-draggable-context-id="6" data-rbd-draggable-id="draggableItem_1508883802">
+                                                                    <div class="MuiBox-root css-llmm8l">
+                                                                        <div class="MuiBox-root css-1fkx3ti">
+                                                                            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-12j5smg" tabindex="0" type="button">
+                                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1sxif0y" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="DragIndicatorIcon">
+                                                                                    <path d="M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z">
+                                                                                    </path>
+                                                                                </svg>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-adornedEnd css-9hbtr5">
+                                                                            <input placeholder="옵션을 입력하세요" type="text" class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-mnn31" value={option} onChange={(e) => handleOptionChange(e, index)} />
+                                                                            <div class="MuiBox-root css-yhnn4p" style={{opacity: '1', transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"}}>
+                                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <circle cx="12" cy="12" r="12" fill="#DADADA"></circle>
+                                                                                    <circle cx="12" cy="12" r="4" fill="#fff"></circle>
+                                                                                </svg>
+                                                                            </div>
+                                                                        </div>
+                                                                        <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall css-10gxoaa" tabindex="0" type="button" aria-label="옵션 삭제" onClick={() => handleDeleteOption(index)}>
+                                                                            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ClearRoundedIcon">
+                                                                                <path d="M18.3 5.71a.9959.9959 0 0 0-1.41 0L12 10.59 7.11 5.7a.9959.9959 0 0 0-1.41 0c-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"></path>
+                                                                                </svg>
+                                                                                <span class="MuiTouchRipple-root css-w0pj6f"></span></button>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    ))}
+
+                                                    <div class="MuiBox-root css-1ialerq">
+                                                        <button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl" tabindex="0" type="button" onClick={handleAddOption}>
+                                                            <span class="MuiButton-startIcon MuiButton-iconSizeMedium css-6xugel">
+                                                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddCircleOutlinedIcon">
+                                                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                                                                </svg>
+                                                            </span>
+                                                            옵션 추가
+                                                            <span class="MuiTouchRipple-root css-w0pj6f"></span>
+                                                        </button>
+                                                        {/* <button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl" tabindex="0" type="button"><span class="MuiButton-startIcon MuiButton-iconSizeMedium css-6xugel">
+                                                            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="TextSnippetRoundedIcon">
+                                                                <path d="M14.17 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V9.83c0-.53-.21-1.04-.59-1.41l-4.83-4.83c-.37-.38-.88-.59-1.41-.59zM8 15h8c.55 0 1 .45 1 1s-.45 1-1 1H8c-.55 0-1-.45-1-1s.45-1 1-1zm0-4h8c.55 0 1 .45 1 1s-.45 1-1 1H8c-.55 0-1-.45-1-1s.45-1 1-1zm0-4h5c.55 0 1 .45 1 1s-.45 1-1 1H8c-.55 0-1-.45-1-1s.45-1 1-1z">
+                                                                </path>
+                                                            </svg>
+                                                        </span>
+                                                            직접 입력란 추가
+                                                            <span class="MuiTouchRipple-root css-w0pj6f">
+                                                            </span>
+                                                        </button> */}
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            ) :
+                                                (
+                                                    <div>
+                                                        <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
+
+                                                            <input
+                                                                autocomplete="off"
+                                                                placeholder="응답을 입력하세요"
+                                                                type="text"
+                                                                class="MuiInputBase-input css-mnn31"
+                                                                value=""
+                                                            />
+
+                                                        </div>
+                                                    </div>
+                                                )}
                                         </div>
                                         <div class="MuiBox-root css-1bvc4cc">
                                             <button
@@ -823,8 +918,12 @@ function CreateSurvey() {
                                                 role="menuitem"
                                                 value="서술형"
                                                 onClick={() => {
-                                                    handleQuestionTypeChange("서술형");
-                                                    setQuestions([...questions, ""])
+                                                    setQuestionType("서술형");
+                                                    setQuestions([...questions,
+                                                    {
+                                                        type: "서술형",
+                                                        text: "",
+                                                    }])
                                                     setCountIndex(questions.length);
                                                     setTextareaValue("");
                                                 }}
@@ -963,8 +1062,12 @@ function CreateSurvey() {
                                                 role="menuitem"
                                                 value="객관식"
                                                 onClick={() => {
-                                                    handleQuestionTypeChange("객관식");
-                                                    setQuestions([...questions, ""])
+                                                    setQuestionType("객관식");
+                                                    setQuestions([...questions,
+                                                    {
+                                                        type: "객관식",
+                                                        text: "",
+                                                    }])
                                                     setCountIndex(questions.length);
                                                     setTextareaValue("");
                                                 }}
@@ -1026,8 +1129,12 @@ function CreateSurvey() {
                                                 role="menuitem"
                                                 value="찬부식"
                                                 onClick={() => {
-                                                    handleQuestionTypeChange("찬부식");
-                                                    setQuestions([...questions, ""])
+                                                    setQuestionType("찬부식");
+                                                    setQuestions([...questions,
+                                                    {
+                                                        type: "찬부식",
+                                                        text: "",
+                                                    }])
                                                     setCountIndex(questions.length);
                                                 }}
                                             >
