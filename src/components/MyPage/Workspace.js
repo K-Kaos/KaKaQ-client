@@ -58,11 +58,14 @@ function Workspace() {
   const [surveyCategory, setSurveyCategory] = useState("");
   const [surveySubject, setSurveySubject] = useState("");
   const [categorySurveys, setCategorySurveys] = useState([]);
+  const [searchSurveys, setSearchSurveys] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
   const [creator, setCreator] = useState("");
+  const [keyword, setKeyword] = useState('');
+
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -75,6 +78,11 @@ function Workspace() {
   // 카테고리 버튼
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+  };
+
+  // 검색 키워드
+  const handleInputChange = (event) => {
+    setKeyword(event.target.value);
   };
 
   useEffect(() => {
@@ -340,6 +348,7 @@ function Workspace() {
       });
   }, []);
 
+  // filter survey API
   useEffect(() => {
     let url = 'api/surveys/filter';
     if (selectedCategory) {
@@ -361,6 +370,26 @@ function Workspace() {
         console.error('Error fetching surveys:', error);
       });
   }, [selectedCategory]);
+
+  // search survey API
+  const handleSearch = () => {
+    if (keyword.trim() !== '') {
+      fetch(`api/search?keyword=${encodeURIComponent(keyword)}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setSearchSurveys(data);
+          console.log('Search results:', data);
+        })
+        .catch((error) => {
+          console.error('Error fetching search results:', error);
+        });
+    }
+  };
 
   return (
     <>
@@ -1046,6 +1075,27 @@ function Workspace() {
                           className="MuiBox-root css-0"
                           style={{ display: "flex", flexWrap: "wrap" }}
                         >
+                          {/* 키워드 검색 */}
+                          <div className="search-bar" style={{ backgroundColor: 'skyblue', padding: '10px', borderRadius: '5px' }}>
+                            <input
+                              type="text"
+                              value={keyword}
+                              onChange={handleInputChange}
+                              placeholder="Enter your search keyword"
+                              style={{ marginRight: '10px' }}
+                            />
+                            <button onClick={handleSearch} style={{ backgroundColor: 'white', color: 'black', borderRadius: '5px' }}>
+                              Search
+                            </button>
+
+                            <div className="search-results">
+                              {searchSurveys.map((survey) => (
+                                <div key={survey.id}>{survey.name}</div>
+                              ))}
+                            </div>
+                          </div>
+                          {/* 키워드 검색 */}
+
                           {/* 카테고리이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이잉 */}
                           {/* 카테고리 선택 버튼 */}
                           <div>
