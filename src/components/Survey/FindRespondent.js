@@ -9,7 +9,7 @@ import SelectCity from "./SelectCity";
 
 
 
-function FindRespondent() {
+function FindRespondent({isSurveyPublic, onSurveyPublicChange, isSurveyGPS, onSurveyGPSChange, surveyCity, onSurveyCityChange, surveyStartDate, onSurveyStartDateChange, surveyEndDate, onSurveyEndDateChange }) {
 
   const date = new Date();
   const defaultStartDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
@@ -25,17 +25,21 @@ function FindRespondent() {
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
+    onSurveyStartDateChange(event.target.value);
   };
 
   const handleEndDateChange = (event) => {
     setEndDate(event.target.value);
+    onSurveyEndDateChange(event.target.value);
   };
 
   const handleTogglePublic = () => {
     setIsPublic(!isPublic);
+    onSurveyPublicChange(!isPublic);
 
     if (isGPS) {
       setIsGPS(false)
+      onSurveyGPSChange(false);
     }
   };
 
@@ -43,9 +47,11 @@ function FindRespondent() {
 
     if (isPublic === false) {
       setIsGPS(false);
+      onSurveyGPSChange(false);
     }
     else {
       setIsGPS(!isGPS);
+      onSurveyGPSChange(!isSurveyGPS);
     }
 
   };
@@ -99,8 +105,9 @@ function FindRespondent() {
   };
 
   const handleCityChange = (city) => {
-    console.log(city)
+    console.log(selectedCategory + ' ' + city)
     setCity(city);
+    onSurveyCityChange(city);
   };
     
 
@@ -233,7 +240,6 @@ function FindRespondent() {
                                           tabindex="0"
                                           role="button"
                                           aria-expanded="false"
-
                                           onClick={handleTogglePublic}
                                         >
                                           <div className="MuiAccordionSummary-content css-1n11r91">

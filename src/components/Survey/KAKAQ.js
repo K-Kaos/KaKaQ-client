@@ -62,6 +62,40 @@ function KAKAQ(props) {
 
   }, [location.state]);
 
+  const [surveyQuestions, setSurveyQuestions] = useState([]);
+
+  
+  const [isSurveyPublic, setIsSurveyPublic] = useState("");
+  const [isSurveyGPS, setIsSurveyGPS] = useState("");
+  const [surveyCity, setSurveyCity] = useState("");
+  const [surveyStartDate, setSurveyStartDate] = useState("");
+  const [surveyEndDate, setSurveyEndDate] = useState("");
+
+  const handleSurveyPublicChange = (event) => {
+    setIsSurveyPublic(event);
+    console.log("kakaq에서 알려드립니다: " + event);
+  };
+
+  const handleSurveyGPSChange = (event) => {
+    setIsSurveyGPS(event);
+    console.log("kakaq에서 알려드립니다: " + event);
+  };
+
+  const handleSurveyCityChange = (event) => {
+    setSurveyCity(event);
+    console.log("kakaq에서 알려드립니다: " + event);
+  };
+
+  const handleSurveyStartDateChange = (event) => {
+    setSurveyStartDate(event);
+    console.log("kakaq에서 알려드립니다: " + event);
+  };
+
+  const handleSurveyEndDateChange = (event) => {
+    setSurveyEndDate(event);
+    console.log("kakaq에서 알려드립니다: " + event);
+  };
+
 
   const [geoData, setgeoData] = useState({
     userName: "",
@@ -711,7 +745,13 @@ function KAKAQ(props) {
             </header>
             {showCreateSurvey && <CreateSurvey title={surveyTitle} category={surveyCategory} keyword={surveyKeyword}/>}
             {showShareLink && <ShareLink surveyTitle={surveyTitle}/>}
-            {showFindRespondent && <FindRespondent />}
+            {showFindRespondent && <FindRespondent
+            isSurveyPublic={isSurveyPublic} onSurveyPublicChange={handleSurveyPublicChange}
+            isSurveyGPS={isSurveyGPS} onSurveyGPSChange={handleSurveyGPSChange}
+            surveyCity={surveyCity} onSurveyCityChange={handleSurveyCityChange}
+            surveyStartDate={surveyStartDate} onSurveyStartDateChange={handleSurveyStartDateChange}
+            surveyEndDate={surveyEndDate} onSurveyEndDateChange={handleSurveyEndDateChange}
+              />}
             {showSurveyResult && <SurveyResult />}
 
             {/* <div class="MuiDrawer-root MuiDrawer-docked css-gyfe2h">
