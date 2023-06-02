@@ -381,7 +381,9 @@ function KAKAQ(props) {
                   <div
                     class="MuiBox-root css-12kkxif"
                     aria-label="Back to dashboard"
+                    //onClick={() => { 경고창 띄우고(필드 삭제와 같은 스타일로) 뒤로가기 }
                     
+                  
                   >
                     <img
                       src={logo}
@@ -403,7 +405,7 @@ function KAKAQ(props) {
                     >
                       <div class="MuiBox-root css-191gqa8">
                         <p class="MuiTypography-root MuiTypography-body1 css-qt1p9i">
-                          Drafts
+                          생성한 설문조사
                         </p>
                       </div>
                       <div class="MuiBox-root css-4g6ai3">
