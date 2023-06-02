@@ -13,6 +13,7 @@ function ShowResult() {
   const [activeTab, setActiveTab] = useState('summary');
   const [receiveResponse, setReceiveResponse] = useState(false);
   const [survey, setSurvey] = useState([]);
+  const [responses, setResponses] = useState([]);
 
   const [surveyCategory, setSurveyCategory] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -59,12 +60,14 @@ function ShowResult() {
   };
 
   const data = [
-    { country: 'France', 'hot dog': 10, burger: 20, sandwich: 15, kebab: 30, fries: 25, donut: 20 },
-    { country: 'Germany', 'hot dog': 15, burger: 10, sandwich: 5, kebab: 25, fries: 30, donut: 15 },
-    { country: 'Italy', 'hot dog': 20, burger: 15, sandwich: 10, kebab: 30, fries: 20, donut: 10 },
-    { country: 'Spain', 'hot dog': 25, burger: 30, sandwich: 20, kebab: 10, fries: 15, donut: 20 },
-    { country: 'USA', 'hot dog': 30, burger: 25, sandwich: 30, kebab: 15, fries: 10, donut: 25 }
+    { country: 'France', '라이언': 30, '콘': 20 },
+    { country: 'Germany', '라이언': 15, '콘': 10},
+    { country: 'Italy', '라이언': 20, '콘': 15 },
+    { country: 'Spain', '라이언': 25, '콘': 30 },
+    { country: 'USA', '라이언': 30, '콘': 25}
   ];
+
+  const keys = ['라이언','어피치','무지','콘','춘식이'];
 
   const { id } = useParams();
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
@@ -76,15 +79,22 @@ function ShowResult() {
     } else {
       setWhoLeggedIn(LoggedInUser);
 
-      axios.get(("/api/surveys/get/" + id), {
-      }).then(function (response) {
+      axios.get(("/api/surveys/get/" + id))
+      .then(function (response) {
         const surveyInfos = response.data;
         setSurvey(surveyInfos);
+
+        // 다음 요청을 실행
+        return axios.get(("/api/mypage/created/" + id + "/responses"));
+      })
+      .then(function (response) {
+        const surveyResponses = response.data;
+        setResponses(surveyResponses);
         console.log(response.data);
-      }).catch(function (error) {
+      })
+      .catch(function (error) {
         console.log(error);
       });
-
       // fetch('/api/surveys/get/' + id)
       //   .then(response => response.json())
       //   .then(data => {
@@ -373,7 +383,7 @@ function ShowResult() {
                                 {question.type.name === '주관식' && <input type="text" />}
                               </div>
                             ))}
-                            <BarChart data={data} />
+                            <BarChart data={data} keys={keys} />
                           </div>
                         </div>
                       </div>
