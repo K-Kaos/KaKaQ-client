@@ -1048,6 +1048,16 @@ button:focus {
   border-radius: 0px;
 }
 
+.css-1xuqdzl.MuiButtonBase-root:hover {
+  background-color: rgba(9, 30, 66, 0.04);
+}
+
+.css-1xuqdzl:hover {
+  text-decoration: none;
+  background-color: rgba(38, 112, 255, 0.04);
+}
+
+
 .css-w0pj6f {
   overflow: hidden;
   pointer-events: none;
@@ -3064,7 +3074,7 @@ textarea:focus {
   min-width: 64px;
   padding: 6px 8px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: rgb(38, 112, 255);
+  color: rgb(250, 200, 0);
   border-radius: 12px;
   background-color: rgb(244, 244, 244);
   display: flex;
@@ -3083,6 +3093,28 @@ textarea:focus {
 }
 
 
+.css-1sf64yn.Mui-checked {
+  color: rgb(250, 200, 0);
+  transform: translateX(20px);
+}
+
+.css-1mgt3ei .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+  background-color: rgb(250, 200, 0);
+  opacity: 1;
+  border: 0px;
+}
+
+.css-1mgt3ei .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+  background-color: rgb(250, 200, 0);
+  opacity: 1;
+  border: 0px;
+}
+
+.css-1mgt3ei .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+  background-color: rgb(250, 200, 0);
+  opacity: 1;
+  border: 0px;
+}
 
 
 
@@ -6852,15 +6884,6 @@ button {
   border-radius: 50%;
 }
 
-.css-1mgt3ei .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
-  background-color: rgb(38, 112, 255);
-  opacity: 1;
-  border: 0px;
-}
-
-.css-1sf64yn.Mui-checked + .MuiSwitch-track {
-  background-color: rgb(38, 112, 255);
-}
 
 .css-1sf64yn.Mui-checked + .MuiSwitch-track {
   opacity: 0.5;
@@ -7566,6 +7589,13 @@ css-8v46es.Mui-expanded:last-of-type {
   border-top: 0px;
 }
 
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
 .css-1degz5g {
   background-color: rgb(255, 255, 255);
   color: rgba(0, 0, 0, 0.87);
@@ -7599,6 +7629,24 @@ css-8v46es.Mui-expanded:last-of-type {
   padding: 0px 16px;
   transition: min-height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   flex-direction: row;
+}
+
+.css-eb9lrn:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.css-eb9lrn:disabled {
+  background-color: rgba(0, 0, 0, 0.03);
+  cursor: default;
+}
+
+.css-eb9lrn:disabled:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  cursor: default;
+}
+
+.css-eb9lrn:hover:not(.Mui-disabled) {
+  cursor: pointer;
 }
 
 .css-1n11r91 {
