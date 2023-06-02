@@ -958,8 +958,9 @@ function Workspace() {
                                 </div>
                               </div>
                             </div>
+
                             <button
-                            onClick={handleSearch}
+                              onClick={handleSearch}
                               className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1y1p9da"
                               tabIndex="0"
                               type="button"
@@ -979,6 +980,8 @@ function Workspace() {
                               <span className="MuiTouchRipple-root css-w0pj6f"></span>
                             </button>
                           </div>
+                        </div>
+                        <div>
                           {/* 키워드 검색 */}
                           <div
                             className="search-bar"
