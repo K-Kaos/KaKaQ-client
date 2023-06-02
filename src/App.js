@@ -78,7 +78,7 @@ function App() {
           <Route path="/workspace" element={<Workspace />} />
           <Route path="/starttest" element={<StartTest />} />
           <Route path="/surveytest" element={<SurveyTest />} />
-          <Route path="/surveytest" element={<TestResult />} />
+          <Route path="/testresult" element={<TestResult />} />
         </Routes>
       </div>
     </Router>

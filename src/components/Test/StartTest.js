@@ -4,6 +4,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
+import { LazyResult } from "postcss";
 
 function StartTest(props) {
   let whoLoggedIn = null;
@@ -54,6 +55,7 @@ function StartTest(props) {
     else if(sum>15&&sum<=20) result = "콘"
     else if(sum>20&&sum<=25)  result = "춘식이"
     else if(sum>25&&sum<=30) result = "무지"
+    else result="제이지"
     axios.post("/api/user/register", {
       username: location.state.username,
       email: location.state.email,
@@ -63,7 +65,8 @@ function StartTest(props) {
       console.log(response);
       const url = response.data;
       if (url.includes("/login")) {
-        navigate("/login");
+        navigate("/testresult", {state: {value: result}});
+        console.log("result" + result);
       } else if (url.includes("/duplicate")) {
           alert("이미 가입된 메일입니다.");
           navigate("/signup");

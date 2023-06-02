@@ -3747,7 +3747,7 @@ ul.framer-text {
 .framer-Hi9oj .framer-1cc25fg,
 .framer-Hi9oj .framer-76idby,
 .framer-Hi9oj .framer-1953vcd {
-  --framer-link-text-color: #0099ff;
+  --framer-link-text-color: #ffd500;
   --framer-link-text-decoration: underline;
   --framer-paragraph-spacing: 0px;
   flex: none;
@@ -7903,3 +7903,80 @@ css-8v46es.Mui-expanded:last-of-type {
   background: rgba(9, 30, 66, 0.08);
 }
 
+
+
+@media (min-width: 810px) and (max-width: 1199px) {
+.framer-Hi9oj .framer-1nwfdu8 {
+    order: 15;
+}
+}
+.framer-Hi9oj .framer-1nwfdu8 {
+    align-content: center;
+    align-items: center;
+    background-color: #fffceb;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 80px;
+    height: min-content;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 143px 100px;
+    position: relative;
+    width: 100%;
+}
+
+.framer-Hi9oj .framer-fvf3bd, .framer-Hi9oj .framer-h4h33l, .framer-Hi9oj .framer-13efn1z {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px;
+  height: min-content;
+  justify-content: flex-start;
+  max-width: 600px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  transform: perspective(1200px);
+  width: 100%;
+}
+
+.framer-Hi9oj .framer-11q8487, .framer-Hi9oj .framer-aivsxb, .framer-Hi9oj .framer-dd5srs, .framer-Hi9oj .framer-1wznd6b, .framer-Hi9oj .framer-1r7zt03, .framer-Hi9oj .framer-1v5chsf, .framer-Hi9oj .framer-ecb9x8, .framer-Hi9oj .framer-1bwlos6, .framer-Hi9oj .framer-1s2unvn, .framer-Hi9oj .framer-1lez39j, .framer-Hi9oj .framer-1n0kmb3, .framer-Hi9oj .framer-4lt34r, .framer-Hi9oj .framer-y9yc0f, .framer-Hi9oj .framer-12lo4uu, .framer-Hi9oj .framer-oyupnd, .framer-Hi9oj .framer-1yyid8m, .framer-Hi9oj .framer-19yjqz6, .framer-Hi9oj .framer-cdm365, .framer-Hi9oj .framer-vo0ila, .framer-Hi9oj .framer-xlxjr3, .framer-Hi9oj .framer-wvfw9p, .framer-Hi9oj .framer-1klzvkb, .framer-Hi9oj .framer-2y0c6z, .framer-Hi9oj .framer-1gn9o3w, .framer-Hi9oj .framer-62vk81 {
+  --framer-link-text-color: #fad21e;
+  --framer-link-text-decoration: underline;
+  --framer-paragraph-spacing: 0px;
+  flex: none;
+  height: auto;
+  position: relative;
+  white-space: pre;
+  width: auto;
+}
+
+.framer-Hi9oj .framer-16dgnnl {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px;
+  height: min-content;
+  justify-content: center;
+  max-width: 800px;
+  overflow: visible;
+  padding: 0;
+  position: relative;
+  transform: perspective(1200px);
+  width: 100%;
+}
+
+.framer-Hi9oj .framer-ifph79-container, .framer-Hi9oj .framer-1emce11-container, .framer-Hi9oj .framer-jsdw7r-container, .framer-Hi9oj .framer-1et959y-container, .framer-Hi9oj .framer-vh9v4x-container, .framer-Hi9oj .framer-1thq4qj-container, .framer-Hi9oj .framer-17gu12v-container {
+  flex: none;
+  height: auto;
+  position: relative;
+  width: 100%; }
+  
