@@ -9,6 +9,9 @@ import SurveyCompletion from "./SurveyCompletion";
 function FindRespondent() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
+  const [isGPS, setIsGPS] = useState(false);
+  const [city, setCity] = useState("");
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
@@ -16,6 +19,25 @@ function FindRespondent() {
 
   const handleEndDateChange = (event) => {
     setEndDate(event.target.value);
+  };
+
+  const handleTogglePublic = () => {
+    setIsPublic(!isPublic);
+    
+    if (isGPS) {
+      setIsGPS(false)
+    }
+  };
+
+  const handleToggleGPS = () => {
+
+    if (isPublic === false) {
+      setIsGPS(false);
+    }
+    else {
+      setIsGPS(!isGPS);
+    }
+
   };
 
   return (
@@ -140,6 +162,8 @@ function FindRespondent() {
                                       <div
                                         class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAccordion-root css-1degz5g"
                                         style={{ width: "100%" }}
+                                        
+                                        onClick={handleTogglePublic}
                                       >
                                         <div
                                           class="MuiButtonBase-root MuiAccordionSummary-root css-eb9lrn"
@@ -155,13 +179,15 @@ function FindRespondent() {
                                               공개 여부
                                             </p>
                                           </div>
+                                          
+                                          
                                           <div className="MuiAccordionSummary-expandIconWrapper css-1fx8m19">
                                             <span className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei">
-                                              <span className="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn">
+                                              <span class={`MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn ${isPublic ? 'Mui-checked' : ''}`}>
                                                 <input
                                                   className="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
                                                   type="checkbox"
-                                                  value="off"
+                                                  value={isPublic}
                                                 />
                                                 <span className="MuiSwitch-thumb css-19gndve"></span>
                                               </span>
@@ -242,12 +268,15 @@ function FindRespondent() {
                                         </div> */}
                                       </div>
                                       <div class="MuiBox-root css-197dogp"></div>
-                                      <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAccordion-root css-1degz5g">
+                                      <div class={`MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAccordion-root css-1degz5g ${!isPublic ? 'disabled' : ''}`}
+                                      onClick={handleToggleGPS}
+                                      disabled={!isPublic}>
                                         <div
-                                          class="MuiButtonBase-root MuiAccordionSummary-root css-eb9lrn"
+                                          class={`MuiButtonBase-root MuiAccordionSummary-root css-eb9lrn`}
                                           tabindex="0"
                                           role="button"
                                           aria-expanded="false"
+                                          
                                         >
                                           <div className="MuiAccordionSummary-content css-1n11r91">
                                             <p
@@ -259,11 +288,12 @@ function FindRespondent() {
                                           </div>
                                           <div className="MuiAccordionSummary-expandIconWrapper css-1fx8m19">
                                             <span className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei">
-                                              <span className="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn">
+                                              <span className={`MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn ${isGPS ? 'Mui-checked' : ''}`}>
                                                 <input
                                                   className="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
                                                   type="checkbox"
-                                                  value="off"
+                                                  value={isGPS && isPublic}
+                                                  disabled={!isPublic}
                                                 />
                                                 <span className="MuiSwitch-thumb css-19gndve"></span>
                                               </span>

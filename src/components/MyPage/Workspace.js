@@ -59,13 +59,12 @@ function Workspace() {
   const [surveySubject, setSurveySubject] = useState("");
   const [categorySurveys, setCategorySurveys] = useState([]);
   const [searchSurveys, setSearchSurveys] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState("");
   // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
   const [creator, setCreator] = useState("");
-  const [keyword, setKeyword] = useState('');
-
+  const [keyword, setKeyword] = useState("");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -301,8 +300,8 @@ function Workspace() {
       state: {
         surveyTitle: surveyTitle,
         surveyKeyword: surveyKeyword,
-        surveyCategory: surveyCategory
-      }
+        surveyCategory: surveyCategory,
+      },
     });
   };
 
@@ -316,7 +315,7 @@ function Workspace() {
 
   const showAdd = () => {
     setAddVisible(true);
-};
+  };
 
   const hideAdd = () => {
     setAddVisible(false);
@@ -358,43 +357,43 @@ function Workspace() {
 
   // filter survey API
   useEffect(() => {
-    let url = 'api/surveys/filter';
+    let url = "api/surveys/filter";
     if (selectedCategory) {
       url += `?category=${selectedCategory}`;
     }
-  
+
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json();
       })
       .then((data) => {
         setCategorySurveys(data);
-        console.log('Filtered result:', data);
+        console.log("Filtered result:", data);
       })
       .catch((error) => {
-        console.error('Error fetching surveys:', error);
+        console.error("Error fetching surveys:", error);
       });
   }, [selectedCategory]);
 
   // search survey API
   const handleSearch = () => {
-    if (keyword.trim() !== '') {
+    if (keyword.trim() !== "") {
       fetch(`api/search?keyword=${encodeURIComponent(keyword)}`)
         .then((response) => {
           if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error("Network response was not ok");
           }
           return response.json();
         })
         .then((data) => {
           setSearchSurveys(data);
-          console.log('Search results:', data);
+          console.log("Search results:", data);
         })
         .catch((error) => {
-          console.error('Error fetching search results:', error);
+          console.error("Error fetching search results:", error);
         });
     }
   };
@@ -693,7 +692,10 @@ function Workspace() {
                           className="MuiBox-root css-0"
                           style={{ display: "flex", flexWrap: "wrap" }}
                         >
-                          <div className="MuiBox-root css-1nt6gcm">
+                          <div
+                            className="MuiBox-root css-1nt6gcm"
+                            style={{ display: "flex", flexWrap: "wrap" }}
+                          >
                             <div className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-aodj49">
                               <div
                                 className="MuiCardContent-root css-1isomi"
@@ -706,291 +708,104 @@ function Workspace() {
                                 />
                               </div>
                             </div>
-                          </div>
-                          <div>
-                          {createdSurveys.map((survey, index) => (
-                            <Link to={"/survey/" + survey.id + "/result"}>
-                            <div
-                              className="MuiBox-root css-0"
-                              style={{ margin: "0px 24px 20px 0px" }}
-                            >
-                              <div
-                                className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
-                                width="265"
-                                minheight="160"
-                              >
-                                <div className="MuiCardContent-root css-67yy9o">
-                                  <div className="MuiBox-root css-1yd9vr8">
-                                    <div
-                                      className="MuiBox-root css-0"
-                                      style={{
-                                        width: "40px",
-                                        height: "40px",
-                                        // backgroundColor: "rgb(239, 249, 255)",
-                                        backgroundColor: "rgb(249 249 196)",
-                                        borderRadius: "40px",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        overflow: "hidden",
-                                      }}
-                                    >
-                                      <span
-                                        style={{
-                                          position: "absolute",
-                                          fontSize: "20px",
-                                        }}
-                                      >
-                                        🙂
-                                      </span>
-                                    </div>
-                                    <button
-                                      className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium .css-d9kxen .MuiPopover-paper .css-1oqb34a css-1yxmbwk"
-                                      tabIndex="0"
-                                      type="button"
-                                      style={{
-                                        padding: "3px",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        position: "absolute",
-                                        top: "24px",
-                                        right: "24px",
-                                        cursor: "pointer",
-                                      }}
-                                    >
-                                      <svg
-                                        className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
-                                        focusable="false"
-                                        aria-hidden="true"
-                                        viewBox="0 0 24 24"
-                                        data-testid="MoreHorizIcon"
-                                        onClick={handleClickOption}
-                                      >
-                                        <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                                      </svg>
-                                      <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                    </button>
-                                  </div>
-
-                                  <div
-                                    className="MuiBox-root css-8atqhb"
-                                    aria-label={survey.title}
-                                  >
-                                    <div className="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
-                                      <input
-                                        readOnly
-                                        type="text"
-                                        className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
-                                        value={survey.title}
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="MuiBox-root css-1yd9vr8">
-                                    <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
-                                      {survey.status ? "진행중" : "종료"}
-                                    </p>
-                                    <div
-                                      className="MuiBox-root css-0"
-                                      style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                      }}
-                                    >
-                                      <img src="" />
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            </Link>
-                          ))}</div>
-                          {/* <div
-                            className="MuiBox-root css-0"
-                            style={{ margin: "0px 24px 20px 0px" }}
-                          >
-                            <div
-                              className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
-                              width="265"
-                              minheight="160"
-                            >
-                              <div className="MuiCardContent-root css-67yy9o">
-                                <div className="MuiBox-root css-1yd9vr8">
-                                  <div
-                                    className="MuiBox-root css-0"
-                                    style={{
-                                      width: "40px",
-                                      height: "40px",
-                                      // backgroundColor: "rgb(239, 249, 255)",
-                                      backgroundColor: "rgb(249 249 196)",
-                                      borderRadius: "40px",
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      alignItems: "center",
-                                      overflow: "hidden",
-                                    }}
-                                  >
-                                    <span
-                                      style={{
-                                        position: "absolute",
-                                        fontSize: "20px",
-                                      }}
-                                    >
-                                      🙂
-                                    </span>
-                                  </div>
-                                  <button
-                                    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"
-                                    tabIndex="0"
-                                    type="button"
-                                    style={{
-                                      padding: "3px",
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      alignItems: "center",
-                                      position: "absolute",
-                                      top: "24px",
-                                      right: "24px",
-                                      cursor: "pointer",
-                                    }}
-                                  >
-                                    <svg
-                                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
-                                      focusable="false"
-                                      aria-hidden="true"
-                                      viewBox="0 0 24 24"
-                                      data-testid="MoreHorizIcon"
-                                    >
-                                      <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                                    </svg>
-                                    <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                  </button>
-                                </div>
-
+                            {createdSurveys.map((survey, index) => (
+                              <Link to={"/survey/" + survey.id + "/result"}>
                                 <div
-                                  className="MuiBox-root css-8atqhb"
-                                  aria-label="새로운 프로젝트"
+                                  className="MuiBox-root css-0"
+                                  style={{ margin: "0px 24px 20px 0px" }}
                                 >
-                                  <div className="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
-                                    <input
-                                      readOnly
-                                      type="text"
-                                      className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
-                                      value="새로운 프로젝트"
-                                    />
-                                  </div>
-                                </div>
-                                <div className="MuiBox-root css-1yd9vr8">
-                                  <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
-                                    0 개 응답
-                                  </p>
                                   <div
-                                    className="MuiBox-root css-0"
-                                    style={{
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      alignItems: "center",
-                                    }}
+                                    className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
+                                    width="265"
+                                    minheight="160"
                                   >
-                                    <img src="" />
+                                    <div className="MuiCardContent-root css-67yy9o">
+                                      <div className="MuiBox-root css-1yd9vr8">
+                                        <div
+                                          className="MuiBox-root css-0"
+                                          style={{
+                                            width: "40px",
+                                            height: "40px",
+                                            backgroundColor: "rgb(249 249 196)",
+                                            borderRadius: "40px",
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            overflow: "hidden",
+                                          }}
+                                        >
+                                          <span
+                                            style={{
+                                              position: "absolute",
+                                              fontSize: "20px",
+                                            }}
+                                          >
+                                            🙂
+                                          </span>
+                                        </div>
+                                        <button
+                                          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium .css-d9kxen .MuiPopover-paper .css-1oqb34a css-1yxmbwk"
+                                          tabIndex="0"
+                                          type="button"
+                                          style={{
+                                            padding: "3px",
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            position: "absolute",
+                                            top: "24px",
+                                            right: "24px",
+                                            cursor: "pointer",
+                                          }}
+                                        >
+                                          <svg
+                                            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            data-testid="MoreHorizIcon"
+                                            onClick={handleClickOption}
+                                          >
+                                            <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                          </svg>
+                                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                                        </button>
+                                      </div>
+
+                                      <div
+                                        className="MuiBox-root css-8atqhb"
+                                        aria-label={survey.title}
+                                      >
+                                        <div className="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                          <input
+                                            readOnly
+                                            type="text"
+                                            className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                            value={survey.title}
+                                          />
+                                        </div>
+                                      </div>
+                                      <div className="MuiBox-root css-1yd9vr8">
+                                        <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
+                                          {survey.status ? "진행중" : "종료"}
+                                        </p>
+                                        <div
+                                          className="MuiBox-root css-0"
+                                          style={{
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                          }}
+                                        >
+                                          <img src="" />
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </div>
+                              </Link>
+                            ))}
                           </div>
-                          <div
-                            className="MuiBox-root css-0"
-                            style={{ margin: "0px 24px 20px 0px" }}
-                          >
-                            <div
-                              className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
-                              width="265"
-                              minheight="160"
-                            >
-                              <div className="MuiCardContent-root css-67yy9o">
-                                <div className="MuiBox-root css-1yd9vr8">
-                                  <div
-                                    className="MuiBox-root css-0"
-                                    style={{
-                                      width: "40px",
-                                      height: "40px",
-                                      // backgroundColor: "rgb(239, 249, 255)",
-                                      backgroundColor: "rgb(249 249 196)",
-                                      borderRadius: "40px",
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      alignItems: "center",
-                                      overflow: "hidden",
-                                    }}
-                                  >
-                                    <span
-                                      style={{
-                                        position: "absolute",
-                                        fontSize: "20px",
-                                      }}
-                                    >
-                                      🙂
-                                    </span>
-                                  </div>
-                                  <button
-                                    className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"
-                                    tabIndex="0"
-                                    type="button"
-                                    style={{
-                                      padding: "3px",
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      alignItems: "center",
-                                      position: "absolute",
-                                      top: "24px",
-                                      right: "24px",
-                                      cursor: "pointer",
-                                    }}
-                                  >
-                                    <svg
-                                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
-                                      focusable="false"
-                                      aria-hidden="true"
-                                      viewBox="0 0 24 24"
-                                      data-testid="MoreHorizIcon"
-                                    >
-                                      <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                                    </svg>
-                                    <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                  </button>
-                                </div>
-                                <div
-                                  className="MuiBox-root css-8atqhb"
-                                  aria-label="새로운 프로젝트"
-                                >
-                                  <div className="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
-                                    <input
-                                      readOnly
-                                      type="text"
-                                      className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
-                                      value="새로운 프로젝트"
-                                    />
-                                  </div>
-                                </div>
-                                <div className="MuiBox-root css-1yd9vr8">
-                                  <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
-                                    0 개 응답
-                                  </p>
-                                  <div
-                                    className="MuiBox-root css-0"
-                                    style={{
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <img src="" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div> */}
                         </div>
                       </div>
                       <div
@@ -1024,7 +839,6 @@ function Workspace() {
                                       </div>
                                       <div class="text-gray-500">
                                         {survey.status ? "진행중" : "종료"}
-                                        {/* {survey.status} */}
                                       </div>
                                     </div>
                                     <svg
@@ -1052,7 +866,6 @@ function Workspace() {
                                   </div>
                                   <div class="relative mt-8 flex items-center gap-x-4">
                                     <img
-                                      // src={props.profile}
                                       alt=""
                                       class="h-10 w-10 rounded-full bg-gray-50"
                                     />
@@ -1060,7 +873,6 @@ function Workspace() {
                                       <p class="font-semibold text-gray-900">
                                         <a href="#">
                                           <span class="absolute inset-0"></span>
-                                          {/* {props.name} */}
                                         </a>
                                       </p>
                                     </div>
@@ -1083,16 +895,114 @@ function Workspace() {
                           className="MuiBox-root css-0"
                           style={{ display: "flex", flexWrap: "wrap" }}
                         >
+                          <div className="MuiBox-root css-kl5uk3">
+                            <div>
+                              <div className="ant-picker ant-picker-range css-diro6f MuiBox-root css-rk138a">
+                                <div className="ant-picker-input ant-picker-input-active">
+                                  <input
+                                    type="text"
+                                    value={keyword}
+                                    onChange={handleInputChange}
+                                    placeholder="Enter your search keyword"
+                                    style={{ marginRight: "10px" }}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              className="ant-picker ant-picker-range css-diro6f MuiBox-root css-rk138a"
+                              style={{
+                                padding: "0px",
+                                backgroundColor: "white",
+                              }}
+                            >
+                              <div
+                                className="MuiBox-root css-0"
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "row",
+                                  backgroundColor: "white",
+                                }}
+                              >
+                                <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-kl5uk3 css-4m3kxx">
+                                  <div
+                                    className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm"
+                                    style={{
+                                      width: "fit-content",
+                                      backgroundColor: "white",
+                                    }}
+                                  >
+                                    <select
+                                      value={surveyCategory}
+                                      onChange={handleSurveyCategorySelect}
+                                      tabIndex="0"
+                                      role="button"
+                                      aria-expanded={isOpen ? "true" : "false"}
+                                      aria-haspopup="listbox"
+                                      aria-labelledby="select-color"
+                                      id="select-color"
+                                      className="MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-19tmo23"
+                                    >
+                                      <option value="">
+                                        {surveyCategory === ""
+                                          ? "전체"
+                                          : surveyCategory}
+                                      </option>
+                                      <option value="여행">여행</option>
+                                      <option value="맛집">맛집</option>
+                                      <option value="문화생활">문화생활</option>
+                                      <option value="교육">교육</option>
+                                      <option value="기타">기타</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <button
+                            onClick={handleSearch}
+                              className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1y1p9da"
+                              tabIndex="0"
+                              type="button"
+                            >
+                              <span className="MuiButton-startIcon MuiButton-iconSizeMedium css-6xugel">
+                                <svg
+                                  className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv"
+                                  focusable="false"
+                                  aria-hidden="true"
+                                  viewBox="0 0 24 24"
+                                  data-testid="SearchIcon"
+                                >
+                                  <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                                </svg>
+                              </span>
+                              조회하기
+                              <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                            </button>
+                          </div>
                           {/* 키워드 검색 */}
-                          <div className="search-bar" style={{ backgroundColor: 'skyblue', padding: '10px', borderRadius: '5px' }}>
+                          <div
+                            className="search-bar"
+                            style={{
+                              backgroundColor: "skyblue",
+                              padding: "10px",
+                              borderRadius: "5px",
+                            }}
+                          >
                             <input
                               type="text"
                               value={keyword}
                               onChange={handleInputChange}
                               placeholder="Enter your search keyword"
-                              style={{ marginRight: '10px' }}
+                              style={{ marginRight: "10px" }}
                             />
-                            <button onClick={handleSearch} style={{ backgroundColor: 'white', color: 'black', borderRadius: '5px' }}>
+                            <button
+                              onClick={handleSearch}
+                              style={{
+                                backgroundColor: "white",
+                                color: "black",
+                                borderRadius: "5px",
+                              }}
+                            >
                               Search
                             </button>
 
@@ -1110,41 +1020,43 @@ function Workspace() {
                             <div className="category-buttons">
                               <button
                                 className={`category-button ${
-                                  selectedCategory === '여행' ? 'selected' : ''
+                                  selectedCategory === "여행" ? "selected" : ""
                                 }`}
-                                onClick={() => handleCategoryClick('여행')}
+                                onClick={() => handleCategoryClick("여행")}
                               >
                                 여행
                               </button>
                               <button
                                 className={`category-button ${
-                                  selectedCategory === '맛집' ? 'selected' : ''
+                                  selectedCategory === "맛집" ? "selected" : ""
                                 }`}
-                                onClick={() => handleCategoryClick('맛집')}
+                                onClick={() => handleCategoryClick("맛집")}
                               >
                                 맛집
                               </button>
                               <button
                                 className={`category-button ${
-                                  selectedCategory === '문화생활' ? 'selected' : ''
+                                  selectedCategory === "문화생활"
+                                    ? "selected"
+                                    : ""
                                 }`}
-                                onClick={() => handleCategoryClick('문화생활')}
+                                onClick={() => handleCategoryClick("문화생활")}
                               >
                                 문화생활
                               </button>
                               <button
                                 className={`category-button ${
-                                  selectedCategory === '교육' ? 'selected' : ''
+                                  selectedCategory === "교육" ? "selected" : ""
                                 }`}
-                                onClick={() => handleCategoryClick('교육')}
+                                onClick={() => handleCategoryClick("교육")}
                               >
                                 교육
                               </button>
                               <button
                                 className={`category-button ${
-                                  selectedCategory === '기타' ? 'selected' : ''
+                                  selectedCategory === "기타" ? "selected" : ""
                                 }`}
-                                onClick={() => handleCategoryClick('기타')}
+                                onClick={() => handleCategoryClick("기타")}
                               >
                                 기타
                               </button>
@@ -1189,8 +1101,7 @@ function Workspace() {
             whiteSpace: "nowrap",
             border: "0px",
           }}
-        >
-        </div>
+        ></div>
       </div>
       {showPresentation && (
         <div
@@ -2295,54 +2206,53 @@ function Workspace() {
       )}
       {showOption && (
         <div
-        className="MuiMenuUnstyled-root Mui-expanded css-d9kxen MuiPopover-paper css-1oqb34a css-10ui89v MuiPopperUnstyled-root"
-        style={{
-          position: "absolute",
-          inset: "0px auto auto 0px",
-          margin: "0px",
-          transform: "translate3d(744px, 183px, 0px)"
-        }}
-        data-popper-placement="bottom"
-      >
-        <ul
-          id="simple-menu"
-          role="menu"
-          tabIndex="-1"
-          className="MuiMenuUnstyled-listbox Mui-expanded css-1ubxsfb"
-          style={{margin:"0px 0px 0px 0px", padding:"0px 0px 0px 0px"}}
+          className="MuiMenuUnstyled-root Mui-expanded css-d9kxen MuiPopover-paper css-1oqb34a css-10ui89v MuiPopperUnstyled-root"
+          style={{
+            position: "absolute",
+            inset: "0px auto auto 0px",
+            margin: "0px",
+            transform: "translate3d(744px, 183px, 0px)",
+          }}
+          data-popper-placement="bottom"
         >
-          <li
-            role="menuitem"
-            value="결과 조회하기"
-            className="MuiMenuItemUnstyled-root css-1lvg639"
-            tabIndex="0"
-            id="mui-38-option-0"
-            style={{marginBottom:"5px"}}
-          >
-            결과 조회하기
-          </li>
-          <li
-            role="menuitem"
-            value="수정하기"
-            className="MuiMenuItemUnstyled-root css-1lvg639"
+          <ul
+            id="simple-menu"
+            role="menu"
             tabIndex="-1"
-            id="mui-38-option-4"
-            style={{marginBottom:"5px"}}
+            className="MuiMenuUnstyled-listbox Mui-expanded css-1ubxsfb"
+            style={{ margin: "0px 0px 0px 0px", padding: "0px 0px 0px 0px" }}
           >
-            수정하기
-          </li>
-          <li
-            role="menuitem"
-            value="삭제하기"
-            className="MuiMenuItemUnstyled-root css-1lvg639"
-            tabIndex="-1"
-            id="mui-38-option-5"
-          >
-            삭제하기
-          </li>
-        </ul>
-      </div>
-      
+            <li
+              role="menuitem"
+              value="결과 조회하기"
+              className="MuiMenuItemUnstyled-root css-1lvg639"
+              tabIndex="0"
+              id="mui-38-option-0"
+              style={{ marginBottom: "5px" }}
+            >
+              결과 조회하기
+            </li>
+            <li
+              role="menuitem"
+              value="수정하기"
+              className="MuiMenuItemUnstyled-root css-1lvg639"
+              tabIndex="-1"
+              id="mui-38-option-4"
+              style={{ marginBottom: "5px" }}
+            >
+              수정하기
+            </li>
+            <li
+              role="menuitem"
+              value="삭제하기"
+              className="MuiMenuItemUnstyled-root css-1lvg639"
+              tabIndex="-1"
+              id="mui-38-option-5"
+            >
+              삭제하기
+            </li>
+          </ul>
+        </div>
       )}
       <div
         id="rbd-announcement-1"
