@@ -30,6 +30,8 @@ import ParticipateSurvey from "./components/Survey/ParticipateSurvey";
 import StartTest from "./components/Test/StartTest";
 import SurveyTest from "./components/Survey/SurveyTest";
 import ShowResult from "./components/Survey/ShowResult";
+// import KakaoAuthHandle from "./components/Login/KakaoAuthHandle"
+import KakaoCallback from "./components/Login/KakaoCallback";
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -56,6 +58,12 @@ function App() {
         {/* <Navbar isLogin={isLogin} /> */}
         <ScrollToTop />
         <Routes>
+        <Route /* 인가 코드 받기.. */
+        path="/oauth"
+        // component={KakaoAuthHandle}
+        element={<KakaoCallback />}
+      />
+      
           <Route path="/" element={<Home />} />
           <Route path="/survey" element={<Survey />} />
           <Route path="/test" element={<Test />} />

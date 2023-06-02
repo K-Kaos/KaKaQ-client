@@ -1012,6 +1012,18 @@ function Workspace() {
                               ))}
                             </div>
                           </div>
+
+                          <div className="survey-search-results">
+                            {searchSurveys.map((survey) => (
+                              <div key={survey.id}>
+                                <h3>{survey.name}</h3>
+                                <p>Survey: {survey.title}</p>
+                                <p>Category: {survey.category}</p>
+                                <p>Start Date: {survey.startDate}</p>
+                                <p>End Date: {survey.endDate}</p>
+                              </div>
+                            ))}
+                          </div>
                           {/* 키워드 검색 */}
 
                           {/* 카테고리이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이잉 */}
