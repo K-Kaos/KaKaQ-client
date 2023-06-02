@@ -4,6 +4,8 @@ import kakaologo from "../../Assets/Logo/kakaologo.png";
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import moment from 'moment';
+import {KAKAO_AUTH_URL} from "./OAuth";
+
 
 function LoginForm(props) {
     const [formData, setFormData] = useState({
@@ -30,7 +32,11 @@ function LoginForm(props) {
     const checkHandler = (event) => {
         setIsRemember(!isRemember);
     }
+    const kakaoLogin = () => {
+        window.location.href = KAKAO_AUTH_URL;
+    }
 
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(formData);
@@ -65,6 +71,7 @@ function LoginForm(props) {
             }
         });
     };
+    
 
     return (
         <Container >
@@ -138,7 +145,7 @@ function LoginForm(props) {
                                     로그인
                                 </button>
                                 <div className="mt-2 items-center grid gap-2">
-                                    <button className="flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2">
+                                    <button onClick={kakaoLogin}>
                                         <img className="w-5 h-5 mr-2" src={kakaologo} alt="kakaoLogo" />
                                         카카오톡 로그인</button>
                                 </div>
@@ -155,6 +162,7 @@ function LoginForm(props) {
         </Container>
     )
 }
+
 
 function Login() {
     return (
