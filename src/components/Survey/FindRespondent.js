@@ -5,27 +5,41 @@ import Question from "./Question";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
+import SelectCity from "./SelectCity";
 
-function FindRespondent() {
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+
+
+function FindRespondent({isSurveyPublic, onSurveyPublicChange, isSurveyGPS, onSurveyGPSChange, surveyCity, onSurveyCityChange, surveyStartDate, onSurveyStartDateChange, surveyEndDate, onSurveyEndDateChange }) {
+
+  const date = new Date();
+  const defaultStartDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+  const futureDate = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000); // 7일 후의 날짜를 계산
+  const defaultEndDate = `${futureDate.getFullYear()}-${(futureDate.getMonth() + 1).toString().padStart(2, '0')}-${futureDate.getDate().toString().padStart(2, '0')}T${futureDate.getHours().toString().padStart(2, '0')}:${futureDate.getMinutes().toString().padStart(2, '0')}`;
+
+  const [startDate, setStartDate] = useState(defaultStartDate);
+  const [endDate, setEndDate] = useState(defaultEndDate);
   const [isPublic, setIsPublic] = useState(false);
   const [isGPS, setIsGPS] = useState(false);
   const [city, setCity] = useState("");
 
   const handleStartDateChange = (event) => {
     setStartDate(event.target.value);
+    onSurveyStartDateChange(event.target.value);
   };
 
   const handleEndDateChange = (event) => {
     setEndDate(event.target.value);
+    onSurveyEndDateChange(event.target.value);
   };
 
   const handleTogglePublic = () => {
     setIsPublic(!isPublic);
-    
+    onSurveyPublicChange(!isPublic);
+
     if (isGPS) {
       setIsGPS(false)
+      onSurveyGPSChange(false);
     }
   };
 
@@ -33,12 +47,69 @@ function FindRespondent() {
 
     if (isPublic === false) {
       setIsGPS(false);
+      onSurveyGPSChange(false);
     }
     else {
       setIsGPS(!isGPS);
+      onSurveyGPSChange(!isSurveyGPS);
     }
 
   };
+
+  // 1차 지역과 2차 지역 데이터
+  const categories = [
+    '서울특별시',
+    '부산광역시',
+    '대구광역시',
+    '인천광역시',
+    '광주광역시',
+    '대전광역시',
+    '울산광역시',
+    '세종시',
+    '경기도',
+    '강원도',
+    '충청북도',
+    '충청남도',
+    '전라북도',
+    '전라남도',
+    '경상북도',
+    '경상남도',
+    '제주특별자치도',
+  ];
+
+  const subCategories = {
+    서울특별시: ['전체'],
+    부산광역시: ['전체'],
+    대구광역시: ['전체'],
+    인천광역시: ['전체'],
+    광주광역시: ['전체'],
+    대전광역시: ['전체'],
+    울산광역시: ['전체'],
+    세종시: ['전체'],
+    경기도: ['수원시', '고양시', '용인시', '성남시', '부천시', '화성시', '안산시', '남양주시', '안양시', '평택시', '시흥시', '파주시', '의정부시', '김포시', '광주시', '광명시', '군포시', '하남시', '오산시', '양주시', '이천시', '구리시', '안성시', '포천시', '의왕시', '양평군', '여주시', '동두천시', '가평군', '과천시', '연천군'],
+    강원도: ['춘천시', '원주시', '강릉시', '동해시', '속초시', '삼척시', '태백시', '홍천군', '횡성군', '영월군', '평창군', '정선군', '철원군', '화천군', '양구군', '인제군', '고성군', '양양군'],
+    충청북도: ['청주시', '충주시', '제천시', '보은군', '옥천군', '영동군', '증평군', '진천군', '괴산군', '음성군', '단양군'],
+    충청남도: ['천안시', '공주시', '보령시', '아산시', '서산시', '논산시', '계룡시', '당진시', '금산군', '부여군', '서천군', '청양군', '홍성군', '예산군', '태안군'],
+    전라북도: ['전주시', '익산시', '군산시', '정읍시', '완주군', '김제시', '남원시', '고창군', '부안군', '임실군', '순창군', '진안군', '장수군', '무주군'],
+    전라남도: ['목포시', '여수시', '순천시', '나주시', '광양시', '담양군', '곡성군', '구례군', '고흥군', '보성군', '화순군', '장흥군', '강진군', '해남군', '영암군', '무안군', '함평군', '영광군', '장성군', '완도군', '진도군', '신안군'],
+    경상북도: ['포항시', '경주시', '김천시', '안동시', '구미시', '영주시', '영천시', '상주시', '문경시', '경산시', '군위군', '의성군', '청송군', '영양군', '영덕군', '청도군', '고령군', '성주군', '칠곡군', '예천군', '봉화군', '울진군', '울릉군'],
+    경상남도: ['창원시', '김해시', '진주시', '양산시', '거제시', '통영시', '사천시', '밀양시', '함안군', '거창군', '창녕군', '고성군', '하동군', '합천군', '남해군', '함양군', '산청군', '의령군', '함양군'],
+    제주도: ['제주시', '서귀포시'],
+  };
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategoryClick = (category) => {
+    console.log(category)
+    setSelectedCategory(category);
+  };
+
+  const handleCityChange = (city) => {
+    console.log(selectedCategory + ' ' + city)
+    setCity(city);
+    onSurveyCityChange(city);
+  };
+    
 
   return (
     <>
@@ -140,7 +211,7 @@ function FindRespondent() {
                                     응답 대상자 설정하기
                                   </p>
                                   <p className="MuiTypography-root MuiTypography-body1 css-1bl4xcr">
-                                    어떤 분들에게 어느 지역에 배포하고 싶나요?
+                                    어느 지역의 어떤 분들에게 응답 받고 싶나요?
                                   </p>
                                 </div>
                               </div>
@@ -162,14 +233,14 @@ function FindRespondent() {
                                       <div
                                         class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAccordion-root css-1degz5g"
                                         style={{ width: "100%" }}
-                                        
-                                        onClick={handleTogglePublic}
+
                                       >
                                         <div
                                           class="MuiButtonBase-root MuiAccordionSummary-root css-eb9lrn"
                                           tabindex="0"
                                           role="button"
                                           aria-expanded="false"
+                                          onClick={handleTogglePublic}
                                         >
                                           <div className="MuiAccordionSummary-content css-1n11r91">
                                             <p
@@ -179,8 +250,8 @@ function FindRespondent() {
                                               공개 여부
                                             </p>
                                           </div>
-                                          
-                                          
+
+
                                           <div className="MuiAccordionSummary-expandIconWrapper css-1fx8m19">
                                             <span className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei">
                                               <span class={`MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn ${isPublic ? 'Mui-checked' : ''}`}>
@@ -268,17 +339,17 @@ function FindRespondent() {
                                         </div> */}
                                       </div>
                                       <div class="MuiBox-root css-197dogp"></div>
-                                      <div class={`MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAccordion-root css-1degz5g ${!isPublic ? 'disabled' : ''}`}
-                                      onClick={handleToggleGPS}
-                                      disabled={!isPublic}>
+                                      <div class={`MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAccordion-root ${isGPS ? 'Mui-expanded' : ""} css-1degz5g ${!isPublic ? 'disabled' : ''}`}
+                                        disabled={!isPublic}>
                                         <div
-                                          class={`MuiButtonBase-root MuiAccordionSummary-root css-eb9lrn`}
+                                          class={`MuiButtonBase-root MuiAccordionSummary-root ${isGPS ? 'Mui-expanded' : ""} css-eb9lrn`}
                                           tabindex="0"
                                           role="button"
-                                          aria-expanded="false"
-                                          
+                                          aria-expanded={isGPS}
+                                          onClick={handleToggleGPS}
+
                                         >
-                                          <div className="MuiAccordionSummary-content css-1n11r91">
+                                          <div className={`MuiAccordionSummary-content ${isGPS ? 'Mui-expanded' : ""} css-1n11r91`}>
                                             <p
                                               className="MuiTypography-root MuiTypography-body1 css-qisfzi"
                                               style={{ fontWeight: "400" }}
@@ -286,13 +357,13 @@ function FindRespondent() {
                                               GPS 사용 여부
                                             </p>
                                           </div>
-                                          <div className="MuiAccordionSummary-expandIconWrapper css-1fx8m19">
+                                          <div className={`MuiAccordionSummary-expandIconWrapper css-1fx8m19`}>
                                             <span className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei">
                                               <span className={`MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1sf64yn ${isGPS ? 'Mui-checked' : ''}`}>
                                                 <input
                                                   className="PrivateSwitchBase-input MuiSwitch-input css-1m9pwf3"
                                                   type="checkbox"
-                                                  value={isGPS && isPublic}
+                                                  value={isGPS}
                                                   disabled={!isPublic}
                                                 />
                                                 <span className="MuiSwitch-thumb css-19gndve"></span>
@@ -301,11 +372,11 @@ function FindRespondent() {
                                             </span>
                                           </div>
                                         </div>
-                                        {/* <div
-                                          class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-a0y2e3"
-                                          style={{ minHeight: "0px" }}
+                                        <div
+                                          class={`MuiCollapse-root MuiCollapse-vertical ${isGPS ? 'MuiCollapse-entered' : "MuiCollapse-hidden"} ${isGPS ? 'css-c4sutr' : 'css-a0y2e3'}`}
+                                          style={isGPS ? { minHeight: '0px', height: 'auto', transitionDuration: '395ms' } : { minHeight: "0px" }}
                                         >
-                                          <div class="MuiCollapse-wrapper MuiCollapse-vertical css-hboir5">
+                                          <div class="MuiCollapse-wrapper MuiCollapse-vertical MuiCollapse-entered css-hboir5">
                                             <div class="MuiCollapse-wrapperInner MuiCollapse-vertical css-8atqhb">
                                               <div
                                                 role="region"
@@ -318,7 +389,27 @@ function FindRespondent() {
                                                       flexDirection: "row",
                                                     }}
                                                   >
-                                                    <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
+                                                    <div style={{ display: 'flex' }}>
+                                                      <div style={{ marginRight: '10px' }}>
+                                                        {categories.map((category) => (
+                                                          <div
+                                                            key={category}
+                                                            style={{ cursor: 'pointer' }}
+                                                            onClick={() => handleCategoryClick(category)}
+                                                          >
+                                                            {category}
+                                                          </div>
+                                                        ))}
+                                                      </div>
+                                                      {selectedCategory && (
+                                                        <div>
+                                                          {subCategories[selectedCategory].map((subCategory) => (
+                                                            <div key={subCategory} value={subCategory} onClick={() => handleCityChange(subCategory)}>{subCategory}</div>
+                                                          ))}
+                                                        </div>
+                                                      )}
+                                                    </div>
+                                                    {/* <label className="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1jaw3da">
                                                       <span className="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-root MuiCheckbox-colorPrimary css-8bvb0y">
                                                         <input
                                                           className="PrivateSwitchBase-input css-1m9pwf3"
@@ -365,15 +456,15 @@ function FindRespondent() {
                                                       >
                                                         GPS 사용 X
                                                       </span>
-                                                    </label>
+                                                    </label> */}
                                                   </div>
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
-                                        </div> */}
+                                        </div>
                                       </div>
-                                      <div class="MuiBox-root css-197dogp"></div>
+                                      {/* <div class="MuiBox-root css-197dogp"></div>
                                       <div
                                         class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation0 MuiAccordion-root css-1degz5g"
                                         style={{ width: "100%" }}
@@ -669,7 +760,7 @@ function FindRespondent() {
                                             </div>
                                           </div>
                                         </div>
-                                      </div>
+                                      </div> */}
                                     </div>
                                   </div>
                                 </div>
@@ -747,24 +838,28 @@ function FindRespondent() {
                                               className="MuiTypography-root MuiTypography-body1 css-qisfzi"
                                               style={{ fontWeight: "400" }}
                                             >
-                                              시작일
+                                              배포 시작일
                                             </p>
                                           </div>
                                           <div className="MuiAccordionSummary-expandIconWrapper css-1fx8m19">
-                                            <span
-                                              className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei"
-                                              style={{
-                                                width: "150px",
-                                                height: "50px",
-                                                paddingBottom: "8px",
-                                              }}
-                                            >
-                                              <input
-                                                type="date"
-                                                value={startDate}
-                                                onChange={handleStartDateChange}
-                                              />
-                                            </span>
+                                            <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-lvanhh">
+                                              <span
+                                                className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei"
+                                                style={{
+                                                  width: "auto",
+                                                }}
+                                              >
+                                                <input
+                                                  aria-invalid="false"
+                                                  id="startDate"
+                                                  placeholder="YYYY-MM-DD"
+                                                  type="datetime-local"
+                                                  class="MuiInputBase-input css-mnn31"
+                                                  value={startDate}
+                                                  onChange={handleStartDateChange}
+                                                />
+                                              </span>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
@@ -781,24 +876,28 @@ function FindRespondent() {
                                               className="MuiTypography-root MuiTypography-body1 css-qisfzi"
                                               style={{ fontWeight: "400" }}
                                             >
-                                              마감일
+                                              배포 마감일
                                             </p>
                                           </div>
                                           <div className="MuiAccordionSummary-expandIconWrapper css-1fx8m19">
-                                            <span
-                                              className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei"
-                                              style={{
-                                                width: "150px",
-                                                height: "50px",
-                                                paddingTop: "8px",
-                                              }}
-                                            >
-                                              <input
-                                                type="date"
-                                                value={endDate}
-                                                onChange={handleEndDateChange}
-                                              />
-                                            </span>
+                                            <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-lvanhh">
+                                              <span
+                                                className="MuiSwitch-root MuiSwitch-sizeMedium css-1mgt3ei"
+                                                style={{
+                                                  width: "auto",
+                                                }}
+                                              >
+                                                <input
+                                                  aria-invalid="false"
+                                                  id="endDate"
+                                                  placeholder="YYYY-MM-DD"
+                                                  type="datetime-local"
+                                                  class="MuiInputBase-input css-mnn31"
+                                                  value={endDate}
+                                                  onChange={handleEndDateChange}
+                                                />
+                                              </span>
+                                            </div>
                                           </div>
                                         </div>
                                       </div>
