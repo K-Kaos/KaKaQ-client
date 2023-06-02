@@ -30,10 +30,11 @@ import {
 import { CgBorderBottom } from "react-icons/cg";
 import logo from "../../Assets/Logo/logo.png";
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import OpenSurvey from "./OpenSurvey";
 import MakeForm from "./MakeForm";
+import OpenSurveyItem from "./OpenSurveyItem";
 
 function Workspace() {
   // 설문 데이터
@@ -56,10 +57,15 @@ function Workspace() {
   const [surveyKeyword, setSurveyKeyword] = useState("");
   const [surveyCategory, setSurveyCategory] = useState("");
   const [surveySubject, setSurveySubject] = useState("");
+  const [categorySurveys, setCategorySurveys] = useState([]);
+  const [searchSurveys, setSearchSurveys] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
   // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
   const [creator, setCreator] = useState("");
+  const [keyword, setKeyword] = useState('');
+
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -67,6 +73,16 @@ function Workspace() {
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+  };
+
+  // 카테고리 버튼
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  // 검색 키워드
+  const handleInputChange = (event) => {
+    setKeyword(event.target.value);
   };
 
   useEffect(() => {
@@ -271,6 +287,8 @@ function Workspace() {
     setShowOption(false);
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // 사용자가 입력한 제목, 키워드, 카테고리를 이용하여 작업을 수행합니다.
@@ -278,8 +296,14 @@ function Workspace() {
     console.log("제목:", surveyTitle);
     console.log("키워드:", surveyKeyword);
     console.log("카테고리:", surveyCategory);
-    // /kakaq로 이동하는 작업을 수행합니다.
-    window.location.href = "/kakaq";
+
+    navigate("/kakaq", {
+      state: {
+        surveyTitle: surveyTitle,
+        surveyKeyword: surveyKeyword,
+        surveyCategory: surveyCategory
+      }
+    });
   };
 
   // script
@@ -331,6 +355,49 @@ function Workspace() {
         console.log(error);
       });
   }, []);
+
+  // filter survey API
+  useEffect(() => {
+    let url = 'api/surveys/filter';
+    if (selectedCategory) {
+      url += `?category=${selectedCategory}`;
+    }
+  
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setCategorySurveys(data);
+        console.log('Filtered result:', data);
+      })
+      .catch((error) => {
+        console.error('Error fetching surveys:', error);
+      });
+  }, [selectedCategory]);
+
+  // search survey API
+  const handleSearch = () => {
+    if (keyword.trim() !== '') {
+      fetch(`api/search?keyword=${encodeURIComponent(keyword)}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setSearchSurveys(data);
+          console.log('Search results:', data);
+        })
+        .catch((error) => {
+          console.error('Error fetching search results:', error);
+        });
+    }
+  };
 
   return (
     <>
@@ -1016,8 +1083,88 @@ function Workspace() {
                           className="MuiBox-root css-0"
                           style={{ display: "flex", flexWrap: "wrap" }}
                         >
+                          {/* 키워드 검색 */}
+                          <div className="search-bar" style={{ backgroundColor: 'skyblue', padding: '10px', borderRadius: '5px' }}>
+                            <input
+                              type="text"
+                              value={keyword}
+                              onChange={handleInputChange}
+                              placeholder="Enter your search keyword"
+                              style={{ marginRight: '10px' }}
+                            />
+                            <button onClick={handleSearch} style={{ backgroundColor: 'white', color: 'black', borderRadius: '5px' }}>
+                              Search
+                            </button>
+
+                            <div className="search-results">
+                              {searchSurveys.map((survey) => (
+                                <div key={survey.id}>{survey.name}</div>
+                              ))}
+                            </div>
+                          </div>
+                          {/* 키워드 검색 */}
+
+                          {/* 카테고리이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이잉 */}
+                          {/* 카테고리 선택 버튼 */}
+                          <div>
+                            <div className="category-buttons">
+                              <button
+                                className={`category-button ${
+                                  selectedCategory === '여행' ? 'selected' : ''
+                                }`}
+                                onClick={() => handleCategoryClick('여행')}
+                              >
+                                여행
+                              </button>
+                              <button
+                                className={`category-button ${
+                                  selectedCategory === '맛집' ? 'selected' : ''
+                                }`}
+                                onClick={() => handleCategoryClick('맛집')}
+                              >
+                                맛집
+                              </button>
+                              <button
+                                className={`category-button ${
+                                  selectedCategory === '문화생활' ? 'selected' : ''
+                                }`}
+                                onClick={() => handleCategoryClick('문화생활')}
+                              >
+                                문화생활
+                              </button>
+                              <button
+                                className={`category-button ${
+                                  selectedCategory === '교육' ? 'selected' : ''
+                                }`}
+                                onClick={() => handleCategoryClick('교육')}
+                              >
+                                교육
+                              </button>
+                              <button
+                                className={`category-button ${
+                                  selectedCategory === '기타' ? 'selected' : ''
+                                }`}
+                                onClick={() => handleCategoryClick('기타')}
+                              >
+                                기타
+                              </button>
+                            </div>
+                          </div>
                           {/* 여기에 list 띄울 것 */}
+                          <div className="survey-results">
+                            {categorySurveys.map((survey) => (
+                              <div key={survey.id}>
+                                <h3>{survey.name}</h3>
+                                <p>Category: {survey.category}</p>
+                                <p>Start Date: {survey.startDate}</p>
+                                <p>End Date: {survey.endDate}</p>
+                              </div>
+                            ))}
+                          </div>
+                          {/* 카테고리이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이잉 */}
+                          {/*
                           <OpenSurvey />
+                           여기에 list 띄울 것 */}
                         </div>
                       </div>
                     </div>
@@ -1043,7 +1190,6 @@ function Workspace() {
             border: "0px",
           }}
         >
-          Navigated to 왈라! - 편집하기
         </div>
       </div>
       {showPresentation && (

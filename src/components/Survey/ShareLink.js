@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
 
-function ShareLink() {
+function ShareLink(props) {
+
+  
   const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 객체 가져오기
 
   // 설문조사 만들기 버튼 클릭 시 /kakaq로 이동
@@ -30,7 +32,7 @@ function ShareLink() {
                   <div className="MuiBox-root css-0">
                     <p className="MuiTypography-root MuiTypography-body1 css-zuj73s">
                       <span style={{ color: "rgb(250, 200, 0)" }}>
-                        새로운 프로젝트{" "}
+                        {props.surveyTitle}{" "}
                       </span>
                       프로젝트를 성공적으로 만들었습니다.
                     </p>

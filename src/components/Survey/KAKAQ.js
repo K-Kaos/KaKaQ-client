@@ -35,13 +35,33 @@ import CreateSurvey from "./CreateSurvey";
 import FindRespondent from "./FindRespondent";
 import SurveyResult from "./SurveyResult";
 import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function KAKAQ() {
+function KAKAQ(props) {
   // 설문 데이터
+  const location = useLocation();
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [questionType, setQuestionType] = useState("");
   const [showProfile, setShowProfile] = useState(false);
+
+  const [surveyTitle, setSurveyTitle] = useState("");
+  const [surveyKeyword, setSurveyKeyword] = useState("");
+  const [surveyCategory, setSurveyCategory] = useState("");
+
+  useEffect(() => {//페이지에서 설정한 데이터들 가져오기
+    if (location.state && location.state.surveyTitle) {
+      setSurveyTitle(location.state.surveyTitle);
+    }
+    if (location.state && location.state.surveyKeyword) {
+      setSurveyKeyword(location.state.surveyKeyword);
+    }
+    if (location.state && location.state.surveyCategory) {
+      setSurveyCategory(location.state.surveyCategory);
+    }
+
+  }, [location.state]);
+
 
   const [geoData, setgeoData] = useState({
     userName: "",
@@ -50,7 +70,7 @@ function KAKAQ() {
   });
 
   const handleTitleChange = (event) => {
-    setTitle(event.target.value);
+    setSurveyTitle(event.target.value);
   };
 
   const handleQuestionChange = (event) => {
@@ -361,6 +381,7 @@ function KAKAQ() {
                   <div
                     class="MuiBox-root css-12kkxif"
                     aria-label="Back to dashboard"
+                    
                   >
                     <img
                       src={logo}
@@ -402,7 +423,7 @@ function KAKAQ() {
                           placeholder="새로운 설문조사"
                           type="text"
                           class="MuiInputBase-input css-mnn31"
-                          value={title}
+                          value={surveyTitle}
                           onChange={handleTitleChange}
                         />
                       </div>
@@ -686,8 +707,8 @@ function KAKAQ() {
                 </div> */}
               </div>
             </header>
-            {showCreateSurvey && <CreateSurvey />}
-            {showShareLink && <ShareLink />}
+            {showCreateSurvey && <CreateSurvey title={surveyTitle} category={surveyCategory} keyword={surveyKeyword}/>}
+            {showShareLink && <ShareLink surveyTitle={surveyTitle}/>}
             {showFindRespondent && <FindRespondent />}
             {showSurveyResult && <SurveyResult />}
 

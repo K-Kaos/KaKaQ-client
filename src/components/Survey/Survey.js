@@ -182,13 +182,9 @@ function Survey() {
             setMessage("");
           }, 3000);
 
-          // 모든 questionIndex를 editQuestions 함수에 넘겨주기
-          // const allQuestionIndex = results.map((result) => result.data);
-          // editQuestions(questionIndex);
+
         });
-        //console.log("newindex" + questionIndex);
       });
-    // console.log("newindex" + questionIndex);
   }
 
   // function editQuestions(allQuestionIndex) {

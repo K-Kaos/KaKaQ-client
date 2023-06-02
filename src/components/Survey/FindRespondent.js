@@ -45,7 +45,7 @@ function FindRespondent() {
                       응답자 찾기
                     </p>
                     <p className="MuiTypography-root MuiTypography-body1 css-qisfzi">
-                      KaKaQ를 통해 프로젝트에 적합한 응답자를 빠르게 모을 수
+                      KaKaQ를 통해 프로젝트에 적합한 응답자를 찾아보세요.
                     </p>
                   </div>
                   <a
