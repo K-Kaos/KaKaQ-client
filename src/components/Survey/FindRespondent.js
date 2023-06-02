@@ -5,12 +5,8 @@ import Question from "./Question";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
-import Collapse from "@mui/material/Collapse";
 import SelectCity from "./SelectCity";
-import { Menu, MenuItem, ListItemText } from '@mui/material';
-import { MenuList } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
 
 
 function FindRespondent() {
