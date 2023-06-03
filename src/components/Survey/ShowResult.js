@@ -62,19 +62,25 @@ function ShowResult() {
   let data = [];
   const keys = ['라이언','어피치','무지','콘','춘식이'];
 
-  const processData = (questionData) => {
-    const data = [];
-    if (Array.isArray(questionData)) {
-      questionData.forEach((option) => {
-        if (option.count !== null) {
-          data.push({ option: option.value, [option.answererRole]: option.count });
+  function processData(options, responses) {
+    const data = options.map((option) => {
+      const optionData = {
+        option: option,
+      };
+  
+      for (const response of responses) {
+        if (response.value === option) {
+          optionData[response.answererRole] = response.count;
+        } else {
+          optionData[response.answererRole] = 0;
         }
-      });
-    } else {
-      console.log('Invalid questionData:', questionData);
-    }
-    return data;
-  };
+      }
+  
+      return optionData;
+    });
+
+    return data.reverse();
+  }
 
   const { id } = useParams();
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
@@ -379,15 +385,18 @@ function ShowResult() {
                                         <li key={index}>{index + 1})&nbsp;&nbsp;{option}</li>
                                       ))}
                                     </ul>
-                                    <BarChart data={processData(responses[question.question_id])} keys={keys} />
+                                    <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
                                   </div>
                                 )}
                                 {question.type.name === '찬부식' && (
-                                  <ul>
-                                    {question.options.map((option, index) => (
-                                      <li key={index}>{option}</li>
-                                    ))}
-                                  </ul>
+                                  <div>
+                                    <ul>
+                                      {question.options.map((option, index) => (
+                                        <li key={index}>{index + 1})&nbsp;&nbsp;{option}</li>
+                                      ))}
+                                    </ul>
+                                    <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
+                                  </div>
                                 )}
                                 {question.type.name === '주관식' && <input type="text" />}
                               </div>
