@@ -88,20 +88,13 @@ button:focus {
   width: 7px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  /* background: #fffacd; */
-}
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  /* background: #fffacd; */
   border-radius: 12px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  /* background: #fffacd; */
   border-radius: 12px;
 }
 
@@ -128,14 +121,12 @@ button:focus {
 }
 
 .navbar-toggler {
-  /* position: relative !important; */
   background-color: transparent !important;
   border-color: transparent !important;
 }
 
 .navbar-toggler span {
   display: block !important;
-  /* background-color: #fffacd !important; */
   height: 4px !important;
   width: 27px !important;
   margin-top: 2px !important;
@@ -156,7 +147,6 @@ button:focus {
 }
 
 .navbar-toggler:not(.collapsed) span:nth-child(1) {
-  /* position: absolute !important; */
   left: 12px !important;
   top: 10px !important;
   transform: rotate(135deg) !important;
@@ -170,7 +160,6 @@ button:focus {
 }
 
 .navbar-toggler:not(.collapsed) span:nth-child(3) {
-  /* position: absolute !important; */
   left: 12px !important;
   top: 10px !important;
   transform: rotate(-135deg) !important;
@@ -181,7 +170,6 @@ button:focus {
   .navbar {
     padding: 1rem 2rem !important;
     font-size: 1.4rem !important;
-    /* background-color: #fffacd !important; */
   }
 
   .navbar-nav .nav-item a::after {
@@ -419,7 +407,6 @@ button:focus {
   text-align: center !important;
   font-size: 1.2em !important;
   line-height: 2em !important;
-  /* background: #fffacd !important; */
   border-radius: 50% !important;
   transition: 0.5s !important;
 }
@@ -463,7 +450,6 @@ button:focus {
 /* Footer */
 /* --------- */
 .footer {
-  /* background-color: #fffacd; */
   bottom: 0 !important;
   padding-top: 10px !important;
   padding-bottom: 8px !important;
@@ -819,11 +805,6 @@ button:focus {
   display: none !important;
 }
 
-/* 
-.fade-in {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-} */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -840,7 +821,6 @@ button:focus {
 
 }
 
-/* Walla */
 .css-14yd5ky {
   transform: translateZ(0px);
   -webkit-box-flex: 1;
@@ -1044,7 +1024,6 @@ button:focus {
   border-top-style: solid;
   border-top-color: transparent;
   border-bottom-style: solid;
-  /* border-bottom-color: rgb(38, 112, 255); */
   border-radius: 0px;
 }
 
@@ -1896,11 +1875,9 @@ video {
   background-color: rgb(255, 255, 255);
 }
 
-
 .css-1oi2cng {
   width: 100%;
 }
-
 
 .css-2g6513 {
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
@@ -1922,17 +1899,11 @@ video {
   border-radius: 16px;
 }
 
-.css-1oi2cng input {
-  color: rgb(0, 0, 0);
-}
-
-
 .css-1bvc4cc {
   display: flex;
   -webkit-box-pack: end;
   justify-content: flex-end;
 }
-
 
 .css-1c3ey53 {
   padding: 14px 20px 14px 16px;
@@ -2056,7 +2027,6 @@ video {
   bottom: 0px;
   width: 100%;
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  /* background-color: rgb(38, 112, 255); */
 }
 
 .css-39bbo6 {
@@ -2660,12 +2630,6 @@ video {
   background-color: rgb(255, 255, 255);
 }
 
-/* .css-55a4wh:hover {
-  text-decoration: none;
-  background-color: rgb(0, 87, 255);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
-} */
-
 .css-55a4wh {
   display: inline-flex;
   -webkit-box-align: center;
@@ -2703,12 +2667,6 @@ video {
 .css-itbpdr:hover {
   background-color: rgb(222, 53, 11) !important;
 }
-
-/* .css-itbpdr:hover {
-  text-decoration: none;
-  background-color: rgb(0, 87, 255);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
-} */
 
 .css-1gkqau2 .MuiButtonGroup-grouped {
   min-width: 40px;
@@ -2776,7 +2734,6 @@ video {
 .css-mnn31:focus {
   outline: none !important;
 }
-
 
 textarea:focus-visible {
   outline-offset: 0px;
@@ -2879,48 +2836,6 @@ textarea:focus-visible {
   color: rgba(66, 82, 110, 0.4);
 }
 
-.css-9hbtr5 {
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.4375em;
-  white-space: pre-line;
-  letter-spacing: -0.01em;
-  color: rgb(51, 61, 75);
-  box-sizing: border-box;
-  position: relative;
-  cursor: text;
-  display: inline-flex;
-  -webkit-box-align: center;
-  align-items: center;
-  width: 100%;
-  padding: 12px 16px;
-  background-color: rgb(250, 250, 250);
-  border-radius: 16px;
-}
-
-.css-1oi2cng input {
-  color: rgb(0, 0, 0);
-}
-
-.css-mnn31 {
-  font: inherit;
-  letter-spacing: inherit;
-  color: currentcolor;
-  padding: 4px 0px 5px;
-  border: 0px;
-  box-sizing: content-box;
-  background: none;
-  height: 1.4375em;
-  margin: 0px;
-  -webkit-tap-highlight-color: transparent;
-  display: block;
-  min-width: 0px;
-  width: 100%;
-  animation-name: mui-auto-fill-cancel;
-  animation-duration: 10ms;
-}
-
 .css-1oi2cng input {
   color: rgb(0, 0, 0);
   outline: 0px;
@@ -3020,7 +2935,6 @@ textarea:focus-visible {
 .css-10gxoaa:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }
-
 
 input:focus {
   outline: none !important;
@@ -3124,7 +3038,6 @@ label+.css-lvanhh {
   margin-top: 20px;
 }
 
-
 html,
 body,
 #main {
@@ -3146,22 +3059,6 @@ div {
 body {
   --framer-aspect-ratio-supported: auto;
 }
-
-/* body {
-  --token-847ef11f-9d1f-468c-b95a-5bcf9302716c: rgb(228, 233, 255);
-  --token-606985c3-bdcf-4bd3-8081-c58590581057: rgb(198, 209, 255);
-  --token-5e30af2e-edbc-41f4-96c3-ad80f9180a26: rgb(163, 182, 255);
-  --token-f0b76743-149a-421c-be94-6ef245785d55: rgb(163, 182, 255);
-  --token-d3721ff6-6aaf-41cd-8ace-c12c6fd548a5: rgb(40, 110, 255);
-  --token-a1ddf5b8-5327-4054-8f47-043d54e6b485: rgb(35, 100, 228);
-  --token-dc7f4e8b-5f58-48ec-8125-42fd98dec331: rgb(30, 85, 197);
-  --token-99e7e98e-9012-4ee9-8180-9eebc9cd120a: rgb(24, 70, 161);
-  --token-e0b2e1a7-6c9c-43ef-9d5d-d797a9cd137f: rgb(18, 48, 114);
-  --token-17123d78-faa5-40fe-96a0-a0ee1954948f: rgb(255, 244, 219);
-  --token-f35aac27-ebb6-4482-a265-ed98ede37629: rgb(38, 112, 255);
-  --token-b4b16657-924f-4d93-be01-c8fc47f0a88f: rgb(0, 113, 239);
-  --token-8a08b456-8f23-4ac0-a1d7-4b67e9f19d4b: #19154E;
-} */
 
 body {
   --token-847ef11f-9d1f-468c-b95a-5bcf9302716c: rgb(250, 244, 218);
@@ -3251,7 +3148,6 @@ button {
   left: 50%;
   position: fixed;
   top: 0;
-  /* transform: translate(-50%); */
   width: 100%;
   z-index: 10;
 }
@@ -3260,7 +3156,6 @@ button {
 .framer-BKQla.framer-v-1qrg04t .framer-16wpwxw {
   gap: 0px;
   padding: 20px;
-  /* width: 810px; */
 }
 
 .framer-BKQla .framer-16wpwxw {
@@ -3597,9 +3492,7 @@ p {
 .framer-BKQla.framer-v-l8b4zz .framer-110hxzu-container,
 .framer-BKQla.framer-v-1qrg04t .framer-110hxzu-container,
 .framer-BKQla.framer-v-1lkgyjk .framer-110hxzu-container {
-  /* height: 28px; */
   order: 1;
-  /* width: 28px; */
 }
 
 .framer-BKQla .framer-110hxzu-container {
@@ -5195,10 +5088,6 @@ textarea {
 .css-uvp898 {
   box-sizing: border-box;
   margin: 0px;
-  /* flex-basis: 100%; */
-  /* -webkit-box-flex: 0;
-  flex-grow: 0;
-  max-width: 100%; */
   display: flex;
   flex-direction: column;
   -webkit-box-align: center;
@@ -5538,38 +5427,6 @@ textarea {
   line-height: inherit;
   margin: 0;
   padding: 0;
-}
-
-.css-awlkbl {
-  display: inline-flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  position: relative;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  background-color: transparent;
-  outline: 0px;
-  border: 0px;
-  margin: 0px;
-  cursor: pointer;
-  user-select: none;
-  vertical-align: middle;
-  appearance: none;
-  text-decoration: none;
-  text-transform: none;
-  font-weight: 700;
-  line-height: 2.25;
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", Helvetica;
-  font-size: 0.875rem;
-  white-space: pre-line;
-  letter-spacing: -0.01em;
-  min-width: 64px;
-  padding: 6px 8px;
-  border-radius: 12px;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: rgb(250, 200, 0);
 }
 
 .css-4m3kxx {
@@ -6283,11 +6140,6 @@ button {
   padding-right: 0px;
 }
 
-/* 
-.jss2 {
-  padding-top: 56px;
-} */
-
 @media (min-width: 600px) {
   .css-1fbzopa {
     padding-left: 24px;
@@ -6981,22 +6833,6 @@ video {
     grid-column: span 2/span 2;
   }
 }
-
-/* @media (min-width: 768px){
-.md\:col-span-3 {
-    grid-column: span 3/span 3;
-}
-} */
-
-/* @media (min-width: 1024px) {
-.lg\:col-span-1 {
-    grid-column: span 1/span 1;
-}}
-@media (min-width: 768px) {
-.md\:col-span-3 {
-    grid-column: span 3/span 3;
-}} */
-
 
 @media (min-width: 600px) {
   .MuiContainer-root {

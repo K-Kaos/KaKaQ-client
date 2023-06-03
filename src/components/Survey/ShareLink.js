@@ -7,8 +7,6 @@ import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
 
 function ShareLink(props) {
-
-  
   const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 객체 가져오기
 
   // 설문조사 만들기 버튼 클릭 시 /kakaq로 이동

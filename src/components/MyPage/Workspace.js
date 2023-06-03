@@ -63,6 +63,7 @@ function Workspace() {
   // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
+  const [role, setRole] = useState(null); 
   const [creator, setCreator] = useState("");
   const [keyword, setKeyword] = useState("");
 
@@ -104,6 +105,8 @@ function Workspace() {
         .then((data) => {
           console.log("서버 응답:", data);
           setUsername(data.username); // 서버 응답에서 받은 사용자 이름을 state로 저장
+          setRole(data.role); 
+          console.log("role" + role);
         })
         .catch((error) => console.error("오류 발생:", error));
 
