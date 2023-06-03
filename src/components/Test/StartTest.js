@@ -55,7 +55,7 @@ function StartTest(props) {
     else if (sum > 15 && sum <= 20) result = "콘";
     else if (sum > 20 && sum <= 25) result = "춘식이";
     else if (sum > 25 && sum <= 30) result = "무지";
-    else result = "제이지";
+    else result = "프로도";
     axios
       .post("/api/user/register", {
         username: location.state.username,
