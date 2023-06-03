@@ -59,15 +59,22 @@ function ShowResult() {
     setReceiveResponse((prev) => !prev);
   };
 
-  const data = [
-    { country: 'France', '라이언': 30, '콘': 20 },
-    { country: 'Germany', '라이언': 15, '콘': 10},
-    { country: 'Italy', '라이언': 20, '콘': 15 },
-    { country: 'Spain', '라이언': 25, '콘': 30 },
-    { country: 'USA', '라이언': 30, '콘': 25}
-  ];
-
+  let data = [];
   const keys = ['라이언','어피치','무지','콘','춘식이'];
+
+  const processData = (questionData) => {
+    const data = [];
+    if (Array.isArray(questionData)) {
+      questionData.forEach((option) => {
+        if (option.count !== null) {
+          data.push({ option: option.value, [option.answererRole]: option.count });
+        }
+      });
+    } else {
+      console.log('Invalid questionData:', questionData);
+    }
+    return data;
+  };
 
   const { id } = useParams();
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
@@ -90,7 +97,6 @@ function ShowResult() {
       .then(function (response) {
         const surveyResponses = response.data;
         setResponses(surveyResponses);
-        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -367,11 +373,14 @@ function ShowResult() {
                                   Q{index + 1}. {question.text}
                                 </p>
                                 {question.type.name === '객관식' && (
-                                  <ul>
-                                    {question.options.map((option, index) => (
-                                      <li key={index}>{option}</li>
-                                    ))}
-                                  </ul>
+                                  <div>
+                                    <ul>
+                                      {question.options.map((option, index) => (
+                                        <li key={index}>{index + 1})&nbsp;&nbsp;{option}</li>
+                                      ))}
+                                    </ul>
+                                    <BarChart data={processData(responses[question.question_id])} keys={keys} />
+                                  </div>
                                 )}
                                 {question.type.name === '찬부식' && (
                                   <ul>
@@ -383,7 +392,6 @@ function ShowResult() {
                                 {question.type.name === '주관식' && <input type="text" />}
                               </div>
                             ))}
-                            <BarChart data={data} keys={keys} />
                           </div>
                         </div>
                       </div>
