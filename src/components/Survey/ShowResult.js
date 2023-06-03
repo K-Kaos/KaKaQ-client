@@ -95,6 +95,7 @@ function ShowResult() {
       axios.get(("/api/surveys/get/" + id))
       .then(function (response) {
         const surveyInfos = response.data;
+        console.log(response.data);
         setSurvey(surveyInfos);
 
         // 다음 요청을 실행
@@ -122,7 +123,7 @@ function ShowResult() {
       <div class="MuiContainer-root jss2 css-1fbzopa">
         <div tabindex="-1" style={{ outline: "none" }}>
           <div class="MuiBox-root css-10d4xjj">
-            <div class="MuiBox-root css-1kkyquz">
+            <div class="MuiBox-root css-1kkyquz" style={{ position: "sticky", top: "0" }}>
               <div class="MuiBox-root css-1rr4qq7"></div>
               <div className="MuiBox-root css-1todmcq">
                 <div className="MuiTabs-root css-orq8zk">
@@ -374,31 +375,30 @@ function ShowResult() {
                           </div>
                           <div className="MuiBox-root css-iat7r2" style={{ textAlign: 'left' , marginLeft: '20px'}}>
                             {survey.questions.map((question, index) => (
-                              <div key={question.question_id}>
+                              <div className="tremor-Card-root relative w-full text-left ring-1 bg-white shadow border-blue-500 ring-gray-200 p-6 rounded-lg" key={question.question_id}>
                                 <p className="MuiTypography-root MuiTypography-body1 css-1u8f789">
                                   Q{index + 1}. {question.text}
                                 </p>
                                 {question.type.name === '객관식' && (
                                   <div>
-                                    <ul>
-                                      {question.options.map((option, index) => (
-                                        <li key={index}>{index + 1})&nbsp;&nbsp;{option}</li>
-                                      ))}
-                                    </ul>
                                     <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
                                   </div>
                                 )}
                                 {question.type.name === '찬부식' && (
                                   <div>
-                                    <ul>
-                                      {question.options.map((option, index) => (
-                                        <li key={index}>{index + 1})&nbsp;&nbsp;{option}</li>
-                                      ))}
-                                    </ul>
                                     <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
                                   </div>
                                 )}
-                                {question.type.name === '주관식' && <input type="text" />}
+                                {question.type.name === '서술형' && (
+                                  <div>
+                                   {responses[question.question_id].map((response, index) => (
+                                     <div
+                                     style={{ marginBottom: "15px" }}>
+                                     <p>답변 {index+1}&nbsp;:&nbsp;{response.value}</p>
+                                     </div>
+                                   ))}
+                                  </div>
+                                )}
                               </div>
                             ))}
                           </div>
