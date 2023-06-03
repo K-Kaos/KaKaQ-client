@@ -1,32 +1,52 @@
 import React, { useState } from 'react';
 
-const App = () => {
-  const [list, setList] = useState([]);
+const SurveyTest = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const handleSelection = (componentName) => {
-    // 선택한 항목을 처리하는 로직을 작성합니다.
-    console.log(`Selected: ${componentName}`);
+  const categories = [
+    '서울',
+    '부산',
+    '대전',
+    '경상북도',
+    '경상남도',
+    // 나머지 카테고리들
+  ];
+
+  const subCategories = {
+    서울: ['구미시', '포항시'],
+    부산: ['부산시1', '부산시2'],
+    대전: ['대전시1', '대전시2'],
+    경상북도: ['칠곡군', '예천군'],
+    경상남도: ['울진군', '창녕군'],
+    // 나머지 카테고리들과 해당 카테고리의 서브 카테고리들
   };
 
-  const handleAddItem = () => {
-    // 리스트에 새 항목을 추가하는 로직을 작성합니다.
-    const newItem = { id: Date.now(), name: `Component ${list.length + 1}` };
-    setList([...list, newItem]);
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
   };
 
   return (
-    <div>
-      <h1>Component Loader</h1>
-      <button onClick={handleAddItem}>Add Item</button>
-      <ul>
-        {list.map((item) => (
-          <li key={item.id} onClick={() => handleSelection(item.name)}>
-            {item.name}
-          </li>
+    <div style={{ display: 'flex' }}>
+      <div style={{ marginRight: '10px' }}>
+        {categories.map((category) => (
+          <div
+            key={category}
+            style={{ cursor: 'pointer' }}
+            onClick={() => handleCategoryClick(category)}
+          >
+            {category}
+          </div>
         ))}
-      </ul>
+      </div>
+      {selectedCategory && (
+        <div>
+          {subCategories[selectedCategory].map((subCategory) => (
+            <div key={subCategory} value={subCategory}>{subCategory}</div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
-export default App;
+export default SurveyTest;

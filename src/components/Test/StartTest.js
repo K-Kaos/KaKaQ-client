@@ -4,6 +4,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
+import { LazyResult } from "postcss";
 
 function StartTest(props) {
   let whoLoggedIn = null;
@@ -40,38 +41,43 @@ function StartTest(props) {
   function handleSubmit() {
     alert("테스트가 완료되었습니다.");
     console.log(selectedAnswers);
-    var sum =0;
-    for(var i=0; i<6; i++){
-      if(selectedAnswers[i]=="매우 아니다") sum+=1;
-      else if(selectedAnswers[i] == "약간 아니다") sum+=2;
-      else if(selectedAnswers[i] == "보통") sum+=3;
-      else if(selectedAnswers[i] == "조금 그렇다") sum+=4;
-      else if(selectedAnswers[i] == "매우 그렇다") sum+=5;
+    var sum = 0;
+    for (var i = 0; i < 6; i++) {
+      if (selectedAnswers[i] == "매우 아니다") sum += 1;
+      else if (selectedAnswers[i] == "약간 아니다") sum += 2;
+      else if (selectedAnswers[i] == "보통") sum += 3;
+      else if (selectedAnswers[i] == "조금 그렇다") sum += 4;
+      else if (selectedAnswers[i] == "매우 그렇다") sum += 5;
     }
-    var result="";
-    if(sum>=6&&sum<=10) result = "라이언"
-    else if(sum>10&&sum<=15) result = "어피치"
-    else if(sum>15&&sum<=20) result = "콘"
-    else if(sum>20&&sum<=25)  result = "춘식이"
-    else if(sum>25&&sum<=30) result = "무지"
-    axios.post("/api/user/register", {
-      username: location.state.username,
-      email: location.state.email,
-      password: location.state.password,
-      role : result,
-    }).then(function (response) {
-      console.log(response);
-      const url = response.data;
-      if (url.includes("/login")) {
-        navigate("/login");
-      } else if (url.includes("/duplicate")) {
+    var result = "";
+    if (sum >= 6 && sum <= 10) result = "라이언";
+    else if (sum > 10 && sum <= 15) result = "어피치";
+    else if (sum > 15 && sum <= 20) result = "콘";
+    else if (sum > 20 && sum <= 25) result = "춘식이";
+    else if (sum > 25 && sum <= 30) result = "무지";
+    else result = "제이지";
+    axios
+      .post("/api/user/register", {
+        username: location.state.username,
+        email: location.state.email,
+        password: location.state.password,
+        role: result,
+      })
+      .then(function (response) {
+        console.log(response);
+        const url = response.data;
+        if (url.includes("/login")) {
+          navigate("/testresult", { state: { value: result } });
+          console.log("result" + result);
+        } else if (url.includes("/duplicate")) {
           alert("이미 가입된 메일입니다.");
           navigate("/signup");
-      }
-    }).catch(function (error) {
-      console.log(error);
-      alert("회원가입 오류");
-    });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert("회원가입 오류");
+      });
   }
 
   return (

@@ -80,7 +80,7 @@ function Home(props) {
               >
                 <a
                   class="framer-1rzrhxl framer-142n3id"
-                  data-framer-name="walla_purple"
+                  data-framer-name="kakaq_logo"
                   href="./"
                   data-framer-page-link-current="true"
                   data-projection-id="513"
@@ -111,21 +111,7 @@ function Home(props) {
                       <img
                         src={logo}
                         alt="KAKAQ-logo"
-                        // src="https://framerusercontent.com/images/N6QGzxlalC4EH5elN7872I9dwA.png?scale-down-to=4096"
-                        // alt=""
-                        // srcset="https://framerusercontent.com/images/N6QGzxlalC4EH5elN7872I9dwA.png?scale-down-to=512 512w, https://framerusercontent.com/images/N6QGzxlalC4EH5elN7872I9dwA.png?scale-down-to=1024 1024w, https://framerusercontent.com/images/N6QGzxlalC4EH5elN7872I9dwA.png?scale-down-to=2048 2048w, https://framerusercontent.com/images/N6QGzxlalC4EH5elN7872I9dwA.png?scale-down-to=4096 4096w, https://framerusercontent.com/images/N6QGzxlalC4EH5elN7872I9dwA.png 4821w"
                         sizes="82px"
-                        // style={{
-                        //   pointerEvents: "none",
-                        //   userSelect: "none",
-                        //   display: "block",
-                        //   width: "100%",
-                        //   height: "100%",
-                        //   borderRadius: "inherit",
-                        //   objectPosition: "center center",
-                        //   objectFit: "cover",
-                        //   imageRendering: "auto",
-                        // }}
                         style={{ height: "36px" }}
                       />
                     </div>
@@ -399,7 +385,6 @@ function Home(props) {
                 >
                   Share your Opinion!
                   <br class="framer-text" />
-                  
                 </h1>
               </div>
               <div
@@ -457,7 +442,7 @@ function Home(props) {
                     className="framer-1pifrf framer-cz1ok2"
                     data-highlight="true"
                     data-reset="button"
-                    href="https://app.walla.my"
+                    href="https://github.com/K-Kaos"
                     rel="noopener"
                     tabIndex="0"
                     data-projection-id="527"
@@ -587,8 +572,10 @@ function Home(props) {
                             xmlns="http://www.w3.org/2000/svg"
                             // xmlns:xlink="http://www.w3.org/1999/xlink"
                             style={{
-                              gap:"200px", 
-                              width: "100%", height: "100%" }}
+                              gap: "200px",
+                              width: "100%",
+                              height: "100%",
+                            }}
                             viewBox="0 0 1000 30"
                             preserveAspectRatio="none"
                             width="100%"
@@ -603,7 +590,7 @@ function Home(props) {
                         className="framer-xidi4j"
                         data-projection-id="2464"
                         style={{
-                          gap:"200px",
+                          gap: "200px",
                           imageRendering: "pixelated",
                           flexShrink: 0,
                           fill: "rgb(0, 0, 0)",
@@ -701,14 +688,14 @@ function Home(props) {
                     className="framer-1pifrf framer-cz1ok2"
                     data-highlight="true"
                     data-reset="button"
-                    href="https://app.walla.my"
+                    href="https://github.com/K-Kaos"
                     rel="noopener"
                     tabIndex="0"
                     data-projection-id="527"
                     style={{
-                      "gap":"250px",
-                      "marginTop": "80px",
-                      "marginBottom" : "80px",
+                      gap: "250px",
+                      marginTop: "80px",
+                      marginBottom: "80px",
                       "--border-bottom-width": "0px",
                       "--border-color": "rgba(0, 0, 0, 0)",
                       "--border-left-width": "0px",
@@ -761,7 +748,7 @@ function Home(props) {
                 </div>
               </div>
             </div>
-            <GuideIntro/>
+            <GuideIntro />
             <div
               class="framer-11q8487"
               data-framer-component-type="RichTextContainer"
@@ -790,7 +777,7 @@ function Home(props) {
                 >
                   <li>
                     <Card
-                    data-aos="fade-up"
+                      data-aos="fade-up"
                       className="p-2"
                       style={{
                         borderRadius: "10px",
@@ -807,7 +794,10 @@ function Home(props) {
                           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
                             Seobin Lee
                           </h3>
-                          <p className="text-base font-semibold leading-6 " style={{color:"#FADC5F"}}>
+                          <p
+                            className="text-base font-semibold leading-6 "
+                            style={{ color: "#FADC5F" }}
+                          >
                             PM / Front-end
                           </p>
                         </div>
@@ -816,7 +806,7 @@ function Home(props) {
                   </li>
                   <li>
                     <Card
-                    data-aos="fade-up"
+                      data-aos="fade-up"
                       className="p-2"
                       style={{
                         borderRadius: "10px",
@@ -833,7 +823,10 @@ function Home(props) {
                           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
                             Soyeon You{" "}
                           </h3>
-                          <p className="text-base font-semibold leading-6 " style={{color:"#FADC5F"}}>
+                          <p
+                            className="text-base font-semibold leading-6 "
+                            style={{ color: "#FADC5F" }}
+                          >
                             Database
                           </p>
                         </div>
@@ -842,7 +835,7 @@ function Home(props) {
                   </li>
                   <li>
                     <Card
-                    data-aos="fade-up"
+                      data-aos="fade-up"
                       className="p-2"
                       style={{
                         borderRadius: "10px",
@@ -859,7 +852,10 @@ function Home(props) {
                           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
                             Sohyun Lee
                           </h3>
-                          <p className="text-base font-semibold leading-6 " style={{color:"#FADC5F"}}>
+                          <p
+                            className="text-base font-semibold leading-6 "
+                            style={{ color: "#FADC5F" }}
+                          >
                             Back-end
                           </p>
                         </div>
@@ -868,7 +864,7 @@ function Home(props) {
                   </li>
                   <li>
                     <Card
-                    data-aos="fade-up"
+                      data-aos="fade-up"
                       className="p-2"
                       style={{
                         borderRadius: "10px",
@@ -885,7 +881,10 @@ function Home(props) {
                           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
                             Jueun Yoon
                           </h3>
-                          <p className="text-base font-semibold leading-6 " style={{color:"#FADC5F"}}>
+                          <p
+                            className="text-base font-semibold leading-6 "
+                            style={{ color: "#FADC5F" }}
+                          >
                             Front-end
                           </p>
                         </div>
@@ -894,7 +893,7 @@ function Home(props) {
                   </li>
                   <li>
                     <Card
-                    data-aos="fade-up"
+                      data-aos="fade-up"
                       className="p-2"
                       style={{
                         borderRadius: "10px",
@@ -911,7 +910,10 @@ function Home(props) {
                           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">
                             Yekyeong Jang
                           </h3>
-                          <p className="text-base font-semibold leading-6 " style={{color:"#FADC5F"}}>
+                          <p
+                            className="text-base font-semibold leading-6 "
+                            style={{ color: "#FADC5F" }}
+                          >
                             Back-end
                           </p>
                         </div>

@@ -30,6 +30,7 @@ import ParticipateSurvey from "./components/Survey/ParticipateSurvey";
 import StartTest from "./components/Test/StartTest";
 import SurveyTest from "./components/Survey/SurveyTest";
 import ShowResult from "./components/Survey/ShowResult";
+import TestResult from "./components/Test/TestResult";
 // import KakaoAuthHandle from "./components/Login/KakaoAuthHandle"
 import KakaoCallback from "./components/Login/KakaoCallback";
 
@@ -85,6 +86,7 @@ function App() {
           <Route path="/workspace" element={<Workspace />} />
           <Route path="/starttest" element={<StartTest />} />
           <Route path="/surveytest" element={<SurveyTest />} />
+          <Route path="/testresult" element={<TestResult />} />
         </Routes>
       </div>
     </Router>

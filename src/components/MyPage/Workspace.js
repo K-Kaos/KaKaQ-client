@@ -958,8 +958,9 @@ function Workspace() {
                                 </div>
                               </div>
                             </div>
+
                             <button
-                            onClick={handleSearch}
+                              onClick={handleSearch}
                               className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1y1p9da"
                               tabIndex="0"
                               type="button"
@@ -979,6 +980,8 @@ function Workspace() {
                               <span className="MuiTouchRipple-root css-w0pj6f"></span>
                             </button>
                           </div>
+                        </div>
+                        <div>
                           {/* 키워드 검색 */}
                           <div
                             className="search-bar"
@@ -1024,9 +1027,6 @@ function Workspace() {
                               </div>
                             ))}
                           </div>
-                          {/* 키워드 검색 */}
-
-                          {/* 카테고리이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이잉 */}
                           {/* 카테고리 선택 버튼 */}
                           <div>
                             <div className="category-buttons">
@@ -1085,10 +1085,7 @@ function Workspace() {
                               </div>
                             ))}
                           </div>
-                          {/* 카테고리이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이잉 */}
-                          {/*
-                          <OpenSurvey />
-                           여기에 list 띄울 것 */}
+                          {/* <OpenSurvey /> */}
                         </div>
                       </div>
                     </div>
@@ -1475,30 +1472,6 @@ function Workspace() {
                           type="file"
                           style={{ display: "none" }}
                         />
-                        {/* <button
-                          className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
-                          tabIndex="0"
-                          type="button"
-                          style={{
-                            borderRadius: "12px",
-                            backgroundColor: "rgba(9, 30, 66, 0.04)",
-                            display: "flex",
-                            alignItems: "center",
-                            padding: "0px 20px",
-                            marginBottom: "17px",
-                          }}
-                        >
-                          <span
-                            style={{
-                              fontSize: "14px",
-                              color: "rgb(66, 82, 110)",
-                              lineHeight: "40px",
-                            }}
-                          >
-                            이미지 바꾸기
-                          </span>
-                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button> */}
                         <div
                           className="MuiBox-root css-0"
                           style={{ marginBottom: "25px" }}
@@ -1651,29 +1624,6 @@ function Workspace() {
                             </div>
                           </div>
                         </div>
-                        {/* <button
-                          className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
-                          tabIndex="0"
-                          type="button"
-                          style={{
-                            borderRadius: "12px",
-                            backgroundColor: "rgb(250, 220, 95)",
-                            display: "flex",
-                            alignItems: "center",
-                            padding: "0px 20px",
-                          }}
-                        >
-                          <span
-                            style={{
-                              fontSize: "14px",
-                              color: "rgb(255, 255, 255)",
-                              lineHeight: "40px",
-                            }}
-                          >
-                            저장하기
-                          </span>
-                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button> */}
                       </div>
                       <div
                         className="MuiBox-root css-0"
