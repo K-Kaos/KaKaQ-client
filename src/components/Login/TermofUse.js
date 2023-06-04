@@ -91,7 +91,7 @@ function TermofUseForm() {
                             </section>
                             <section className='one-check mt-4'>
                                 <div className="flex ">
-                                    <input type='checkbox' className="form-check-input mt-2" name='check-one' id='check-one' checked={checkOne} onChange={checkOneBtn} />
+                                    <input type='checkbox' className="mt-2" name='check-one' id='check-one' checked={checkOne} onChange={checkOneBtn} style={{borderColor: 'rgb(250, 200, 0, 0.4)', boxShadow:'rgb(250, 200, 0, 0.4)'}} />
                                     <label for='check-one'>
                                         <p class="text-xl">KaKaQ 이용약관 동의(필수) </p>
                                     </label>

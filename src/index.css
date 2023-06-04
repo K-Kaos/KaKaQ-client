@@ -54,8 +54,8 @@ body {
 }
 
 [type='checkbox']:checked, [type='radio']:checked, .dark [type='checkbox']:checked, .dark [type='radio']:checked {
-  border-color: transparent;
-  background-color: rgb(250, 200, 0);
+  border-color: transparent !important;
+  background-color: rgb(250, 200, 0)!important;
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;

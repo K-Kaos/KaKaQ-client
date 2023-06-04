@@ -106,8 +106,13 @@ function FindRespondent({isSurveyPublic, onSurveyPublicChange, isSurveyGPS, onSu
 
   const handleCityChange = (city) => {
     console.log(selectedCategory + ' ' + city)
+    if (city === "전체") {
+      setCity(selectedCategory);
+      onSurveyCityChange(selectedCategory);
+    } else {
     setCity(city);
     onSurveyCityChange(city);
+    }
   };
     
 

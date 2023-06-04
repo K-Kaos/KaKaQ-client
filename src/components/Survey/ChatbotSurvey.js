@@ -20,6 +20,7 @@ function ChatbotSurvey(props) {
 
   useEffect(() => {//페이지에서 설정한 데이터들 가져오기
     if (location.state && location.state.response) {
+
       setResponse(location.state.response);
 
       const newQuestions = location.state.response[0].text

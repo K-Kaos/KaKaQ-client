@@ -38,6 +38,19 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function KAKAQ(props) {
+
+  let whoLoggedIn = null;
+    useEffect(() => {
+      whoLoggedIn = sessionStorage.getItem("whoLoggedIn");
+      if (whoLoggedIn === null) {
+        alert("로그인 후 이용해 주세요");
+        window.location.href = "/login";
+      }
+      setCreator(sessionStorage.getItem("whoLoggedIn"));
+    }, []);
+    const [creator, setCreator] = useState("");
+    const [message, setMessage] = useState("");
+  
   // 설문 데이터
   const location = useLocation();
   const [title, setTitle] = useState("");
@@ -63,13 +76,25 @@ function KAKAQ(props) {
   }, [location.state]);
 
   const [surveyQuestions, setSurveyQuestions] = useState([]);
+  const handleSurveyQuestionsChange = (event) => {
+    setSurveyQuestions(event);
+    console.log(event);
+  };
+
+  const date = new Date();
+  const defaultStartDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+
+  const futureDate = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000); // 7일 후의 날짜를 계산
+  const defaultEndDate = `${futureDate.getFullYear()}-${(futureDate.getMonth() + 1).toString().padStart(2, '0')}-${futureDate.getDate().toString().padStart(2, '0')}T${futureDate.getHours().toString().padStart(2, '0')}:${futureDate.getMinutes().toString().padStart(2, '0')}`;
 
   
   const [isSurveyPublic, setIsSurveyPublic] = useState("");
   const [isSurveyGPS, setIsSurveyGPS] = useState("");
   const [surveyCity, setSurveyCity] = useState("");
-  const [surveyStartDate, setSurveyStartDate] = useState("");
-  const [surveyEndDate, setSurveyEndDate] = useState("");
+  const [surveyStartDate, setSurveyStartDate] = useState(defaultStartDate);
+  const [surveyEndDate, setSurveyEndDate] = useState(defaultEndDate);
+  const [surveyIndex, setSurveyIndex] = useState("");
+  const [questionIndex, setQuestionIndex] = useState([]);
 
   const handleSurveyPublicChange = (event) => {
     setIsSurveyPublic(event);
@@ -114,6 +139,64 @@ function KAKAQ(props) {
   const handleQuestionTypeChange = (type) => {
     setQuestion(type);
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(surveyStartDate)
+    console.log(surveyEndDate)
+            axios
+          .post("/api/survey/create", {
+            //survey db 데이터 보내기
+            title: surveyTitle,
+            city: surveyCity,
+            startDate: surveyStartDate,
+            endDate: surveyEndDate,
+            publicState: isSurveyPublic,
+            category: surveyCategory,
+            keyword: surveyKeyword,
+            creator: {
+              email: creator,
+            },
+          })
+          .then(function (response) {
+            console.log(creator);
+            console.log(response.data);
+            setSurveyIndex(response.data);
+
+            // 설문조사 질문 생성
+            const promises = surveyQuestions.map((question) =>
+              axios
+                .post("/api/survey/question?surveyId=" + response.data, {
+                  text: question.text, //질문
+                  type: {
+                    name: question.type,
+                  },
+                  options: question.options,
+                  survey: {
+                    id: response.data,
+                  },
+                })
+                .then(function (response) {
+                  console.log("index" + response.data);
+                  setQuestionIndex([...questionIndex, response.data]);
+                  console.log(typeof response.data);
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
+            );
+            Promise.all(promises).then(() => {
+              console.log("newindex" + questionIndex);
+              setMessage("설문조사가 제출되었습니다.");
+              setTimeout(() => {
+                setMessage("");
+              }, 3000);
+    
+    
+            });
+          });
+        }
+    
 
   // script
   const [isAddVisible, setAddVisible] = useState(false);
@@ -438,7 +521,9 @@ function KAKAQ(props) {
                       }}
                     >
                       <div class="MuiBox-root css-191gqa8">
-                        <p class="MuiTypography-root MuiTypography-body1 css-qt1p9i">
+                        <p class="MuiTypography-root MuiTypography-body1 css-qt1p9i" onClick={
+                          window.location.href="/workspace"
+                        }>
                           생성한 설문조사
                         </p>
                       </div>
@@ -658,6 +743,9 @@ function KAKAQ(props) {
                       <span class="MuiTouchRipple-root css-w0pj6f"></span>
                     </a>
                   </div>
+                  <button class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1iuaaxh" tabindex="0" type="button" id="mui-23" onClick={handleSubmit}>게시하기
+                  <span class="MuiTouchRipple-root css-w0pj6f"></span>
+                  </button>
                   <button
                     class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-148fdm8"
                     tabindex="0"
@@ -743,7 +831,9 @@ function KAKAQ(props) {
                 </div> */}
               </div>
             </header>
-            {showCreateSurvey && <CreateSurvey title={surveyTitle} category={surveyCategory} keyword={surveyKeyword}/>}
+            {showCreateSurvey && <CreateSurvey
+            title={surveyTitle} category={surveyCategory} keyword={surveyKeyword}
+            surveyQuestions={surveyQuestions} onSurveyQuestionsChange={handleSurveyQuestionsChange}/>}
             {showShareLink && <ShareLink surveyTitle={surveyTitle}/>}
             {showFindRespondent && <FindRespondent
             isSurveyPublic={isSurveyPublic} onSurveyPublicChange={handleSurveyPublicChange}

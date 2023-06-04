@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SurveyCompletion from "./SurveyCompletion";
 
-function CreateSurvey(props) {
+function CreateSurvey({title, category, keyword,
+    surveyQuestions, onSurveyQuestionsChange}) {
     let whoLoggedIn = null;
     useEffect(() => {
       whoLoggedIn = sessionStorage.getItem("whoLoggedIn");
@@ -22,20 +23,24 @@ function CreateSurvey(props) {
     const [options, setOptions] = useState([])
     const [questions, setQuestions] = useState([])
     const [textareaValue, setTextareaValue] = useState("");
+    const [optionTextareaValue, setOptionTextareaValue] = useState("");
 
 
     const handleQuestionChange = (e) => {
         const newText = e.target.value; // 입력된 텍스트 값
+        setQuestion(newText);
         const updatedQuestion = {
             ...questions[countIndex],
             id: countIndex,
-            text: newText,
+            text: question,
             type: questionType,
             options: options,
 
         }; // 새로운 question 객체 생성
         setQuestions([...questions.slice(0, countIndex), updatedQuestion, ...questions.slice(countIndex + 1)]); // 배열을 업데이트하여 새로운 question으로 교체
         console.log(questions);
+        onSurveyQuestionsChange(questions);
+
     };
 
     const handleDeleteQuestion = (index) => {
@@ -58,6 +63,19 @@ function CreateSurvey(props) {
             updatedOptions[index] = e.target.value;
             setOptions(updatedOptions);
         }
+
+
+        const updatedQuestion = {
+            ...questions[countIndex],
+            id: countIndex,
+            text: question,
+            type: questionType,
+            options: options,
+
+        }; // 새로운 question 객체 생성
+
+        setQuestions([...questions.slice(0, countIndex), updatedQuestion, ...questions.slice(countIndex + 1)]); // 배열을 업데이트하여 새로운 question으로 교체
+        console.log(questions);
 
 
     };
@@ -97,9 +115,9 @@ function CreateSurvey(props) {
         event.preventDefault();
         console.log(creator);
         console.log(questions);
-        console.log(props.title);
-        console.log(props.category);
-        console.log(props.keyword);
+        console.log(title);
+        console.log(category);
+        console.log(keyword);
         // axios
         //   .post("/api/survey/create", {
         //     //survey db 데이터 보내기
@@ -226,7 +244,7 @@ function CreateSurvey(props) {
         setCountIndex(index);
         setTextareaValue(questions[index].text);
         setQuestionType(questions[index].type);
-
+        setOptions(questions[index].options);
     };
 
     const handleEditQuestion = (e) => {
@@ -254,7 +272,17 @@ function CreateSurvey(props) {
             }
         }
 
-        console.log(questions)
+        const updatedQuestion = {
+            ...questions[countIndex],
+            id: countIndex,
+            text: question,
+            type: questionType,
+            options: options,
+
+        }; // 새로운 question 객체 생성
+        setQuestions([...questions.slice(0, countIndex), updatedQuestion, ...questions.slice(countIndex + 1)]); // 배열을 업데이트하여 새로운 question으로 교체
+        console.log(questions);
+        onSurveyQuestionsChange(questions);
 
     };
 
@@ -653,9 +681,9 @@ function CreateSurvey(props) {
                                                 </div>
                                             </div>
                                             <div class="MuiBox-root css-1oi2cng">
-                                                {questionType === "객관식" && (
+                                                { questionType === "객관식" && (
                                                     <div class="MuiBox-root css-1iyvruu">
-                                                        {options.map((option, index) => (
+                                                        { options.map((option, index) => (
                                                             <div key={index}>
                                                                 <div class="MuiBox-root css-15bdutn">
                                                                     <div>
@@ -670,7 +698,7 @@ function CreateSurvey(props) {
                                                                                     </button>
                                                                                 </div>
                                                                                 <div class="MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-adornedEnd css-9hbtr5">
-                                                                                    <input placeholder="옵션을 입력하세요" type="text" class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-mnn31" value={option} onChange={(e) => handleOptionChange(e, index)} />
+                                                                                    <input placeholder="옵션을 입력해주세요" type="text" class="MuiInputBase-input MuiInputBase-inputAdornedEnd css-mnn31" value={option} onChange={(e) => handleOptionChange(e, index)} />
                                                                                     <div class="MuiBox-root css-yhnn4p" style={{ opacity: '1', transition: "opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms" }}>
                                                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                             <circle cx="12" cy="12" r="12" fill="#DADADA"></circle>
@@ -833,7 +861,9 @@ function CreateSurvey(props) {
                                                                         name="divSelection"
                                                                         checked={selectedDiv === 2}
                                                                         value="AgreeDisagree"
-                                                                        onChange={(e) => handleDivSelection(e, 2)} />
+                                                                        onChange={(e) => {
+                                                                        handleDivSelection(e, 2)
+                                                                        }} />
                                                                     <div>
                                                                         <div class="MuiInputBase-root MuiInputBase-colorPrimary css-2g6513">
                                                                             <input
