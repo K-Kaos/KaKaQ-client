@@ -1042,7 +1042,9 @@ function Workspace() {
                             >
                               <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
-                                  selectedCategory === "여행" ? "selected" : ""
+                                  selectedCategory === "여행"
+                                    ? "selected Mui-selected"
+                                    : ""
                                 }`}
                                 tabIndex={0}
                                 type="button"
@@ -1056,7 +1058,9 @@ function Workspace() {
                               </button>
                               <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
-                                  selectedCategory === "맛집" ? "selected" : ""
+                                  selectedCategory === "맛집"
+                                    ? "selected Mui-selected"
+                                    : ""
                                 }`}
                                 tabIndex={0}
                                 type="button"
@@ -1071,7 +1075,7 @@ function Workspace() {
                               <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
                                   selectedCategory === "문화생활"
-                                    ? "selected"
+                                    ? "selected Mui-selected"
                                     : ""
                                 }`}
                                 tabIndex={0}
@@ -1086,7 +1090,9 @@ function Workspace() {
                               </button>
                               <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
-                                  selectedCategory === "교육" ? "selected" : ""
+                                  selectedCategory === "교육"
+                                    ? "selected Mui-selected"
+                                    : ""
                                 }`}
                                 tabIndex={0}
                                 type="button"
@@ -1100,7 +1106,9 @@ function Workspace() {
                               </button>
                               <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
-                                  selectedCategory === "기타" ? "selected" : ""
+                                  selectedCategory === "기타"
+                                    ? "selected Mui-selected"
+                                    : ""
                                 }`}
                                 tabIndex={0}
                                 type="button"
