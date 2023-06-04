@@ -196,6 +196,7 @@ function KAKAQ(props) {
     
             });
           });
+          navigate("/workspace");
         }
     
 
