@@ -51,6 +51,8 @@ function KAKAQ(props) {
     const [creator, setCreator] = useState("");
     const [message, setMessage] = useState("");
   
+  const navigate = useNavigate();
+
   // 설문 데이터
   const location = useLocation();
   const [title, setTitle] = useState("");
@@ -517,9 +519,7 @@ function KAKAQ(props) {
                       }}
                     >
                       <div class="MuiBox-root css-191gqa8">
-                        <p class="MuiTypography-root MuiTypography-body1 css-qt1p9i" onClick={
-                          window.location.href="/workspace"
-                        }>
+                        <p class="MuiTypography-root MuiTypography-body1 css-qt1p9i">
                           생성한 설문조사
                         </p>
                       </div>
