@@ -4,12 +4,12 @@ import { ResponsiveBar } from '@nivo/bar';
 const BarChart = ({ data, keys }) => {
 
     return (
-        <div style={{ width: '800px', height: '500px', margin: '0 auto' }}>
+        <div style={{ width: '800px', height: '350px', margin: '0 auto' }}>
             <ResponsiveBar
                 data={data}
                 keys={keys}
-                indexBy="country"
-                margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+                indexBy="option"
+                margin={{ top: 0, right: 150, bottom: 50, left: 150 }}
                 padding={0.3}
                 layout="horizontal"
                 valueScale={{ type: 'linear' }}
@@ -24,7 +24,8 @@ const BarChart = ({ data, keys }) => {
                     tickRotation: 0,
                     legend: 'counts',
                     legendPosition: 'middle',
-                    legendOffset: 32
+                    legendOffset: 32,
+                    //tickValues: 'every 1'
                 }}
                 axisLeft={{
                     tickSize: 5,
@@ -32,7 +33,7 @@ const BarChart = ({ data, keys }) => {
                     tickRotation: 0,
                     legend: 'option',
                     legendPosition: 'middle',
-                    legendOffset: -40
+                    legendOffset: -85
                 }}
                 labelSkipWidth={12}
                 labelSkipHeight={12}
@@ -71,7 +72,6 @@ const BarChart = ({ data, keys }) => {
                 }
             />
         </div>
-
     )
 };
 

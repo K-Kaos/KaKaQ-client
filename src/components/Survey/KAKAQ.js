@@ -62,7 +62,8 @@ function KAKAQ(props) {
   const [surveyKeyword, setSurveyKeyword] = useState("");
   const [surveyCategory, setSurveyCategory] = useState("");
 
-  useEffect(() => {//페이지에서 설정한 데이터들 가져오기
+  useEffect(() => {
+    //페이지에서 설정한 데이터들 가져오기
     if (location.state && location.state.surveyTitle) {
       setSurveyTitle(location.state.surveyTitle);
     }
@@ -72,7 +73,6 @@ function KAKAQ(props) {
     if (location.state && location.state.surveyCategory) {
       setSurveyCategory(location.state.surveyCategory);
     }
-
   }, [location.state]);
 
   const [surveyQuestions, setSurveyQuestions] = useState([]);
@@ -120,7 +120,6 @@ function KAKAQ(props) {
     setSurveyEndDate(event);
     console.log("kakaq에서 알려드립니다: " + event);
   };
-
 
   const [geoData, setgeoData] = useState({
     userName: "",
@@ -460,7 +459,6 @@ function KAKAQ(props) {
       });
   }, [geoData]);
 
-
   return (
     <>
       <div id="___gatsby">
@@ -499,8 +497,6 @@ function KAKAQ(props) {
                     class="MuiBox-root css-12kkxif"
                     aria-label="Back to dashboard"
                     //onClick={() => { 경고창 띄우고(필드 삭제와 같은 스타일로) 뒤로가기 }
-                    
-                  
                   >
                     <img
                       src={logo}
@@ -599,7 +595,7 @@ function KAKAQ(props) {
                       />
                     </div>
                   </div>
-                  
+
                   <div class="MuiBox-root css-1txeit4">
                     <div
                       onClick={handleShowFindRespondent}

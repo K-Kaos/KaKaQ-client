@@ -1,31 +1,31 @@
-import axios from 'axios'
-import { useEffect } from 'react'
-import styled from 'styled-components'
-import {KAKAO_ADD_PROPERTIES} from "./OAuth"
+import axios from "axios";
+import { useEffect } from "react";
+import styled from "styled-components";
+import { KAKAO_ADD_PROPERTIES } from "./OAuth";
 
 const KakaoAuthHandle = (props) => {
   useEffect(() => {
-    let code = new URL(window.location.href).searchParams.get('code')
+    let code = new URL(window.location.href).searchParams.get("code");
     const kakaoLogin = async () => {
       await axios
         .get(`http://localhost:8080/oauth?code=${code}`)
         .then((res) => {
           console.log(res);
-          localStorage.setItem('token', res.headers.authorization)
+          localStorage.setItem("token", res.headers.authorization);
           window.location.href = "/";
-        })
-    }
-    kakaoLogin()
-  }, [props.history])
+        });
+    };
+    kakaoLogin();
+  }, [props.history]);
 
   return (
     <>
       <Container></Container>
     </>
-  )
-}
+  );
+};
 
-export default KakaoAuthHandle
+export default KakaoAuthHandle;
 
 const Container = styled.div`
   width: 100vw;
@@ -33,4 +33,4 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;

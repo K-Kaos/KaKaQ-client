@@ -63,6 +63,7 @@ function Workspace() {
   // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
   const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
   const [username, setUsername] = useState(null); // 사용자 이름 저장
+  const [role, setRole] = useState(null);
   const [creator, setCreator] = useState("");
   const [keyword, setKeyword] = useState("");
 
@@ -104,6 +105,8 @@ function Workspace() {
         .then((data) => {
           console.log("서버 응답:", data);
           setUsername(data.username); // 서버 응답에서 받은 사용자 이름을 state로 저장
+          setRole(data.role);
+          console.log("role" + role);
         })
         .catch((error) => console.error("오류 발생:", error));
 
@@ -909,7 +912,7 @@ function Workspace() {
                                 </div>
                               </div>
                             </div>
-                            <div
+                            {/* <div
                               className="ant-picker ant-picker-range css-diro6f MuiBox-root css-rk138a"
                               style={{
                                 padding: "0px",
@@ -957,7 +960,7 @@ function Workspace() {
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                            </div> */}
 
                             <button
                               onClick={handleSearch}
@@ -983,7 +986,7 @@ function Workspace() {
                         </div>
                         <div>
                           {/* 키워드 검색 */}
-                          <div
+                          {/* <div
                             className="search-bar"
                             style={{
                               backgroundColor: "skyblue",
@@ -1014,12 +1017,12 @@ function Workspace() {
                                 <div key={survey.id}>{survey.name}</div>
                               ))}
                             </div>
-                          </div>
+                          </div> */}
 
                           <div className="survey-search-results">
                             {searchSurveys.map((survey) => (
                               <div key={survey.id}>
-                                <h3>{survey.name}</h3>
+                                {/* <h3>Title: {survey.name}</h3> */}
                                 <p>Survey: {survey.title}</p>
                                 <p>Category: {survey.category}</p>
                                 <p>Start Date: {survey.startDate}</p>
@@ -1027,11 +1030,95 @@ function Workspace() {
                               </div>
                             ))}
                           </div>
-                          {/* 키워드 검색 */}
-
-                          {/* 카테고리이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이잉 */}
                           {/* 카테고리 선택 버튼 */}
-                          <div>
+                          <div
+                            className="MuiTabs-scroller MuiTabs-fixed css-1anid1y"
+                            style={{ overflow: "hidden", marginBottom: "0px" }}
+                          >
+                            <div
+                              aria-label="lab API tabs example"
+                              className="MuiTabs-flexContainer css-k008qs"
+                              role="tablist"
+                            >
+                              <button
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
+                                  selectedCategory === "여행" ? "selected" : ""
+                                }`}
+                                tabIndex={0}
+                                type="button"
+                                role="tab"
+                                aria-selected="true"
+                                aria-controls="mui-p-43309-P-all"
+                                id="mui-p-43309-T-all"
+                                onClick={() => handleCategoryClick("여행")}
+                              >
+                                여행
+                              </button>
+                              <button
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
+                                  selectedCategory === "맛집" ? "selected" : ""
+                                }`}
+                                tabIndex={0}
+                                type="button"
+                                role="tab"
+                                aria-selected="true"
+                                aria-controls="mui-p-43309-P-all"
+                                id="mui-p-43309-T-all"
+                                onClick={() => handleCategoryClick("맛집")}
+                              >
+                                맛집
+                              </button>
+                              <button
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
+                                  selectedCategory === "문화생활"
+                                    ? "selected"
+                                    : ""
+                                }`}
+                                tabIndex={0}
+                                type="button"
+                                role="tab"
+                                aria-selected="true"
+                                aria-controls="mui-p-43309-P-all"
+                                id="mui-p-43309-T-all"
+                                onClick={() => handleCategoryClick("문화생활")}
+                              >
+                                문화생활
+                              </button>
+                              <button
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
+                                  selectedCategory === "교육" ? "selected" : ""
+                                }`}
+                                tabIndex={0}
+                                type="button"
+                                role="tab"
+                                aria-selected="true"
+                                aria-controls="mui-p-43309-P-all"
+                                id="mui-p-43309-T-all"
+                                onClick={() => handleCategoryClick("교육")}
+                              >
+                                교육
+                              </button>
+                              <button
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
+                                  selectedCategory === "기타" ? "selected" : ""
+                                }`}
+                                tabIndex={0}
+                                type="button"
+                                role="tab"
+                                aria-selected="true"
+                                aria-controls="mui-p-43309-P-all"
+                                id="mui-p-43309-T-all"
+                                onClick={() => handleCategoryClick("기타")}
+                              >
+                                기타
+                              </button>
+                            </div>
+                            <span
+                              className="MuiTabs-indicator css-eu9d1t"
+                              style={{ left: "0px", width: "90px" }}
+                            ></span>
+                          </div>
+                          {/* <div>
                             <div className="category-buttons">
                               <button
                                 className={`category-button ${
@@ -1076,22 +1163,97 @@ function Workspace() {
                                 기타
                               </button>
                             </div>
-                          </div>
+                          </div> */}
                           {/* 여기에 list 띄울 것 */}
                           <div className="survey-results">
                             {categorySurveys.map((survey) => (
-                              <div key={survey.id}>
-                                <h3>{survey.name}</h3>
-                                <p>Category: {survey.category}</p>
-                                <p>Start Date: {survey.startDate}</p>
-                                <p>End Date: {survey.endDate}</p>
-                              </div>
+                              <>
+                                {/* <div key={survey.id}>
+                                  <h3>Title: {survey.title}</h3>
+                                  <p>Category: {survey.category}</p>
+                                  <p>Start Date: {survey.startDate}</p>
+                                  <p>End Date: {survey.endDate}</p>
+                                </div> */}
+                                {/* <Link to="#"> */}
+
+                                <div
+                                  className="MuiBox-root css-0"
+                                  style={{ margin: "0px 24px 20px 0px" }}
+                                >
+                                  <div
+                                    className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
+                                    width="265"
+                                    minheight="160"
+                                  >
+                                    <div className="MuiCardContent-root css-67yy9o">
+                                      <div className="MuiBox-root css-1yd9vr8">
+                                        <div class="flex items-center gap-x-4 text-xs">
+                                          <time class="text-gray-500">
+                                            {survey.startDate}
+                                          </time>
+                                          <time
+                                            datetime="2020-03-16"
+                                            class="text-gray-500"
+                                          >
+                                            {survey.endDate}
+                                          </time>
+                                        </div>
+                                        <svg
+                                          className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                                          focusable="false"
+                                          aria-hidden="true"
+                                          viewBox="0 0 24 24"
+                                          data-testid="MoreHorizIcon"
+                                        >
+                                          <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                        </svg>
+                                      </div>
+                                      <div
+                                        className="MuiBox-root css-8atqhb"
+                                        style={{ display: "flex" }}
+                                        aria-label={survey.title}
+                                      >
+                                        <div className="mt-4 MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                          <input
+                                            readOnly
+                                            type="text"
+                                            className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                            value={survey.title}
+                                          />
+                                        </div>
+                                        <div className="mt-4 MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                          <input
+                                            readOnly
+                                            type="text"
+                                            className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                            style={{ fontSize: "small" }}
+                                            value={survey.category}
+                                          />
+                                        </div>
+                                      </div>
+                                      <div class="relative mt-8 flex items-center gap-x-4">
+                                        <img
+                                          // src={survey.profile}
+                                          alt=""
+                                          class="h-10 w-10 rounded-full bg-gray-50"
+                                        />
+                                        <div class="text-sm leading-6">
+                                          <p class="font-semibold text-gray-900">
+                                            <a href="#">
+                                              <span class="absolute inset-0"></span>
+                                              {/* {survey.name} */}
+                                            </a>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                {/* </Link> */}
+                              </>
                             ))}
                           </div>
-                          {/* 카테고리이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이이잉 */}
-                          {/*
-                          <OpenSurvey />
-                           여기에 list 띄울 것 */}
+                          {/* <OpenSurvey /> */}
                         </div>
                       </div>
                     </div>
@@ -1478,30 +1640,6 @@ function Workspace() {
                           type="file"
                           style={{ display: "none" }}
                         />
-                        {/* <button
-                          className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
-                          tabIndex="0"
-                          type="button"
-                          style={{
-                            borderRadius: "12px",
-                            backgroundColor: "rgba(9, 30, 66, 0.04)",
-                            display: "flex",
-                            alignItems: "center",
-                            padding: "0px 20px",
-                            marginBottom: "17px",
-                          }}
-                        >
-                          <span
-                            style={{
-                              fontSize: "14px",
-                              color: "rgb(66, 82, 110)",
-                              lineHeight: "40px",
-                            }}
-                          >
-                            이미지 바꾸기
-                          </span>
-                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button> */}
                         <div
                           className="MuiBox-root css-0"
                           style={{ marginBottom: "25px" }}
@@ -1654,29 +1792,6 @@ function Workspace() {
                             </div>
                           </div>
                         </div>
-                        {/* <button
-                          className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-awlkbl"
-                          tabIndex="0"
-                          type="button"
-                          style={{
-                            borderRadius: "12px",
-                            backgroundColor: "rgb(250, 220, 95)",
-                            display: "flex",
-                            alignItems: "center",
-                            padding: "0px 20px",
-                          }}
-                        >
-                          <span
-                            style={{
-                              fontSize: "14px",
-                              color: "rgb(255, 255, 255)",
-                              lineHeight: "40px",
-                            }}
-                          >
-                            저장하기
-                          </span>
-                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                        </button> */}
                       </div>
                       <div
                         className="MuiBox-root css-0"
