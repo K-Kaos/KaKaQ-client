@@ -107,7 +107,7 @@ function ShowResult() {
       })
       .catch(function (error) {
         console.log(error);
-      });
+      })
       // fetch('/api/surveys/get/' + id)
       //   .then(response => response.json())
       //   .then(data => {
