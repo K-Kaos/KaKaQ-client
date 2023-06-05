@@ -42,7 +42,74 @@ function ShowResult() {
     const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
     setCurrentDate(nextMonth);
   };
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const toggleReceiveResponse = () => {
+    setReceiveResponse((prev) => !prev);
+  };
+
+  let data = [];
+  const keys = ['라이언','어피치','무지','콘','춘식이'];
+
+  function processData(options, responses) {
+    const data = options.map((option) => {
+      const optionData = {
+        option: option,
+      };
   
+      for (const response of responses) {
+        if (response.value === option) {
+          optionData[response.answererRole] = response.count;
+        } else {
+          optionData[response.answererRole] = 0;
+        }
+      }
+  
+      return optionData;
+    });
+
+    return data.reverse();
+  }
+
+  const { id } = useParams();
+  const [whoLoggedIn, setWhoLeggedIn] = useState(null); // 사용자 이메일(아이디) 저장
+  useEffect(() => {
+    const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
+    if (LoggedInUser === null) {
+      alert("로그인 후 이용해 주세요");
+      window.location.href = "/login";
+    } else {
+      setWhoLeggedIn(LoggedInUser);
+
+      axios.get(("/api/surveys/get/" + id))
+      .then(function (response) {
+        const surveyInfos = response.data;
+        console.log(response.data);
+        setSurvey(surveyInfos);
+
+        // 다음 요청을 실행
+        return axios.get(("/api/mypage/created/" + id + "/responses"));
+      })
+      .then(function (response) {
+        const surveyResponses = response.data;
+        setResponses(surveyResponses);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      // fetch('/api/surveys/get/' + id)
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     console.log('서버 응답:', data);
+
+      //   })
+      //   .catch(error => console.error('오류 발생:', error));
+    }
+  }, []);
+
   return (
     <>
       <div class="MuiContainer-root jss2 css-1fbzopa">
