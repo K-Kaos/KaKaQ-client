@@ -14,6 +14,11 @@ function SummaryResult(props) {
       const handleCloseProfile = () => {
         setShowProfile(false);
       };
+    const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/workspace");
+  };
       
     return (
         <>
@@ -55,6 +60,7 @@ function SummaryResult(props) {
                       src={logo}
                       alt="KAKAQ-logo"
                       style={{ height: "18px" }}
+                      onClick={handleClick}
                     />
                   </div>
                   <div class="MuiBox-root css-0">

@@ -85,7 +85,7 @@ function ParticipateSurvey(props) {
       const isParticipant = response.data;
       if (isParticipant.includes("duplicate")) {
         alert('이미 참여한 설문입니다.');
-        window.location.href = "/opensurvey";
+        window.location.href = "/workspace";
       }else if(isParticipant.includes("ok")){
         console.log('참가자 정보 저장 완료');
         // 각 질문에 대한 응답 저장 요청
@@ -100,7 +100,7 @@ function ParticipateSurvey(props) {
             })
               .then(response => {
                 console.log('답변이 성공적으로 저장되었습니다.');
-                window.location.href = "/opensurvey";
+                window.location.href = "/workspace";
               })
               .catch(error => {
                 console.error('답변 저장 중 오류가 발생했습니다:', error);
