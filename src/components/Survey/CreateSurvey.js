@@ -8,6 +8,7 @@ import SurveyCompletion from "./SurveyCompletion";
 
 function CreateSurvey({title, category, keyword,
     surveyQuestions, onSurveyQuestionsChange}) {
+
     let whoLoggedIn = null;
     useEffect(() => {
       whoLoggedIn = sessionStorage.getItem("whoLoggedIn");
@@ -21,7 +22,7 @@ function CreateSurvey({title, category, keyword,
     const [question, setQuestion] = useState("");
     const [questionType, setQuestionType] = useState("")
     const [options, setOptions] = useState([])
-    const [questions, setQuestions] = useState([])
+    const [questions, setQuestions] = useState(surveyQuestions)
     const [textareaValue, setTextareaValue] = useState("");
     const [optionTextareaValue, setOptionTextareaValue] = useState("");
 

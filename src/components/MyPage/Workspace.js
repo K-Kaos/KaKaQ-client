@@ -308,6 +308,54 @@ function Workspace() {
     });
   };
 
+  const [questions, setQuestions] = useState([]);
+
+  const handleChatbotSubmit = (event) => {
+    event.preventDefault();
+    console.log("제목: ", surveyTitle);
+    console.log("키워드: ", surveyKeyword);
+    console.log("카테고리: ", surveyCategory);
+    console.log("주제: ", surveySubject);
+
+    axios.get("/api/survey/chatbot?topic=" + surveySubject)
+      .then(function (response) {
+        console.log(response.data.choices[0].text);
+
+        const newQuestions = response.data.choices[0].text
+          .split("\n\n")
+          .slice(1)
+          .map((questionText, questionIndex) => {
+            const options = questionText
+              .split("\n")
+              .slice(1)
+              .map((optionText) => optionText);
+
+            return {
+              id: questionIndex + 1,
+              text: questionText.split("\n")[0].slice(3),
+              type: "객관식",
+              options: options,
+            };
+          });
+
+        setQuestions(newQuestions);
+        console.log(newQuestions)
+        navigate("/kakaq", {
+          state: {
+            surveyQuestions: newQuestions,
+            surveyTitle: surveyTitle,
+            surveyKeyword: surveyKeyword,
+            surveyCategory: surveyCategory,
+           }
+          });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+  }
+
+
   // script
   const [isAddVisible, setAddVisible] = useState(false);
   const [isDeleteVisible, setDeleteVisible] = useState(false);
@@ -631,9 +679,8 @@ function Workspace() {
                             role="tablist"
                           >
                             <button
-                              className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz ${
-                                showSurvey ? "Mui-selected" : ""
-                              }`}
+                              className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz ${showSurvey ? "Mui-selected" : ""
+                                }`}
                               tabIndex={0}
                               type="button"
                               role="tab"
@@ -645,9 +692,8 @@ function Workspace() {
                               생성한 설문조사
                             </button>
                             <button
-                              className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz ${
-                                showParticipate ? "Mui-selected" : ""
-                              }`}
+                              className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz ${showParticipate ? "Mui-selected" : ""
+                                }`}
                               tabIndex={-1}
                               type="button"
                               role="tab"
@@ -659,9 +705,8 @@ function Workspace() {
                               참여한 설문조사
                             </button>
                             <button
-                              className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz ${
-                                showList ? "Mui-selected" : ""
-                              }`}
+                              className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz ${showList ? "Mui-selected" : ""
+                                }`}
                               tabIndex={-1}
                               type="button"
                               role="tab"
@@ -684,9 +729,8 @@ function Workspace() {
                   <div class="MuiBox-root css-0">
                     <div class="MuiContainer-root css-10ur324">
                       <div
-                        className={`MuiTabPanel-root css-19kzrtu ${
-                          showSurvey ? "" : "hidden"
-                        }`}
+                        className={`MuiTabPanel-root css-19kzrtu ${showSurvey ? "" : "hidden"
+                          }`}
                         role="tabpanel"
                         aria-labelledby="mui-p-43309-T-all"
                         id="mui-p-43309-P-all"
@@ -812,9 +856,8 @@ function Workspace() {
                         </div>
                       </div>
                       <div
-                        className={`MuiTabPanel-root css-19kzrtu ${
-                          showParticipate ? "" : "hidden"
-                        }`}
+                        className={`MuiTabPanel-root css-19kzrtu ${showParticipate ? "" : "hidden"
+                          }`}
                         role="tabpanel"
                         aria-labelledby="mui-p-43309-T-deleted"
                         id="mui-p-43309-P-deleted"
@@ -887,9 +930,8 @@ function Workspace() {
                         </div>
                       </div>
                       <div
-                        className={`MuiTabPanel-root css-19kzrtu ${
-                          showList ? "" : "hidden"
-                        }`}
+                        className={`MuiTabPanel-root css-19kzrtu ${showList ? "" : "hidden"
+                          }`}
                         role="tabpanel"
                         aria-labelledby="mui-p-43309-T-deleted"
                         id="mui-p-43309-P-deleted"
@@ -1041,11 +1083,10 @@ function Workspace() {
                               role="tablist"
                             >
                               <button
-                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
-                                  selectedCategory === "여행"
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "여행"
                                     ? "selected Mui-selected"
                                     : ""
-                                }`}
+                                  }`}
                                 tabIndex={0}
                                 type="button"
                                 role="tab"
@@ -1057,11 +1098,10 @@ function Workspace() {
                                 여행
                               </button>
                               <button
-                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
-                                  selectedCategory === "맛집"
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "맛집"
                                     ? "selected Mui-selected"
                                     : ""
-                                }`}
+                                  }`}
                                 tabIndex={0}
                                 type="button"
                                 role="tab"
@@ -1073,11 +1113,10 @@ function Workspace() {
                                 맛집
                               </button>
                               <button
-                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
-                                  selectedCategory === "문화생활"
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "문화생활"
                                     ? "selected Mui-selected"
                                     : ""
-                                }`}
+                                  }`}
                                 tabIndex={0}
                                 type="button"
                                 role="tab"
@@ -1089,11 +1128,10 @@ function Workspace() {
                                 문화생활
                               </button>
                               <button
-                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
-                                  selectedCategory === "교육"
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "교육"
                                     ? "selected Mui-selected"
                                     : ""
-                                }`}
+                                  }`}
                                 tabIndex={0}
                                 type="button"
                                 role="tab"
@@ -1105,11 +1143,10 @@ function Workspace() {
                                 교육
                               </button>
                               <button
-                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${
-                                  selectedCategory === "기타"
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "기타"
                                     ? "selected Mui-selected"
                                     : ""
-                                }`}
+                                  }`}
                                 tabIndex={0}
                                 type="button"
                                 role="tab"
@@ -1917,7 +1954,7 @@ function Workspace() {
                       aria-hidden="true"
                       className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
                     >
-                       *
+                      *
                     </span>
                   </label>
                   <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
@@ -1949,7 +1986,7 @@ function Workspace() {
                       aria-hidden="true"
                       className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
                     >
-                       *
+                      *
                     </span>
                   </label>
                   <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
@@ -2102,7 +2139,7 @@ function Workspace() {
             }}
           >
             <form
-              onSubmit={handleSubmit}
+              // onSubmit={handleChatbotSubmit}
               elevation="24"
               role="dialog"
               aria-aria-labelledby="mui-472"
@@ -2150,7 +2187,7 @@ function Workspace() {
                       aria-hidden="true"
                       className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
                     >
-                       *
+                      *
                     </span>
                   </label>
                   <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
@@ -2182,7 +2219,7 @@ function Workspace() {
                       aria-hidden="true"
                       className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
                     >
-                       *
+                      *
                     </span>
                   </label>
                   <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
@@ -2214,7 +2251,7 @@ function Workspace() {
                       aria-hidden="true"
                       className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
                     >
-                       *
+                      *
                     </span>
                   </label>
                   <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
@@ -2304,7 +2341,7 @@ function Workspace() {
                   tabIndex="0"
                   type="button"
                   onClick={handleCloseMakeChatbotForm}
-                  // onClick={handleCloseMakeForm}
+                // onClick={handleCloseMakeForm}
                 >
                   <p
                     className="MuiTypography-root MuiTypography-body1 css-qisfzi"
@@ -2319,7 +2356,7 @@ function Workspace() {
                   <span className="MuiTouchRipple-root css-w0pj6f"></span>
                 </button>
                 <button
-                  onSubmit={handleSubmit}
+                  onClick={handleChatbotSubmit}
                   className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-s92m9s"
                   tabIndex="0"
                   type="submit"

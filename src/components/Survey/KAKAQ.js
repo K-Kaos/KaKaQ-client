@@ -40,17 +40,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 function KAKAQ(props) {
 
   let whoLoggedIn = null;
-    useEffect(() => {
-      whoLoggedIn = sessionStorage.getItem("whoLoggedIn");
-      if (whoLoggedIn === null) {
-        alert("로그인 후 이용해 주세요");
-        window.location.href = "/login";
-      }
-      setCreator(sessionStorage.getItem("whoLoggedIn"));
-    }, []);
-    const [creator, setCreator] = useState("");
-    const [message, setMessage] = useState("");
-  
+  useEffect(() => {
+    whoLoggedIn = sessionStorage.getItem("whoLoggedIn");
+    if (whoLoggedIn === null) {
+      alert("로그인 후 이용해 주세요");
+      window.location.href = "/login";
+    }
+    setCreator(sessionStorage.getItem("whoLoggedIn"));
+  }, []);
+  const [creator, setCreator] = useState("");
+  const [message, setMessage] = useState("");
+
   const navigate = useNavigate();
 
   // 설문 데이터
@@ -64,6 +64,13 @@ function KAKAQ(props) {
   const [surveyKeyword, setSurveyKeyword] = useState("");
   const [surveyCategory, setSurveyCategory] = useState("");
 
+  const [surveyQuestions, setSurveyQuestions] = useState([]);
+  const handleSurveyQuestionsChange = (event) => {
+    setSurveyQuestions(event);
+    console.log(event);
+  };
+
+  
   useEffect(() => {
     //페이지에서 설정한 데이터들 가져오기
     if (location.state && location.state.surveyTitle) {
@@ -75,13 +82,12 @@ function KAKAQ(props) {
     if (location.state && location.state.surveyCategory) {
       setSurveyCategory(location.state.surveyCategory);
     }
-  }, [location.state]);
+    if (location.state && location.state.surveyQuestions) {
+      setSurveyQuestions(location.state.surveyQuestions);
+    }
 
-  const [surveyQuestions, setSurveyQuestions] = useState([]);
-  const handleSurveyQuestionsChange = (event) => {
-    setSurveyQuestions(event);
-    console.log(event);
-  };
+    console.log(surveyQuestions);
+  }, [location.state]);
 
   const date = new Date();
   const defaultStartDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
@@ -89,7 +95,7 @@ function KAKAQ(props) {
   const futureDate = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000); // 7일 후의 날짜를 계산
   const defaultEndDate = `${futureDate.getFullYear()}-${(futureDate.getMonth() + 1).toString().padStart(2, '0')}-${futureDate.getDate().toString().padStart(2, '0')}T${futureDate.getHours().toString().padStart(2, '0')}:${futureDate.getMinutes().toString().padStart(2, '0')}`;
 
-  
+
   const [isSurveyPublic, setIsSurveyPublic] = useState("");
   const [isSurveyGPS, setIsSurveyGPS] = useState("");
   const [surveyCity, setSurveyCity] = useState("");
@@ -145,60 +151,60 @@ function KAKAQ(props) {
     event.preventDefault();
     console.log(surveyStartDate)
     console.log(surveyEndDate)
-            axios
-          .post("/api/survey/create", {
-            //survey db 데이터 보내기
-            title: surveyTitle,
-            city: surveyCity,
-            startDate: surveyStartDate,
-            endDate: surveyEndDate,
-            publicState: isSurveyPublic,
-            category: surveyCategory,
-            keyword: surveyKeyword,
-            creator: {
-              email: creator,
-            },
-          })
-          .then(function (response) {
-            console.log(creator);
-            console.log(response.data);
-            setSurveyIndex(response.data);
+    axios
+      .post("/api/survey/create", {
+        //survey db 데이터 보내기
+        title: surveyTitle,
+        city: surveyCity,
+        startDate: surveyStartDate,
+        endDate: surveyEndDate,
+        publicState: isSurveyPublic,
+        category: surveyCategory,
+        keyword: surveyKeyword,
+        creator: {
+          email: creator,
+        },
+      })
+      .then(function (response) {
+        console.log(creator);
+        console.log(response.data);
+        setSurveyIndex(response.data);
 
-            // 설문조사 질문 생성
-            const promises = surveyQuestions.map((question) =>
-              axios
-                .post("/api/survey/question?surveyId=" + response.data, {
-                  text: question.text, //질문
-                  type: {
-                    name: question.type,
-                  },
-                  options: question.options,
-                  survey: {
-                    id: response.data,
-                  },
-                })
-                .then(function (response) {
-                  console.log("index" + response.data);
-                  setQuestionIndex([...questionIndex, response.data]);
-                  console.log(typeof response.data);
-                })
-                .catch(function (error) {
-                  console.log(error);
-                })
-            );
-            Promise.all(promises).then(() => {
-              console.log("newindex" + questionIndex);
-              setMessage("설문조사가 제출되었습니다.");
-              setTimeout(() => {
-                setMessage("");
-              }, 3000);
-    
-    
-            });
-          });
-          navigate("/workspace");
-        }
-    
+        // 설문조사 질문 생성
+        const promises = surveyQuestions.map((question) =>
+          axios
+            .post("/api/survey/question?surveyId=" + response.data, {
+              text: question.text, //질문
+              type: {
+                name: question.type,
+              },
+              options: question.options,
+              survey: {
+                id: response.data,
+              },
+            })
+            .then(function (response) {
+              console.log("index" + response.data);
+              setQuestionIndex([...questionIndex, response.data]);
+              console.log(typeof response.data);
+            })
+            .catch(function (error) {
+              console.log(error);
+            })
+        );
+        Promise.all(promises).then(() => {
+          console.log("newindex" + questionIndex);
+          setMessage("설문조사가 제출되었습니다.");
+          setTimeout(() => {
+            setMessage("");
+          }, 3000);
+
+
+        });
+      });
+    navigate("/workspace");
+  }
+
 
   // script
   const [isAddVisible, setAddVisible] = useState(false);
@@ -499,7 +505,7 @@ function KAKAQ(props) {
                   <div
                     class="MuiBox-root css-12kkxif"
                     aria-label="Back to dashboard"
-                    //onClick={() => { 경고창 띄우고(필드 삭제와 같은 스타일로) 뒤로가기 }
+                  //onClick={() => { 경고창 띄우고(필드 삭제와 같은 스타일로) 뒤로가기 }
                   >
                     <img
                       src={logo}
@@ -741,7 +747,7 @@ function KAKAQ(props) {
                     </a>
                   </div>
                   <button class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1iuaaxh" tabindex="0" type="button" id="mui-23" onClick={handleSubmit}>게시하기
-                  <span class="MuiTouchRipple-root css-w0pj6f"></span>
+                    <span class="MuiTouchRipple-root css-w0pj6f"></span>
                   </button>
                   <button
                     class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-148fdm8"
@@ -829,16 +835,16 @@ function KAKAQ(props) {
               </div>
             </header>
             {showCreateSurvey && <CreateSurvey
-            title={surveyTitle} category={surveyCategory} keyword={surveyKeyword}
-            surveyQuestions={surveyQuestions} onSurveyQuestionsChange={handleSurveyQuestionsChange}/>}
-            {showShareLink && <ShareLink surveyTitle={surveyTitle}/>}
+              title={surveyTitle} category={surveyCategory} keyword={surveyKeyword}
+              surveyQuestions={surveyQuestions} onSurveyQuestionsChange={handleSurveyQuestionsChange} />}
+            {showShareLink && <ShareLink surveyTitle={surveyTitle} />}
             {showFindRespondent && <FindRespondent
-            isSurveyPublic={isSurveyPublic} onSurveyPublicChange={handleSurveyPublicChange}
-            isSurveyGPS={isSurveyGPS} onSurveyGPSChange={handleSurveyGPSChange}
-            surveyCity={surveyCity} onSurveyCityChange={handleSurveyCityChange}
-            surveyStartDate={surveyStartDate} onSurveyStartDateChange={handleSurveyStartDateChange}
-            surveyEndDate={surveyEndDate} onSurveyEndDateChange={handleSurveyEndDateChange}
-              />}
+              isSurveyPublic={isSurveyPublic} onSurveyPublicChange={handleSurveyPublicChange}
+              isSurveyGPS={isSurveyGPS} onSurveyGPSChange={handleSurveyGPSChange}
+              surveyCity={surveyCity} onSurveyCityChange={handleSurveyCityChange}
+              surveyStartDate={surveyStartDate} onSurveyStartDateChange={handleSurveyStartDateChange}
+              surveyEndDate={surveyEndDate} onSurveyEndDateChange={handleSurveyEndDateChange}
+            />}
             {showSurveyResult && <SurveyResult />}
 
             {/* <div class="MuiDrawer-root MuiDrawer-docked css-gyfe2h">
