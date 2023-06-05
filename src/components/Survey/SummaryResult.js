@@ -330,18 +330,22 @@ function SummaryResult(props) {
                                             </span>
                                         </div>
                                     </div>
-                                    <div className="ant-picker ant-picker-range css-diro6f MuiBox-root css-rk138a"
-                                        style={{ padding: "0px", backgroundColor: "white" }}>
-                                        <div
+                                    
+                                    {/* <div className="ant-picker ant-picker-range css-diro6f MuiBox-root css-rk138a"> */}
+                                        {/* // style={{ padding: "0px", backgroundColor: "white" }}> */}
+                                            {/* <p></p> */}
+                                        {/* <div
                                             className="MuiBox-root css-0"
                                             style={{
                                                 display: "flex",
                                                 flexDirection: "row",
                                                 backgroundColor: "white"
                                             }}
-                                        >
-                                            
-                                        </div></div>
+                                        > */}
+                                        <p className="text-gray-700 text-1xl font-normal" style={{ paddingTop: "10px"}}>
+                                        설문조사의 정보와 설문 참여자의 정보를 확인하세요!</p>        
+                                        {/* </div> */}
+                                    {/* </div> */}
                                     
                                 </div>
                                 <div className="MuiBox-root css-iat7r2">
