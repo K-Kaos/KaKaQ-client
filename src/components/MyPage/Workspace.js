@@ -842,7 +842,8 @@ function Workspace() {
                                         </div>
                                       </div>
                                       <div className="MuiBox-root css-1yd9vr8">
-                                        <p className="MuiTypography-root MuiTypography-body1 css-szuxaf">
+                                        <p className="MuiTypography-root MuiTypography-body1 css-szuxaf"
+                                        style={ {textDecoration: "none"}}>
                                           {survey.status ? "진행중" : "종료"}
                                         </p>
                                         <div

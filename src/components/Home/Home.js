@@ -303,7 +303,7 @@ function Home(props) {
                                 "--framer-line-height": "1em",
                                 "--framer-text-alignment": "center",
                                 "--framer-text-color":
-                                  "var(--extracted-r6o4lv)",
+                                  "white",
                               }}
                             >
                               Start for free

@@ -61,10 +61,13 @@ const KakaoCallback = () => {
                     sessionStorage.setItem("whoLoggedIn", email);
                     alert(username + "님, 환영합니다!");
                     window.location.href = "/workspace";
-                  } else if (url === "회원가입 필요") {
+                  } else{
                     alert("카카오계정의 이메일로 회원가입을 해주세요.");
                     window.location.href = "/signup";
                   }
+                }).catch(function (error) {
+                  alert("카카오계정의 이메일로 회원가입을 해주세요.");
+                  window.location.href="/singup";
                 });
             });
         } else {

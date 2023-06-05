@@ -34,7 +34,8 @@ function LoginForm(props) {
   const checkHandler = (event) => {
     setIsRemember(!isRemember);
   };
-  const kakaoLogin = () => {
+  const kakaoLogin = (event) => {
+    event.preventDefault();
     window.location.href = KAKAO_AUTH_URL;
   };
 
@@ -88,7 +89,6 @@ function LoginForm(props) {
               <form
                 clasName="space-y-4 md:space-y-6"
                 action="#"
-                onSubmit={handleSubmit}
               >
                 <div>
                   <label
@@ -150,13 +150,14 @@ function LoginForm(props) {
                   </div>
                   <a
                     href="#"
-                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500 css-ahref0"
+                    style={{ color: "rgb(250, 200, 0)" }}
                   >
                     비밀번호 찾기
                   </a>
                 </div>
                 <button
-                  type="submit"
+                  onClick={handleSubmit}
                   className="mt-2 w-full flex items-center justify-center bg-white-50 border border-gray-300 rounded-lg hover:bg-gray-100 font-medium p-2 text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   로그인
@@ -178,7 +179,8 @@ function LoginForm(props) {
                   Don’t have an account yet? &nbsp;
                   <a
                     href="/termofuse"
-                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500 css-ahref0"
+                    style={ {color: "rgb(250, 200, 0)"} }
                   >
                     Sign up
                   </a>
