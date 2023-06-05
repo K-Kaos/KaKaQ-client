@@ -33,6 +33,7 @@ function Workspace() {
   const [role, setRole] = useState(null);
   const [creator, setCreator] = useState("");
   const [keyword, setKeyword] = useState("");
+  const [mergedSurveys, setMergedSurveys] = useState([]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -433,6 +434,13 @@ function Workspace() {
         });
     }
   };
+
+  // Merge filtered and search surveys whenever they change
+  useEffect(() => {
+    const filteredIds = categorySurveys.map((survey) => survey.id);
+    const merged = searchSurveys.filter((survey) => filteredIds.includes(survey.id));
+    setMergedSurveys(merged);
+  }, [categorySurveys, searchSurveys]);
 
   return (
     <>
@@ -1106,7 +1114,7 @@ function Workspace() {
                             className="survey-results"
                             style={{ display: "flex", flexWrap: "wrap" }}
                           >
-                            {categorySurveys.map((survey) => (
+                            {mergedSurveys.map((survey) => (
                               <Link to={"/participate/" + survey.id}>
                                 <>
                                   <div
