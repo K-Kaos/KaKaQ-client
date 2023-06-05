@@ -1173,8 +1173,9 @@ function Workspace() {
                             </div>
                           </div> */}
                           {/* 여기에 list 띄울 것 */}
-                          <div className="survey-results">
+                          <div className="survey-results" style={{ display: "flex", flexWrap: "wrap" }}>
                             {categorySurveys.map((survey) => (
+                              <Link to={"/participate/" + survey.id}>
                               <>
                                 {/* <div key={survey.id}>
                                   <h3>Title: {survey.title}</h3>
@@ -1197,13 +1198,13 @@ function Workspace() {
                                       <div className="MuiBox-root css-1yd9vr8">
                                         <div class="flex items-center gap-x-4 text-xs">
                                           <time class="text-gray-500">
-                                            {survey.startDate}
+                                          {survey.startDate.substring(0, survey.startDate.indexOf("T"))}
                                           </time>
                                           <time
                                             datetime="2020-03-16"
                                             class="text-gray-500"
                                           >
-                                            {survey.endDate}
+                                            {survey.endDate.substring(0, survey.endDate.indexOf("T"))}
                                           </time>
                                         </div>
                                         <svg
@@ -1250,6 +1251,7 @@ function Workspace() {
                                             <a href="#">
                                               <span class="absolute inset-0"></span>
                                               {/* {survey.name} */}
+                                              {survey.creator}
                                             </a>
                                           </p>
                                         </div>
@@ -1259,7 +1261,9 @@ function Workspace() {
                                 </div>
                                 {/* </Link> */}
                               </>
+                              </Link>
                             ))}
+                            
                           </div>
                           {/* <OpenSurvey /> */}
                         </div>
