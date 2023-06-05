@@ -1,16 +1,60 @@
 import React, { useEffect, useState } from "react";
+import BarChart from "./BarChart";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
-function SummaryResult() {
+
+
+function SummaryResult() { 
     const [surveyCategory, setSurveyCategory] = useState("");
     const [isOpen, setIsOpen] = useState(false);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [survey, setSurvey] = useState([]);
+    const [surveytitle, setSurveyTitle] = useState([]);
+    const { id } = useParams();
+    const [whoLoggedIn, setWhoLeggedIn] = useState(null);
+    const [count, setCount] = useState([]);
+    const [surveyCreator, setSurveyCreator] = useState([]);
+    const [city, setCity] = useState([]);
+    const [users, setUsers] = useState([]);
 
+    useEffect(() => {
+        const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
+        if (LoggedInUser === null) {
+            alert("로그인 후 이용해 주세요");
+            window.location.href = "/login";
+        } else {
+            setWhoLeggedIn(LoggedInUser);
+            // console.log(id);
+            axios.get(("/api/surveys/get/"+id)
+            ).then(function(res){
+                const surveyinfo = res.data;
+                console.log(surveyinfo);
+                setSurveyTitle(surveyinfo.title);
+                setStartDate(surveyinfo.startDate.split("T")[0]);
+                setEndDate(surveyinfo.endDate.split("T")[0]);
+                setSurveyCreator(surveyinfo.creator);
+                if(!surveyinfo.city) setCity("False");
+                else setCity(surveyinfo.city)
+                //응답한 모든 유저들 가져오기
+                return axios.get(("/api/surveys/participant/"+id)
+                ).then(function(res){
+                    console.log("count:"+res.data.length);
+                    setCount(res.data.length);
+                })
+            }).catch(function (error) {
+                console.log(error);
+              });
+        }
+
+
+    });
     const handleSurveyCategorySelect = (event) => {
         const selectedOption = event.target.value;
         setSurveyCategory(selectedOption);
     };
 
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
 
     const handleDateRangeChange = (dates) => {
         const [start, end] = dates;
@@ -51,7 +95,7 @@ function SummaryResult() {
                             <div class="MuiBox-root css-6r2fzw">
                                 <div className="MuiBox-root css-69i1ev">
                                     <p className="MuiTypography-root MuiTypography-body1 css-1u8f7it">
-                                        새로운 프로젝트
+                                    {surveytitle}
                                     </p>
                                     <div className="MuiBox-root css-0">
                                         <div
@@ -77,16 +121,23 @@ function SummaryResult() {
                                     </div>
                                 </div>
 
+
+                                                     
                                 <div className="MuiBox-root css-kl5uk3">
                                     <div>
+                                
                                         <div className="ant-picker ant-picker-range css-diro6f MuiBox-root css-rk138a">
+                                            
                                             <div className="ant-picker-input ant-picker-input-active">
+                                            <p className="text-gray-500 text-sm font-normal" style={{ paddingTop: '20px', paddingRight: '20px' }}>
+                                                 설문 기간
+                                            </p>
                                                 <input
                                                     readOnly
                                                     placeholder="Start date"
                                                     size="12"
                                                     autoComplete="off"
-                                                    value="2023-05-23"
+                                                    value={startDate}
                                                 />
                                             </div>
                                             <div className="ant-picker-range-separator">
@@ -119,7 +170,7 @@ function SummaryResult() {
                                                     placeholder="End date"
                                                     size="12"
                                                     autoComplete="off"
-                                                    value="2023-05-25"
+                                                    value={endDate}
                                                 />
                                             </div>
                                             <div
@@ -161,89 +212,61 @@ function SummaryResult() {
                                                 backgroundColor: "white"
                                             }}
                                         >
-                                            <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-kl5uk3 css-4m3kxx">
-                                                <div
-                                                    className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm"
-                                                    style={{
-                                                        width: "fit-content",
-                                                        backgroundColor: "white"
-                                                    }}
-                                                >
-                                                    <select
-                                                        value={surveyCategory}
-                                                        onChange={handleSurveyCategorySelect}
-                                                        tabIndex="0"
-                                                        role="button"
-                                                        aria-expanded={isOpen ? "true" : "false"}
-                                                        aria-haspopup="listbox"
-                                                        aria-labelledby="select-color"
-                                                        id="select-color"
-                                                        className="MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-19tmo23"
-                                                    >
-                                                        <option value="">
-                                                            {surveyCategory === ""
-                                                                ? "전체"
-                                                                : surveyCategory}
-                                                        </option>
-                                                        <option value="라이언">라이언</option>
-                                                        <option value="어피치">어피치</option>
-                                                        <option value="무지">무지</option>
-                                                        <option value="콘">콘</option>
-                                                        <option value="춘식이">춘식이</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            
                                         </div></div>
-                                    <button
-                                        className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1y1p9da"
-                                        tabIndex="0"
-                                        type="button"
-                                    >
-                                        <span className="MuiButton-startIcon MuiButton-iconSizeMedium css-6xugel">
-                                            <svg
-                                                className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv"
-                                                focusable="false"
-                                                aria-hidden="true"
-                                                viewBox="0 0 24 24"
-                                                data-testid="SearchIcon"
-                                            >
-                                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                                            </svg>
-                                        </span>
-                                        조회하기
-                                        <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                                    </button>
+                                    
                                 </div>
                                 <div className="MuiBox-root css-iat7r2">
                                     <div class="tremor-Grid-root grid grid-cols-3 gap-6">
                                         <div className="tremor-Card-root relative w-full text-left ring-1 bg-white shadow border-blue-500 ring-gray-200 p-6 rounded-lg">
                                             <div className="tremor-Flex-root flex w-full flex-row justify-between items-start">
                                                 <p className="text-gray-500 text-sm font-normal">
-                                                    총 조회수
+                                                    설문조사 정보
                                                 </p>
-                                                <span className="tremor-BadgeDelta-root w-max flex-shrink-0 inline-flex justify-center items-center cursor-default rounded-full bg-emerald-100 text-emerald-700 px-2.5 py-0.5 text-sm">
-                                                    <svg
-                                                        className="tremor-BadgeDelta-icon -ml-1 mr-1.5 w-4"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 24 24"
-                                                        width="24"
-                                                        height="24"
-                                                    >
-                                                        <path fill="none" d="M0 0h24v24H0z"></path>
-                                                        <path
-                                                            fill="currentColor"
-                                                            d="M16.004 9.414l-8.607 8.607-1.414-1.414L14.589 8H7.004V6h11v11h-2V9.414z"
-                                                        ></path>
-                                                    </svg>
-                                                    <p className="tremor-BadgeDelta-text text-sm whitespace-nowrap">
-                                                        50%
-                                                    </p>
-                                                </span>
                                             </div>
                                             <div className="tremor-Flex-root flex w-full flex-row justify-start items-baseline truncate space-x-3">
-                                                <p className="text-gray-700 text-3xl font-semibold">
-                                                    3
-                                                </p>
+                                                <ul className="tremor-List-root w-full overflow-hidden divide-y text-gray-500 divide-gray-200 mt-4 flex flex-col justify-between">
+                                                    <li className="tremor-ListItem-root w-full flex justify-between items-center truncate tabular-nums py-2 text-sm">
+                                                        <div className="w-full py-3">
+                                                            <p className="text-gray-500 text-sm font-normal">
+                                                                작성자
+                                                            </p>
+                                                        </div>
+                                                        <div className="w-full py-3">
+                                                            <p>
+                                                                <span style={{ color: "black"}}>
+                                                                    {surveyCreator}
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li className="tremor-ListItem-root w-full flex justify-between items-center truncate tabular-nums py-2 text-sm">
+                                                        <div className="w-full py-3">
+                                                            <p className="text-gray-500 text-sm font-normal">GPS 여부</p>
+                                                        </div>
+                                                        <div className="w-full py-3">
+                                                            <p>
+                                                                <span style={{ color: "black"}}>
+                                                                    {city}
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    <li className="tremor-ListItem-root w-full flex justify-between items-center truncate tabular-nums py-2 text-sm">
+                                                        <div className="w-full py-3">
+                                                            <p className="text-gray-500 text-sm font-normal">응답자 수</p>
+                                                        </div>
+                                                        <div className="w-full py-3">
+                                                            <p>
+                                                                <span style={{ color: "black"}}>
+                                                                    {count}
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                    
+                                                </ul>                                          
+                                                
                                             </div>
                                         </div>
                                         <div class="tremor-Col-root col-span-1 md:col-span-3 lg:col-span-2">
@@ -255,8 +278,7 @@ function SummaryResult() {
                                                             width: "100%",
                                                             height: "100%",
                                                             minWidth: "0px",
-                                                        }}
-                                                    >
+                                                        }}>
                                                         <div
                                                             className="recharts-wrapper"
                                                             role="region"
@@ -731,107 +753,7 @@ function SummaryResult() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="tremor-Col-root col-span-1 md:col-span-3 lg:col-span-1">
-                                            <div className="tremor-Card-root relative w-full text-left ring-1 bg-white shadow border-blue-500 ring-gray-200 p-6 rounded-lg h-full">
-                                                <p className="text-gray-700 text-3xl font-semibold">
-                                                    Rate
-                                                </p>
-                                                <ul className="tremor-List-root w-full overflow-hidden divide-y text-gray-500 divide-gray-200 mt-4 flex flex-col justify-between">
-                                                    <li className="tremor-ListItem-root w-full flex justify-between items-center truncate tabular-nums py-2 text-sm">
-                                                        <div className="w-full py-3">
-                                                            <p className="text-gray-500 text-sm font-normal">
-                                                                응답률
-                                                            </p>
-                                                            <div className="flex justify-between">
-                                                                <div className="tremor-ProgressBar-root flex items-center w-full">
-                                                                    <div className="tremor-ProgressBar-progressBarWrapper relative flex items-center w-full bg-blue-100 h-2 rounded-lg">
-                                                                        <div
-                                                                            className="tremor-ProgressBar-progressBar bg-blue-500 flex-col h-full rounded-lg"
-                                                                            style={{
-                                                                                width: "0%",
-                                                                                transition: "all 2s ease 0s",
-                                                                            }}
-                                                                        ></div>
-                                                                    </div>
-                                                                    <div className="tremor-ProgressBar-labelWrapper w-16 truncate text-right text-gray-700 ml-2">
-                                                                        <p className="tremor-ProgressBar-label shrink-0 whitespace-nowrap truncate text-sm font-normal">
-                                                                            0%
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                                <span className="tremor-BadgeDelta-root w-max flex-shrink-0 inline-flex justify-center items-center cursor-default rounded-full bg-emerald-100 text-emerald-700 px-2.5 py-0.5 text-sm ml-10">
-                                                                    <svg
-                                                                        className="tremor-BadgeDelta-icon -ml-1 mr-1.5 w-4"
-                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                        viewBox="0 0 24 24"
-                                                                        width="24"
-                                                                        height="24"
-                                                                    >
-                                                                        <path
-                                                                            fill="none"
-                                                                            d="M0 0h24v24H0z"
-                                                                        ></path>
-                                                                        <path
-                                                                            fill="currentColor"
-                                                                            d="M16.004 9.414l-8.607 8.607-1.414-1.414L14.589 8H7.004V6h11v11h-2V9.414z"
-                                                                        ></path>
-                                                                    </svg>
-                                                                    <p className="tremor-BadgeDelta-text text-sm whitespace-nowrap">
-                                                                        0%
-                                                                    </p>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li className="tremor-ListItem-root w-full flex justify-between items-center truncate tabular-nums py-2 text-sm">
-                                                        <div className="w-full py-3">
-                                                            <p className="text-gray-500 text-sm font-normal">
-                                                                완료율
-                                                            </p>
-                                                            <div className="flex justify-between">
-                                                                <div className="tremor-ProgressBar-root flex items-center w-full">
-                                                                    <div className="tremor-ProgressBar-progressBarWrapper relative flex items-center w-full bg-blue-100 h-2 rounded-lg">
-                                                                        <div
-                                                                            className="tremor-ProgressBar-progressBar bg-blue-500 flex-col h-full rounded-lg"
-                                                                            style={{
-                                                                                width: "0%",
-                                                                                transition: "all 2s ease 0s",
-                                                                            }}
-                                                                        ></div>
-                                                                    </div>
-                                                                    <div className="tremor-ProgressBar-labelWrapper w-16 truncate text-right text-gray-700 ml-2">
-                                                                        <p className="tremor-ProgressBar-label shrink-0 whitespace-nowrap truncate text-sm font-normal">
-                                                                            0%
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                                <span className="tremor-BadgeDelta-root w-max flex-shrink-0 inline-flex justify-center items-center cursor-default rounded-full bg-emerald-100 text-emerald-700 px-2.5 py-0.5 text-sm ml-10">
-                                                                    <svg
-                                                                        className="tremor-BadgeDelta-icon -ml-1 mr-1.5 w-4"
-                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                        viewBox="0 0 24 24"
-                                                                        width="24"
-                                                                        height="24"
-                                                                    >
-                                                                        <path
-                                                                            fill="none"
-                                                                            d="M0 0h24v24H0z"
-                                                                        ></path>
-                                                                        <path
-                                                                            fill="currentColor"
-                                                                            d="M16.004 9.414l-8.607 8.607-1.414-1.414L14.589 8H7.004V6h11v11h-2V9.414z"
-                                                                        ></path>
-                                                                    </svg>
-                                                                    <p className="tremor-BadgeDelta-text text-sm whitespace-nowrap">
-                                                                        0%
-                                                                    </p>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+            
                                     </div>
                                 </div>
                             </div>
