@@ -14,9 +14,17 @@ function ShowResult() {
   const [receiveResponse, setReceiveResponse] = useState(false);
   const [survey, setSurvey] = useState([]);
   const [responses, setResponses] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const [surveyCategory, setSurveyCategory] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
+  const [count, setCount] = useState("");
+  const [lion, setLion] = useState(0);
+  const [con, setCon] = useState(0);
+  const [apeach, setApeach] = useState(0);
+  const [chun, setChun] = useState(0);
+  const [mu, setMu] = useState(0);
 
   const handleSurveyCategorySelect = (event) => {
     const selectedOption = event.target.value;
@@ -26,31 +34,6 @@ function ShowResult() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
-  const handleDateRangeChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
-
-  const getSelectedDates = () => {
-    const selectedDates = [];
-    if (startDate && endDate) {
-      const currentDate = new Date(startDate);
-      while (currentDate <= endDate) {
-        selectedDates.push(new Date(currentDate));
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-    }
-    return selectedDates;
-  };
-
-  const [currentDate, setCurrentDate] = useState(new Date());
-
-  const handleNextMonth = () => {
-    const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
-    setCurrentDate(nextMonth);
-  };
-
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
@@ -58,6 +41,30 @@ function ShowResult() {
   const toggleReceiveResponse = () => {
     setReceiveResponse((prev) => !prev);
   };
+
+  const p_data = [
+    {
+      name: "라이언",
+      num: lion
+    },
+    {
+      name: "콘",
+      num: con
+    },
+    {
+      name: "어피치",
+      num: apeach
+    },
+    {
+      name: "춘식이",
+      num: chun
+    }
+    ,
+    {
+      name: "무지",
+      num: mu
+    }
+  ];
 
   let data = [];
   const keys = ['라이언','어피치','무지','콘','춘식이'];
@@ -97,6 +104,8 @@ function ShowResult() {
         const surveyInfos = response.data;
         console.log(response.data);
         setSurvey(surveyInfos);
+        setStartDate(response.data.startDate.substring(0, response.data.startDate.indexOf("T")));
+        setEndDate(response.data.endDate.substring(0, response.data.endDate.indexOf("T")));
 
         // 다음 요청을 실행
         return axios.get(("/api/mypage/created/" + id + "/responses"));
@@ -104,17 +113,21 @@ function ShowResult() {
       .then(function (response) {
         const surveyResponses = response.data;
         setResponses(surveyResponses);
-      })
-      .catch(function (error) {
+        return axios.get(("/api/surveys/participant/"+id)
+        ).then(function(res){
+            setCount(res.data.length);
+            setUsers(res.data);
+            for (let i=0; i<res.data.length; i++){
+                if(res.data[i].role=="라이언") setLion(prevMu => prevMu + 1);
+                else if(res.data[i].role=="춘식이") setChun(prevMu => prevMu + 1);
+                else if(res.data[i].role=="콘") setCon(prevMu => prevMu + 1);
+                else if(res.data[i].role=="어피치") setApeach(prevMu => prevMu + 1);
+                else if(res.data[i].role=="무지") setMu(prevMu => prevMu + 1);
+            }
+        })
+      }).catch(function (error) {
         console.log(error);
-      })
-      // fetch('/api/surveys/get/' + id)
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     console.log('서버 응답:', data);
-
-      //   })
-      //   .catch(error => console.error('오류 발생:', error));
+      });
     }
   }, []);
 
@@ -192,7 +205,7 @@ function ShowResult() {
             </div>
             {activeTab === 'summary' && (
               <div>
-                <SummaryResult />
+                <SummaryResult survey={survey} responses={responses} startDate={startDate} endDate={endDate} data={p_data} count={count}/>
               </div>
             )}
 
@@ -240,12 +253,15 @@ function ShowResult() {
                             <div>
                               <div className="ant-picker ant-picker-range css-diro6f MuiBox-root css-rk138a">
                                 <div className="ant-picker-input ant-picker-input-active">
+                                  <p className="text-gray-500 text-sm font-normal" style={{ paddingTop: '20px', paddingRight: '20px' }}>
+                                    설문 기간
+                                  </p>
                                   <input
                                     readOnly
                                     placeholder="Start date"
                                     size="12"
                                     autoComplete="off"
-                                    value="2023-05-23"
+                                    value={startDate}
                                   />
                                 </div>
                                 <div className="ant-picker-range-separator">
@@ -278,7 +294,7 @@ function ShowResult() {
                                     placeholder="End date"
                                     size="12"
                                     autoComplete="off"
-                                    value="2023-05-25"
+                                    value={endDate}
                                   />
                                 </div>
                                 <div
