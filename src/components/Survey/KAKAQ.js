@@ -105,6 +105,10 @@ function KAKAQ(props) {
   const [surveyIndex, setSurveyIndex] = useState("");
   const [questionIndex, setQuestionIndex] = useState([]);
 
+  const handleClick = () => {
+    navigate("/workspace");
+  };
+
   const handleSurveyPublicChange = (event) => {
     setIsSurveyPublic(event);
     console.log("kakaq에서 알려드립니다: " + event);
@@ -514,6 +518,7 @@ function KAKAQ(props) {
                       src={logo}
                       alt="KAKAQ-logo"
                       style={{ height: "18px" }}
+                      onClick={handleClick}
                     />
                   </div>
                   <div class="MuiBox-root css-0">
