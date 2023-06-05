@@ -5,129 +5,8 @@ import { BarChart, Bar, XAxis, YAxis } from "recharts";
 import logo from "../../Assets/Logo/logo.png";
 
 
-function SummaryResult() { 
-    const [surveyCategory, setSurveyCategory] = useState("");
-    const [isOpen, setIsOpen] = useState(false);
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
-    const [survey, setSurvey] = useState([]);
-    const [surveytitle, setSurveyTitle] = useState([]);
-    const { id } = useParams();
-    const [whoLoggedIn, setWhoLeggedIn] = useState(null);
-    const [count, setCount] = useState([]);
-    const [surveyCreator, setSurveyCreator] = useState([]);
-    const [city, setCity] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [lion, setLion] = useState(0);
-    const [con, setCon] = useState(0);
-    const [apeach, setApeach] = useState(0);
-    const [chun, setChun] = useState(0);
-    const [mu, setMu] = useState(0);
+function SummaryResult(props) { 
     const [showProfile, setShowProfile] = useState(false);
-
-    const data = [
-        {
-          name: "라이언",
-          num: lion
-        },
-        {
-          name: "콘",
-          num: con
-        },
-        {
-          name: "어피치",
-          num: apeach
-        },
-        {
-          name: "춘식이",
-          num: chun
-        }
-        ,
-        {
-          name: "무지",
-          num: mu
-        }
-      ];
-    useEffect(() => {
-        
-        const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
-        if (LoggedInUser === null) {
-            alert("로그인 후 이용해 주세요");
-            window.location.href = "/login";
-        } else {
-            setWhoLeggedIn(LoggedInUser);
-            // console.log(id);
-            axios.get(("/api/surveys/get/"+id)
-            ).then(function(res){
-                const surveyinfo = res.data;
-                console.log(surveyinfo);
-                setSurveyTitle(surveyinfo.title);
-                setStartDate(surveyinfo.startDate.split("T")[0]);
-                setEndDate(surveyinfo.endDate.split("T")[0]);
-                setSurveyCreator(surveyinfo.creator);
-                if(!surveyinfo.city) setCity("False");
-                else setCity(surveyinfo.city)
-                setMu(0);
-                setLion(0);
-                setApeach(0);
-                setCon(0);
-                setChun(0);
-                //응답한 모든 유저들 가져오기
-                return axios.get(("/api/surveys/participant/"+id)
-                ).then(function(res){
-                    
-                    console.log(res);
-                    setCount(res.data.length);
-                    setUsers(res.data);
-                    for (let i=0; i<res.data.length; i++){
-                        if(res.data[i].role=="라이언") setLion(prevMu => prevMu + 1);
-                        else if(res.data[i].role=="춘식이") setChun(prevMu => prevMu + 1);
-                        else if(res.data[i].role=="콘") setCon(prevMu => prevMu + 1);
-                        else if(res.data[i].role=="어피치") setApeach(prevMu => prevMu + 1);
-                        else if(res.data[i].role=="무지") setMu(prevMu => prevMu + 1);
-                    }
-                    console.log(lion);
-                    // console.log(users[0]);
-                })
-            }).catch(function (error) {
-                console.log(error);
-              });
-            
-        }
-
-
-    }, []);
-    const handleSurveyCategorySelect = (event) => {
-        const selectedOption = event.target.value;
-        setSurveyCategory(selectedOption);
-    };
-
-
-    const handleDateRangeChange = (dates) => {
-        const [start, end] = dates;
-        setStartDate(start);
-        setEndDate(end);
-    };
-
-    const getSelectedDates = () => {
-        const selectedDates = [];
-        if (startDate && endDate) {
-            const currentDate = new Date(startDate);
-            while (currentDate <= endDate) {
-                selectedDates.push(new Date(currentDate));
-                currentDate.setDate(currentDate.getDate() + 1);
-            }
-        }
-        return selectedDates;
-    };
-
-    const [currentDate, setCurrentDate] = useState(new Date());
-
-    const handleNextMonth = () => {
-        const nextMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
-        setCurrentDate(nextMonth);
-    };
-
     const handleClickProfile = () => {
         setShowProfile(true);
       };
@@ -260,7 +139,7 @@ function SummaryResult() {
                             <div class="MuiBox-root css-6r2fzw">
                                 <div className="MuiBox-root css-69i1ev">
                                     <p className="MuiTypography-root MuiTypography-body1 css-1u8f7it">
-                                    {surveytitle}
+                                    {props.survey.title}
                                     </p>
                                     <div className="MuiBox-root css-0">
                                         <div
@@ -302,7 +181,7 @@ function SummaryResult() {
                                                     placeholder="Start date"
                                                     size="12"
                                                     autoComplete="off"
-                                                    value={startDate}
+                                                    value={props.startDate}
                                                 />
                                             </div>
                                             <div className="ant-picker-range-separator">
@@ -335,7 +214,7 @@ function SummaryResult() {
                                                     placeholder="End date"
                                                     size="12"
                                                     autoComplete="off"
-                                                    value={endDate}
+                                                    value={props.endDate}
                                                 />
                                             </div>
                                             <div
@@ -367,18 +246,22 @@ function SummaryResult() {
                                             </span>
                                         </div>
                                     </div>
-                                    <div className="ant-picker ant-picker-range css-diro6f MuiBox-root css-rk138a"
-                                        style={{ padding: "0px", backgroundColor: "white" }}>
-                                        <div
+                                    
+                                    {/* <div className="ant-picker ant-picker-range css-diro6f MuiBox-root css-rk138a"> */}
+                                        {/* // style={{ padding: "0px", backgroundColor: "white" }}> */}
+                                            {/* <p></p> */}
+                                        {/* <div
                                             className="MuiBox-root css-0"
                                             style={{
                                                 display: "flex",
                                                 flexDirection: "row",
                                                 backgroundColor: "white"
                                             }}
-                                        >
-                                            
-                                        </div></div>
+                                        > */}
+                                        <p className="text-gray-700 text-1xl font-normal" style={{ paddingTop: "10px"}}>
+                                        설문조사의 정보와 설문 참여자의 정보를 확인하세요!</p>        
+                                        {/* </div> */}
+                                    {/* </div> */}
                                     
                                 </div>
                                 <div className="MuiBox-root css-iat7r2">
@@ -400,7 +283,7 @@ function SummaryResult() {
                                                         <div className="w-full py-3">
                                                             <p>
                                                                 <span style={{ color: "black"}}>
-                                                                    {surveyCreator}
+                                                                    {props.survey.creator}
                                                                 </span>
                                                             </p>
                                                         </div>
@@ -412,7 +295,7 @@ function SummaryResult() {
                                                         <div className="w-full py-3">
                                                             <p>
                                                                 <span style={{ color: "black"}}>
-                                                                    {city}
+                                                                    {props.survey.city}
                                                                 </span>
                                                             </p>
                                                         </div>
@@ -424,7 +307,7 @@ function SummaryResult() {
                                                         <div className="w-full py-3">
                                                             <p>
                                                                 <span style={{ color: "black"}}>
-                                                                    {count}
+                                                                    {props.count}
                                                                 </span>
                                                             </p>
                                                         </div>
@@ -458,7 +341,7 @@ function SummaryResult() {
                                                                 backgroundColor: "white"
                                                             }}
                                                         >
-                                                            <BarChart width={500} height={200} data={data}>
+                                                            <BarChart width={500} height={200} data={props.data}>
                                                                 <Bar dataKey="num" fill="#8884d8" />
                                                                     <XAxis dataKey="name" />
                                                                 <YAxis />
