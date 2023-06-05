@@ -7,7 +7,7 @@ import soyeon from "../../Assets/Profile/soyeon.png";
 import sohyun from "../../Assets/Profile/sohyun.png";
 import jueun from "../../Assets/Profile/jueun.png";
 import yekyeong from "../../Assets/Profile/yekyeong.png";
-import GuideIntro from "../Guide/GuideIntro";
+import GuideIntro from "../Home/GuideIntro";
 import "../../style.css";
 import logo from "../../Assets/Logo/logo.png";
 import AOS from "aos";

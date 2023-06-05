@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import OpenSurveyItem from "./OpenSurveyItem";
-// import seobin from "../../Assets/Profile/seobin.png";
 import "./OpenSurvey.css";
 import axios from "axios";
 

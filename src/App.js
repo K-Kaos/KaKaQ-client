@@ -7,7 +7,6 @@ import Test from "./components/Test/Test";
 import TypeTest from "./components/Test/TypeTest";
 import MyPage from "./components/MyPage/MyPage";
 import Workspace from "./components/MyPage/Workspace";
-import Guide from "./components/Guide/Guide";
 import OpenSurvey from "./components/Survey/OpenSurvey"
 import Login from "./components/Login/Login"
 import Signup from "./components/Login/Signup"
@@ -70,7 +69,6 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/typetest" element={<TypeTest />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/guide" element={<Guide />} />
           <Route path="/opensurvey" element={<OpenSurvey />} />
           <Route path="/participate/:id" element={<ParticipateSurvey/>}/>
           <Route path="/survey/:id/result" element={<ShowResult/>}/>

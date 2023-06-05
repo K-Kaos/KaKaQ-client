@@ -110,18 +110,6 @@ function GuideIntro(props) {
                 <dd data-aos="fade-up" className="mt-2 text-base leading-7 text-gray-600">GPS를 이용한 특정 지역 이용자 대상 설문 제한 기능<br />
                   사용자의 위치 정보를 통해 특정 지역 범위에 안에 있는 사용자만 설문에 참여 </dd>
               </div>
-              {/* <div className="relative pl-16">
-                <dt data-aos="fade-up" className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg " style={{backgroundColor:"#FADC5F"}}>
-                    <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                    </svg>
-                  </div>
-                  연관 질문 생성
-                </dt>
-                <dd data-aos="fade-up" className="mt-2 text-base leading-7 text-gray-600">Chat GPT를 이용한 사용자 입력 질문지 연관질문 자동생성 기능<br />
-                  질문 입력창에 질문을 입력하면 챗봇이 연관 질문 예시를 추천</dd>
-              </div> */}
               <div className="relative pl-16">
                 <dt data-aos="fade-up" className="text-base font-semibold leading-7 text-gray-900">
                   <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg " style={{backgroundColor:"#FADC5F"}}>

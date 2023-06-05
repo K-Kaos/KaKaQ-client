@@ -4,10 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import logo from "../Assets/Logo/logo.png";
 import { Link } from "react-router-dom";
-import { ImBlog } from "react-icons/im";
-import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
-import { RiSurveyLine } from "react-icons/ri";
-import { CgFileDocument } from "react-icons/cg";
 
 function NavBar(props) {
   const [expand, setExpand] = useState(false);

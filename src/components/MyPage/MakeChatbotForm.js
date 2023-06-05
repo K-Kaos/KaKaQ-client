@@ -53,7 +53,6 @@ function MakeChatbotForm() {
   const [surveySubject, setSurveySubject] = useState("");
   const [surveyKeyword, setSurveyKeyword] = useState("");
   const [surveyCategory, setSurveyCategory] = useState("");
-  // const [selectedSurveyCategory, setSelectedSurveyCategory] = useState("");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -62,11 +61,6 @@ function MakeChatbotForm() {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
-  // const handleSurveyCategorySelect = (option) => {
-  //   setSurveyCategory(option);
-  //   setIsOpen(false);
-  // };
 
   const handleSurveyCategorySelect = (event) => {
     const selectedOption = event.target.value;
@@ -426,7 +420,6 @@ function MakeChatbotForm() {
                 tabIndex="0"
                 type="button"
                 onClick={handleCloseMakeChatbotForm}
-                // onClick={handleCloseMakeForm}
               >
                 <p
                   className="MuiTypography-root MuiTypography-body1 css-qisfzi"
