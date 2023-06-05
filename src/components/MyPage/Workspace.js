@@ -54,7 +54,7 @@ function Workspace() {
   const [type, setType] = useState("");
   const options = ["여행", "맛집", "교육", "문화생활", "기타"];
   const [surveyTitle, setSurveyTitle] = useState("");
-  const [surveyKeyword, setSurveyKeyword] = useState("");
+  const [surveyKeyword, setSurveyKeyword] = useState([]);
   const [surveyCategory, setSurveyCategory] = useState("");
   const [surveySubject, setSurveySubject] = useState("");
   const [categorySurveys, setCategorySurveys] = useState([]);
@@ -216,7 +216,16 @@ function Workspace() {
   };
 
   const handleSurveyKeywordChange = (event) => {
-    setSurveyKeyword(event.target.value);
+    const keywordString = event.target.value;
+    const keywordArray = keywordString.split(",").map((keyword) => keyword.trim());
+    console.log(keywordArray)
+    setSurveyKeyword(keywordArray);
+  };
+
+  const handleKeywordDelete = (index) => {
+    const updatedKeywords = [...surveyKeyword];
+    updatedKeywords.splice(index, 1);
+    setSurveyKeyword(updatedKeywords);
   };
 
   const handleTitleChange = (event) => {
@@ -346,8 +355,8 @@ function Workspace() {
             surveyTitle: surveyTitle,
             surveyKeyword: surveyKeyword,
             surveyCategory: surveyCategory,
-           }
-          });
+          }
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -1099,8 +1108,8 @@ function Workspace() {
                               </button>
                               <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "여행"
-                                    ? "selected Mui-selected"
-                                    : ""
+                                  ? "selected Mui-selected"
+                                  : ""
                                   }`}
                                 tabIndex={0}
                                 type="button"
@@ -1114,8 +1123,8 @@ function Workspace() {
                               </button>
                               <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "맛집"
-                                    ? "selected Mui-selected"
-                                    : ""
+                                  ? "selected Mui-selected"
+                                  : ""
                                   }`}
                                 tabIndex={0}
                                 type="button"
@@ -1129,8 +1138,8 @@ function Workspace() {
                               </button>
                               <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "문화생활"
-                                    ? "selected Mui-selected"
-                                    : ""
+                                  ? "selected Mui-selected"
+                                  : ""
                                   }`}
                                 tabIndex={0}
                                 type="button"
@@ -1144,8 +1153,8 @@ function Workspace() {
                               </button>
                               <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "교육"
-                                    ? "selected Mui-selected"
-                                    : ""
+                                  ? "selected Mui-selected"
+                                  : ""
                                   }`}
                                 tabIndex={0}
                                 type="button"
@@ -1159,8 +1168,8 @@ function Workspace() {
                               </button>
                               <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "기타"
-                                    ? "selected Mui-selected"
-                                    : ""
+                                  ? "selected Mui-selected"
+                                  : ""
                                   }`}
                                 tabIndex={0}
                                 type="button"
@@ -1228,94 +1237,94 @@ function Workspace() {
                           <div className="survey-results" style={{ display: "flex", flexWrap: "wrap" }}>
                             {categorySurveys.map((survey) => (
                               <Link to={"/participate/" + survey.id}>
-                              <>
-                                {/* <div key={survey.id}>
+                                <>
+                                  {/* <div key={survey.id}>
                                   <h3>Title: {survey.title}</h3>
                                   <p>Category: {survey.category}</p>
                                   <p>Start Date: {survey.startDate}</p>
                                   <p>End Date: {survey.endDate}</p>
                                 </div> */}
-                                {/* <Link to="#"> */}
+                                  {/* <Link to="#"> */}
 
-                                <div
-                                  className="MuiBox-root css-0"
-                                  style={{ margin: "0px 24px 20px 0px" }}
-                                >
                                   <div
-                                    className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
-                                    width="265"
-                                    minheight="160"
+                                    className="MuiBox-root css-0"
+                                    style={{ margin: "0px 24px 20px 0px" }}
                                   >
-                                    <div className="MuiCardContent-root css-67yy9o">
-                                      <div className="MuiBox-root css-1yd9vr8">
-                                        <div class="flex items-center gap-x-4 text-xs">
-                                          <time class="text-gray-500">
-                                          {survey.startDate.substring(0, survey.startDate.indexOf("T"))}
-                                          </time>
-                                          <time
-                                            datetime="2020-03-16"
-                                            class="text-gray-500"
+                                    <div
+                                      className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1ohqwy3"
+                                      width="265"
+                                      minheight="160"
+                                    >
+                                      <div className="MuiCardContent-root css-67yy9o">
+                                        <div className="MuiBox-root css-1yd9vr8">
+                                          <div class="flex items-center gap-x-4 text-xs">
+                                            <time class="text-gray-500">
+                                              {survey.startDate.substring(0, survey.startDate.indexOf("T"))}
+                                            </time>
+                                            <time
+                                              datetime="2020-03-16"
+                                              class="text-gray-500"
+                                            >
+                                              {survey.endDate.substring(0, survey.endDate.indexOf("T"))}
+                                            </time>
+                                          </div>
+                                          <svg
+                                            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
+                                            focusable="false"
+                                            aria-hidden="true"
+                                            viewBox="0 0 24 24"
+                                            data-testid="MoreHorizIcon"
                                           >
-                                            {survey.endDate.substring(0, survey.endDate.indexOf("T"))}
-                                          </time>
+                                            <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                                          </svg>
                                         </div>
-                                        <svg
-                                          className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n"
-                                          focusable="false"
-                                          aria-hidden="true"
-                                          viewBox="0 0 24 24"
-                                          data-testid="MoreHorizIcon"
+                                        <div
+                                          className="MuiBox-root css-8atqhb"
+                                          style={{ display: "flex" }}
+                                          aria-label={survey.title}
                                         >
-                                          <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
-                                        </svg>
-                                      </div>
-                                      <div
-                                        className="MuiBox-root css-8atqhb"
-                                        style={{ display: "flex" }}
-                                        aria-label={survey.title}
-                                      >
-                                        <div className="mt-4 MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
-                                          <input
-                                            readOnly
-                                            type="text"
-                                            className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
-                                            value={survey.title}
-                                          />
+                                          <div className="mt-4 MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                            <input
+                                              readOnly
+                                              type="text"
+                                              className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                              value={survey.title}
+                                            />
+                                          </div>
+                                          <div className="mt-4 MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
+                                            <input
+                                              readOnly
+                                              type="text"
+                                              className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
+                                              style={{ fontSize: "small" }}
+                                              value={survey.category}
+                                            />
+                                          </div>
                                         </div>
-                                        <div className="mt-4 MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
-                                          <input
-                                            readOnly
-                                            type="text"
-                                            className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
-                                            style={{ fontSize: "small" }}
-                                            value={survey.category}
+                                        <div class="relative mt-8 flex items-center gap-x-4">
+                                          <img
+                                            // src={survey.profile}
+                                            alt=""
+                                            class="h-10 w-10 rounded-full bg-gray-50"
                                           />
-                                        </div>
-                                      </div>
-                                      <div class="relative mt-8 flex items-center gap-x-4">
-                                        <img
-                                          // src={survey.profile}
-                                          alt=""
-                                          class="h-10 w-10 rounded-full bg-gray-50"
-                                        />
-                                        <div class="text-sm leading-6">
-                                          <p class="font-semibold text-gray-900">
-                                            <a href="#">
-                                              <span class="absolute inset-0"></span>
-                                              {/* {survey.name} */}
-                                              {survey.creator}
-                                            </a>
-                                          </p>
+                                          <div class="text-sm leading-6">
+                                            <p class="font-semibold text-gray-900">
+                                              <a href="#">
+                                                <span class="absolute inset-0"></span>
+                                                {/* {survey.name} */}
+                                                {survey.creator}
+                                              </a>
+                                            </p>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                                {/* </Link> */}
-                              </>
+                                  {/* </Link> */}
+                                </>
                               </Link>
                             ))}
-                            
+
                           </div>
                           {/* <OpenSurvey /> */}
                         </div>
@@ -2005,7 +2014,7 @@ function Workspace() {
                       aria-hidden="true"
                       className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
                     >
-                      *
+                      * (쉼표로 구분)
                     </span>
                   </label>
                   <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
@@ -2019,7 +2028,7 @@ function Workspace() {
                         type="text"
                         maxLength="30"
                         className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
-                        value={surveyKeyword}
+                        value={surveyKeyword.join(", ")}
                         onChange={handleSurveyKeywordChange}
                       />
                     </div>
@@ -2270,7 +2279,7 @@ function Workspace() {
                       aria-hidden="true"
                       className="MuiFormLabel-asterisk MuiInputLabel-asterisk css-10awim0"
                     >
-                      *
+                      * (쉼표로 구분)
                     </span>
                   </label>
                   <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
@@ -2284,7 +2293,7 @@ function Workspace() {
                         type="text"
                         maxLength="30"
                         className="MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-10m06oi"
-                        value={surveyKeyword}
+                        value={surveyKeyword.join(", ")}
                         onChange={handleSurveyKeywordChange}
                       />
                     </div>
