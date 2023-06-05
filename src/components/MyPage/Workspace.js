@@ -2018,7 +2018,12 @@ function Workspace() {
                     </span>
                   </label>
                   <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-4m3kxx">
-                    <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm">
+                  {surveyKeyword.map((keyword, index) => (
+                        <div key={index} className="keyword-item flex">
+                          <button className="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium css-1w5d2ml" onClick={() => handleKeywordDelete(index)}>{keyword}&nbsp;</button>
+                        </div>
+                      ))}
+                    <div className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel keyword-list css-b4zgsm">
                       <input
                         aria-invalid="false"
                         autoComplete="off"
