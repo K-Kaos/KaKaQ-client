@@ -35,11 +35,18 @@ function FindRespondent({isSurveyPublic, onSurveyPublicChange, isSurveyGPS, onSu
 
   const handleTogglePublic = () => {
     setIsPublic(!isPublic);
-    onSurveyPublicChange(!isPublic);
 
     if (isGPS) {
       setIsGPS(false)
       onSurveyGPSChange(false);
+    }
+
+    if (isPublic === true) {
+      onSurveyPublicChange("private");
+    }
+
+    if (isPublic === false) {
+      onSurveyPublicChange("public");
     }
   };
 

@@ -33,7 +33,8 @@ input[type="radio"] {
 }
 
 .a {
-  textDecoration: "none"
+  text-decoration: "none";
+
 }
 
 .yellow {
@@ -3070,6 +3071,12 @@ body {
   --framer-aspect-ratio-supported: auto;
 }
 
+a {
+  color: transparent !important;
+}
+
+
+
 body {
   --token-847ef11f-9d1f-468c-b95a-5bcf9302716c: rgb(250, 244, 218);
   --token-606985c3-bdcf-4bd3-8081-c58590581057: rgb(251, 239, 197);
@@ -4971,6 +4978,10 @@ textarea {
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
+}
+
+.css-szuxaf:hover {
+  color: rgb(250, 225, 0)
 }
 
 .css-126xj0f {
