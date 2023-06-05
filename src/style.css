@@ -3071,7 +3071,7 @@ body {
   --framer-aspect-ratio-supported: auto;
 }
 
-a {
+a + .css-szuxaf {
   color: transparent !important;
 }
 

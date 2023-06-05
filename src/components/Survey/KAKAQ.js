@@ -61,7 +61,7 @@ function KAKAQ(props) {
   const [showProfile, setShowProfile] = useState(false);
 
   const [surveyTitle, setSurveyTitle] = useState("");
-  const [surveyKeyword, setSurveyKeyword] = useState("");
+  const [surveyKeyword, setSurveyKeyword] = useState([]);
   const [surveyCategory, setSurveyCategory] = useState("");
 
   const [surveyQuestions, setSurveyQuestions] = useState([]);
@@ -85,6 +85,7 @@ function KAKAQ(props) {
     if (location.state && location.state.surveyQuestions) {
       setSurveyQuestions(location.state.surveyQuestions);
     }
+
 
     console.log(surveyQuestions);
   }, [location.state]);
@@ -151,6 +152,8 @@ function KAKAQ(props) {
     event.preventDefault();
     console.log(surveyStartDate)
     console.log(surveyEndDate)
+    console.log(surveyKeyword)
+    console.log(surveyCity)
     axios
       .post("/api/survey/create", {
         //survey db 데이터 보내기
@@ -160,7 +163,7 @@ function KAKAQ(props) {
         endDate: surveyEndDate,
         publicState: isSurveyPublic,
         category: surveyCategory,
-        keyword: surveyKeyword,
+        keywords: surveyKeyword,
         creator: {
           email: creator,
         },
