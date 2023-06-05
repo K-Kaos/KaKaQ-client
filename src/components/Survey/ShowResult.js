@@ -381,22 +381,33 @@ function ShowResult() {
                                 </p>
                                 {question.type.name === '객관식' && (
                                   <div>
-                                    <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
+                                    {responses[question.question_id] ? (
+                                      <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
+                                    ) : (
+                                      <p>설문에 대한 응답이 없습니다.</p>
+                                    )}
                                   </div>
                                 )}
                                 {question.type.name === '찬부식' && (
                                   <div>
-                                    <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
+                                    {responses[question.question_id] ? (
+                                      <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
+                                    ) : (
+                                      <p>설문에 대한 응답이 없습니다.</p>
+                                    )}
                                   </div>
                                 )}
                                 {question.type.name === '서술형' && (
                                   <div>
-                                   {responses[question.question_id].map((response, index) => (
-                                     <div
-                                     style={{ marginBottom: "15px" }}>
-                                     <p>답변 {index+1}&nbsp;:&nbsp;{response.value}</p>
-                                     </div>
-                                   ))}
+                                    {responses[question.question_id] ? (
+                                      responses[question.question_id].map((response, index) => (
+                                        <div style={{ marginBottom: '15px' }}>
+                                          <p>답변 {index + 1}&nbsp;:&nbsp;{response.value}</p>
+                                        </div>
+                                      ))
+                                    ) : (
+                                      <p>설문에 대한 응답이 없습니다.</p>
+                                    )}
                                   </div>
                                 )}
                               </div>
