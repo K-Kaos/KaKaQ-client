@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import BarChart from "./BarChart";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { BarChart, Bar, XAxis, YAxis } from "recharts";
 import logo from "../../Assets/Logo/logo.png";
 
 
@@ -18,9 +18,38 @@ function SummaryResult() {
     const [surveyCreator, setSurveyCreator] = useState([]);
     const [city, setCity] = useState([]);
     const [users, setUsers] = useState([]);
+    const [lion, setLion] = useState(0);
+    const [con, setCon] = useState(0);
+    const [apeach, setApeach] = useState(0);
+    const [chun, setChun] = useState(0);
+    const [mu, setMu] = useState(0);
     const [showProfile, setShowProfile] = useState(false);
 
+    const data = [
+        {
+          name: "라이언",
+          num: lion
+        },
+        {
+          name: "콘",
+          num: con
+        },
+        {
+          name: "어피치",
+          num: apeach
+        },
+        {
+          name: "춘식이",
+          num: chun
+        }
+        ,
+        {
+          name: "무지",
+          num: mu
+        }
+      ];
     useEffect(() => {
+        
         const LoggedInUser = sessionStorage.getItem('whoLoggedIn');
         if (LoggedInUser === null) {
             alert("로그인 후 이용해 주세요");
@@ -38,19 +67,36 @@ function SummaryResult() {
                 setSurveyCreator(surveyinfo.creator);
                 if(!surveyinfo.city) setCity("False");
                 else setCity(surveyinfo.city)
+                setMu(0);
+                setLion(0);
+                setApeach(0);
+                setCon(0);
+                setChun(0);
                 //응답한 모든 유저들 가져오기
                 return axios.get(("/api/surveys/participant/"+id)
                 ).then(function(res){
-                    console.log("count:"+res.data.length);
+                    
+                    console.log(res);
                     setCount(res.data.length);
+                    setUsers(res.data);
+                    for (let i=0; i<res.data.length; i++){
+                        if(res.data[i].role=="라이언") setLion(prevMu => prevMu + 1);
+                        else if(res.data[i].role=="춘식이") setChun(prevMu => prevMu + 1);
+                        else if(res.data[i].role=="콘") setCon(prevMu => prevMu + 1);
+                        else if(res.data[i].role=="어피치") setApeach(prevMu => prevMu + 1);
+                        else if(res.data[i].role=="무지") setMu(prevMu => prevMu + 1);
+                    }
+                    console.log(lion);
+                    // console.log(users[0]);
                 })
             }).catch(function (error) {
                 console.log(error);
               });
+            
         }
 
 
-    });
+    }, []);
     const handleSurveyCategorySelect = (event) => {
         const selectedOption = event.target.value;
         setSurveyCategory(selectedOption);
@@ -390,6 +436,11 @@ function SummaryResult() {
                                         </div>
                                         <div class="tremor-Col-root col-span-1 md:col-span-3 lg:col-span-2">
                                             <div class="tremor-Card-root relative w-full text-left ring-1 bg-white shadow border-blue-500 ring-gray-200 p-6 rounded-lg pl-0 pr-10">
+                                                <div className="tremor-Flex-root flex w-full flex-row justify-between items-start">
+                                                    <p className="text-gray-500 text-sm font-normal">
+                                                        참여자 유형 정보
+                                                    </p>
+                                                </div>
                                                 <div class="w-full mt-4 h-80">
                                                     <div
                                                         className="recharts-responsive-container"
@@ -402,471 +453,16 @@ function SummaryResult() {
                                                             className="recharts-wrapper"
                                                             role="region"
                                                             style={{
-                                                                position: "relative",
-                                                                cursor: "default",
-                                                                width: "561px",
-                                                                height: "320px",
+                                                                display: "flex",
+                                                                flexDirection: "row",
+                                                                backgroundColor: "white"
                                                             }}
                                                         >
-                                                            <svg
-                                                                className="recharts-surface"
-                                                                width="561"
-                                                                height="320"
-                                                                viewBox="0 0 561 320"
-                                                            >
-                                                                <title></title>
-                                                                <desc></desc>
-                                                                <defs>
-                                                                    <clipPath id="recharts156-clip">
-                                                                        <rect
-                                                                            x="61"
-                                                                            y="45"
-                                                                            height="240"
-                                                                            width="495"
-                                                                        ></rect>
-                                                                    </clipPath>
-                                                                </defs>
-                                                                <g className="recharts-cartesian-grid">
-                                                                    <g className="recharts-cartesian-grid-horizontal">
-                                                                        <line
-                                                                            strokeDasharray="3 3"
-                                                                            stroke="#ccc"
-                                                                            fill="none"
-                                                                            x="61"
-                                                                            y="45"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            offset="[object Object]"
-                                                                            x1="61"
-                                                                            y1="285"
-                                                                            x2="556"
-                                                                            y2="285"
-                                                                        ></line>
-                                                                        <line
-                                                                            strokeDasharray="3 3"
-                                                                            stroke="#ccc"
-                                                                            fill="none"
-                                                                            x="61"
-                                                                            y="45"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            offset="[object Object]"
-                                                                            x1="61"
-                                                                            y1="225"
-                                                                            x2="556"
-                                                                            y2="225"
-                                                                        ></line>
-                                                                        <line
-                                                                            strokeDasharray="3 3"
-                                                                            stroke="#ccc"
-                                                                            fill="none"
-                                                                            x="61"
-                                                                            y="45"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            offset="[object Object]"
-                                                                            x1="61"
-                                                                            y1="165"
-                                                                            x2="556"
-                                                                            y2="165"
-                                                                        ></line>
-                                                                        <line
-                                                                            strokeDasharray="3 3"
-                                                                            stroke="#ccc"
-                                                                            fill="none"
-                                                                            x="61"
-                                                                            y="45"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            offset="[object Object]"
-                                                                            x1="61"
-                                                                            y1="105"
-                                                                            x2="556"
-                                                                            y2="105"
-                                                                        ></line>
-                                                                        <line
-                                                                            strokeDasharray="3 3"
-                                                                            stroke="#ccc"
-                                                                            fill="none"
-                                                                            x="61"
-                                                                            y="45"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            offset="[object Object]"
-                                                                            x1="61"
-                                                                            y1="45"
-                                                                            x2="556"
-                                                                            y2="45"
-                                                                        ></line>
-                                                                    </g>
-                                                                </g>
-                                                                <g className="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis">
-                                                                    <g className="recharts-cartesian-axis-ticks">
-                                                                        <g className="recharts-layer recharts-cartesian-axis-tick">
-                                                                            <text
-                                                                                orientation="bottom"
-                                                                                width="495"
-                                                                                height="30"
-                                                                                x="71"
-                                                                                y="293"
-                                                                                stroke="none"
-                                                                                fill="#666"
-                                                                                transform="translate(0, 6)"
-                                                                                className="recharts-text recharts-cartesian-axis-tick-value"
-                                                                                textAnchor="middle"
-                                                                                style={{
-                                                                                    fontSize: "12px",
-                                                                                    color: "red",
-                                                                                }}
-                                                                            >
-                                                                                <tspan x="71" dy="0.71em">
-                                                                                    2023-05-23
-                                                                                </tspan>
-                                                                            </text>
-                                                                        </g>
-                                                                        <g className="recharts-layer recharts-cartesian-axis-tick">
-                                                                            <text
-                                                                                orientation="bottom"
-                                                                                width="495"
-                                                                                height="30"
-                                                                                x="528.22265625"
-                                                                                y="293"
-                                                                                stroke="none"
-                                                                                fill="#666"
-                                                                                transform="translate(0, 6)"
-                                                                                className="recharts-text recharts-cartesian-axis-tick-value"
-                                                                                textAnchor="middle"
-                                                                                style={{
-                                                                                    fontSize: "12px",
-                                                                                    color: "red",
-                                                                                }}
-                                                                            >
-                                                                                <tspan
-                                                                                    x="528.22265625"
-                                                                                    dy="0.71em"
-                                                                                >
-                                                                                    2023-05-25
-                                                                                </tspan>
-                                                                            </text>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                                                <g className="recharts-layer recharts-cartesian-axis recharts-yAxis yAxis">
-                                                                    <g className="recharts-cartesian-axis-ticks">
-                                                                        <g className="recharts-layer recharts-cartesian-axis-tick">
-                                                                            <text
-                                                                                width="56"
-                                                                                orientation="left"
-                                                                                height="240"
-                                                                                x="53"
-                                                                                y="285"
-                                                                                stroke="none"
-                                                                                fill="#666"
-                                                                                transform="translate(-3, 0)"
-                                                                                className="recharts-text recharts-cartesian-axis-tick-value"
-                                                                                textAnchor="end"
-                                                                                style={{ fontSize: "12px" }}
-                                                                            >
-                                                                                <tspan x="53" dy="0.355em">
-                                                                                    0
-                                                                                </tspan>
-                                                                            </text>
-                                                                        </g>
-                                                                        <g className="recharts-layer recharts-cartesian-axis-tick">
-                                                                            <text
-                                                                                width="56"
-                                                                                orientation="left"
-                                                                                height="240"
-                                                                                x="53"
-                                                                                y="225"
-                                                                                stroke="none"
-                                                                                fill="#666"
-                                                                                transform="translate(-3, 0)"
-                                                                                className="recharts-text recharts-cartesian-axis-tick-value"
-                                                                                textAnchor="end"
-                                                                                style={{ fontSize: "12px" }}
-                                                                            >
-                                                                                <tspan x="53" dy="0.355em">
-                                                                                    0.5
-                                                                                </tspan>
-                                                                            </text>
-                                                                        </g>
-                                                                        <g className="recharts-layer recharts-cartesian-axis-tick">
-                                                                            <text
-                                                                                width="56"
-                                                                                orientation="left"
-                                                                                height="240"
-                                                                                x="53"
-                                                                                y="165"
-                                                                                stroke="none"
-                                                                                fill="#666"
-                                                                                transform="translate(-3, 0)"
-                                                                                className="recharts-text recharts-cartesian-axis-tick-value"
-                                                                                textAnchor="end"
-                                                                                style={{ fontSize: "12px" }}
-                                                                            >
-                                                                                <tspan x="53" dy="0.355em">
-                                                                                    1
-                                                                                </tspan>
-                                                                            </text>
-                                                                        </g>
-                                                                        <g className="recharts-layer recharts-cartesian-axis-tick">
-                                                                            <text
-                                                                                width="56"
-                                                                                orientation="left"
-                                                                                height="240"
-                                                                                x="53"
-                                                                                y="105"
-                                                                                stroke="none"
-                                                                                fill="#666"
-                                                                                transform="translate(-3, 0)"
-                                                                                className="recharts-text recharts-cartesian-axis-tick-value"
-                                                                                textAnchor="end"
-                                                                                style={{ fontSize: "12px" }}
-                                                                            >
-                                                                                <tspan x="53" dy="0.355em">
-                                                                                    1.5
-                                                                                </tspan>
-                                                                            </text>
-                                                                        </g>
-                                                                        <g className="recharts-layer recharts-cartesian-axis-tick">
-                                                                            <text
-                                                                                width="56"
-                                                                                orientation="left"
-                                                                                height="240"
-                                                                                x="53"
-                                                                                y="45"
-                                                                                stroke="none"
-                                                                                fill="#666"
-                                                                                transform="translate(-3, 0)"
-                                                                                className="recharts-text recharts-cartesian-axis-tick-value"
-                                                                                textAnchor="end"
-                                                                                style={{ fontSize: "12px" }}
-                                                                            >
-                                                                                <tspan x="53" dy="0.355em">
-                                                                                    2
-                                                                                </tspan>
-                                                                            </text>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                                                <defs>
-                                                                    <linearGradient
-                                                                        id="indigo"
-                                                                        x1="0"
-                                                                        y1="0"
-                                                                        x2="0"
-                                                                        y2="1"
-                                                                    >
-                                                                        <stop
-                                                                            offset="5%"
-                                                                            stopColor="#6366f1"
-                                                                            stopOpacity="0.4"
-                                                                        ></stop>
-                                                                        <stop
-                                                                            offset="95%"
-                                                                            stopColor="#6366f1"
-                                                                            stopOpacity="0"
-                                                                        ></stop>
-                                                                    </linearGradient>
-                                                                </defs>
-                                                                <defs>
-                                                                    <linearGradient
-                                                                        id="fuchsia"
-                                                                        x1="0"
-                                                                        y1="0"
-                                                                        x2="0"
-                                                                        y2="1"
-                                                                    >
-                                                                        <stop
-                                                                            offset="5%"
-                                                                            stopColor="#d946ef"
-                                                                            stopOpacity="0.4"
-                                                                        ></stop>
-                                                                        <stop
-                                                                            offset="95%"
-                                                                            stopColor="#d946ef"
-                                                                            stopOpacity="0"
-                                                                        ></stop>
-                                                                    </linearGradient>
-                                                                </defs>
-                                                                <defs>
-                                                                    <linearGradient
-                                                                        id="cyan"
-                                                                        x1="0"
-                                                                        y1="0"
-                                                                        x2="0"
-                                                                        y2="1"
-                                                                    >
-                                                                        <stop
-                                                                            offset="5%"
-                                                                            stopColor="#06b6d4"
-                                                                            stopOpacity="0.4"
-                                                                        ></stop>
-                                                                        <stop
-                                                                            offset="95%"
-                                                                            stopColor="#06b6d4"
-                                                                            stopOpacity="0"
-                                                                        ></stop>
-                                                                    </linearGradient>
-                                                                </defs>
-                                                                <g className="recharts-layer recharts-area">
-                                                                    <g className="recharts-layer">
-                                                                        <path
-                                                                            name="views"
-                                                                            fill="url(#indigo)"
-                                                                            strokeWidth="2"
-                                                                            fillOpacity="0.6"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            stroke="none"
-                                                                            className="recharts-curve recharts-area-area"
-                                                                            d="M71,45L546,165L546,285L71,285Z"
-                                                                        ></path>
-                                                                        <path
-                                                                            name="views"
-                                                                            stroke="#6366f1"
-                                                                            fill="none"
-                                                                            strokeWidth="2"
-                                                                            fillOpacity="0.6"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            className="recharts-curve recharts-area-curve"
-                                                                            d="M71,45L546,165"
-                                                                        ></path>
-                                                                    </g>
-                                                                </g>
-                                                                <g className="recharts-layer recharts-area">
-                                                                    <g className="recharts-layer">
-                                                                        <path
-                                                                            name="starts"
-                                                                            fill="url(#fuchsia)"
-                                                                            strokeWidth="2"
-                                                                            fillOpacity="0.6"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            stroke="none"
-                                                                            className="recharts-curve recharts-area-area"
-                                                                            d="M71,165L546,285L546,285L71,285Z"
-                                                                        ></path>
-                                                                        <path
-                                                                            name="starts"
-                                                                            stroke="#d946ef"
-                                                                            fill="none"
-                                                                            strokeWidth="2"
-                                                                            fillOpacity="0.6"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            className="recharts-curve recharts-area-curve"
-                                                                            d="M71,165L546,285"
-                                                                        ></path>
-                                                                    </g>
-                                                                </g>
-                                                                <g className="recharts-layer recharts-area">
-                                                                    <g className="recharts-layer">
-                                                                        <path
-                                                                            name="submits"
-                                                                            fill="url(#cyan)"
-                                                                            strokeWidth="2"
-                                                                            fillOpacity="0.6"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            stroke="none"
-                                                                            className="recharts-curve recharts-area-area"
-                                                                            d="M71,285L546,285L546,285L71,285Z"
-                                                                        ></path>
-                                                                        <path
-                                                                            name="submits"
-                                                                            stroke="#06b6d4"
-                                                                            fill="none"
-                                                                            strokeWidth="2"
-                                                                            fillOpacity="0.6"
-                                                                            width="495"
-                                                                            height="240"
-                                                                            className="recharts-curve recharts-area-curve"
-                                                                            d="M71,285L546,285"
-                                                                        ></path>
-                                                                    </g>
-                                                                </g>
-                                                            </svg>
-                                                            <div
-                                                                className="recharts-legend-wrapper"
-                                                                style={{
-                                                                    position: "absolute",
-                                                                    width: "551px",
-                                                                    height: "40px",
-                                                                    left: "5px",
-                                                                    top: "5px",
-                                                                }}
-                                                            >
-                                                                <div className="flex items-center justify-end">
-                                                                    <ol className="tremor-Legend-root flex flex-wrap overflow-hidden truncate">
-                                                                        <li className="tremor-Legend-legendItem termor-elem inline-flex items-center truncate text-gray-500 mr-2.5">
-                                                                            <svg
-                                                                                className="termor-elem flex-none text-indigo-500 h-2 w-2 mr-1.5"
-                                                                                fill="currentColor"
-                                                                                viewBox="0 0 8 8"
-                                                                            >
-                                                                                <circle
-                                                                                    cx="4"
-                                                                                    cy="4"
-                                                                                    r="4"
-                                                                                ></circle>
-                                                                            </svg>
-                                                                            <p className="termor-elem whitespace-nowrap truncate text-sm font-normal">
-                                                                                views
-                                                                            </p>
-                                                                        </li>
-                                                                        <li className="tremor-Legend-legendItem termor-elem inline-flex items-center truncate text-gray-500 mr-2.5">
-                                                                            <svg
-                                                                                className="termor-elem flex-none text-fuchsia-500 h-2 w-2 mr-1.5"
-                                                                                fill="currentColor"
-                                                                                viewBox="0 0 8 8"
-                                                                            >
-                                                                                <circle
-                                                                                    cx="4"
-                                                                                    cy="4"
-                                                                                    r="4"
-                                                                                ></circle>
-                                                                            </svg>
-                                                                            <p className="termor-elem whitespace-nowrap truncate text-sm font-normal">
-                                                                                starts
-                                                                            </p>
-                                                                        </li>
-                                                                        <li className="tremor-Legend-legendItem termor-elem inline-flex items-center truncate text-gray-500 mr-2.5">
-                                                                            <svg
-                                                                                className="termor-elem flex-none text-cyan-500 h-2 w-2 mr-1.5"
-                                                                                fill="currentColor"
-                                                                                viewBox="0 0 8 8"
-                                                                            >
-                                                                                <circle
-                                                                                    cx="4"
-                                                                                    cy="4"
-                                                                                    r="4"
-                                                                                ></circle>
-                                                                            </svg>
-                                                                            <p className="termor-elem whitespace-nowrap truncate text-sm font-normal">
-                                                                                submits
-                                                                            </p>
-                                                                        </li>
-                                                                    </ol>
-                                                                </div>
-                                                            </div>
-
-                                                            <div
-                                                                tabIndex="-1"
-                                                                role="dialog"
-                                                                className="recharts-tooltip-wrapper"
-                                                                style={{
-                                                                    pointerEvents: "none",
-                                                                    visibility: "hidden",
-                                                                    position: "absolute",
-                                                                    top: "0px",
-                                                                    left: "0px",
-                                                                    outline: "none",
-                                                                    transform: "translate(395.234px, 0px)",
-                                                                }}
-                                                            ></div>
+                                                            <BarChart width={500} height={200} data={data}>
+                                                                <Bar dataKey="num" fill="#8884d8" />
+                                                                    <XAxis dataKey="name" />
+                                                                <YAxis />
+                                                            </BarChart>
                                                         </div>
                                                     </div>
                                                 </div>
