@@ -1083,6 +1083,21 @@ function Workspace() {
                               role="tablist"
                             >
                               <button
+                                className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === ""
+                                    ? "selected Mui-selected"
+                                    : ""
+                                  }`}
+                                tabIndex={0}
+                                type="button"
+                                role="tab"
+                                aria-selected="true"
+                                aria-controls="mui-p-43309-P-all"
+                                id="mui-p-43309-T-all"
+                                onClick={() => handleCategoryClick("")}
+                              >
+                                전체
+                              </button>
+                              <button
                                 className={`MuiButtonBase-root MuiTab-root MuiTab-textColorPrimary css-1b8ypoz category-button ${selectedCategory === "여행"
                                     ? "selected Mui-selected"
                                     : ""
