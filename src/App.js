@@ -10,6 +10,7 @@ import Workspace from "./components/MyPage/Workspace";
 import OpenSurvey from "./components/Survey/OpenSurvey"
 import Login from "./components/Login/Login"
 import Signup from "./components/Login/Signup"
+import Logout from "./components/Login/Logout"
 import TermofUse from "./components/Login/TermofUse"
 import Chatbot from "./components/Survey/Chatbot"
 import ChatbotSurvey from "./components/Survey/ChatbotSurvey"
@@ -73,6 +74,7 @@ function App() {
           <Route path="/participate/:id" element={<ParticipateSurvey/>}/>
           <Route path="/survey/:id/result" element={<ShowResult/>}/>
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/termofuse" element={<TermofUse />} />
           <Route path="/chatbot" element={<Chatbot />} />
