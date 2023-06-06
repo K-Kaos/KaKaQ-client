@@ -92,9 +92,15 @@ function ShowResult() {
   
       for (const response of responses) {
         if (response.value === option) {
-          optionData[response.answererRole] = response.count;
+          if (optionData[response.answererRole]) {
+            optionData[response.answererRole] += response.count;
+          } else {
+            optionData[response.answererRole] = response.count;
+          }
         } else {
-          optionData[response.answererRole] = 0;
+          if (!optionData[response.answererRole]) {
+            optionData[response.answererRole] = 0;
+          }
         }
       }
   
@@ -102,6 +108,23 @@ function ShowResult() {
     });
 
     return data.reverse();
+  }
+
+  function calculateOptionCounts(question, responses) {
+    const optionCounts = {};
+    
+    for (const option of question.options) {
+      optionCounts[option] = 0;
+    }
+  
+    if (responses[question.question_id]) {
+      for (const response of responses[question.question_id]) {
+        const { value, count } = response;
+        optionCounts[value] += count;
+      }
+    }
+    
+    return optionCounts;
   }
 
   const { id } = useParams();
@@ -522,6 +545,18 @@ function ShowResult() {
                                   Q{index + 1}. {question.text}
                                 </p>
                                 {question.type.name === '객관식' && (
+                                  <>
+                                  <ul>
+                                    {question.options.map((option, index) => {
+                                      const optionCounts = calculateOptionCounts(question, responses);
+                                      const count = optionCounts[option];
+                                      return (
+                                        <li key={index}>
+                                          {index + 1})&nbsp;&nbsp;{option} ({count})
+                                        </li>
+                                      );
+                                    })}
+                                  </ul>
                                   <div>
                                     {responses[question.question_id] ? (
                                       <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
@@ -529,8 +564,21 @@ function ShowResult() {
                                       <p>설문에 대한 응답이 없습니다.</p>
                                     )}
                                   </div>
+                                  </>
                                 )}
                                 {question.type.name === '찬부식' && (
+                                  <>
+                                  <ul>
+                                    {question.options.map((option, index) => {
+                                      const optionCounts = calculateOptionCounts(question, responses);
+                                      const count = optionCounts[option];
+                                      return (
+                                        <li key={index}>
+                                          {index + 1})&nbsp;&nbsp;{option} ({count})
+                                        </li>
+                                      );
+                                    })}
+                                  </ul>
                                   <div>
                                     {responses[question.question_id] ? (
                                       <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
@@ -538,6 +586,7 @@ function ShowResult() {
                                       <p>설문에 대한 응답이 없습니다.</p>
                                     )}
                                   </div>
+                                  </>
                                 )}
                                 {question.type.name === '서술형' && (
                                   <div>
