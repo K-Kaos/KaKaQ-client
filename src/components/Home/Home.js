@@ -6,6 +6,10 @@ import "../../style.css";
 import logo from "../../Assets/Logo/logo.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import intro_pic from "../../Assets/intro_pic.png";
+const intro = "../../Assets/intro.mov";
+const intro2 = "../../Assets/intro.mp4";
+
 
 function Home(props) {
   useEffect(() => {
@@ -13,7 +17,8 @@ function Home(props) {
       duration: 1000,
     });
   });
-
+  const intro = "../../Assets/intro.mov";
+  // const intro2 = "../../Assets/intro.mp4";
   return (
     <div
       id="main"
@@ -501,6 +506,7 @@ function Home(props) {
                       style={{
                         backgroundColor: "rgb(255, 255, 255)",
                         opacity: 1,
+                        aspectRatio: "auto"
                       }}
                     >
                       <div
@@ -509,21 +515,29 @@ function Home(props) {
                         style={{ opacity: "1" }}
                       >
                         <video
-                          src="#"
-                          loop
-                          autoPlay
-                          playsInline
-                          poster="#"
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            borderRadius: "0px",
-                            display: "block",
-                            objectFit: "fill",
-                            backgroundColor: "rgba(0, 0, 0, 0)",
-                            objectPosition: "50% 50%",
-                          }}
-                        ></video>
+                        // src="https://www.youtube.com/embed/FXemSbITVNc"
+                        // src={intro}
+                        // src="../../assets/intro.mp4"
+                        // src="https://drive.google.com/file/d/1519-JoUtSAF4M5s2lpKDzZZT9kqFUkGP/view?usp=sharing"
+                        // type="video/mp4"
+                        // src="https://www.youtube.com/embed/FXemSbITVNc"
+                        // src="https://streamable.com/e/kziovl" 
+                        src="../../assets/intro2.mov"
+                        // src="https://framerusercontent.com/modules/assets/fWk8q0Gf8PBADS0UgibFGT8EU~FFjXBYlzcBZVpXw8sCkSwxIgRds-6JGIXG1XQCRW9ZU.mp4" 
+                        loop="" 
+                        autoplay=""
+                        poster={intro_pic} 
+                        playsinline="" 
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "0px",
+                          display: "block",
+                          objectFit: "fill",
+                          backgroundColor: "rgba(0, 0, 0, 0)",
+                          objectPosition: "50% 50%",
+                        }}>
+                        </video>
                       </div>
                       <div
                         data-framer-component-type="SVG"
