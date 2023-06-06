@@ -405,8 +405,9 @@ function ShowResult() {
                                   <div>
                                     {responses[question.question_id] ? (
                                       <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
-                                    ) : (
-                                      <p>설문에 대한 응답이 없습니다.</p>
+                                    ) : (<ul>
+                                      <li>설문에 대한 응답이 없습니다.</li>
+                                      </ul>
                                     )}
                                   </div>
                                   </>
@@ -428,7 +429,9 @@ function ShowResult() {
                                     {responses[question.question_id] ? (
                                       <BarChart data={processData(question.options, responses[question.question_id])} keys={keys} />
                                     ) : (
-                                      <p>설문에 대한 응답이 없습니다.</p>
+                                      <ul>
+                                      <li>설문에 대한 응답이 없습니다.</li>
+                                      </ul>
                                     )}
                                   </div>
                                   </>
