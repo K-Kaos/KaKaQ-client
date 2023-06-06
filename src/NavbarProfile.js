@@ -3,6 +3,24 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "./Assets/Logo/logo.png"
 import ShowProfile from "./ShowProfile";
 function NavbarProfile(props) {
+    let imageUrl = "";
+
+    const userRole = sessionStorage.getItem("userRole");
+
+    if (userRole === "라이언") {
+        imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133540_5b2ce511c22d4197807e32485d3fca0c.png";
+    } else if (userRole === "어피치") {
+        imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133641_a7c5ac400a974e4ea655b5b7b6a51b59.png";
+    } else if (userRole === "콘") {
+        imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502134234_52e92257f3e04c619fd901da809e84f0.png";
+    } else if (userRole === "춘식이") {
+        imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502134313_3946f67d34604e629a739c72c24d5aa4.png";
+    } else if (userRole === "무지") {
+        imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133726_696cdcc692a6434293c16bc41ba09c96.png";
+    } else {
+        imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133812_098f311bb7be4d3a9fe5bc78d80b9e49.png";
+    }
+      
     const [showProfile, setShowProfile] = useState(false);
 
     const handleClickProfile = () => {
@@ -122,7 +140,7 @@ function NavbarProfile(props) {
                     >
                       <img
                         alt="profile_image"
-                        src="https://lh3.googleusercontent.com/a/AGNmyxYCL1L24exss9DNiVXadg4hyk22I6p-ygUS50-mVx0=s96-c"
+                        src={imageUrl}
                         class="MuiAvatar-img css-1hy9t21"
                         onClick={handleClickProfile}
                       />

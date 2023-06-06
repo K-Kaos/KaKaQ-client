@@ -61,7 +61,6 @@ function Workspace() {
       window.location.href = "/login";
     } else {
       setWhoLeggedIn(LoggedInUser);
-
       // 서버로 LoggedInUser 보내기
       fetch("/api/mypage/userInfo", {
         method: "POST",
@@ -74,7 +73,6 @@ function Workspace() {
         .then((data) => {
           console.log("서버 응답:", data);
           setUsername(data.username); // 서버 응답에서 받은 사용자 이름을 state로 저장
-          setRole(data.role);
         })
         .catch((error) => console.error("오류 발생:", error));
 
@@ -93,6 +91,24 @@ function Workspace() {
       });
     }
   }, []);
+
+  let imageUrl = "";
+
+  const userRole = sessionStorage.getItem("userRole");
+
+  if (userRole === "라이언") {
+      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133540_5b2ce511c22d4197807e32485d3fca0c.png";
+  } else if (userRole === "어피치") {
+      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133641_a7c5ac400a974e4ea655b5b7b6a51b59.png";
+  } else if (userRole === "콘") {
+      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502134234_52e92257f3e04c619fd901da809e84f0.png";
+  } else if (userRole === "춘식이") {
+      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502134313_3946f67d34604e629a739c72c24d5aa4.png";
+  } else if (userRole === "무지") {
+      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133726_696cdcc692a6434293c16bc41ba09c96.png";
+  } else {
+      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133812_098f311bb7be4d3a9fe5bc78d80b9e49.png";
+  }
 
   const [geoData, setgeoData] = useState({
     userName: "",
@@ -474,7 +490,7 @@ function Workspace() {
                           <div className="MuiAvatar-root MuiAvatar-circular css-1kavoh2">
                             <img
                               alt="profile_photo"
-                              src="https://lh3.googleusercontent.com/a/AGNmyxYCL1L24exss9DNiVXadg4hyk22I6p-ygUS50-mVx0=s96-c"
+                              src={imageUrl}
                               className="MuiAvatar-img css-1hy9t21"
                               onClick={handleClickProfile}
                             />

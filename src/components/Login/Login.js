@@ -51,6 +51,7 @@ function LoginForm(props) {
       .then((response) => {
         const url = response.data;
         const username = url.split("/")[0];
+        const userRole = url.split("/")[1];
         if (url.includes("/home")) {
           if (isRemember == true) {
             setCookie("rememberEmail", formData.email, expires);
@@ -59,6 +60,7 @@ function LoginForm(props) {
           }
           sessionStorage.setItem("isLoggedIn", "true");
           sessionStorage.setItem("whoLoggedIn", formData.email);
+          sessionStorage.setItem("userRole", userRole);
           alert(username + "님, 환영합니다!");
           window.location.href = "/workspace";
         } else if (url === "/login") {
