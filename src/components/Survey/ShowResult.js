@@ -475,68 +475,8 @@ function ShowResult() {
                                 </span>
                               </div>
                             </div>
-                            <div className="ant-picker ant-picker-range css-diro6f MuiBox-root css-rk138a"
-                              style={{ padding: "0px", backgroundColor: "white" }}>
-                              <div
-                                className="MuiBox-root css-0"
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "row",
-                                  backgroundColor: "white"
-                                }}
-                              >
-                                <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-kl5uk3 css-4m3kxx">
-                                  <div
-                                    className="MuiInputBase-root MuiFilledInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-hiddenLabel css-b4zgsm"
-                                    style={{
-                                      width: "fit-content",
-                                      backgroundColor: "white"
-                                    }}
-                                  >
-                                    <select
-                                      value={surveyCategory}
-                                      onChange={handleSurveyCategorySelect}
-                                      tabIndex="0"
-                                      role="button"
-                                      aria-expanded={isOpen ? "true" : "false"}
-                                      aria-haspopup="listbox"
-                                      aria-labelledby="select-color"
-                                      id="select-color"
-                                      className="MuiSelect-select MuiSelect-filled MuiInputBase-input MuiFilledInput-input MuiInputBase-inputHiddenLabel css-19tmo23"
-                                    >
-                                      <option value="">
-                                        {surveyCategory === ""
-                                          ? "전체"
-                                          : surveyCategory}
-                                      </option>
-                                      <option value="라이언">라이언</option>
-                                      <option value="어피치">어피치</option>
-                                      <option value="무지">무지</option>
-                                      <option value="콘">콘</option>
-                                      <option value="춘식이">춘식이</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div></div>
-                            <button
-                              className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1y1p9da"
-                              tabIndex="0"
-                              type="button"
-                            >
-                              <span className="MuiButton-startIcon MuiButton-iconSizeMedium css-6xugel">
-                                <svg
-                                  className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv"
-                                  focusable="false"
-                                  aria-hidden="true"
-                                  viewBox="0 0 24 24"
-                                  data-testid="SearchIcon"
-                                >
-                                  <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                                </svg>
-                              </span>
-                              조회하기
-                              <span className="MuiTouchRipple-root css-w0pj6f"></span>
-                            </button>
+                            <p className="text-gray-700 text-1xl font-normal" style={{ paddingTop: "10px"}}>
+                                        설문조사의 결과와 유형별 그래프를 확인하세요!</p>   
                           </div>
                           <div className="MuiBox-root css-iat7r2" style={{ textAlign: 'left' , marginLeft: '20px'}}>
                             {survey.questions.map((question, index) => (
@@ -551,7 +491,7 @@ function ShowResult() {
                                       const optionCounts = calculateOptionCounts(question, responses);
                                       const count = optionCounts[option];
                                       return (
-                                        <li key={index}>
+                                        <li key={index} style={{ marginTop: '10px' }}>
                                           {index + 1})&nbsp;&nbsp;{option} ({count})
                                         </li>
                                       );
@@ -573,7 +513,7 @@ function ShowResult() {
                                       const optionCounts = calculateOptionCounts(question, responses);
                                       const count = optionCounts[option];
                                       return (
-                                        <li key={index}>
+                                        <li key={index} style={{ marginTop: '10px' }}>
                                           {index + 1})&nbsp;&nbsp;{option} ({count})
                                         </li>
                                       );
@@ -589,17 +529,17 @@ function ShowResult() {
                                   </>
                                 )}
                                 {question.type.name === '서술형' && (
-                                  <div>
+                                  <>
+                                  <ul>
                                     {responses[question.question_id] ? (
                                       responses[question.question_id].map((response, index) => (
-                                        <div style={{ marginBottom: '15px' }}>
-                                          <p>답변 {index + 1}&nbsp;:&nbsp;{response.value}</p>
-                                        </div>
+                                        <li style={{ marginTop: '15px' }}>답변 {index + 1}&nbsp;:&nbsp;{response.value}</li>
                                       ))
                                     ) : (
                                       <p>설문에 대한 응답이 없습니다.</p>
                                     )}
-                                  </div>
+                                  </ul>
+                                  </>
                                 )}
                               </div>
                             ))}
