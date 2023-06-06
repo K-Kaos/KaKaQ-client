@@ -34,6 +34,7 @@ function Workspace() {
   const [role, setRole] = useState(null);
   const [creator, setCreator] = useState("");
   const [keyword, setKeyword] = useState("");
+  const [clickKeyword, setClickKeyword] = useState("");
   const [mergedSurveys, setMergedSurveys] = useState([]);
 
   const toggleMenu = () => {
@@ -427,6 +428,7 @@ function Workspace() {
 
   // search survey API
   const handleSearch = () => {
+    setClickKeyword(keyword);
     if (keyword.trim() !== "") {
       fetch(`api/search?keyword=${encodeURIComponent(keyword)}`)
         .then((response) => {
@@ -447,9 +449,11 @@ function Workspace() {
 
   // Merge filtered and search surveys whenever they change
   useEffect(() => {
-    const filteredIds = categorySurveys.map((survey) => survey.id);
-    const merged = searchSurveys.filter((survey) => filteredIds.includes(survey.id));
-    setMergedSurveys(merged);
+    if (clickKeyword.length > 0) {
+      const filteredIds = categorySurveys.map((survey) => survey.id);
+      const merged = searchSurveys.filter((survey) => filteredIds.includes(survey.id));
+      setMergedSurveys(merged);
+    }
   }, [categorySurveys, searchSurveys]);
 
   return (
@@ -888,7 +892,7 @@ function Workspace() {
                         </div>
                         <div>
                           {/* 키워드 검색 */}
-                          <div className="survey-search-results">
+                          {/* <div className="survey-search-results">
                             {searchSurveys.map((survey) => (
                               <div key={survey.id}>
                                 <p>Survey: {survey.title}</p>
@@ -897,7 +901,7 @@ function Workspace() {
                                 <p>End Date: {survey.endDate}</p>
                               </div>
                             ))}
-                          </div>
+                          </div> */}
                           {/* 카테고리 선택 버튼 */}
                           <div
                             className="MuiTabs-scroller MuiTabs-fixed css-1anid1y"
@@ -1014,7 +1018,7 @@ function Workspace() {
                             className="survey-results"
                             style={{ display: "flex", flexWrap: "wrap" }}
                           >
-                            {mergedSurveys.map((survey) => (
+                            {(clickKeyword.length > 0 ? mergedSurveys : categorySurveys).map((survey) => (
                               <Link to={"/participate/" + survey.id}>
                                 <>
                                   <div
@@ -1028,13 +1032,13 @@ function Workspace() {
                                     >
                                       <div className="MuiCardContent-root css-67yy9o">
                                         <div className="MuiBox-root css-1yd9vr8">
-                                          <div class="flex items-center gap-x-4 text-xs">
+                                          <div class="flex items-center gap-x-1 text-xs">
                                             <time class="text-gray-500">
                                               {survey.startDate.substring(
                                                 0,
                                                 survey.startDate.indexOf("T")
                                               )}
-                                            </time>
+                                            </time>-
                                             <time
                                               datetime="2020-03-16"
                                               class="text-gray-500"
@@ -1057,7 +1061,6 @@ function Workspace() {
                                         </div>
                                         <div
                                           className="MuiBox-root css-8atqhb"
-                                          style={{ display: "flex" }}
                                           aria-label={survey.title}
                                         >
                                           <div className="mt-4 MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-readOnly css-88ls20">
@@ -1073,23 +1076,20 @@ function Workspace() {
                                               readOnly
                                               type="text"
                                               className="MuiInputBase-input MuiInputBase-readOnly css-mnn31"
-                                              style={{ fontSize: "small" }}
+                                              style={{ fontSize: "small"}}
                                               value={survey.category}
                                             />
                                           </div>
                                         </div>
                                         <div class="relative mt-8 flex items-center gap-x-4">
                                           <img
-                                            // src={survey.profile}
+                                            src={imageOptions[survey.creatorRole]}
                                             alt=""
                                             class="h-10 w-10 rounded-full bg-gray-50"
                                           />
                                           <div class="text-sm leading-6">
-                                            <p class="font-semibold text-gray-900">
-                                              <a href="#">
-                                                <span class="absolute inset-0"></span>
-                                                {survey.creator}
-                                              </a>
+                                            <p class="font-sm text-gray-900">
+                                            {survey.creator}
                                             </p>
                                           </div>
                                         </div>
