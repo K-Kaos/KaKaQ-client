@@ -278,12 +278,19 @@ function Workspace() {
     setShowOption(false);
   };
 
-  const handleClickEdit = () => {
+  const handleClickEdit = (id) => {
     alert("수정하시겠습니까?");
   };
 
-  const handleClickDelete = () => {
+  const handleClickDelete = (id) => {
     alert("삭제하시겠습니까?");
+    axios.delete("/api/survey/" + id)
+    .then(function (response) {
+      alert("삭제되었습니다!");
+      window.location.reload();
+    }).catch(function (error) {
+      console.log(error);
+    });
   };
 
   const navigate = useNavigate();
@@ -670,7 +677,7 @@ function Workspace() {
                                     minheight="160"
                                   >
                                     <div className="MuiCardContent-root css-67yy9o">
-                                      <div className="MuiBox-root css-1yd9vr8">
+                                      <div className="MuiBox-root css-1yd9vr8" style={{ display: "flex" }}>
                                         <div
                                           className="MuiBox-root css-0"
                                           style={{
@@ -693,43 +700,40 @@ function Workspace() {
                                             🙂
                                           </span>
                                         </div>
-                                        <button
-                                          className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium .css-d9kxen .MuiPopover-paper .css-1oqb34a css-1yxmbwk"
-                                          tabIndex="0"
-                                          type="button"
-                                          style={{
-                                            padding: "3px",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            position: "absolute",
-                                            top: "24px",
-                                            right: "24px",
-                                            cursor: "pointer",
-                                          }}
-                                        >
+                                        <div style={{ marginLeft: "auto" }}>
+                                        <button>
                                           <svg
                                             className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n mr-1"
                                             focusable="false"
                                             aria-hidden="true"
                                             data-testid="EditIcon"
                                             viewBox="0 0 24 24"
-                                            onClick={handleClickEdit}
+                                            onClick={(event) => {
+                                              event.stopPropagation(); // 이벤트 전파 막기
+                                              handleClickEdit(survey.id);
+                                            }}
                                           >
                                             <path d="M10 20H6V4H13V9H18V12.1L20 10.1V8L14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H10V20M20.2 13C20.3 13 20.5 13.1 20.6 13.2L21.9 14.5C22.1 14.7 22.1 15.1 21.9 15.3L20.9 16.3L18.8 14.2L19.8 13.2C19.9 13.1 20 13 20.2 13M20.2 16.9L14.1 23H12V20.9L18.1 14.8L20.2 16.9Z" />
                                           </svg>
+                                          <span className="MuiTouchRipple-root css-w0pj6f"></span>
+                                        </button>
+                                        <button>
                                           <svg
                                             className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-luvl9n "
                                             focusable="false"
                                             aria-hidden="true"
                                             data-testid="DeleteIcon"
                                             viewBox="0 0 24 24"
-                                            onClick={handleClickDelete}
+                                            onClick={(event) => {
+                                              event.stopPropagation(); // 이벤트 전파 막기
+                                              handleClickDelete(survey.id);
+                                            }}
                                           >
                                             <path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z" />
                                           </svg>
                                           <span className="MuiTouchRipple-root css-w0pj6f"></span>
                                         </button>
+                                        </div>
                                       </div>
 
                                       <div
