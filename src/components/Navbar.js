@@ -4,10 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import logo from "../Assets/Logo/logo.png";
 import { Link } from "react-router-dom";
-import { ImBlog } from "react-icons/im";
-import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
-import { RiSurveyLine } from "react-icons/ri";
-import { CgFileDocument } from "react-icons/cg";
 
 function NavBar(props) {
   const [expand, setExpand] = useState(false);
@@ -107,7 +103,7 @@ function NavBar(props) {
             <li>
               <button
                 id="dropdownNavbarLink"
-                class="bg-transparent flex items-center w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-purple-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                class="bg-transparent flex text-lg items-center w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-purple-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-purple-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
                 onClick={handleDropdown}
               >
                 설문 생성
@@ -226,7 +222,8 @@ function NavBar(props) {
               </>
             )}
           </ul>
-        </div></Navbar>
+        </div>
+        </Navbar>
       </div>
     </nav>
   );
