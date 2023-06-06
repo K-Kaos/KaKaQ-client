@@ -92,23 +92,14 @@ function Workspace() {
     }
   }, []);
 
-  let imageUrl = "";
-
   const userRole = sessionStorage.getItem("userRole");
-
-  if (userRole === "라이언") {
-      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133540_5b2ce511c22d4197807e32485d3fca0c.png";
-  } else if (userRole === "어피치") {
-      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133641_a7c5ac400a974e4ea655b5b7b6a51b59.png";
-  } else if (userRole === "콘") {
-      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502134234_52e92257f3e04c619fd901da809e84f0.png";
-  } else if (userRole === "춘식이") {
-      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502134313_3946f67d34604e629a739c72c24d5aa4.png";
-  } else if (userRole === "무지") {
-      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133726_696cdcc692a6434293c16bc41ba09c96.png";
-  } else {
-      imageUrl = "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133812_098f311bb7be4d3a9fe5bc78d80b9e49.png";
-  }
+  const imageOptions = {
+    "라이언": "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133540_5b2ce511c22d4197807e32485d3fca0c.png",
+    "어피치": "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133641_a7c5ac400a974e4ea655b5b7b6a51b59.png",
+    "콘": "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502134234_52e92257f3e04c619fd901da809e84f0.png",
+    "춘식이": "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502134313_3946f67d34604e629a739c72c24d5aa4.png",
+    "무지": "https://t1.kakaocdn.net/friends/new_store/prod/character/character_20230502133726_696cdcc692a6434293c16bc41ba09c96.png"
+  };
 
   const [geoData, setgeoData] = useState({
     userName: "",
@@ -497,7 +488,7 @@ function Workspace() {
                           <div className="MuiAvatar-root MuiAvatar-circular css-1kavoh2">
                             <img
                               alt="profile_photo"
-                              src={imageUrl}
+                              src={imageOptions[userRole]}
                               className="MuiAvatar-img css-1hy9t21"
                               onClick={handleClickProfile}
                             />
@@ -833,12 +824,11 @@ function Workspace() {
                                     <img
                                       alt=""
                                       class="h-10 w-10 rounded-full bg-gray-50"
+                                      src={imageOptions[survey.creatorRole]}
                                     />
                                     <div class="text-sm leading-6">
-                                      <p class="font-semibold text-gray-900">
-                                        <a href="#">
-                                          <span class="absolute inset-0"></span>
-                                        </a>
+                                      <p class="font-sm text-gray-900">
+                                      {survey.creator}
                                       </p>
                                     </div>
                                   </div>
