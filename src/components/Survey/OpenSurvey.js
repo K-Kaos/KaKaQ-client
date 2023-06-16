@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import OpenSurveyItem from './OpenSurveyItem';
-// import seobin from "../../Assets/Profile/seobin.png";
 import './OpenSurvey.css'
 import axios from "axios";
 
@@ -35,9 +34,8 @@ function OpenSurvey() {
                             label={survey.keywords.map((keyword, index) => (
                                 <span key={index}>{keyword}</span>
                             ))}
-                            path={"/participate/" + survey.id} // 설문 참여 창으로
+                            path={"/participate/" + survey.id} 
                             name={survey.creator}
-                            //profile={seobin}
                         />
                     ))}
                 </div>

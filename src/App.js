@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Preloader from "../src/components/Pre";
-import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
 import Survey from "./components/Survey/Survey";
-import Test from "./components/Test/Test";
 import TypeTest from "./components/Test/TypeTest";
 import MyPage from "./components/MyPage/MyPage";
 import Workspace from "./components/MyPage/Workspace";
@@ -31,7 +29,6 @@ import StartTest from "./components/Test/StartTest";
 import SurveyTest from "./components/Survey/SurveyTest";
 import ShowResult from "./components/Survey/ShowResult";
 import TestResult from "./components/Test/TestResult";
-// import KakaoAuthHandle from "./components/Login/KakaoAuthHandle"
 import KakaoCallback from "./components/Login/KakaoCallback";
 
 function App() {
@@ -61,13 +58,10 @@ function App() {
         <Routes>
         <Route /* 인가 코드 받기.. */
         path="/oauth"
-        // component={KakaoAuthHandle}
         element={<KakaoCallback />}
       />
-      
           <Route path="/" element={<Home />} />
           <Route path="/survey" element={<Survey />} />
-          <Route path="/test" element={<Test />} />
           <Route path="/typetest" element={<TypeTest />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/opensurvey" element={<OpenSurvey />} />
